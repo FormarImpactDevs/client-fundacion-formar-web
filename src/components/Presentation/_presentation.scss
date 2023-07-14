@@ -1,0 +1,59 @@
+@import "../../styles/colors";
+@import "../../styles/media-queries";
+
+.presentation_container {
+  /*  min-height: 98vh; */
+  max-width: 100vw;
+  position: relative;
+
+  .firmFormar {
+    /*  max-width: 45vw; */
+    min-width: 20vw;
+    border-radius: 7%;
+    background: rgba(255, 255, 255, 0.74);
+    position: absolute;
+    padding: 0.5rem 1rem;
+    top: 0.5rem;
+    left: 1rem;
+    z-index: 1;
+
+    span {
+      color: $dark-gray;
+    }
+
+    @include tablet {
+      /* padding: 0.5rem;
+      top: 2.5rem; */
+    }
+  
+    @include desktop {
+     /*  border-radius: 20px; */
+      padding: 1.5rem;
+      top: 2.5rem;
+      left: 2rem;
+    }
+  }
+  .students {
+    position: relative;
+  }
+
+  .ondas {
+    position: absolute;
+    bottom: 0;
+  }
+
+  figure {
+    .presentation_img {
+      max-width: 100vw;
+    }
+  }
+
+  .presentation_center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.2rem 0;
+  }
+
+  
+}
