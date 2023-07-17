@@ -2,7 +2,7 @@ import "./_news.scss"
 export const Novedades = () => {
   return (
     <div className="news_container">
-      <h2>Conoce nuestras Novedades</h2>
+      <h2 className="title">Conoce nuestras novedades</h2> 
       <section className="instagram_container">
         <div
           loading="lazy"
