@@ -6,8 +6,11 @@
   max-width: 100vw;
   position: relative;
 
+/*   @include desktop {
+    min-height: 90vh;
+  } */
+
   .firmFormar {
-    /*  max-width: 45vw; */
     min-width: 20vw;
     border-radius: 7%;
     background: rgba(255, 255, 255, 0.74);
@@ -21,13 +24,8 @@
       color: $dark-gray;
     }
 
-    @include tablet {
-      /* padding: 0.5rem;
-      top: 2.5rem; */
-    }
   
     @include desktop {
-     /*  border-radius: 20px; */
       padding: 1.5rem;
       top: 2.5rem;
       left: 2rem;

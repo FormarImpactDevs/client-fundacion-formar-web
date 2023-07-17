@@ -1,5 +1,7 @@
 import { Button } from "../Button";
 import "./_presentation.scss";
+import AOS from 'aos';
+AOS.init();
 
 export const Presentation = () => {
   return (
@@ -12,7 +14,7 @@ export const Presentation = () => {
           className="presentation_img"
         />
       </figure>
-      <div className="firmFormar">
+      <div className="firmFormar" data-aos="zoom-in-right">
         <h1>
           Formar para <br />
           incluir,<span> trabajar<br /> 
