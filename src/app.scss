@@ -1,53 +1,80 @@
 /* media-queries */
 @import "./styles/media-queries";
 @import "./styles/colors";
-
-/* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
+@import "./styles/fonts-senttings";
+@import "node_modules/aos/src/sass/aos.scss";
 
 * {
   margin: 0 auto;
   box-sizing: border-box;
-}
-
-h1 {
-  color: $primary-color;
   font-family: $font-family;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 800;
-  text-shadow: 1px 1px 1px $ligth-blue;
-
-  @include tablet {
-    font-size: 40px;
-    text-shadow: 4px 3px 3px $ligth-blue;
-  }
-
-  @include desktop {
-    font-size: 60px;
-    text-shadow: 4px 3px 3px $ligth-blue;
-  }
 }
 
-h2 {
+.title {
   color: $primary-color;
   text-align: center;
   text-shadow: 1.5px 1px 1px rgba(0, 0, 0, 0.25);
-  font-family: Nunito;
-  font-size: 13px;
+  font-size: $title-mobile-size;
   font-style: normal;
   font-weight: 800;
 
   @include tablet {
-    font-size: 24px;
+    font-size: $title-tablet-size;
   }
 
   @include desktop {
-    font-size: 36px;
+    font-size: $title-desktop-size;
   }
 }
 
-p {
+.subtitle {
   color: $dark-gray;
+  font-size: $subtitle-mobile-size;
+  
+  @include tablet {
+    font-size: $subtitle-tablet-size;
+  }
+
+  @include desktop {
+    font-size: $title-desktop-size;
+  }
+}
+
+.paragraph1 {
+  color: $dark-gray;
+  font-size: $paragraph1-mobile-size;
+
+  @include tablet {
+    font-size: $paragraph1-tablet-size;
+  }
+
+  @include desktop {
+    font-size: $paragraph1-desktop-size;
+  }
+}
+
+.paragraph2 {
+  color: $dark-gray;
+  font-size: $paragraph2-mobile-size;
+
+  @include tablet {
+    font-size: $paragraph2-tablet-size;
+  }
+
+  @include desktop {
+    font-size: $paragraph2-desktop-size;
+  }
+}
+
+.description {
+  color: $dark-gray;
+  font-size: $description-mobile-size;
+
+  @include tablet {
+    font-size: $description-tablet-size;
+  }
+
+  @include desktop {
+    font-size: $description-desktop-size;
+  }
 }
