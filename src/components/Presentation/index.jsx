@@ -1,6 +1,8 @@
 import { Button } from "../Button";
 import "./_presentation.scss";
-import AOS from 'aos';
+import AOS from "aos";
+import students from "../../assets/students.svg"
+import ondas from "../../assets/ondas.svg"
 AOS.init();
 
 export const Presentation = () => {
@@ -9,27 +11,36 @@ export const Presentation = () => {
       {/* imagen */}
       <figure className="students">
         <img
-          src="./students.svg"
+          src={students}
           alt="Imagen de estudiantes"
           className="presentation_img"
         />
       </figure>
       <div className="firmFormar" data-aos="zoom-in-right">
-        <h1>
+        <h1 className="presentation_title">
           Formar para <br />
-          incluir,<span> trabajar<br /> 
-          para crecer</span> 
+          incluir,
+          <span className="presentation_span">
+            {" "}
+            trabajar
+            <br />
+            para crecer
+          </span>
         </h1>
 
         <div className="presentation_center">
           {/* button */}
-          <Button info={"CONOCENOS"}/>
+          <Button info={"CONOCENOS"} />
         </div>
       </div>
 
       {/* ondas */}
       <figure className="ondas">
-        <img src="./ondas.svg" alt="Divisor ondulado" className="presentation_img" />
+        <img
+          src={ondas}
+          alt="Divisor ondulado"
+          className="presentation_img"
+        />
       </figure>
     </section>
   );
