@@ -1,10 +1,17 @@
 import { Presentation } from "../../components/Presentation";
+import { Novedades } from "../../components/Novedades";
+import { MainLayout } from "../../layout";
 
 export default function Home() {
   return (
-    <div>        
-        <h1 className="title">Home</h1>
-        <Presentation/>        
-    </div>
+    <>
+      <MainLayout>
+        {/* Presentación */}
+        <Presentation/>  
+        {/* Quienes somos */}
+
+        <Novedades />
+      </MainLayout>
+    </>
   );
 }

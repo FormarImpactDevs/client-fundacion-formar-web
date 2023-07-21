@@ -1,0 +1,83 @@
+@import '../../styles/colors';
+
+@mixin header-desktop {
+  @media screen and (min-width: 950px) {
+      @content;
+  }
+}
+
+.buttonMenu {
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+}
+
+input#openClose {
+  visibility: hidden;
+  position: absolute;
+  top: -9999px;
+
+  @include header-desktop {
+    display: none;
+  }
+
+}
+
+.toggle_button {
+  display: block;
+  width: 50px;
+  height: 50px;
+  position: relative;
+  cursor: pointer;
+  box-sizing: border-box;
+  align-self: flex-end;
+
+  @include header-desktop {
+    display: none;
+  }
+
+  &::before,
+  &::after {
+    position: absolute;
+    display: block;
+    content: " ";
+    width: calc(100% / 2);
+    box-sizing: border-box;
+    left: calc(100% / 4);
+    transition: all 0.2s ease-out;
+  }
+
+  &::before {
+    top: calc(100% / 4);
+    height: calc(100% / 4);
+    border-top: 2px solid $medium-blue;
+    border-bottom: 2px solid $medium-blue;
+    background-color: transparent;
+  }
+
+  &::after {
+    height: 2px;
+    background-color: $medium-blue;
+    bottom: calc(100% / 4);
+  }
+}
+
+/* comportamiento del botón */
+input#openClose:checked + .toggle_button:before,
+input#openClose:checked + .toggle_button:after {
+  top: calc(100% / 2);
+  height: 2px;
+  border-bottom: 0;
+}
+
+input#openClose:checked + .toggle_button:before {
+  transform: rotate(45deg);
+}
+
+input#openClose:checked + .toggle_button:after {
+  transform: rotate(-45deg);
+}
+
+

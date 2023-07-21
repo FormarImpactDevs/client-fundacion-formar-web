@@ -2,7 +2,7 @@
 @import "./styles/media-queries";
 @import "./styles/colors";
 @import "./styles/fonts-senttings";
-@import "node_modules/aos/src/sass/aos.scss";
+//@import "node_modules/aos/src/sass/aos.scss";
 
 * {
   margin: 0 auto;
@@ -16,7 +16,7 @@
   text-shadow: 1.5px 1px 1px rgba(0, 0, 0, 0.25);
   font-size: $title-mobile-size;
   font-style: normal;
-  font-weight: 800;
+  font-weight: 600;
 
   @include tablet {
     font-size: $title-tablet-size;

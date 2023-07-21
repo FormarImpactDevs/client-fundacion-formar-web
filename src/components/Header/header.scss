@@ -1,0 +1,133 @@
+@import "../../styles/colors";
+@import "../../styles/media-queries";
+
+.topHeader {
+  position: fixed;
+  background-color: $white;
+  left: 0;
+  top: 0;
+  width: 100%;
+  box-shadow: 0 2px 3px rgb($ligth-gray, .25);
+  z-index: 1100;
+
+  .topNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 0 auto;
+
+    .logoHeader {
+      max-width: 150px;
+      height: 40px;
+      margin: 5px 30px;
+
+      img {
+        width: 150px;
+        height: 40px;
+        object-fit: contain;
+      }
+    }
+
+    /*  menu */
+
+    .menu {
+      display: flex;
+      list-style: none;
+      margin: 0 20px 0 0;
+      padding: 0;
+
+      @include mobile-tablet {
+        flex-direction: column;
+        position: fixed;
+        left: 0;
+        top: 70px;
+        padding-bottom: 50px;
+        width: 100%;
+        align-items: center;
+        background-color: rgb($white, 0.95);
+        height: 100%;
+        overflow-y: auto;
+
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s;
+        justify-content: space-evenly;
+
+      }
+
+      li {
+        padding: 0 15px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+
+        @include mobile-tablet {
+          padding: 0;
+          border-bottom: solid 1px $ligth-blue;
+          width: 90%;
+          text-align: center;
+        }
+      }
+
+      a {
+        color: $dark-gray;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        height: inherit;
+        text-align: center;       
+        align-items: center;
+        display: inline-flex;
+
+        position: relative;
+
+        &:hover {
+          color: $primary-color;
+        }
+
+        &::after {
+          content: "";
+          background-color: rgb($primary-color, 0.60);
+          position: absolute;
+          left: 0;
+          top: calc(100% + 5px);
+          width: 100%;
+          height: 4px;
+
+          opacity: 0;
+          transition: opacity 0.4s;
+          /* transform: scaleX(0.6); */
+        }
+
+        &.selected {
+          color: $primary-color;
+        }
+        
+        &.selected::after, &:hover::after {
+          opacity: 1;
+        }
+
+        @include mobile-tablet {
+          font-size: 16px;
+          line-height: 60px;
+          color: $ligth-gray;
+
+          &:hover, .selected {
+            color: $medium-blue;
+          }
+
+          &::after {
+            content: none;
+          }  
+          
+        }
+      }
+    }
+
+    .menu_opened {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+}

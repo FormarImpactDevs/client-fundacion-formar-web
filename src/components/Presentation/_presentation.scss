@@ -5,6 +5,10 @@
   max-width: 100vw;
   position: relative;
 
+  @include desktop {
+    min-height: 90vh;
+  }
+
   .firmFormar {
     min-width: 20vw;
     border-radius: 7%;
