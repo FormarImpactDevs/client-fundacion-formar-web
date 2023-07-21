@@ -48,7 +48,7 @@
     
     width: 90%;
     @include tablet {
-        margin: 5%;
+        margin: 0% 5%;
     }
     @include desktop {
         width: 40%;
@@ -72,7 +72,7 @@
             width: 80%;
         }
         @include desktop {
-            margin: 5% 10%;
+            margin: 0% 10%5% 10%
         }
     }
 }
