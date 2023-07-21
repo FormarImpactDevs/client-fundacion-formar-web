@@ -1,9 +1,15 @@
-import {Header} from "../../components/Header"
+import { Novedades } from "../../components/Novedades";
+import { MainLayout } from "../../layout";
+
 export default function Home() {
   return (
-    <div>
-      <h1 className="title">Home</h1>
-      <Header/>
-    </div>
+    <>
+      <MainLayout>
+        {/* Presentación */}
+        {/* Quienes somos */}
+
+        <Novedades />
+      </MainLayout>
+    </>
   );
 }

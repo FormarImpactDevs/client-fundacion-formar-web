@@ -8,6 +8,7 @@
   top: 0;
   width: 100%;
   box-shadow: 0 2px 3px rgb($ligth-gray, .25);
+  z-index: 1100;
 
   .topNav {
     display: flex;
@@ -40,10 +41,11 @@
         flex-direction: column;
         position: fixed;
         left: 0;
-        top: 80px;
+        top: 70px;
+        padding-bottom: 50px;
         width: 100%;
         align-items: center;
-        background-color: rgb($white, 0.75);
+        background-color: rgb($white, 0.95);
         height: 100%;
         overflow-y: auto;
 
