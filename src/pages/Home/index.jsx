@@ -1,13 +1,15 @@
 import { Novedades } from "../../components/Novedades";
+import { MainLayout } from "../../layout";
 
 export default function Home() {
   return (
-    <div>        
-        <h1 className="title">Home</h1>
+    <>
+      <MainLayout>
         {/* Presentación */}
         {/* Quienes somos */}
-        
-        <Novedades/>
-    </div>
+
+        <Novedades />
+      </MainLayout>
+    </>
   );
 }
