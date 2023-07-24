@@ -6,7 +6,9 @@
   position: relative;
 
   @include desktop {
-    min-height: 90vh;
+    min-width: 100vw;
+    display: flex;
+    justify-content: center;
   }
 
   .firmFormar {
@@ -45,6 +47,10 @@
       padding: 1.5rem;
       top: 2.5rem;
       left: 2rem;
+
+      @media screen and (min-width: 1450px) {
+        left: auto;
+      }
     }
   }
   .students {
