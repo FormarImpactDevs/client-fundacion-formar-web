@@ -1,0 +1,82 @@
+@import "../../styles/colors";
+@import "../../styles/media-queries";
+
+.programando_container {
+    height: 500px;
+    background-image: url("../../assets/fondoAboutUs.jpg");
+    background-position: right;
+    background-repeat: no-repeat;
+    @include tablet {
+        height: auto;
+    }
+    @include desktop {
+        height: 600px;
+        background-size: 100%;
+    }
+    span {
+        color: $white;
+    }
+}
+
+.programando_text_img {
+    margin-top: 10px;
+    @include tablet {
+
+    }
+    @include desktop {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-around;
+    }
+}
+.programando_text {
+    margin: 2%;
+    p {
+        font-family: $font-family;
+        color: $dark-gray;
+        font-size: 12px;
+        margin: 20px;
+
+        @include tablet {
+            font-size: 16px;
+            margin: 10px;
+        }
+
+        @include desktop {
+            font-size: 20px;
+            margin: 20px;
+        }
+    }
+
+    
+    width: 90%;
+    @include tablet {
+        margin: 0% 5%;
+    }
+    @include desktop {
+        width: 40%;
+        height: 40%;
+        margin: 10% 5%;
+    }
+}
+.programando_img {
+    @include tablet {
+
+    }
+    @include desktop {
+        width: 50%;
+    }
+    img {
+        border-radius: 5%;
+        width: 90%;
+        margin: 5%;
+        @include tablet {
+            margin: 5%  10%;
+            width: 80%;
+        }
+        @include desktop {
+            margin: 0% 10%5% 10%
+        }
+    }
+}
