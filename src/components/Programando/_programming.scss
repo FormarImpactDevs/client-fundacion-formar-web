@@ -4,7 +4,7 @@
 
 
 .programando_container {
-
+    min-height: 90vh;
     background-image: url("../../assets/fondoAboutUs.jpg");
     background-position: right;
     background-repeat: no-repeat;
@@ -16,6 +16,7 @@
     }
     span {
         color: $white;
+        @include desktop2 {}
     }
 }
 

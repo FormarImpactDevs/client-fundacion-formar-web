@@ -1,6 +1,7 @@
 @import "../../styles/colors";
 @import "../../styles/media-queries";
 .emprendiendo_container {
+    min-height: 90vh;
     background-color: $ligth-blue;
     width: 100%;
 }
@@ -62,7 +63,6 @@
         height: 10vh;
         display: flex;
         align-items: center;
-        
         color: $ligth-blue;
         @include tablet {
             width: 15vh;
@@ -80,5 +80,19 @@
     @include desktop2 {
         width: 30%;
         margin-bottom: 5%;
+    }
+}
+.emprendiendo_card:hover {
+    img {
+        width: 15vh;
+        height: 15vh;
+        @include tablet {
+            width: 20vh;
+            height: 20vh;
+        }
+        @include desktop2 {
+            width: 25vh;
+            height: 25vh;
+        }
     }
 }
