@@ -4,13 +4,14 @@
 
 
 .programando_container {
-    min-height: 90vh;
+    margin-top: 5%;
     background-image: url("../../assets/fondoAboutUs.jpg");
     background-position: right;
     background-repeat: no-repeat;
     cursor: default;
     @include tablet {
         height: auto;
+        min-height: 90vh;
     }
     @include desktop2 {
 
