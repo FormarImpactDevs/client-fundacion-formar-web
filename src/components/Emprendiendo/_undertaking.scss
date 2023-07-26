@@ -4,6 +4,7 @@
     min-height: 90vh;
     background-color: $ligth-blue;
     width: 100%;
+    cursor:default;
 }
 .emprendiendo_text {
     text-align: center;
@@ -82,7 +83,7 @@
         margin-bottom: 5%;
     }
 }
-.emprendiendo_card:hover {
+/*.emprendiendo_card:hover {
     img {
         width: 15vh;
         height: 15vh;
@@ -95,4 +96,8 @@
             height: 25vh;
         }
     }
+}*/
+.emprendiendo_card:hover {
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.4);
+    transform: translateY(-3%);
 }
