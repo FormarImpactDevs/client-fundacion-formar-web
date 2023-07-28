@@ -6,6 +6,7 @@ import { Programando } from "../../components/Programando";
 import { Emprendiendo } from "../../components/Emprendiendo";
 import { Equipo } from "../../components/Team";
 import { Ejes } from "../../components/Axes";
+import { EquipoEmprendiendo } from "../../components/TeamUndertaking";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         <Equipo/>
         <Programando />
         <Emprendiendo/>
+        <EquipoEmprendiendo/>
         <Novedades />
       </MainLayout>
     </>
