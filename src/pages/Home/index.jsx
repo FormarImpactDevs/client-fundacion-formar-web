@@ -3,6 +3,7 @@ import { Novedades } from "../../components/Novedades";
 import { MainLayout } from "../../layout";
 import { QuienesSomos } from "../../components/QuienesSomos";
 import { Programando } from "../../components/Programando";
+import { Emprendiendo } from "../../components/Emprendiendo";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
         <Presentation />
         <QuienesSomos />
         <Programando />
+        <Emprendiendo/>
         <Novedades />
       </MainLayout>
     </>

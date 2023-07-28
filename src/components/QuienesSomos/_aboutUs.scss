@@ -2,29 +2,27 @@
 @import "../../styles/media-queries";
 
 .quienes_somos_container {
-  height: 500px;
+  min-height: 90vh;
   background-image: url("../../assets/fondoAboutUs.jpg");
   background-position: right;
-    background-repeat: no-repeat;
+  background-repeat: no-repeat;
+  cursor: default;
 
   @include tablet {
     height: auto;
   }
 
-  @include desktop {
-    height: 600px;
-  
+  @include desktop2 {
     background-size: 100% 100%;
   }
 }
 
 .quienes_somos_text_img {
-    margin-top: 10px;
+  margin-top: 10px;
   @include tablet {
-    
   }
 
-  @include desktop {
+  @include desktop2 {
     margin-top: 40px;
     display: flex;
     flex-direction: row;
@@ -39,7 +37,7 @@
     @include tablet {
       font-size: 16px;
     }
-    @include desktop {
+    @include desktop2 {
       font-size: 20px;
     }
   }
@@ -47,7 +45,7 @@
   @include tablet {
   }
 
-  @include desktop {
+  @include desktop2 {
     font-size: 20px;
     width: 40%;
     height: 40%;
@@ -58,7 +56,7 @@
 .quienes_somos_img {
   @include tablet {
   }
-  @include desktop {
+  @include desktop2 {
     width: 50%;
   }
 
@@ -68,7 +66,7 @@
     margin: 5% 10%;
     @include tablet {
     }
-    @include desktop {
+    @include desktop2 {
       width: 90%;
       margin: 0px 10px 10px 10px;
     }
