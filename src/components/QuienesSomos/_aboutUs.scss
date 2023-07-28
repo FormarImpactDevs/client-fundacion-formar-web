@@ -2,7 +2,7 @@
 @import "../../styles/media-queries";
 
 .quienes_somos_container {
-  min-height: 90vh;
+  margin: 10% 0% 10% 0%;
   background-image: url("../../assets/fondoAboutUs.jpg");
   background-position: right;
   background-repeat: no-repeat;
@@ -10,6 +10,7 @@
 
   @include tablet {
     height: auto;
+    min-height: 90vh;
   }
 
   @include desktop2 {

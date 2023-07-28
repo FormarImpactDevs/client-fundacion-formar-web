@@ -1,7 +1,7 @@
 @import "../../styles/colors";
 @import "../../styles/media-queries";
 .emprendiendo_container {
-    min-height: 90vh;
+    margin: 10% 0% 10% 0%;
     background-color: $ligth-blue;
     width: 100%;
     cursor:default;
@@ -44,6 +44,7 @@
     background-color: $white;
     border-radius: 5%;
     margin: 0% 5% 5% 5%;
+    transition: all 400ms ease;
     figure {
         width: 20vh;
     }
@@ -75,7 +76,7 @@
         }
     }
     @include tablet {
-        width: 28vh;
+        width: 30%;
         margin: 5% 2%;
     } 
     @include desktop2 {
@@ -83,20 +84,6 @@
         margin-bottom: 5%;
     }
 }
-/*.emprendiendo_card:hover {
-    img {
-        width: 15vh;
-        height: 15vh;
-        @include tablet {
-            width: 20vh;
-            height: 20vh;
-        }
-        @include desktop2 {
-            width: 25vh;
-            height: 25vh;
-        }
-    }
-}*/
 .emprendiendo_card:hover {
     box-shadow: 5px 5px 20px rgba(0,0,0,0.4);
     transform: translateY(-3%);
