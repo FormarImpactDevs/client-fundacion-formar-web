@@ -7,15 +7,7 @@
   background-position: right;
   background-repeat: no-repeat;
   cursor: default;
-
-  @include tablet {
-    height: auto;
-    min-height: 90vh;
-  }
-
-  @include desktop2 {
-    background-size: 100% 100%;
-  }
+  background-size: 100% 100%;
 }
 
 .quienes_somos_text_img {

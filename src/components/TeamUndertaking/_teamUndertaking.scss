@@ -6,11 +6,14 @@
 }
 .teamUndertaking_cards {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
+    align-content: center;
     text-align: center;
     @include desktop2 {
         margin: 5% 0px;
         flex-direction: row;
+    justify-content: space-evenly;
     }
 }
 .teamUndertaking_card {
