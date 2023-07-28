@@ -14,11 +14,12 @@ export const AliadosProg =() => {
                 <h2>Empresas y organizaciones comprometidas con la inclusión laboral en el sector IT.</h2>        
            </div>
            <div className="row">
-            <img src={santander} alt="Logo santander"  width="300px"/>
-            <img src={dh} alt="Logo Digital House"  width="300px"/>
-            <img src={sanMiguel} alt="Logo Municipalidad San Miguel" width="auto"/>
-            <img className="lanus" src={lanus} alt="Logo Municipalidad de Lanus" />
-            <img src={ pampaEnergia } alt="Logo Pampa energia " />
+            <div className="img_aliados"><img src={santander} alt="Logo santander"/></div>
+            <div className="img_aliados"><img src={dh} alt="Logo Digital House"/></div>
+            <div className="img_aliados"><img src={sanMiguel} alt="Logo Municipalidad San Miguel"/></div>
+            <div className="img_aliados"><img src={ pampaEnergia } alt="Logo Pampa energia " /></div>
+            <div className="img_aliados"><img className="lanus" src={lanus} alt="Logo Municipalidad de Lanus" />
+            </div>
            </div>
            
        </section>

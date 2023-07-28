@@ -42,5 +42,16 @@
         height: 400px;
         justify-content: center;
     }
-
+    .img_aliados {
+        width: 200px;
+        height: 150px;
+        object-fit: contain;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 5px;
+        img{
+            width: 100%;
+        }
+    }
 }

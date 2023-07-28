@@ -1,43 +1,86 @@
 @import "../../styles/colors";
 @import "../../styles/media-queries";
+@import "../../styles/fonts-settings";
 
 
 .egresados_container {
-    height: 300px;
+    height: 400px;
     background-image: url("../../assets/fondoAboutUs.jpg");
     background-position: right;
     
     @include tablet {
       height: auto;
+      background-size: 100% 100%;
     }
     @include desktop {
       height: 600px;
-      background-size: 100%;
+      background-size: 100% 100%;
+      padding: 2rem;
     }
-    
-  }
- 
 
-  .egresados_text {
-
-    margin-top: 90px;
-    width: 80px;
-    display: flex;
-    p {
-      color: $dark-gray;
-      font-size: 14px;
+    .egresados_text_video {
+     
+      margin-top: 10px;
       @include tablet {
-        font-size: 16px;
-
+  
       }
       @include desktop {
-        font-size: 20px;
-        margin-top: 200px;
+          margin-top: 40px;
+        
+      
       }
-    }
-    width: 90%;
-    
- 
   }
+
+    .egresados_text{
+      margin: 2%;
+      text-align: center;
+    h2 {
+        font-family: $font-family;
+        color: $dark-gray;
+        font-size: 12px;
+        margin: 20px;
+
+        @include tablet {
+            font-size: 16px;
+            margin: 10px;
+        }
+
+        @include desktop {
+            font-size: 20px;
+           
+        }
+    }
+
+    
+width: 90%;
+    @include tablet {
+        margin: 0% 5%;
+        justify-content: center;
+    }
+  }}
+
+    .video{
+      padding: 1em;
+      display:grid;
+      align-content: center;
+      justify-content: center;
+      @include mobile{
+        margin-top: -4rem;
+        margin-bottom: 1.5rem;
+      }
+      @include tablet{
+        margin-top: -1rem;
+      }
+      @include desktop{
+        margin-top: 3rem;
+     
+      }
+      }
+      
+
+ 
+ 
+
+  
 
 
