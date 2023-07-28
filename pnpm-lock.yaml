@@ -18,8 +18,11 @@ dependencies:
     specifier: ^5.12.0
     version: 5.12.0(styled-components@6.0.5)
   aos:
-    specifier: 3.0.0-beta.6
-    version: 3.0.0-beta.6
+    specifier: ^2.3.4
+    version: 2.3.4
+  pnpm:
+    specifier: ^8.6.9
+    version: 8.6.9
   prop-types:
     specifier: ^15.8.1
     version: 15.8.1
@@ -2153,8 +2156,8 @@ packages:
       normalize-path: 3.0.0
       picomatch: 2.3.1
 
-  /aos@3.0.0-beta.6:
-    resolution: {integrity: sha512-VLWrpq8bfAWcetynVHMMrqdC+89Qq/Ym6UBJbHB4crIwp3RR8uq1dNGgsFzoDl03S43rlVMK+na3r5+oUCZsYw==}
+  /aos@2.3.4:
+    resolution: {integrity: sha512-zh/ahtR2yME4I51z8IttIt4lC1Nw0ktsFtmeDzID1m9naJnWXhCoARaCgNOGXb5CLy3zm+wqmRAEgMYB5E2HUw==}
     dependencies:
       classlist-polyfill: 1.2.0
       lodash.debounce: 4.0.8
@@ -3355,6 +3358,12 @@ packages:
 
   /postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
+    dev: false
+
+  /pnpm@8.6.9:
+    resolution: {integrity: sha512-LPEaCGvlV4dVGeJeHqi/pCR/SETooqmScv2wcr0gTqGUebpkt1w9TIEX0awLMhLO29p7pcXfz5ZO59B70Tnc0w==}
+    engines: {node: '>=16.14'}
+    hasBin: true
     dev: false
 
   /postcss@8.4.25:
