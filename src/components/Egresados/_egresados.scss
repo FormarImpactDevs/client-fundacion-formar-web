@@ -15,6 +15,7 @@
     @include desktop {
       height: 600px;
       background-size: 100% 100%;
+      padding: 2rem;
     }
 
     .egresados_text_video {
@@ -59,11 +60,24 @@ width: 90%;
   }}
 
     .video{
-      width: 400px;
-      height: 300px;
+      padding: 1em;
       display:grid;
       align-content: center;
+      justify-content: center;
+      @include mobile{
+        margin-top: -4rem;
+        margin-bottom: 1.5rem;
       }
+      @include tablet{
+        margin-top: -1rem;
+      }
+      @include desktop{
+        margin-top: 3rem;
+     
+      }
+      }
+      
+
  
  
 

@@ -12,7 +12,7 @@ export const Egresados =() => {
                 <h2>Te compartimos los testimonios de algunos egresados de Programando la Inclusión</h2>        
                 </div>
                 <div className="video">
-                <video width="400px" height="300px"src ={video} controls/>
+                <video width="100%" height="300px"src ={video} controls/>
                 </div> 
            </section>
          </div>
