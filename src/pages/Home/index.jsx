@@ -3,6 +3,7 @@ import { Novedades } from "../../components/Novedades";
 import { MainLayout } from "../../layout";
 import { Volunteer } from "../../views/Volunteer";
 import { FormColaborator } from "../../views/Form";
+import { Done } from "../../views/Done";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
         {/* Quienes somos */}
 
         <Volunteer/>
+        <Done/>
         <Novedades />
         <FormColaborator/>
       </MainLayout>
