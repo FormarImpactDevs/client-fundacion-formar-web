@@ -2,12 +2,13 @@
 @import "../../styles/media-queries";
 
 .quienes_somos_container {
-  margin: 10% 0% 10% 0%;
+  
   background-image: url("../../assets/fondoAboutUs.jpg");
   background-position: right;
   background-repeat: no-repeat;
   cursor: default;
   background-size: 100% 100%;
+  padding-top:70px;
 }
 
 .quienes_somos_text_img {

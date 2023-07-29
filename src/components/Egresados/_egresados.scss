@@ -4,6 +4,7 @@
 
 
 .egresados_container {
+    padding-top:70px;
     height: 400px;
     background-image: url("../../assets/fondoAboutUs.jpg");
     background-position: right;
@@ -15,7 +16,6 @@
     @include desktop {
       height: 600px;
       background-size: 100% 100%;
-      padding: 2rem;
     }
 
     .egresados_text_video {
