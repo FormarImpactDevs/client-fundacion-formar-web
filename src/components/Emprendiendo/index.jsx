@@ -4,11 +4,13 @@ import  Potenciamos  from "../../assets/flechas.png";
 import  Puente  from "../../assets/puente.png";
 import Title from "../Title"
 import Subtitle from "../Subtitle";
+
 export const Emprendiendo = () => {
     return (
         <div className="emprendiendo_container">
             <Title text="Emprendiendo la inclusión"/>
             <Subtitle text="Trabajamos en el fortaleciendo de emprendimientos sociales para que se inserten en al economica formal."/>
+            <h4 className="subtitle2">¿Cómo?</h4>
             
             <section className="emprendiendo_section_cards">
                 <div className="emprendiendo_card">

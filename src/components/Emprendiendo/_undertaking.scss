@@ -1,5 +1,7 @@
-@import "../../styles/colors";
-@import "../../styles/media-queries";
+@import "../../styles/colors.scss";
+@import "../../styles/media-queries.scss";
+@import "../../styles/fonts-settings.scss";
+
 .emprendiendo_container {
     padding-top:30px;
     text-align: center;
@@ -7,11 +9,20 @@
     width: 100%;
     cursor:default;
     padding-top: 30px;
+
+    @include desktop2 {
+        padding-top: 70px;
+    }
+}
+.subtitle2{
+    color: $primary-color;
+    font-size: $subtitle-mobile-size;
+
   @include desktop2 {
-    padding-top: 70px;
+    padding-top: 10px;
+    font-size: $title-desktop-size;
 } 
 }
-
 .emprendiendo_section_cards {
     display: flex;
     flex-direction: column;
