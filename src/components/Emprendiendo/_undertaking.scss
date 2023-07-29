@@ -16,10 +16,15 @@
 }
 .subtitle2{
     color: $primary-color;
-    font-size: $subtitle-mobile-size;
+    font-size: $title-mobile-size;
+    padding: 10px;
 
+    @include tablet {
+       
+    font-size: $title-tablet-size;
+    }
   @include desktop2 {
-    padding-top: 10px;
+    
     font-size: $title-desktop-size;
 } 
 }
