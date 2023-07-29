@@ -3,24 +3,19 @@
 @import "../../styles/fonts-settings";
 
 .aliadosp_container{
-    padding-top: 70px;
+    padding-top: 30px;
     height: 500px;
+    text-align: center;
     @include mobile-tablet {
         height: auto;
     }
     @include desktop {
         height: 600px;
         background-size: 100%;
+        padding-top: 70px;
     }
 }
 
-.aliadosp_text{
-    margin: 4%;
-    text-align: center;
-    color: $dark-gray;
-    font-family: $font-family;
-
-}
 .lanus .logos{
     width: 200px;
     height: 80px;

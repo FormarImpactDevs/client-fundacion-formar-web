@@ -4,11 +4,11 @@
 
 
 .egresados_container {
-    padding-top:70px;
+    padding-top: 30px;
     height: 400px;
     background-image: url("../../assets/fondoAboutUs.jpg");
     background-position: right;
-    
+    text-align: center;
     @include tablet {
       height: auto;
       background-size: 100% 100%;
@@ -16,6 +16,7 @@
     @include desktop {
       height: 600px;
       background-size: 100% 100%;
+      padding-top:70px;
     }
 
     .egresados_text_video {

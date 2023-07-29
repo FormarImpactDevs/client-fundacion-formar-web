@@ -1,10 +1,10 @@
 import "./_team.scss";
 import Image from "../../assets/team_default.jpg";
-
+import Title from '../Title';
 export const Equipo = () => {
     return (
         <div className="team_container">
-            <h1 className="title">Equipo de Coordinación General</h1>
+            <Title text="Equipo coordinación General" />
             <div className="team_cards">
                 <div className="team_card">
                     <figure>

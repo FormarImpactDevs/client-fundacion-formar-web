@@ -2,16 +2,14 @@ import "./_undertaking.scss";
 import  Acompañamos  from "../../assets/manos.png";
 import  Potenciamos  from "../../assets/flechas.png";
 import  Puente  from "../../assets/puente.png";
-
-
+import Title from "../Title"
+import Subtitle from "../Subtitle";
 export const Emprendiendo = () => {
     return (
         <div className="emprendiendo_container">
-            <h1 className="title">Emprendiendo la Inclusión</h1>
-            <div className="emprendiendo_text">
-                <p className="paragraph1">Trabajamos en el fortaleciendo de emprendimientos sociales para que se inserten en al economica formal.</p>
-                <h2 className="subtitle">¿Cómo?</h2>
-            </div>
+            <Title text="Emprendiendo la inclusión"/>
+            <Subtitle text="Trabajamos en el fortaleciendo de emprendimientos sociales para que se inserten en al economica formal."/>
+            
             <section className="emprendiendo_section_cards">
                 <div className="emprendiendo_card">
                     <figure>

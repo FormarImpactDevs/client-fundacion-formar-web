@@ -11,12 +11,17 @@
 }
 
 .title {
-  color: $primary-color;
+  color: $dark-gray;
   text-align: center;
   text-shadow: 1.5px 1px 1px rgba(0, 0, 0, 0.25);
   font-size: $title-mobile-size;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 800;
+  margin: 10px 0px 10px 0;
+
+  .special-character {
+    color: rgb(255, 255, 255)(255, 255, 255)
+  }
 
   @include tablet {
     font-size: $title-tablet-size;

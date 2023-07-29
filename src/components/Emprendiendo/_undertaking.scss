@@ -1,32 +1,15 @@
 @import "../../styles/colors";
 @import "../../styles/media-queries";
 .emprendiendo_container {
-    padding-top:70px;
+    padding-top:30px;
+    text-align: center;
     background-color: $ligth-blue;
     width: 100%;
     cursor:default;
-}
-.emprendiendo_text {
-    text-align: center;
-    p {
-        margin: 2%;
-        @include tablet {
-
-        }
-        @include desktop2{
-            
-        }
-        
-    }
-    h2 {
-        color: $primary-color;
-    }
-    @include tablet {
-
-    }
-    @include desktop2 {  
-   
-    }
+    padding-top: 30px;
+  @include desktop2 {
+    padding-top: 70px;
+} 
 }
 
 .emprendiendo_section_cards {
