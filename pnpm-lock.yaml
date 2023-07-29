@@ -8,6 +8,9 @@ dependencies:
   node-sass:
     specifier: ^9.0.0
     version: 9.0.0
+  aos:
+    specifier: ^2.3.4
+    version: 2.3.4
   pnpm:
     specifier: ^8.6.9
     version: 8.6.9
@@ -776,6 +779,7 @@ packages:
       picomatch: 2.3.1
     dev: true
 
+<<<<<<< HEAD
   /aproba@2.0.0:
     resolution: {integrity: sha512-lYe4Gx7QT+MKGbDsA+Z+he/Wtef0BiwDOlK/XkBrdfsh9J/jPPXbX0tE9x9cl27Tmu5gg3QUbUrQYa/y+KOHPQ==}
     dev: false
@@ -783,6 +787,10 @@ packages:
   /are-we-there-yet@3.0.1:
     resolution: {integrity: sha512-QZW4EDmGwlYur0Yyf/b2uGucHQMa8aFUP7eu9ddR73vvhFyt4V0Vl3QHPcTNJ8l6qYOBdxgXdnBXQrHilfRQBg==}
     engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
+=======
+  /aos@2.3.4:
+    resolution: {integrity: sha512-zh/ahtR2yME4I51z8IttIt4lC1Nw0ktsFtmeDzID1m9naJnWXhCoARaCgNOGXb5CLy3zm+wqmRAEgMYB5E2HUw==}
+>>>>>>> develop
     dependencies:
       delegates: 1.0.0
       readable-stream: 3.6.2
