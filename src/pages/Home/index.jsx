@@ -1,5 +1,5 @@
-import { Presentation } from "../../components/Presentation";
-import { Novedades } from "../../components/Novedades";
+import { Presentation } from "../../views/Presentation";
+import { Novedades } from "../../views/Novedades";
 import { MainLayout } from "../../layout";
 import { Volunteer } from "../../views/Volunteer";
 import { FormColaborator } from "../../views/Form";
