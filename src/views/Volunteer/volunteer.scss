@@ -1,0 +1,29 @@
+@import "../../styles/colors";
+@import "../../styles/media-queries";
+
+.container-volunter {
+ background-image: url(../../assets/ondaTop1.svg), url(../../assets/ondaTop2.svg);
+ background-repeat: no-repeat;
+ background-size: contain;
+ background-position: top;
+ padding: 5rem 1rem 3rem 1rem;
+ 
+ /* width: 100%; */
+
+ @include desktop {
+    padding: 12rem 5rem 5rem 5rem;
+    min-height: 85vh;
+ }
+}
+
+.center-around {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+
+    & button {
+        margin: 1rem;
+    }
+}

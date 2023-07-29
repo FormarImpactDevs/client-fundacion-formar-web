@@ -1,4 +1,4 @@
-import { Button } from "../Button";
+import { Button } from "../../components/Button";
 import "./_presentation.scss";
 import AOS from "aos";
 import students from "../../assets/students.svg"

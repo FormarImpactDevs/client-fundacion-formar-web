@@ -1,12 +1,17 @@
-import AppRoutes from "./routes"
-import './app.scss'
+import AppRoutes from "./routes";
+import "./app.scss";
+import { ThemeProvider } from "@mui/material/styles";
+import {theme} from "./context/Theme"
+
 
 function App() {
   return (
     <>
-      <AppRoutes />
-   </>
-  )
+      <ThemeProvider theme={theme}>
+        <AppRoutes />
+      </ThemeProvider>
+    </>
+  );
 }
 
-export default App
+export default App;

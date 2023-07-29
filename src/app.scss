@@ -5,7 +5,7 @@
 
 
 * {
-  margin: 0 ;
+  margin: 0;
   box-sizing: border-box;
   font-family: $font-family;
 }
@@ -16,7 +16,23 @@
   text-shadow: 1.5px 1px 1px rgba(0, 0, 0, 0.25);
   font-size: $title-mobile-size;
   font-style: normal;
-  font-weight: 800;
+  font-weight: 700;
+
+  @include tablet {
+    font-size: $title-tablet-size;
+  }
+
+  @include desktop {
+    font-size: $title-desktop-size;
+  }
+}
+
+.titleDark {
+  color: $dark-gray;
+  text-align: center;
+  font-size: $title-mobile-size;
+  font-style: normal;
+  font-weight: 600;
 
   @include tablet {
     font-size: $title-tablet-size;
@@ -36,7 +52,7 @@
   }
 
   @include desktop {
-    font-size: $title-desktop-size;
+    font-size: $subtitle-desktop-size;
   }
 }
 
