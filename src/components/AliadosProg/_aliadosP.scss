@@ -1,0 +1,57 @@
+@import "../../styles/colors";
+@import "../../styles/media-queries";
+@import "../../styles/fonts-settings";
+
+.aliadosp_container{
+    height: 500px;
+    @include mobile-tablet {
+        height: auto;
+    }
+    @include desktop {
+        height: 600px;
+        background-size: 100%;
+    }
+}
+
+.aliadosp_text{
+    margin: 4%;
+    text-align: center;
+    color: $dark-gray;
+    font-family: $font-family;
+
+}
+.lanus .logos{
+    width: 200px;
+    height: 80px;
+    margin: 2em;
+    @include mobile-tablet{
+
+    }
+}
+
+.row {
+    margin: 0 49px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include mobile-tablet {
+       flex-wrap: wrap;
+       justify-content: center;
+    }
+    @include desktop {
+        height: 400px;
+        justify-content: center;
+    }
+    .img_aliados {
+        width: 200px;
+        height: 150px;
+        object-fit: contain;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 5px;
+        img{
+            width: 100%;
+        }
+    }
+}
