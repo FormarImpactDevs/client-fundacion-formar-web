@@ -4,7 +4,7 @@ import "./_programming.scss";
 export const Programando = () => {
     return (
         <div className="programando_container">
-                 <h1 className="title"><span>&lt;</span>Programando la inclusión<span>/&gt;</span></h1>
+                 <h1 className="title"><span className="span_title">&lt;</span>Programando la inclusión<span className="span_title">/&gt;</span></h1>
            
             <section className="programando_text_img">
                 <div className="programando_text">

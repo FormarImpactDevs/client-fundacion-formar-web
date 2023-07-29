@@ -4,7 +4,6 @@
 
 
 .programando_container {
-    margin: 10% 0% 10% 0%;
     background-image: url("../../assets/fondoAboutUs.jpg");
     background-position: right;
     background-repeat: no-repeat;
@@ -15,8 +14,11 @@
     @include desktop2 {
 
     }
-    span {
+    .span_title {
         color: $white;
+    }
+    span {
+        color: $primary_color;
         @include desktop2 {}
     }
 }
@@ -71,7 +73,7 @@
         width: 50%;
     }
     img {
-        border-radius: 5%;
+        border-radius: 2.5%;
         width: 90%;
         margin: 5%;
         @include tablet {
