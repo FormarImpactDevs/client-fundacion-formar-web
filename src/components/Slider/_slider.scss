@@ -15,10 +15,14 @@ button {
 }
 
 .card {
+  width: 150px;
   text-align: center;
   margin: 10px;
   border-radius: 5px;
   padding: 10px;
+  @include tablet {
+    width: 300px;
+  }
 }
 
 .card img {
