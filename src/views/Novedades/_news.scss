@@ -1,0 +1,36 @@
+@import "../../styles/media-queries";
+
+.news_container {
+  min-height: 65vh;
+  user-select: none;
+
+  @include tablet {
+    min-height: 75vh;
+    padding: 2rem 0 3rem 0;
+  }
+  @media screen and (min-width: 660px) {
+    padding: 2rem 0 8rem 0;
+  }
+
+  @include desktop {
+    padding: 2rem 0 10rem 0;
+  }
+
+  @include desktop-large {
+    /* padding: 2rem 0 12rem 0; */
+  }
+
+  .instagram_container {
+    padding: 0 2rem;
+    max-height: 75vh;
+    
+
+    @include mobile {
+      max-height: 45vh;
+    }
+
+    a {
+      font-size: x-small;
+    }
+  }
+}

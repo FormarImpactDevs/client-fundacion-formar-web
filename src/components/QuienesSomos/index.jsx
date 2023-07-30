@@ -1,10 +1,11 @@
 import aboutUs from '../../assets/quienesSomos.jpeg';
 import "./_aboutUs.scss";
+import Title from '../Title';
 
 export const QuienesSomos = () => {
     return (
         <div className="quienes_somos_container">     
-            <h2 className="title">QUIENES SOMOS</h2>
+            <Title text="Quiénes somos" />
             <section className='quienes_somos_text_img'>
                 <div className="quienes_somos_text">
                   <p>
