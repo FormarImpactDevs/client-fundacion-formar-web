@@ -5,6 +5,7 @@ import programmer from "../../assets/programmer.svg";
 import Rocket from "../../assets/rocket.svg";
 import Briefcase from "../../assets/Briefcase.svg";
 import Users from "../../assets/group.svg";
+import Title from "../../components/Title"
 
 export const ProgrammingTheInclusion = () => {
   const infoCards = [
@@ -38,7 +39,7 @@ export const ProgrammingTheInclusion = () => {
   return (
     <section className="ProgrammingTheInclusion-container container">
       <div className="titleContainer">
-        <h1 className="title">Ecosistema favorable para</h1>
+        <Title text="Ecosistema favorable para"/>
         <h1 className="title">
           la <span>inserción en la tecnología</span>
         </h1>
