@@ -8,6 +8,10 @@
   background-repeat: no-repeat;
   cursor: default;
   background-size: 100% 100%;
+  padding-top: 30px;
+  @include desktop2 {
+    padding-top: 70px;
+  }
 }
 
 .quienes_somos_text_img {
@@ -43,7 +47,6 @@
   }
 
   @include desktop2 {
-    font-size: 20px;
     width: 40%;
     height: 40%;
   }

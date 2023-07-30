@@ -1,65 +1,70 @@
 @import "../../styles/colors";
 @import "../../styles/media-queries";
 .axes_container {
-    text-align: center;
-    h2 {
-        color: $dark-gray;
-    }
-
+  cursor: default;
+  text-align: center;
+  padding-top: 30px;
+  @include desktop2 {
+    padding-top: 70px;
+  }
 }
 .axes_cards {
-    padding: 10px;
-    margin: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    @include tablet {
-        flex-direction: row;
-    }
+  padding: 10px;
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  @include tablet {
+    flex-direction: row;
+  }
 }
 .axes_card {
-    background-color: $ligth-blue;
-    height: 18vh;
-    margin: 15px;
-    overflow: hidden;
-    box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
-    transition: all 400ms ease;
-    a {
-        text-decoration: none;
-    }
-    h3 {
-        margin-top: 10px;
-        color: $primary-color;
-        height: 50px;
-        @include tablet {
-            margin-top: 20px;
-            height: 80px;
-        }
-    }
-    p {
-        padding: 0px 5px;
-        height: 50%;
-        text-align: center;
-    }
-    span {
-        color: $primary-color;
-    }
+  background-color: $ligth-blue;
+  height: 18vh;
+  margin: 15px;
+  overflow: hidden;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+  transition: all 400ms ease;
+  a {
+    text-decoration: none;
+  }
+  h3 {
+    margin-top: 10px;
+    color: $primary-color;
+    height: 50px;
     @include tablet {
-        display: flex;
-    margin: 0% 3%;
+      margin-top: 20px;
+      height: 100px;
+    }
+  }
+  p {
+    padding: 5px 5px;
+    height: 50%;
+    text-align: center;
+    @include tablet {
+        padding: 25px 5px;
+    }
+    @include desktop2{
+        padding: 5px;
+    }
+  }
+  span {
+    color: $primary-color;
+  }
+  @include tablet {
+    display: flex;
     height: 300px;
     width: 300px;
     align-items: center;
     justify-content: flex-start;
     align-content: space-between;
     flex-wrap: wrap;
-    }
-    @include desktop2 {
-        height: 250px;
-    }
+  }
+  @include desktop2 {
+    height: 250px;
+  }
 }
 .axes_card:hover {
-    box-shadow: 5px 5px 20px rgba(0,0,0,0.4);
-    transform: translateY(-3%);
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+  transform: translateY(-3%);
 }
-

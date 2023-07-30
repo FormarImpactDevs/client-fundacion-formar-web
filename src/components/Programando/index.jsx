@@ -1,11 +1,11 @@
 import programming from "../../assets/programming1.jpg";
 import "./_programming.scss";
+import Title from '../Title';
 
 export const Programando = () => {
     return (
         <div className="programando_container">
-                 <h1 className="title"><span className="span_title">&lt;</span>Programando la inclusión<span className="span_title">/&gt;</span></h1>
-           
+                 <Title text="< Programando la inclusión />  "/>
             <section className="programando_text_img">
                 <div className="programando_text">
                     <span>

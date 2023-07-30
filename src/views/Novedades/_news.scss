@@ -3,7 +3,6 @@
 .news_container {
   min-height: 65vh;
   user-select: none;
-  padding-top: 2rem;
 
   @include tablet {
     min-height: 75vh;
@@ -18,12 +17,13 @@
   }
 
   @include desktop-large {
-    padding: 2rem 0 12rem 0;
+    /* padding: 2rem 0 12rem 0; */
   }
 
   .instagram_container {
     padding: 0 2rem;
     max-height: 75vh;
+    
 
     @include mobile {
       max-height: 45vh;
