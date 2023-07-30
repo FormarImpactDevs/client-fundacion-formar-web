@@ -1,0 +1,10 @@
+@import "../../styles/colors";
+@import "../../styles/media-queries";
+
+.teamProgramming_container {
+  padding-top: 30px;
+  @include desktop2 {
+    padding-top: 70px;
+  }
+}
+
