@@ -12,6 +12,7 @@ import { Emprendiendo } from "../../components/Emprendiendo";
 import { Equipo } from "../../components/Team";
 import { Ejes } from "../../components/Axes";
 import { EquipoEmprendiendo } from "../../components/TeamUndertaking";
+import { ProgrammingTheInclusion } from "../../views/ProgrammingTheInclusion.jsx";
 
 export default function Home() {
   return (
@@ -26,6 +27,8 @@ export default function Home() {
 
         <Equipo/>
         <Programando />
+        {/* Programando la inclución 2 */}
+        <ProgrammingTheInclusion/>
         <Egresados />
         <AliadosProg/>
         {/* Conoce a los egresados */}

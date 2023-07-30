@@ -1,0 +1,21 @@
+@import "../../styles/colors";
+
+.cardProgramming {
+    background-color: $white;
+    padding: 2rem 3rem 3rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .containerIcon{
+        width: 75px;
+        height: 75px;
+        object-fit: contain;
+        margin: 1.5rem;
+
+        img {
+           width: 100%;
+        }
+    }
+}
