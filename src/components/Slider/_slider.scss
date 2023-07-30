@@ -2,16 +2,19 @@
 @import "../../styles/media-queries";
 
 .slider {
-  margin: 30px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  @include desktop2 {
+
+  }
 }
 button {
   color: $primary-color;
   font-size: 48px;
   background: none;
   border: none;
+  margin: 0px 15px;
 }
 
 .card {
