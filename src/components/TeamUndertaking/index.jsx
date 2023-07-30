@@ -1,10 +1,11 @@
 import "./_teamUndertaking.scss";
 import Image from "../../assets/team_default.jpg";
+import Title from "../Title"
 
 export const EquipoEmprendiendo = () => {
     return (
         <div className="teamUndertaking_container"> 
-            <h1 className="title">Equipo de Emprendiendo la Inclusión</h1>
+            <Title text="Equipo emprendiendo la inclusión"/>
             <div className="teamUndertaking_cards">
                 <div className="teamUndertaking_card">
                     <figure>

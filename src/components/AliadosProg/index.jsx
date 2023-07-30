@@ -4,15 +4,15 @@ import sanMiguel from "../../assets/sanmiguel.png";
 import lanus from "../../assets/municipio_lanus.png";
 import pampaEnergia from "../../assets/pampaenergia.png"
 import "./_aliadosP.scss";
+import Title from "../Title"
+import Subtitle from "../Subtitle";
 
 
 export const AliadosProg =() => {
     return (
         <section className="aliadosp_container">
-            <h1 className="title">Hacen posible este programa</h1>
-            <div className="aliadosp_text">
-                <h2>Empresas y organizaciones comprometidas con la inclusión laboral en el sector IT.</h2>        
-           </div>
+            <Title text="Hacen posible este programa  "/>
+            <Subtitle text="Empresas y organizaciones comprometidas con la inclusión laboral en el sector IT" />
            <div className="row">
             <div className="img_aliados"><img src={santander} alt="Logo santander"/></div>
             <div className="img_aliados"><img src={dh} alt="Logo Digital House"/></div>

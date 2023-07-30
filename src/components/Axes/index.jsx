@@ -1,10 +1,12 @@
 import "./_axes.scss";
+import Title from '../Title';
+import Subtitle from "../Subtitle";
 
 export const Ejes = () => {
     return (
         <div className="axes_container">
-            <h2 className="title">¿Cómo lo hacemos?</h2>
-            <p className="paragraph1">Tenemos tres áreas de trabajo</p>
+            <Title text="¿Cómo lo hacemos?" />
+            <Subtitle text="Tenemos tres áreas de trabajo" />
             <section className="axes_cards">
                 <div className="axes_card">
                     <h3 className="paragraph1">Fortalecimiento de emprendimientos locales</h3>

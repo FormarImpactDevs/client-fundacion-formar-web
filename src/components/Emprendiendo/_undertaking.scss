@@ -1,34 +1,33 @@
-@import "../../styles/colors";
-@import "../../styles/media-queries";
+@import "../../styles/colors.scss";
+@import "../../styles/media-queries.scss";
+@import "../../styles/fonts-settings.scss";
+
 .emprendiendo_container {
-    margin: 10% 0% 10% 0%;
+    padding-top:30px;
+    text-align: center;
     background-color: $ligth-blue;
     width: 100%;
     cursor:default;
-}
-.emprendiendo_text {
-    text-align: center;
-    p {
-        margin: 2%;
-        @include tablet {
+    padding-top: 30px;
 
-        }
-        @include desktop2{
-            
-        }
-        
+    @include desktop2 {
+        padding-top: 70px;
     }
-    h2 {
-        color: $primary-color;
-    }
+}
+.subtitle2{
+    color: $primary-color;
+    font-size: $title-mobile-size;
+    padding: 10px;
+
     @include tablet {
-
+       
+    font-size: $title-tablet-size;
     }
-    @include desktop2 {  
-   
-    }
+  @include desktop2 {
+    
+    font-size: $title-desktop-size;
+} 
 }
-
 .emprendiendo_section_cards {
     display: flex;
     flex-direction: column;

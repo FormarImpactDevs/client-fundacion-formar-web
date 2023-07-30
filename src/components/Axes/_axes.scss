@@ -1,12 +1,12 @@
 @import "../../styles/colors";
 @import "../../styles/media-queries";
 .axes_container {
-    margin: 10% 0%;
     cursor: default;
     text-align: center;
-    h2 {
-        color: $dark-gray;
-    }
+    padding-top: 30px;
+  @include desktop2 {
+    padding-top: 70px;
+} 
 
 }
 .axes_cards {

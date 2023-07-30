@@ -1,8 +1,10 @@
 @import "../../styles/colors";
 @import "../../styles/media-queries";
 .team_container {
-    margin: 10px;
     cursor: default;
+    @include desktop2 {
+        padding-top: 70px;
+    } 
 }
 .team_cards {
     margin: 5% 0px 5% 0px;

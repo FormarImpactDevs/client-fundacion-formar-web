@@ -1,8 +1,9 @@
 import "./_news.scss"
+import Title from "../../components/Title"
 export const Novedades = () => {
   return (
     <div className="news_container">
-      <h2 className="title">Conoce nuestras novedades</h2> 
+      <Title text="Conocé nuestras novedades "/>
       <section className="instagram_container">
         <div
           loading="lazy"
