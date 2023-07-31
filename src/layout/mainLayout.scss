@@ -1,18 +1,16 @@
-
 @import "../styles/media-queries";
 
 .main {
-    height: auto;
-    min-height: 100vh;
+  height: auto;
+  min-height: 100vh;
 }
 
 .container {
-    min-height: 63.3vh;
-    margin-top: 75px;
+  min-height: 63.3vh;
+  margin-top: 75px;
 
-    @include desktop-large {
-        max-width: 80%;
-        margin: 0 auto;
-    }
-    
+  @media screen and (min-width: 1400px) {
+    max-width: 80%;
+    margin: 0 auto;
+  }
 }
