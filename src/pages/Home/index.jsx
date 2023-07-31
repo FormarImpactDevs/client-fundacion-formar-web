@@ -12,6 +12,7 @@ import { Emprendiendo } from "../../components/Emprendiendo";
 import { Equipo } from "../../components/Team";
 import { Ejes } from "../../components/Axes";
 import { EquipoEmprendiendo } from "../../components/TeamUndertaking";
+import { Contacto } from "../../components/Contacto";
 import { Footer } from "../../components/Footer";
 
 export default function Home() {
@@ -41,6 +42,7 @@ export default function Home() {
         <Novedades />
         <FormColaborator/>
         {/* Contacto */}
+        <Contacto/>
         <Footer />
        
       </MainLayout>
