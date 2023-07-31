@@ -13,6 +13,7 @@ import { Equipo } from "../../components/Team";
 import { Ejes } from "../../components/Axes";
 import { EquipoEmprendiendo } from "../../components/TeamUndertaking";
 import { Contacto } from "../../components/Contacto";
+import { Aliados } from "../../components/Aliados";
 import { Footer } from "../../components/Footer";
 
 export default function Home() {
@@ -36,6 +37,7 @@ export default function Home() {
         <Volunteer/>
         <Done/>
         <Emprendiendo/>
+        <Aliados/>
         {/* Aliados */}
         <EquipoEmprendiendo/>
         
