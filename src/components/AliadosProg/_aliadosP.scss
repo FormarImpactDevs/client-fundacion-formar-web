@@ -32,7 +32,11 @@
     justify-content: space-between;
     @include mobile-tablet {
        flex-wrap: wrap;
+       display: flex;
        justify-content: center;
+       flex-direction: column;
+       align-content: center;
+       text-align: center;
     }
     @include desktop {
         height: 400px;
@@ -47,7 +51,7 @@
         align-items: center;
         margin: 5px;
         img{
-            width: 100%;
+            width: 80%;
         }
     }
 }
