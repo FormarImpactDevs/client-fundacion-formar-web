@@ -1,4 +1,5 @@
 import "./_teamUndertaking.scss";
+import {Card} from "../Card";
 import Image from "../../assets/team_default.jpg";
 import Title from "../Title"
 
@@ -7,27 +8,21 @@ export const EquipoEmprendiendo = () => {
         <div className="teamUndertaking_container"> 
             <Title text="Equipo emprendiendo la inclusión"/>
             <div className="teamUndertaking_cards">
-                <div className="teamUndertaking_card">
-                    <figure>
-                        <img src={Image} alt="" />
-                    </figure>
-                    <h3 className="paragraph1">Nombre Apellido</h3>
-                    <h3 className="paragraph2">Rol</h3>
-                </div>
-                <div className="teamUndertaking_card">
-                    <figure>
-                        <img src={Image} alt="" />
-                    </figure>
-                    <h3 className="paragraph1">Nombre Apellido</h3>
-                    <h3 className="paragraph2">Rol</h3>
-                </div>
-                <div className="teamUndertaking_card">
-                    <figure>
-                        <img src={Image} alt="" />
-                    </figure>
-                    <h3 className="paragraph1">Nombre Apellido</h3>
-                    <h3 className="paragraph2">Rol</h3>
-                </div>
+                <Card
+                image={Image}
+                title="Nombre Apellido"
+                subtitle="Rol"
+                />
+                <Card
+                image={Image}
+                title="Nombre Apellido"
+                subtitle="Rol"
+                />
+                <Card
+                image={Image}
+                title="Nombre Apellido"
+                subtitle="Rol"
+                />
             </div>
         </div>
     )
