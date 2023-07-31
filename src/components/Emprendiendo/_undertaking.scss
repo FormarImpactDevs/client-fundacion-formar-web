@@ -3,84 +3,102 @@
 @import "../../styles/fonts-settings.scss";
 
 .emprendiendo_container {
-    padding-top:30px;
-    text-align: center;
-    background-color: $ligth-blue;
-    width: 100%;
-    cursor:default;
-    padding-top: 30px;
+  background-color: $ligth-blue;
+  width: 100%;
+  cursor: default;
+  padding-top: 30px;
+  text-align: center;
 
-    @include desktop2 {
-        padding-top: 70px;
-    }
-}
-.subtitle2{
-    color: $primary-color;
-    font-size: $title-mobile-size;
-    padding: 10px;
-
-    @include tablet {
-       
-    font-size: $title-tablet-size;
-    }
   @include desktop2 {
-    
+    padding-top: 70px;
+  }
+}
+
+.emprendiendo_text {
+  text-align: center;
+
+  p {
+    margin: 0px 5px;
+  }
+
+  h2 {
+    color: $primary-color;
+  }
+}
+
+.subtitle2 {
+  color: $primary-color;
+  font-size: $title-mobile-size;
+  padding: 10px;
+
+  @include tablet {
+    font-size: $title-tablet-size;
+  }
+
+  @include desktop2 {
     font-size: $title-desktop-size;
-} 
+  }
 }
+
 .emprendiendo_section_cards {
-    display: flex;
-    flex-direction: column;
-    
-    @include tablet {
-        flex-direction: row;
-    }
-    @include desktop {
-        flex-direction: row;
-    }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @include tablet {
+    flex-direction: row;
+  }
+
+  @include desktop {
+    flex-direction: row;
+  }
 }
+
 .emprendiendo_card {
-    background-color: $white;
-    border-radius: 5%;
-    margin: 0% 5% 5% 5%;
-    transition: all 400ms ease;
-    figure {
-        margin: 0 auto;
-        width: 20vh;
-    }
-    h2 {
-        text-align: center;
-        margin: 2%;
-        @include tablet {
-            font-size: 20px;
-        }
-    }
-    p {
-        margin: 2%;
-        text-align: center;
-    }
-    img {
-        margin: 10% 30% 0% 30%;
-        width: 40%;
-        height: 40%;
-        display: flex;
-        align-items: center;
-        @include desktop2{
-            margin: 0 auto;
-            width: 20vh;
-            height: 20vh;
-        }
-    }
+  background-color: $white;
+  border-radius: 5%;
+  margin: 10px;
+  transition: all 400ms ease;
+  figure {
+    margin: 0 auto;
+    width: 20vh;
+  }
+  h2 {
+    text-align: center;
+    margin: 5px;
+
     @include tablet {
-        width: 30%;
-        margin: 5% 2%;
-    } 
-    @include desktop2 {
-        width: 30%;
-        margin-bottom: 5%;
+      font-size: 20px;
     }
+  }
+
+  p {
+    margin: 5px;
+    text-align: center;
+  }
+  img {
+    margin: 10% 30% 0% 30%;
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    @include desktop2 {
+      margin: 0 auto;
+      width: 125px;
+      height: 125px;
+      object-fit: contain;
+    }
+  }
+  @include tablet {
+    width: 30%;
+    margin: 5% 2%;
+  }
+  @include desktop2 {
+    width: 90%;
+    max-width: 300px;
+    margin-bottom: 5%;
+  }
 }
 .emprendiendo_card:hover {
-    box-shadow: 5px 5px 20px rgba(0,0,0,0.4);
-    transform: translateY(-3%);
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+  transform: translateY(-3%);
 }
