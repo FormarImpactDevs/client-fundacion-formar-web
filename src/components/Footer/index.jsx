@@ -17,7 +17,7 @@ export const Footer =() => {
              </div>
 
              <div className="column">
-                <p>&#169; FormarCodeando, 2023 | Hecho con amor!</p>
+                <p>&#169; ForIT, 2023 | Hecho con amor!</p>
              </div>
              
              <div className="socials">
