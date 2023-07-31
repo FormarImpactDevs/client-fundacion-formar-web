@@ -3,9 +3,9 @@ import "./volunteer.scss";
 
 export const Volunteer = () => {
   return (
-    <section className="container-volunter">
+    <section className="container-volunter" id="Volunteer">
       <div>
-        <h1 className="title">
+        <h1 className="titleBlue">
           Si trabajas en el sector IT{" "}
           <span className="titleDark">
             sumate como voluntario para potenciar la inserción laboral de los

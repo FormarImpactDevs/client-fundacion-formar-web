@@ -31,7 +31,7 @@ export const Header = () => {
        
         <ul className={isChecked ? "menu menu_opened" : "menu"} onClick={handleMenu}>
           <li className="paragraph2">
-            <a href="#quienesSomos" id="aboutUs" className={isSelected === "aboutUs" ? "selected" : ""}>Quienes somos</a>
+            <a href="#quienesSomos" id="AboutUs" className={isSelected === "aboutUs" ? "selected" : ""}>Quienes somos</a>
           </li>
           <li className="paragraph2">
             <a href="#" id="SchedulingInclusion" className={isSelected === "SchedulingInclusion" ? "selected" : ""}>Programando la inclusión</a>

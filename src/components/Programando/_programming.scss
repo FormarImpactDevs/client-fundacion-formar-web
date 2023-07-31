@@ -15,8 +15,11 @@
     @include desktop2 {
         padding-top: 70px;
     }
-    span {
+    .span_title {
         color: $white;
+    }
+    span {
+        color: $primary_color;
         @include desktop2 {}
     }
 }
@@ -71,7 +74,7 @@
         width: 50%;
     }
     img {
-        border-radius: 5%;
+        border-radius: 2.5%;
         width: 90%;
         margin: 5%;
         @include tablet {

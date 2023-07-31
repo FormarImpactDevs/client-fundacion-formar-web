@@ -12,6 +12,8 @@ import { Emprendiendo } from "../../components/Emprendiendo";
 import { Equipo } from "../../components/Team";
 import { Ejes } from "../../components/Axes";
 import { EquipoEmprendiendo } from "../../components/TeamUndertaking";
+import { ProgrammingTheInclusion } from "../../views/ProgrammingTheInclusion.jsx";
+import { EquipoProgramando } from "../../components/TeamProgramming";
 import { Footer } from "../../components/Footer";
 
 export default function Home() {
@@ -27,8 +29,11 @@ export default function Home() {
 
         <Equipo/>
         <Programando />
+        {/* Programando la inclución 2 */}
+        <ProgrammingTheInclusion/>
         <Egresados />
         <AliadosProg/>
+        <EquipoProgramando/>
         {/* Conoce a los egresados */}
         {/* Hacen posible este programa "Aliados" */}
         {/* Equipo de programando */}
