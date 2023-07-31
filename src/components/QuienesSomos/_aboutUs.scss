@@ -2,6 +2,7 @@
 @import "../../styles/media-queries";
 
 .quienes_somos_container {
+  height: 100%;
   background-image: url("../../assets/fondoAboutUs.jpg");
   background-position: right;
   background-repeat: no-repeat;
@@ -10,7 +11,7 @@
   padding-top: 30px;
   @include desktop2 {
     padding-top: 70px;
-} 
+  }
 }
 
 .quienes_somos_text_img {
@@ -23,11 +24,14 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
   }
 }
 
 .quienes_somos_text {
+  padding: 10px;
   p {
+    margin-bottom: 15px;
     color: $dark-gray;
     font-size: 14px;
     @include tablet {
@@ -37,15 +41,14 @@
       font-size: 20px;
     }
   }
-  width: 90%;
+
   @include tablet {
+    padding: 20px;
   }
 
   @include desktop2 {
-    
     width: 40%;
     height: 40%;
-    margin: 30px 30px 10px 60px;
   }
 }
 
@@ -57,7 +60,7 @@
   }
 
   img {
-    border-radius: 5%;
+    border-radius: 2.5%;
     width: 80%;
     margin: 5% 10%;
     @include tablet {
