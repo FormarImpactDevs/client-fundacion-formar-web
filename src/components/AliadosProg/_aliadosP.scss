@@ -10,7 +10,7 @@
         height: auto;
     }
     @include desktop {
-        height: 600px;
+        min-height: 100%;
         background-size: 100%;
         padding-top: 70px;
     }
