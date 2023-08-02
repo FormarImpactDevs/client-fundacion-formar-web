@@ -9,9 +9,7 @@ export const Egresados =() => {
             <Subtitle text="Te compartimos los testimonios de algunos egresados de Programando la Inclusión" />
             <section className="egresados_text_video">
             
-                <div className="video">
-                <video width="100%" height="300px"src ={video} controls/>
-                </div> 
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/wLg0yy0pSuc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
            </section>
          </div>
     )

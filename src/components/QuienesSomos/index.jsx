@@ -4,7 +4,7 @@ import Title from '../Title';
 
 export const QuienesSomos = () => {
     return (
-        <div className="quienes_somos_container">     
+        <div className="quienes_somos_container" id='AboutUs'>     
             <Title text="Quiénes somos" />
             <section className='quienes_somos_text_img'>
                 <div className="quienes_somos_text">

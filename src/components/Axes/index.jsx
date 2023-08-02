@@ -9,7 +9,7 @@ export const Ejes = () => {
       <Subtitle text="Tenemos tres áreas de trabajo" />
       <section className="axes_cards">
         <div className="axes_card">
-          <a href="">
+          <a href="../Emprendiendo">
             <h3 className="paragraph1">
               Fortalecimiento de emprendimientos locales:
             </h3>

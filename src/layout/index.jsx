@@ -1,5 +1,5 @@
 import { Header } from "../components/Header";
-/* import {Footer} from "../components/Footer"; */
+import {Footer} from "../components/Footer"; 
 import "./mainLayout.scss";
 import PropTypes from "prop-types";
 
@@ -10,7 +10,8 @@ export const MainLayout = ({children}) => {
     
           <section className="container">{children}</section>
     
-         {/*  <Footer /> */}
+         
+          <Footer/>
         </div>
       );
 }
