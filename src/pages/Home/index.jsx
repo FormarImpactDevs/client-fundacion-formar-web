@@ -25,7 +25,10 @@ export default function Home() {
         {/* Presentación */}
         <Presentation/>  
         {/* Quienes somos */}
-        <QuienesSomos />
+        <div id="about">
+          <QuienesSomos />
+        </div>
+        
 
         <Ejes/>
 
