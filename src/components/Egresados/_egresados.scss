@@ -14,9 +14,9 @@
       background-size: 100% 100%;
     }
     @include desktop {
-      height: 600px;
       background-size: 100% 100%;
       padding-top:70px;
+      min-height: 100vh;
     }
 
     .egresados_text_video {
@@ -60,21 +60,28 @@ width: 90%;
     }
   }}
 
-    .video{
-      padding: 1em;
-      display:grid;
+    iframe{
+   /*   padding: 1em;*/
+   /*   display:grid;
       align-content: center;
-      justify-content: center;
+      justify-content: center;*/
       @include mobile{
         margin-top: -4rem;
         margin-bottom: 1.5rem;
+        padding: 4em;
+        display:grid;
+        align-content: center;
+        justify-content: center;
+        width: 100%;
       }
       @include tablet{
-        margin-top: -1rem;
+        margin-top: 1rem;
+        width: auto;
       }
       @include desktop{
-        margin-top: 3rem;
-     
+        margin-top: 1rem;
+        padding: 1em;
+        width: 50%;
       }
       }
       

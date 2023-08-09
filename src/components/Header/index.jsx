@@ -44,7 +44,7 @@ export const Header = () => {
           <li className="paragraph2">
             <a
               href="#about"
-              id="aboutUs"
+              id="AboutUs"
               className={aboutIsIntersecting ? "selected" : ""}
             >
               Quienes somos
