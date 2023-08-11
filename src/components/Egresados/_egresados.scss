@@ -15,8 +15,8 @@
     }
     @include desktop {
       background-size: 100% 100%;
-      padding-top:70px;
-      min-height: 100vh;
+      padding-top: $padding-top;
+        min-height: $min-height;
     }
 
     .egresados_text_video {

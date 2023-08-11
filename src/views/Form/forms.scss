@@ -3,9 +3,16 @@
 
 .titlesFormsContainer {
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 7rem 1rem;
+  margin-top: 10rem;
   
-
+  
+  @include tablet {
+    padding:50px;
+    margin: 1rem;
+    
+  }
+  
   & .subtitle {
     color: $primary-color;
   }

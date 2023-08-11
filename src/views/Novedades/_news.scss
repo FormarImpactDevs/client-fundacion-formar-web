@@ -13,7 +13,8 @@
   }
 
   @include desktop {
-    padding: 2rem 0 10rem 0;
+    padding:$padding-top;
+    min-height: $min-height;
   }
 
   @include desktop-large {
