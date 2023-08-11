@@ -9,7 +9,8 @@ export const Presentation = () => {
   return (
     <section className="presentation_container">
       {/* imagen */}
-      <figure className="students">
+      <div className="presentation">
+          <figure className="students">
         <img
           src={students}
           alt="Imagen de estudiantes"
@@ -44,6 +45,8 @@ export const Presentation = () => {
           className="presentation_img"
         />
       </figure>
+      </div>
+    
     </section>
   );
 };

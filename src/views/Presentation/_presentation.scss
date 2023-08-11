@@ -10,8 +10,11 @@
     max-width: 96.5vw;
     display: flex;
     justify-content: center;
-    min-height: 100vh;
-    
+  }
+
+  .presentation {
+    position: relative;
+    margin: auto;
   }
 
   .firmFormar {
@@ -52,7 +55,7 @@
       left: 2rem;
 
       @media screen and (min-width: 1450px) {
-        left: auto;
+        left: 10%;
       }
     }
   }
@@ -62,7 +65,11 @@
 
   .ondas {
     position: absolute;
-    bottom: 0;
+    bottom: -8px;
+
+  /*   @include desktop-large {
+      bottom: 0;
+    } */
   }
 
   figure {

@@ -8,7 +8,7 @@ export const MainLayout = ({children}) => {
         <div className="main">
           <Header />
     
-          <section className="container">{children}</section>
+          <section className="mainContainer">{children}</section>
     
          
           <Footer/>
