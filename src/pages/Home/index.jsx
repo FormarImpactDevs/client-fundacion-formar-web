@@ -16,7 +16,7 @@ import { Contacto } from "../../components/Contacto";
 import { Aliados } from "../../components/Aliados";
 import { ProgrammingTheInclusion } from "../../views/ProgrammingTheInclusion.jsx";
 import { EquipoProgramando } from "../../components/TeamProgramming";
-import { Footer } from "../../components/Footer";
+
 
 export default function Home() {
   return (
@@ -53,7 +53,7 @@ export default function Home() {
         <FormColaborator/>
         {/* Contacto */}
         <Contacto/>
-        <Footer />
+      
        
       </MainLayout>
     </>

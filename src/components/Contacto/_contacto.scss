@@ -52,10 +52,19 @@
 
     .boton_prensa{
       margin-right: 20px;
+      a{
+        text-decoration: none;
+      }
     }
 
-    .boton_wsp{
-        background-color: $white;
+    .boton_wsp {
+     background-color: $white;
+     &:focus{
+      outline: none;
+     }
+       a{
+         text-decoration: none;
+       }
     }
 
 }

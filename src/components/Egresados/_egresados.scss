@@ -60,21 +60,28 @@ width: 90%;
     }
   }}
 
-    .video{
-      padding: 1em;
-      display:grid;
+    iframe{
+   /*   padding: 1em;*/
+   /*   display:grid;
       align-content: center;
-      justify-content: center;
+      justify-content: center;*/
       @include mobile{
         margin-top: -4rem;
         margin-bottom: 1.5rem;
+        padding: 4em;
+        display:grid;
+        align-content: center;
+        justify-content: center;
+        width: auto;
       }
       @include tablet{
-        margin-top: -1rem;
+        margin-top: 1rem;
+        width: auto;
       }
       @include desktop{
-        margin-top: 3rem;
-     
+        margin-top: 1rem;
+        padding: 1em;
+        width: 50%;
       }
       }
       
