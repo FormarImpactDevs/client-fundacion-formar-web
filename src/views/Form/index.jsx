@@ -5,7 +5,7 @@ import "./forms.scss"
 
 export const FormColaborator = () => {
   return (
-    <section className="container">
+    <section className="container" id="formVolunteer">
         <div className="titlesFormsContainer">
             <Title text="Colabora con Fundacion formar"/>
             <Subtitle text="Completa el formulario y te contactaremos para efectuar la donación"></Subtitle>

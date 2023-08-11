@@ -15,6 +15,7 @@ export const Volunteer = () => {
       </div>
 
       <div className="center-around">
+        <a href="#formVolunteer">
         <Button
           variant="contained"
           size="large"
@@ -24,7 +25,7 @@ export const Volunteer = () => {
           }}
         >
           Sumate
-        </Button>
+        </Button></a>
         <Button
           variant="outlined"
           size="large"
