@@ -21,9 +21,6 @@ import summitagro from "../../assets/summitagro.jpg";
 import technogies from "../../assets/technogies.png";
 import tecro from "../../assets/TECRO_LOGOpng_Mesa-de-trabajo-1.png";
 import uia from "../../assets/uia.jpg"; 
-
-import anterior from "../../assets/anterior.svg";
-import posterior from "../../assets/posterior.svg";
 import Title from "../Title";
 
 import React, { useState } from 'react';
@@ -54,14 +51,14 @@ export const Aliados = () => {
 
      <div className="image-slider">
 
-     <button className="anterior" onClick={goToPrevImage}><img src={anterior} /></button>
+     <button className="anterior" onClick={goToPrevImage}>&lt;</button>
    
       <img src={images[prevImageIndex]} alt={`Image ${prevImageIndex + 1}`} />
       <img src={images[currentImage]} alt={`Image ${currentImage + 1}`} />
       <img src={images[nextImageIndex]} alt={`Image ${nextImageIndex + 1}`} />
 
      
-      <button className="posterior" onClick={goToNextImage}> <img src={posterior}/></button>
+      <button className="posterior" onClick={goToNextImage}>&gt;</button>
     </div>
         </div>
     )
