@@ -1,15 +1,23 @@
 import "./_axes.scss";
 import Title from "../Title";
 import Subtitle from "../Subtitle";
+import useObserverComponent from "../../hooks/useObserverComponent";
 
 export const Ejes = () => {
+  const { programingIsIntersecting, undertakingIsIntersecting } =
+    useObserverComponent();
+
   return (
     <div className="axes_container">
       <Title text="¿Cómo lo hacemos?" />
       <Subtitle text="Tenemos tres áreas de trabajo" />
       <section className="axes_cards">
         <div className="axes_card">
-          <a href="../Emprendiendo">
+          <a
+            href="#undertaking"
+            id="UndertakingInclusion"
+            className={undertakingIsIntersecting ? "selected" : ""}
+          >
             <h3 className="paragraph1">
               Fortalecimiento de emprendimientos locales:
             </h3>
@@ -21,7 +29,11 @@ export const Ejes = () => {
           </a>
         </div>
         <div className="axes_card">
-          <a href="">
+          <a
+            href="#programing"
+            id="SchedulingInclusion"
+            className={programingIsIntersecting ? "selected" : ""}
+          >
             <h3 className="paragraph1">Capacitaciones con salida laboral:</h3>
             <p className="paragraph2">
               - <span>Programando la inclusión</span> es un programa de
