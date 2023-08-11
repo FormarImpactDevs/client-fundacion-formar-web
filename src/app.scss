@@ -10,6 +10,14 @@
   font-family: $font-family;
 }
 
+div[id]{
+ scroll-margin-top: 50px;
+}
+
+ html {
+  scroll-behavior: smooth;
+ }
+ 
 .title {
   color: $dark-gray;
   text-align: center;
