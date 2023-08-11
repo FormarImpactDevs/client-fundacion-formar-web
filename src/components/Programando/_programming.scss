@@ -13,8 +13,8 @@
         height: auto;
     }
     @include desktop2 {
-        padding-top: 70px;
-        min-height: 100vh;
+        padding-top: $padding-top;
+        min-height: $min-height;
     }
     .span_title {
         color: $white;

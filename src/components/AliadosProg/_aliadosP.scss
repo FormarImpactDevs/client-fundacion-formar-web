@@ -10,9 +10,10 @@
         height: auto;
     }
     @include desktop {
-        min-height: 100%;
         background-size: 100%;
-        padding-top: 70px;
+        padding-top: $padding-top;
+        min-height: $min-height;
+        
     }
 }
 

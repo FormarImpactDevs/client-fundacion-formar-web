@@ -30,7 +30,9 @@ export const Presentation = () => {
 
         <div className="presentation_center">
           {/* button */}
+          <a href="#about">
           <Button info={"CONOCENOS"} />
+          </a>
         </div>
       </div>
 

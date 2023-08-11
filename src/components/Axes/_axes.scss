@@ -4,8 +4,10 @@
   cursor: default;
   text-align: center;
   padding-top: 30px;
+  
   @include desktop2 {
-    padding-top: 70px;
+    padding-top: $padding-top;
+    min-height: $min-height;
 
   }
 }
