@@ -18,7 +18,7 @@ export const Done = () => {
             <p className="subtitle">trabajo, Sumate!</p>
           </div>
 
-          <Button
+          <a href="#formVolunteer"><Button
             variant="outlined"
             size="large"
             className="button"
@@ -27,7 +27,7 @@ export const Done = () => {
             }}
           >
             Sumate
-          </Button>
+          </Button></a>
         </div>
       </div>
     </section>

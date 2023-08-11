@@ -61,7 +61,7 @@ export const Form = () => {
       >
         {/* title */}
         <h1 className="subtitle">TUS DATOS DE CONTACTO</h1>
-        <Box component="form" /* onSubmit={handleSubmit} */ sx={{ mt: 2 }}>
+        <Box component="form" /* onSubmit={handleSubmit} */ action="https://formsubmit.co/21609fc7321079558debce8e5d3027fe" method="POST" sx={{ mt: 2 }}>
           <div className="mb-2">
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
@@ -210,6 +210,20 @@ export const Form = () => {
                 ""
               )}
             </Grid>
+            <Grid item xs={12} sm={6}>
+                <CssTextField
+                  type="hidden" 
+                  name="_next"
+                  value="http://127.0.0.1:5173/"
+                />
+              </Grid>
+            <Grid item xs={12} sm={6}>
+                <CssTextField
+                  type="hidden"
+                  name="_captcha"
+                  value="false"
+                />
+              </Grid>
           </div>
           <Grid container justifyContent="flex-end">
             <Grid item>
