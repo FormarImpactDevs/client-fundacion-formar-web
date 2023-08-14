@@ -3,10 +3,11 @@
 
 .teamProgramming_container {
   padding-top: 30px;
-  height: 500px;
+  
 
   @include desktop2 {
     padding-top: 70px;
+    min-height: 100vh;
   }
 }
 
