@@ -46,4 +46,3 @@ Slider.propTypes = {
     })
   ).isRequired,
 };
-
