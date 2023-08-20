@@ -1,6 +1,6 @@
 import "./_teamProgramming.scss";
-import { Slider } from "../Slider";
 import Title from "../Title";
+import Slide3d from "../Slider3d";
 import Image1 from "../../assets/team_default.jpg";
 import Image2 from "../../assets/team2.jpg";
 import Image3 from "../../assets/team3.jpg";
@@ -12,64 +12,77 @@ import Image8 from "../../assets/team8.jpg";
 import Image9 from "../../assets/team9.jpg";
 import Image10 from "../../assets/team10.jpg";
 
+
 export const EquipoProgramando = () => {
-  const cards = [
+  const cardsInfo = [
     {
-      image: Image1,
-      title: "Nombre Apellido",
-      subtitle: "Rol",
+      img: Image1,
+      name: "Nombre Apellido",
+      description: "Rol",
+      type: "person",
     },
     {
-      image: Image2,
-      title: "Nombre Apellido",
-      subtitle: "Rol2",
+      img: Image2,
+      name: "Nombre Apellido",
+      description: "Rol2",
+      type: "person",
     },
     {
-      image: Image3,
-      title: "Nombre Apellido",
-      subtitle: "Rol3",
+      img: Image3,
+      name: "Nombre Apellido",
+      description: "Rol3",
+      type: "person",
     },
     {
-      image: Image4,
-      title: "Nombre Apellido",
-      subtitle: "Rol4",
+      img: Image4,
+      name: "Nombre Apellido",
+      description: "Rol4",
+      type: "person",
     },
     {
-      image: Image5,
-      title: "Nombre Apellido",
-      subtitle: "Rol5",
+      img: Image5,
+      name: "Nombre Apellido",
+      description: "Rol5",
+      type: "person",
     },
     {
-      image: Image6,
-      title: "Nombre Apellido",
-      subtitle: "Rol6",
+      img: Image6,
+      name: "Nombre Apellido",
+      description: "Rol6",
+      type: "person",
     },
     {
-      image: Image7,
-      title: "Nombre Apellido",
-      subtitle: "Rol7",
+      img: Image7,
+      name: "Nombre Apellido",
+      description: "Rol7",
+      type: "person",
     },
     {
-      image: Image8,
-      title: "Nombre Apellido",
-      subtitle: "Rol8",
+      img: Image8,
+      name: "Nombre Apellido",
+      description: "Rol8",
+      type: "person",
     },
     {
-      image: Image9,
-      title: "Nombre Apellido",
-      subtitle: "Rol9",
+      img: Image9,
+      name: "Nombre Apellido",
+      description: "Rol9",
+      type: "person",
     },
     {
-      image: Image10,
-      title: "Nombre Apellido",
-      subtitle: "Rol10",
+      img: Image10,
+      name: "Nombre Apellido",
+      description: "Rol10",
+      type: "person",
     },
   ];
+
   return (
     <div className="teamProgramming_container">
       <Title text="Equipo programando la inclusión" />
       <div className="teamProgramming_slider">
-        <Slider cards={cards} />
+        {/* Slider3d para descomentar */}
+        <Slide3d list={cardsInfo} type={"person"} />
       </div>
     </div>
   );
