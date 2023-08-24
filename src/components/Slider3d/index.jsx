@@ -3,15 +3,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import styles from "./slide3d.module.scss";
 import "./swiperSlider.scss";
 
-/* import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
-import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"; */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faArrowLeft, faArrowRight} from '@fortawesome/free-solid-svg-icons'
-/* <FontAwesomeIcon icon={faArrowLeft} /> */
-/* import { icon } from '@fortawesome/fontawesome-svg-core/import.macro' */
-
-{/* <FontAwesomeIcon icon={icon({name: 'user-secret'})} /> 
-<FontAwesomeIcon icon={icon({name: 'coffee', style: 'regular'})} />  */}
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
