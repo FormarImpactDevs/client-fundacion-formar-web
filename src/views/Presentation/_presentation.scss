@@ -7,14 +7,18 @@
   position: relative;
 
   @include desktop-large {
-    max-width: 96.5vw;
     display: flex;
     justify-content: center;
+    width: 100%;
   }
 
   .presentation {
     position: relative;
     margin: auto;
+    @include desktop-large {     
+       width: 100%;
+     }
+
   }
 
   .firmFormar {
@@ -61,15 +65,18 @@
   }
   .students {
     position: relative;
+    @include desktop-large {     
+      width: 100%;
+    }
   }
 
   .ondas {
     position: absolute;
     bottom: -8px;
+    @include desktop-large {     
+      width: 100%;
+    }
 
-  /*   @include desktop-large {
-      bottom: 0;
-    } */
   }
 
   figure {
@@ -78,6 +85,9 @@
 
       @media screen and (min-width: 1400px) {
         max-width: 100%;
+      }
+      @include desktop-large {     
+        width: 100%;
       }
     }
   }

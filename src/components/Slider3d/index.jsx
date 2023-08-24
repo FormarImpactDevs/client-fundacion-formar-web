@@ -3,8 +3,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import styles from "./slide3d.module.scss";
 import "./swiperSlider.scss";
 
-import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
-import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
+/* import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
+import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"; */
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faArrowLeft, faArrowRight} from '@fortawesome/free-solid-svg-icons'
+/* <FontAwesomeIcon icon={faArrowLeft} /> */
+/* import { icon } from '@fortawesome/fontawesome-svg-core/import.macro' */
+
+{/* <FontAwesomeIcon icon={icon({name: 'user-secret'})} /> 
+<FontAwesomeIcon icon={icon({name: 'coffee', style: 'regular'})} />  */}
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -35,7 +42,7 @@ function Slide3d({ list, type }) {
           slidesPerView={"auto"}
           fade={true}
           autoplay={{
-            delay: 1500,
+            delay: 2500,
             disableOnInteraction: false,
           }}
           coverflowEffect={{
@@ -64,7 +71,7 @@ function Slide3d({ list, type }) {
                   />
 
                   {/* Card de Abril */}
-                 {/*  <Card
+                  {/* <Card
                     image={info.img}
                     title={info.name}
                     subtitle={info.description ? info.description : ""}
@@ -84,10 +91,10 @@ function Slide3d({ list, type }) {
 
           <div className="slider-controler">
             <div className="swiper-button-prev slider-arrow">
-              <ArrowBackRoundedIcon className="arrow-back-outline"></ArrowBackRoundedIcon>
+              <FontAwesomeIcon icon={faArrowLeft} className="arrow-back-outline" />
             </div>
             <div className="swiper-button-next slider-arrow">
-              <ArrowForwardRoundedIcon className="arrow-forward-outline"></ArrowForwardRoundedIcon>
+              <FontAwesomeIcon icon={faArrowRight} className="arrow-forward-outline" />
             </div>
             <div className="swiper-pagination"></div>
           </div>
