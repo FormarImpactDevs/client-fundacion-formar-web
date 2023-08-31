@@ -3,10 +3,9 @@
 
 .teamProgramming_container {
   padding-top: 30px;
-  height: 500px;
+  margin-bottom: 5rem;
 
   @include desktop2 {
     padding-top: 70px;
   }
 }
-
