@@ -43,7 +43,7 @@ export const Header = () => {
         >
           <li className="paragraph2">
             <a
-              href="#about"
+              href="/#about"
               id="AboutUs"
               className={aboutIsIntersecting ? "selected" : ""}
             >
@@ -52,7 +52,7 @@ export const Header = () => {
           </li>
           <li className="paragraph2">
             <a
-              href="#programing"
+              href="/#programing"
               id="SchedulingInclusion"
               className={programingIsIntersecting ? "selected" : ""}
             >
@@ -61,7 +61,7 @@ export const Header = () => {
           </li>
           <li className="paragraph2">
             <a
-              href="#undertaking"
+              href="/#undertaking"
               id="UndertakingInclusion"
               className={
                 undertakingIsIntersecting ? "selected" : ""
@@ -81,7 +81,7 @@ export const Header = () => {
           </li>
           <li className="paragraph2">
             <a
-              href="#volunteer"
+              href="/#volunteer"
               id="Volunteering"
               className={volunteerIsIntersecting ? "selected" : ""}
             >
@@ -89,17 +89,12 @@ export const Header = () => {
             </a>
           </li>
           <li className="paragraph2">
-            <a
-              href="#"
-              id="products"
-              className={isSelected === "products" ? "selected" : ""}
-            >
-              Productos
-            </a>
+            <Link to="/products" id="products"
+              className={isSelected === "products" ? "selected" : ""}>Productos</Link>
           </li>
           <li className="paragraph2">
             <a
-              href="#contact"
+              href="/#contact"
               id="Contact"
               className={contactIsIntersecting ? "selected" : ""}
             >
