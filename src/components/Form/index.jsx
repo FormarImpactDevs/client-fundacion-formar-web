@@ -225,7 +225,7 @@ export const Form = () => {
               <CssTextField type="hidden" name="_captcha" value="false" />
             </Grid>
           </div>
-          <Grid container justifyContent="flex-end">
+          <Grid container justifyContent="flex-end" className="w-95">
             <Grid item>
               <Button
                 type="submit"

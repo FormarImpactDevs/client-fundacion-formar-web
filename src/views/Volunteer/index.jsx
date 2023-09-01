@@ -15,27 +15,38 @@ export const Volunteer = () => {
       </div>
 
       <div className="center-around">
-        <a href="#formVolunteer">
-        <Button
-          variant="contained"
-          size="large"
-          className="button"
-          sx={{
-            color: "secondary.light",
-          }}
-        >
-          Sumate
-        </Button></a>
-        <Button
-          variant="outlined"
-          size="large"
-          className="button"
-          sx={{
-            color: "primary.main",
-          }}
-        >
-          Conocé más
-        </Button>
+        <div className="button-volunter_left">
+          <a href="#formVolunteer">
+            <Button
+              variant="contained"
+              size="large"
+              className="button"
+              sx={{
+                color: "secondary.light",
+              }}
+            >
+              Sumate
+            </Button>
+          </a>
+        </div>
+        <div className="button-volunter_rigth">
+          <a
+            href="https://drive.google.com/file/d/10fwgCv4sOF4N8wjkcCuoYdbBFSDefi4h/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button
+              variant="outlined"
+              size="large"
+              className="button"
+              sx={{
+                color: "primary.main",
+              }}
+            >
+              Conocé más
+            </Button>
+          </a>
+        </div>       
       </div>
     </section>
   );
