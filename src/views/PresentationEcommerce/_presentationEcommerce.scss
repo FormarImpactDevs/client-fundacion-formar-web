@@ -2,36 +2,36 @@
 @import "../../styles/media-queries";
 @import "../../styles/fonts-settings";
 
-.presentation_container {
-  padding-top: 10px;
+.presentationEcommerce_container {
   max-width: 100vw;
   position: relative;
 
   @include desktop-large {
     display: flex;
     justify-content: center;
-    width: 100%;
   }
 
-  .presentation {
+  .presentationEcommerce {
     position: relative;
     margin: auto;
-    @include desktop-large {     
-       width: 100%;
-     }
 
+    @include desktop {
+      width: 100%;
+      height: 860px;
+    }
   }
 
-  .firmFormar {
+  .textFormar {
     min-width: 20vw;
-    border-radius: 7%;
+    height: fit-content;
+    border-radius: 8px;
     background: rgba(255, 255, 255, 0.74);
     position: absolute;
     padding: 0.5rem 1rem;
-    top: 0.5rem;
-    left: 1rem;
     z-index: 1;
-
+    bottom: 12px;
+    right: 2px;
+    width: 80%;
     .presentation_title {
       color: $primary-color;
       font-size: 16px;
@@ -40,12 +40,12 @@
       text-shadow: 1px 1px 1px $ligth-blue;
 
       @include tablet {
-        font-size: 26px;
+        font-size: 20px;
         text-shadow: 4px 3px 3px $ligth-blue;
       }
 
       @include desktop {
-        font-size: 50px;
+        font-size: 36px;
         text-shadow: 4px 3px 3px $ligth-blue;
       }
     }
@@ -53,51 +53,24 @@
     .presentation_span {
       color: $dark-gray;
     }
-
-    @include desktop {
-      padding: 1.5rem;
-      top: 2.5rem;
-      left: 2rem;
-
-      @media screen and (min-width: 1450px) {
-        top: 12%;
-        left: 10%;
-      }
-    }
   }
-  .students {
+  .emprendedores {
     position: relative;
-    @include desktop-large {     
-      width: 100%;
-    }
-  }
-
-  .ondas {
-    position: absolute;
-    bottom: -8px;
-    @include desktop-large {     
-      width: 100%;
-    }
-
   }
 
   figure {
-    .presentation_img {
+    .presentationEcommerce_img {
       max-width: 100vw;
+      width: 100%;
+      object-fit: cover;
+
+      @include desktop {
+        height: 850px;
+      }
 
       @media screen and (min-width: 1400px) {
         max-width: 100%;
       }
-      @include desktop-large {     
-        width: 100%;
-      }
     }
-  }
-
-  .presentation_center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0.2rem 0;
   }
 }

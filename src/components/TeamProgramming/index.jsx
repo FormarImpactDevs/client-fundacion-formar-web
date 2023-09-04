@@ -1,75 +1,87 @@
 import "./_teamProgramming.scss";
-import { Slider } from "../Slider";
 import Title from "../Title";
-import Image1 from "../../assets/team_default.jpg";
-import Image2 from "../../assets/team2.jpg";
-import Image3 from "../../assets/team3.jpg";
-import Image4 from "../../assets/team4.jpg";
-import Image5 from "../../assets/team5.jpg";
-import Image6 from "../../assets/team6.jpg";
-import Image7 from "../../assets/team7.jpg";
-import Image8 from "../../assets/team8.jpg";
-import Image9 from "../../assets/team9.jpg";
-import Image10 from "../../assets/team10.jpg";
+import Slide3d from "../Slider3d";
+import EricMena from "../../assets/TemsFormar/EricMena.jpg";
+import JonathanCespedes from "../../assets/TemsFormar/JonathanCespedes.jpg";
+import EmanuelArroyo from "../../assets/TemsFormar/EmanuelArroyo.jpg";
+import FabianCoseglia from "../../assets/TemsFormar/FabianCoseglia.jpg";
+import JuanLicciardi from "../../assets/TemsFormar/JuanLicciardi.jpeg";
+import JulianAquino from "../../assets/TemsFormar/JulianAquino.jpeg";
+import MartinWior from "../../assets/TemsFormar/MartinWior.jpg";
+import nataliaGaitan from "../../assets/TemsFormar/nataliaGaitan.jpg";
+import victoriaFornieles from "../../assets/TemsFormar/victoriaFornieles.jpg";
+/* import Image10 from "../../assets/TemsFormar/team10.jpg"; */
+
 
 export const EquipoProgramando = () => {
-  const cards = [
+  const cardsInfo = [
     {
-      image: Image1,
-      title: "Nombre Apellido",
-      subtitle: "Rol",
+      img: EricMena,
+      name: "Eric Mena",
+      description: "Docente",
+      type: "person",
     },
     {
-      image: Image2,
-      title: "Nombre Apellido",
-      subtitle: "Rol2",
+      img: JonathanCespedes,
+      name: "Jonathan Cespedes",
+      description: "Docente",
+      type: "person",
     },
     {
-      image: Image3,
-      title: "Nombre Apellido",
-      subtitle: "Rol3",
+      img: EmanuelArroyo,
+      name: "Emanuel Arroyo",
+      description: "Docente",
+      type: "person",
     },
     {
-      image: Image4,
-      title: "Nombre Apellido",
-      subtitle: "Rol4",
+      img: FabianCoseglia,
+      name: "Fabian Coseglia",
+      description: "Ayudante",
+      type: "person",
     },
     {
-      image: Image5,
-      title: "Nombre Apellido",
-      subtitle: "Rol5",
+      img: JuanLicciardi,
+      name: "Juan Licciardi",
+      description: "Ayudante",
+      type: "person",
     },
     {
-      image: Image6,
-      title: "Nombre Apellido",
-      subtitle: "Rol6",
+      img: JulianAquino,
+      name: "Julian Aquino",
+      description: "Docente",
+      type: "person",
     },
     {
-      image: Image7,
-      title: "Nombre Apellido",
-      subtitle: "Rol7",
+      img: MartinWior,
+      name: "Martin Wior Gdud",
+      description: "Coordinador",
+      type: "person",
     },
     {
-      image: Image8,
-      title: "Nombre Apellido",
-      subtitle: "Rol8",
+      img: nataliaGaitan,
+      name: "Nathalia Gaitan",
+      description: "Ayudante",
+      type: "person",
     },
     {
-      image: Image9,
-      title: "Nombre Apellido",
-      subtitle: "Rol9",
+      img: victoriaFornieles,
+      name: "Victoria Fornieles",
+      description: "Coordinadora",
+      type: "person",
     },
-    {
-      image: Image10,
-      title: "Nombre Apellido",
-      subtitle: "Rol10",
-    },
+    /* {
+      img: Image10,
+      name: "Nombre Apellido",
+      description: "Rol10",
+      type: "person",
+    }, */
   ];
+
   return (
     <div className="teamProgramming_container">
       <Title text="Equipo programando la inclusión" />
-      <div className="teamProgramming_slider">
-        <Slider cards={cards} />
+      <div className="teamProgramming_slider">        
+        <Slide3d list={cardsInfo} type={"person"} />
       </div>
     </div>
   );

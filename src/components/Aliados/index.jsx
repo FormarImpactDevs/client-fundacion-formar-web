@@ -22,14 +22,13 @@ import technogies from "../../assets/technogies.png";
 import tecro from "../../assets/TECRO_LOGOpng_Mesa-de-trabajo-1.png";
 import uia from "../../assets/uia.jpg"; 
 import Title from "../Title";
-
-import React, { useState } from 'react';
+import Slide3d from "../Slider3d";
 
 
 export const Aliados = () => {
     
     const images = [pampaEnergia,santander, accenture,arredo,essarp,globant,idea,insur,kaiapuni,ypf,northlands,odisea,ofelia,omnit,pedidosya,sanandres,stine,summitagro,technogies,tecro,uia]
-    const [currentImage, setCurrentImage] = useState(0);
+   /*  const [currentImage, setCurrentImage] = useState(0);
 
   const goToNextImage = () => {
     setCurrentImage((prevImage) => (prevImage + 1) % images.length);
@@ -39,7 +38,7 @@ export const Aliados = () => {
     setCurrentImage((prevImage) => (prevImage - 1 + images.length) % images.length);
   };
   const prevImageIndex = (currentImage - 1 + images.length) % images.length;
-  const nextImageIndex = (currentImage + 1) % images.length;
+  const nextImageIndex = (currentImage + 1) % images.length; */
   
     return(
         <div className="aliados_container">
@@ -48,8 +47,9 @@ export const Aliados = () => {
                 <img src={image} alt="" />
 
             ))*/}
+            <Slide3d list={images} />
 
-     <div className="image-slider">
+     {/* <div className="image-slider">
 
      <button className="anterior" onClick={goToPrevImage}>&lt;</button>
    
@@ -59,14 +59,14 @@ export const Aliados = () => {
 
      
       <button className="posterior" onClick={goToNextImage}>&gt;</button>
-    </div>
+    </div> */}
         </div>
     )
 }
 
 
 
-export const ImageSlider = ({ images }) => {
+/* export const ImageSlider = ({ images }) => {
   const [currentImage, setCurrentImage] = useState(0);
 
   const goToNextImage = () => {
@@ -85,5 +85,5 @@ export const ImageSlider = ({ images }) => {
       <button onClick={goToNextImage}>Siguiente</button>
     </div>
   );
-};
+}; */
 

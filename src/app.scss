@@ -3,21 +3,20 @@
 @import "./styles/colors";
 @import "./styles/fonts-settings";
 
-
 * {
   margin: 0;
   box-sizing: border-box;
   font-family: $font-family;
 }
 
-div[id]{
- scroll-margin-top: 50px;
+div[id] {
+  scroll-margin-top: 50px;
 }
 
- html {
+html {
   scroll-behavior: smooth;
- }
- 
+}
+
 .title {
   color: $dark-gray;
   text-align: center;
@@ -72,7 +71,7 @@ div[id]{
 .subtitle {
   color: $dark-gray;
   font-size: $subtitle-mobile-size;
-  
+
   @include tablet {
     font-size: $subtitle-tablet-size;
   }
@@ -118,5 +117,20 @@ div[id]{
 
   @include desktop {
     font-size: $description-desktop-size;
+  }
+}
+
+/* slider3d */
+.swiper-slide {
+  width: 37rem;
+  height: 35rem;
+  position: relative;
+  display: flex;
+  place-items: center;
+  padding: 2rem 0 0 0;
+
+  @include desktop {
+    height: 42rem;
+    padding: 2rem 0;
   }
 }
