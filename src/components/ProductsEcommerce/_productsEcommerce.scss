@@ -1,0 +1,42 @@
+/* Estilos para el contenedor de la cuadrícula */
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Espacio entre las columnas */
+  }
+  
+  /* Estilos para cada producto en la cuadrícula */
+  .product-card {
+    width: 30%; /* Aproximadamente 3 productos por fila */
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilos para la imagen del producto */
+  .product-image {
+    width: 100%;
+    height: auto;
+  }
+  
+  /* Estilos para el título del producto */
+  .product-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+  
+  /* Estilos para el precio del producto */
+  .product-price {
+    font-size: 18px;
+    color: #e74c3c; /* Cambia el color según tu preferencia */
+  }
+  
+  /* Estilos para la miniatura de la imagen */
+  .product-thumbnail {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+  
