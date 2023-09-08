@@ -22,6 +22,7 @@
     "@mui/material": "^5.14.2",
     "@mui/styled-engine-sc": "^5.12.0",
     "aos": "^2.3.4",
+    "cors": "^2.8.5",
     "pnpm": "^8.6.10",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",

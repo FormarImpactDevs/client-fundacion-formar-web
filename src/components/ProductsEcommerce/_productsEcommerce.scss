@@ -1,42 +1,105 @@
-/* Estilos para el contenedor de la cuadrícula */
+
+@import "../../styles/colors";
+@import "../../styles/media-queries";
+@import "../../styles/fonts-settings";
+
+
+.product-container {
+  width: 100%;
+  padding: 20px;
+}
+
 .product-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between; /* Espacio entre las columnas */
-  }
+  display: grid;
+  grid-template-columns: repeat(4,(150px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  text-align: center;
+  position: relative;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.product-info {
+  padding: 10px;
+}
+
+.product-title {
+  font-size: 20px;
+  margin: 10px 0;
+  text-transform: uppercase;
+}
+
+.product-description {
+  font-size: 16px;
+  color: $dark-gray;
+  margin-bottom: 10px;
   
-  /* Estilos para cada producto en la cuadrícula */
-  .product-card {
-    width: 30%; /* Aproximadamente 3 productos por fila */
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
+}
+
+.product-price {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.imagen-ampliada {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  text-align: center;
+}
+
+.ampliada-image {
+  max-width: 80%;
+  max-height: 80%;
+  margin: auto;
+  padding-top:4em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.cerrar-x {
+  font-size: 32px;
+  color: white;
+  position: absolute;
+  top: 125px;
+  right: 313px;
+  cursor: pointer;
+}
+@media screen and (min-width: 768px) {
   
-  /* Estilos para la imagen del producto */
-  .product-image {
-    width: 100%;
-    height: auto;
+  .product-grid {
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
   }
-  
-  /* Estilos para el título del producto */
-  .product-title {
-    font-size: 16px;
-    font-weight: bold;
-    margin: 10px 0;
+}
+
+
+@media screen and (max-width: 767px) {
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(250px, 1fr));
   }
-  
-  /* Estilos para el precio del producto */
-  .product-price {
-    font-size: 18px;
-    color: #e74c3c; /* Cambia el color según tu preferencia */
-  }
-  
-  /* Estilos para la miniatura de la imagen */
-  .product-thumbnail {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-  }
-  
+
+}
