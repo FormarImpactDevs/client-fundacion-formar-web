@@ -62,7 +62,7 @@ export const Form = () => {
         <h1 className="subtitle">TUS DATOS DE CONTACTO</h1>
         <Box
           component="form"
-          /* onSubmit={handleSubmit} */ action="https://formsubmit.co/21609fc7321079558debce8e5d3027fe"
+          action="https://formsubmit.co/21609fc7321079558debce8e5d3027fe"
           method="POST"
           sx={{ mt: 2 }}
         >
