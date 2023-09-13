@@ -30,8 +30,9 @@ function ProductsEcommerce() {
 
   return (
     
-    <div className="product-container">
+    <div>
       <h1 className="title">Productos</h1>
+    <div className="product-container">
       <div className="product-grid">
         {productos.map((producto) => (
           <div className="product-card" key={producto.id}>
@@ -40,17 +41,18 @@ function ProductsEcommerce() {
               alt={`Imagen de ${producto.nombre}`}
               className="product-image"
               onClick={() => mostrarImagenAmpliada("https://tn.com.ar/resizer/a8ChJiW4dV2W36MFlDWu31XjerM=/767x0/smart/filters:format(webp)/cloudfront-us-east-1.images.arcpublishing.com/artear/Y4SPWR4KY5F6PFY5PBJOBK46FU.jpg")}
-            />
+              />
 
             <div className="product-info">
               <h2 className="product-title">{producto.nombre}</h2>
               <p className="product-description">{producto.descripcion}</p>
               <p className="product-price">${producto.precio}</p>
-              <Button size="small">Comprar</Button>
-              <Button size="small">Detalle</Button>
+              <Button size="small">Agregar al carrito</Button>
+              
             </div>
           </div>
         ))}
+        </div>
       </div>
 
       <div
