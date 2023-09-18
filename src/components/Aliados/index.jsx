@@ -9,7 +9,7 @@ import idea from "../../assets/idea.png";
 import insur from "../../assets/insur.png";
 import kaiapuni from "../../assets/kaiapuni.png";
 import ypf from "../../assets/martalouestau.png";
-{/*import merck from "../../assets/merck.png";*/}
+import merck from "../../assets/merck.png";
 import northlands from "../../assets/northlands.png";
 import odisea from "../../assets/odisea.png";
 import ofelia from "../../assets/ofelia.png";
@@ -27,7 +27,7 @@ import Slide3d from "../Slider3d";
 
 export const Aliados = () => {
     
-    const images = [pampaEnergia,santander, accenture,arredo,essarp,globant,idea,insur,kaiapuni,ypf,northlands,odisea,ofelia,omnit,pedidosya,sanandres,stine,summitagro,technogies,tecro,uia]
+    const images = [pampaEnergia,santander, merck,accenture,arredo,essarp,globant,idea,insur,kaiapuni,ypf,northlands,odisea,ofelia,omnit,pedidosya,sanandres,stine,summitagro,technogies,tecro,uia]
    /*  const [currentImage, setCurrentImage] = useState(0);
 
   const goToNextImage = () => {

@@ -1,5 +1,4 @@
 import { MainLayout } from "../../layout";
-import { Link } from "react-router-dom";
 import "../../components/Axes/_axes.scss";
 import Title from "../../components/Title";
 import ButtonWhitImage from "../../components/ButtonWhitImage";
