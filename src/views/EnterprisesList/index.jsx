@@ -3,8 +3,6 @@ import { MainLayout } from "../../layout";
 import DataTable from "../../components/List";
 import { GridActionsCellItem } from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
-
-//import useEnterprises from "../../hooks/useEnterprises";
 import { useEffect, useState } from "react";
 import {
   getEnterprisesService,
@@ -13,7 +11,11 @@ import {
 
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faPenToSquare, faPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrash,
+  faPenToSquare,
+  faPlus,
+} from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 
 import "sweetalert2/src/sweetalert2.scss";
@@ -26,7 +28,6 @@ export const EnterprisesList = () => {
     try {
       const EnterprisesData = await getEnterprisesService();
       setEnterprises(EnterprisesData);
-      console.log(EnterprisesData);
     } catch (error) {
       console.log(error);
     }
@@ -38,13 +39,10 @@ export const EnterprisesList = () => {
 
   const deleteEnterprise = async (e, id) => {
     e.preventDefault();
-    console.log(id);
     try {
       const result = await deleteEnterpriseService(id);
-      console.log("result", result);
       return result.message;
     } catch (error) {
-      console.log(error.message);
       return error.message;
     }
   };
@@ -114,7 +112,11 @@ export const EnterprisesList = () => {
           <Title text="Lista de emprendimientos" />
           <div className={styles.containerList}>
             <Link to="/admin/enterprises/create">
-              <Button size="medium" variant="outlined" startIcon={<FontAwesomeIcon icon={faPlus} />}>
+              <Button
+                size="medium"
+                variant="outlined"
+                startIcon={<FontAwesomeIcon icon={faPlus} />}
+              >
                 Crear Emprendimiento
               </Button>
             </Link>

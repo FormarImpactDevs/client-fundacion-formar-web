@@ -3,9 +3,9 @@ import Home from "../pages/Home";
 import NotFound from "../pages/NotFound";
 import { HomeEcommerce } from "../pages/HomeEcommerce";
 import { Admin } from "../pages/Admin";
-import { FormEnterpriseCreate } from "../components/FormsEnterprise/FormEnterpriseCreate";
-import { FormEnterpriseEdit } from "../components/FormsEnterprise/FormEnterpriseEdit";
 import { EnterprisesList } from "../views/EnterprisesList";
+import { FormCreate } from "../views/Enterprises/FormCreate";
+import { FormUpdate } from "../views/Enterprises/FormUdate";
 
 export default function AppRoutes() {
   return (
@@ -17,11 +17,11 @@ export default function AppRoutes() {
         <Route path="/admin/enterprises" element={<EnterprisesList />} />
         <Route
           path="/admin/enterprises/create"
-          element={<FormEnterpriseCreate />}
+          element={<FormCreate/>}
         />
         <Route
           path="/admin/enterprises/edit/:id"
-          element={<FormEnterpriseEdit />}
+          element={<FormUpdate />}
         />
         <Route path="*" element={<NotFound />} />
       </Routes>

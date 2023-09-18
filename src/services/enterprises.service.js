@@ -9,8 +9,17 @@ export const getEnterprisesService = async () => {
     const { data } = await axios.get(url);
     return data.data || [];
   } catch (error) {
-    console.log(error);
     throw new Error("Hubo un error al obtener los emprendimientos.");
+  }
+};
+
+export const getEnterpriseServiceById = async (idEnterprise) => {
+  try {
+    const url = `${apiUrl}enterprises/${idEnterprise}`;
+    const { data } = await axios.get(url);
+    return data.data || [];
+  } catch (error) {
+    throw new Error(error.response.data.message);
   }
 };
 
@@ -21,20 +30,18 @@ export const createEnterpriseService = async (enterpriseData) => {
     const { data } = await axios.post(url, enterpriseData);
     return data.data || [];
   } catch (error) {
-    console.log(error);
-    throw new Error("Hubo un error al crear el emprendimiento.");
+    throw new Error(error.response.data.message);
+    
   }
 };
 
-export const updateEnterpriseService = async (enterpriseData) => {
-  console.log(enterpriseData);
+export const updateEnterpriseService = async (id, enterpriseData) => {
   try {
-    const url = `${apiUrl}enterprises/update/${enterpriseData.id}`;
+    const url = `${apiUrl}enterprises/update/${id}`;
     const { data } = await axios.put(url, enterpriseData);
     return data.data || [];
   } catch (error) {
-    console.log(error);
-    throw new Error("Hubo un error al crear el emprendimiento.");
+    throw new Error(error.response.data.message);
   }
 };
 
@@ -46,7 +53,6 @@ export const deleteEnterpriseService = async (id) => {
     const { data } = await axios.delete(url);
     return data.message || [];
   } catch (error) {
-    console.log(error);
-    throw new Error("Hubo un error al eliminar el emprendimiento.");
+    throw new Error("Hubo un error al eliminar el emprendimiento.", error.response.data.message);
   }
 };
