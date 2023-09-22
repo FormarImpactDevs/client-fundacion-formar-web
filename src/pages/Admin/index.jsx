@@ -7,7 +7,9 @@ export const Admin = () => {
     <>
       <MainLayout>
         <h1>Consola de administrador</h1>
-        <Link to="/admin/enterprises">Lista de emprendimientos</Link>
+        <Link to="/admin/enterprises">Lista de emprendimientos</Link> 
+        <br/>
+        <Link to="/admin/categories">Lista de categorías</Link>
       </MainLayout>
     </>
   );

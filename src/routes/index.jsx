@@ -5,7 +5,10 @@ import { HomeEcommerce } from "../pages/HomeEcommerce";
 import { Admin } from "../pages/Admin";
 import { FormEnterpriseCreate } from "../components/FormsEnterprise/FormEnterpriseCreate";
 import { FormEnterpriseEdit } from "../components/FormsEnterprise/FormEnterpriseEdit";
+import { FormCategoryCreate } from "../components/FormsCategory/FormCategoryCreate";
+import { FormCategoryEdit } from "../components/FormsCategory/FormCategoryEdit";
 import { EnterprisesList } from "../views/EnterprisesList";
+import { CategoriesList } from "../views/CategoriesList";
 
 export default function AppRoutes() {
   return (
@@ -23,6 +26,9 @@ export default function AppRoutes() {
           path="/admin/enterprises/edit/:id"
           element={<FormEnterpriseEdit />}
         />
+        <Route path="/admin/categories" element={<CategoriesList />} />
+        <Route path="/admin/category/create" element={<FormCategoryCreate />} />
+        <Route path="/admin/categories/edit/:id" element={<FormCategoryEdit />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
