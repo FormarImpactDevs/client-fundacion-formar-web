@@ -1,30 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Avatar,
   Box,
   Button,
-  Checkbox,
   Container,
   CssBaseline,
-  FormControlLabel,
   Grid,
   Link,
   TextField,
   Typography,
   createTheme,
   ThemeProvider,
-  
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import axios from "axios";
+
 
 function LoginEcommerce() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+
+
+  const handleLogin = async (event) => {
+    event.preventDefault(); 
+    
+    try {
+      // Realiza una solicitud al servidor backend para autenticar al usuario y obtener el token.
+      const response = await axios.post("http://localhost:3000/api/users/login", {
+        email: email,
+        pass: password,
+      });
+
+      // Si la autenticación es exitosa, el token JWT debería estar en la respuesta del servidor.
+      const token = response.data.token;
+
+      // Aquí puedes manejar el token JWT, por ejemplo, almacenándolo en el estado local del componente.
+      localStorage.setItem('token', token);
+  
+  
+    } catch (error) {
+      setError("Error en la autenticación. Verifica tus credenciales.");
+    }
   };
 
   const defaultTheme = createTheme();
@@ -45,56 +62,60 @@ function LoginEcommerce() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Ingresar
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <form onSubmit={handleLogin} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Correo electrónico"
               name="email"
               autoComplete="email"
               autoFocus
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               margin="normal"
               required
               fullWidth
               name="password"
-              label="Password"
+              label="Contraseña"
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+            {error && (
+            <Typography variant="body2" color="error">
+                {error}
+            </Typography>
+            )}
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Acceder
             </Button>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
-                  Forgot password?
+                  ¿Olvidó su contraseña?
                 </Link>
               </Grid>
               <Grid item>
                 <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  {"¿No tienes cuenta? Crear cuenta"}
                 </Link>
               </Grid>
             </Grid>
-          </Box>
+          </form>
         </Box>
-        
       </Container>
     </ThemeProvider>
   );
