@@ -8,7 +8,7 @@ import ButtonBase from "@mui/material/ButtonBase";
 import Typography from "@mui/material/Typography";
 import PropTypes from "prop-types";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const VisuallyHiddenInput = styled("input")`
   clip: rect(0 0 0 0);
@@ -87,37 +87,41 @@ const ImageMarked = styled("span")(({ theme }) => ({
   transition: theme.transitions.create("opacity"),
 }));
 
-export default function InputFileUpload({ text, name, multiple, required, onChanges }) {
+export default function InputFileUpload({
+  text,
+  name,
+  multiple,
+  required,
+  onChanges,
+  values,
+}) {
   const [images, setImages] = useState([
     {
-      url: "",
+      url: values ? values : "",
       width: "90%",
     },
   ]);
 
   const handleChange = (e) => {
-    onChanges
     setImages(() => [
       {
         url: URL.createObjectURL(e.target.files[0]),
         width: "90%",
-      } 
+      },
     ]);
     return URL.revokeObjectURL(e.target.files[0]);
-
   };
 
-/*   const deleteImage = (blob) => {
-    setImages(images.filter((x) => x !== blob));
-  };
- */
-  useEffect(() => {
-    console.log(images);
-  }, [images]);
 
   return (
     <Box
-      sx={{ display: "flex", flexWrap: "wrap", minWidth: 300, width: "100%", justifyContent: "center" }}
+      sx={{
+        display: "flex",
+        flexWrap: "wrap",
+        minWidth: 300,
+        width: "100%",
+        justifyContent: "center",
+      }}
     >
       {images.map((image) => (
         <ImageButton
@@ -156,7 +160,9 @@ export default function InputFileUpload({ text, name, multiple, required, onChan
                   accept=".jpg, .jpeg, .png"
                   multiple={multiple}
                   required={required}
-                  onChange={(e) => handleChange(e)}
+                  onChange={(e) => {
+                    onChanges(name, e.target.files[0]), handleChange(e);
+                  }}
                 />
               </Button>
               <ImageMarked className="MuiImageMarked-root" />
@@ -173,6 +179,6 @@ InputFileUpload.propTypes = {
   name: PropTypes.string,
   multiple: PropTypes.bool,
   required: PropTypes.bool,
-  onChanges: PropTypes.func
+  onChanges: PropTypes.func,
+  values: PropTypes.string,
 };
-

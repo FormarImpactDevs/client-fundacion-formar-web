@@ -3,15 +3,14 @@ import axios from "axios";
 const apiUrl = import.meta.env.VITE_BASE_API_URL;
 
 export const getCategoriesService = async () => {
-    try {
-      const url = `${apiUrl}category`;
-      const { data } = await axios.get(url);
-      return data.data || [];
-    } catch (error) {
-      console.log(error);
-      throw new Error("Hubo un error al obtener las categorías.");
-    }
-  };
+  try {
+    const url = `${apiUrl}categories`;
+    const { data } = await axios.get(url);
+    return data.data || [];
+  } catch (error) {
+    throw new Error("Hubo un error al obtener las categorias.");
+  }
+};
 
 export const createCategoryService = async (categoryData) => {
     console.log(categoryData);
