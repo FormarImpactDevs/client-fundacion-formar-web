@@ -4,9 +4,9 @@ const apiUrl = import.meta.env.VITE_BASE_API_URL;
 
 export const getCategoriesService = async () => {
   try {
-    const url = `${apiUrl}categories`;
+    const url = `${apiUrl}category`;
     const { data } = await axios.get(url);
-    return data.data || [];
+    return data || [];
   } catch (error) {
     throw new Error("Hubo un error al obtener las categorias.");
   }
@@ -17,28 +17,26 @@ export const createCategoryService = async (categoryData) => {
     try {
       const url = `${apiUrl}category/create`;
       const { data } = await axios.post(url, categoryData);
-      return data.data || [];
+      return data || [];
     } catch (error) {
       console.log(error);
       throw new Error("Hubo un error al crear la categoría.");
     }
   };
 
-export const updateCategoryService = async (categoryData) => {
-    console.log(categoryData);
+  export const updateCategoriesService = async (id, categoryData) => {
     try {
-      const url = `${apiUrl}category/update/${categoryData.id}`;
+      const url = `${apiUrl}category/${id}`;
       const { data } = await axios.put(url, categoryData);
-      return data.data || [];
+      return data || [];
     } catch (error) {
-      console.log(error);
-      throw new Error("Hubo un error al crear la categoría.");
+      throw new Error(error.response.data.message);
     }
   };
 
 export const deleteCategoryService = async (id) => {
     try {
-      const url = `${apiUrl}category/delete/${id}`;
+      const url = `${apiUrl}category/${id}`;
       const { data } = await axios.delete(url);
       return data.message || [];
     } catch (error) {

@@ -25,6 +25,7 @@ export const CategoriesList = () => {
   const getCategories = async () => {
     try {
       const CategoriesData = await getCategoriesService();
+      console.log(CategoriesData);
       setCategories(CategoriesData);
     } catch (error) {
       console.log(error);
@@ -37,7 +38,7 @@ export const CategoriesList = () => {
 
   const deleteCategories = async (e, id) => {
     e.preventDefault();
-    try {zzz
+    try {
       const result = await deleteCategoryService(id);
       return result.message;
     } catch (error) {

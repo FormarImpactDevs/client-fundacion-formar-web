@@ -8,7 +8,7 @@ import {
   TextField,
   styled,
 } from "@mui/material";
-import { updateCategoryService } from "../../services/categories.service";
+import { updateCategoriesService } from "../../services/categories.service";
 import { useForm } from "../../hooks/useForm";
 import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
@@ -49,7 +49,7 @@ export const FormCategoryEdit = () => {
     try {
       setSending(true);
 
-      const { data } = await updateCategoryService({
+      const { data } = await updateCategoriesService(id, {
         id,
         nombre
       });
