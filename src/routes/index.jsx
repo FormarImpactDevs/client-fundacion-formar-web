@@ -11,7 +11,7 @@ export default function AppRoutes() {
         <Routes>
             <Route path='/' element={<Home />} /> 
             <Route path='/products' element={<HomeEcommerce />} /> 
-            <Route path='/login' element={<LoginEcommerce />} /> 
+            <Route path='/admin/login' element={<LoginEcommerce />} /> 
             <Route path='*' element={<NotFound/>} />
         </Routes>
     </Router>

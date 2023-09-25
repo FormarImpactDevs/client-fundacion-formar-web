@@ -13,34 +13,19 @@ import {
   ThemeProvider,
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import axios from "axios";
-
+import { login} from '../Service/authService';
 
 function LoginEcommerce() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
-
   const handleLogin = async (event) => {
     event.preventDefault(); 
-    
     try {
-      // Realiza una solicitud al servidor backend para autenticar al usuario y obtener el token.
-      const response = await axios.post("http://localhost:3000/api/users/login", {
-        email: email,
-        pass: password,
-      });
-
-      // Si la autenticación es exitosa, el token JWT debería estar en la respuesta del servidor.
-      const token = response.data.token;
-
-      // Aquí puedes manejar el token JWT, por ejemplo, almacenándolo en el estado local del componente.
-      localStorage.setItem('token', token);
-  
-  
+      await login(email, password);
     } catch (error) {
-      setError("Error en la autenticación. Verifica tus credenciales.");
+      setError(error.message);
     }
   };
 
@@ -48,7 +33,7 @@ function LoginEcommerce() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Container maxWidth="sm">
         <CssBaseline />
         <Box
           sx={{
@@ -90,9 +75,9 @@ function LoginEcommerce() {
               onChange={(e) => setPassword(e.target.value)}
             />
             {error && (
-            <Typography variant="body2" color="error">
+              <Typography variant="body2" color="error">
                 {error}
-            </Typography>
+              </Typography>
             )}
             <Button
               type="submit"
