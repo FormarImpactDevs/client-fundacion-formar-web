@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { login} from '../Service/authService';
-
+import '../LoginEcommerce/_loginEcommerce.scss'
 function LoginEcommerce() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
