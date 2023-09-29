@@ -84,7 +84,7 @@ function LoginEcommerce() {
               <Typography variant="body2" color="error">
                 {error}
               </Typography>
-            )}
+            )} //mensajes de error del backend
             <Button
               type="submit"
               fullWidth
