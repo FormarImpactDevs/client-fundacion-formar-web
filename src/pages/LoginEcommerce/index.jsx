@@ -20,18 +20,16 @@ function LoginEcommerce() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-  const navigate = useNavigate(); // Obtén la función navigate
-
+  const navigate = useNavigate(); 
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      // Realiza las validaciones del inicio de sesión aquí
+      //validaciones del login
       await login(email, password);
-
-      // Si el inicio de sesión es exitoso, redirige al usuario
+    
       navigate('/');
     } catch (error) {
-      setError(error.message);
+      setError("Error de inicio de sesión:",error.message);
     }
   };
 
@@ -84,7 +82,7 @@ function LoginEcommerce() {
               <Typography variant="body2" color="error">
                 {error}
               </Typography>
-            )} //mensajes de error del backend
+            )}
             <Button
               type="submit"
               fullWidth

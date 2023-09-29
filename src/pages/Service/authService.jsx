@@ -10,7 +10,7 @@ export async function login(email, password) {
     localStorage.setItem('token', token);
     return token;
   } catch (error) {
-    throw new Error(error.response.data.error); // Arroja el mensaje de error del backend
+    throw new Error(error.response.data.error); // mensaje de error del backend
   }
 }
 
