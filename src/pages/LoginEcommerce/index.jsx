@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Avatar,
   Box,
@@ -6,24 +7,29 @@ import {
   Container,
   CssBaseline,
   Grid,
-  Link,
   TextField,
   Typography,
   createTheme,
   ThemeProvider,
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { login} from '../Service/authService';
-import '../LoginEcommerce/_loginEcommerce.scss'
+import { login } from '../Service/authService';
+import '../LoginEcommerce/_loginEcommerce.scss';
+
 function LoginEcommerce() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+  const navigate = useNavigate(); // Obtén la función navigate
 
   const handleLogin = async (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
     try {
+      // Realiza las validaciones del inicio de sesión aquí
       await login(email, password);
+
+      // Si el inicio de sesión es exitoso, redirige al usuario
+      navigate('/');
     } catch (error) {
       setError(error.message);
     }

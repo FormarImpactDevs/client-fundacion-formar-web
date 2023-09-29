@@ -10,7 +10,17 @@ export async function login(email, password) {
     localStorage.setItem('token', token);
     
   } catch (error) {
-    console.error("Error en la autenticación:", error);
-    throw new Error("Error en la autenticación. Verifica tus credenciales.");
-  }
+    if (error.response && error.response.data && error.response.data.error) {
+      // Si el servidor envía un error en un formato JSON, puedes acceder a él aquí
+      const errorMessage = error.response.data.error;
+      // Haz algo con el mensaje de error, como mostrarlo en la interfaz de usuario
+    } else {
+      // Maneja otros errores, como problemas de red
+      console.error("Error en la autenticación:", error);
+      throw new Error("Error en la autenticación. Verifica tus credenciales.");
+    }
 }
+}
+
+
+
