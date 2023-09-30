@@ -9,8 +9,11 @@ export async function login(email, password) {
     const token = response.data.token;
     localStorage.setItem('token', token);
     return token;
-  } catch (error) {
-    throw new Error(error.response.data.error); // mensaje de error del backend
+  } catch ({response}) {
+    const {data} = response;    
+    console.warn();
+
+    throw new Error(data.errors.custom.msg); // mensaje de error del backend
   }
 }
 
