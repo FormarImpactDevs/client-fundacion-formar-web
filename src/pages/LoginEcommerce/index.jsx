@@ -1,41 +1,48 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import {
-  Avatar,
-  Box,
-  Button,
-  Container,
-  CssBaseline,
-  Grid,
-  TextField,
-  Typography,
+import { Avatar, 
+  Box, 
+  Button, 
+  Container, 
+  CssBaseline, 
+  Grid, 
+  TextField, 
+  Typography, 
   createTheme,
-  ThemeProvider,
-} from '@mui/material';
+   ThemeProvider } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import { login } from '../Service/authService';
 import '../LoginEcommerce/_loginEcommerce.scss';
 
 function LoginEcommerce() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
-  const navigate = useNavigate(); 
-  const handleLogin = async (event) => {
-    event.preventDefault();
-    try {
-      //validaciones del login
-      await login(email, password);
-    
-      navigate('/');
-    } catch (error) {
-      setError("Error de inicio de sesión:",error.message);
-    }
-  };
+  const navigate = useNavigate();
 
-  const defaultTheme = createTheme();
+  const validationSchema = Yup.object({
+    email: Yup.string().email('Correo electrónico no válido').required('Campo requerido'),
+    password: Yup.string().required('Campo requerido'),
+  });
 
-  return (
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema,
+    onSubmit: async (values) => {
+      try {
+        await login(values.email, values.password);
+        navigate('/');
+      } catch (error) {
+        formik.setFieldError('password', 'Contraseña o email incorrecto');
+      }
+    },
+  });
+
+const defaultTheme = createTheme();
+
+return (
     <ThemeProvider theme={defaultTheme}>
       <Container maxWidth="sm">
         <CssBaseline />
@@ -53,7 +60,7 @@ function LoginEcommerce() {
           <Typography component="h1" variant="h5">
             Ingresar
           </Typography>
-          <form onSubmit={handleLogin} noValidate sx={{ mt: 1 }}>
+          <form onSubmit={formik.handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -63,9 +70,15 @@ function LoginEcommerce() {
               name="email"
               autoComplete="email"
               autoFocus
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />
+            {formik.touched.email && formik.errors.email && (
+              <Typography variant="body2" color="error">
+                {formik.errors.email}
+              </Typography>
+            )}
             <TextField
               margin="normal"
               required
@@ -75,12 +88,13 @@ function LoginEcommerce() {
               type="password"
               id="password"
               autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />
-            {error && (
+            {formik.touched.password && formik.errors.password && (
               <Typography variant="body2" color="error">
-                {error}
+                {formik.errors.password}
               </Typography>
             )}
             <Button
@@ -99,7 +113,7 @@ function LoginEcommerce() {
               </Grid>
               <Grid item>
                 <Link href="#" variant="body2">
-                  {"¿No tienes cuenta? Crear cuenta"}
+                  ¿No tienes cuenta? Crear cuenta
                 </Link>
               </Grid>
             </Grid>
