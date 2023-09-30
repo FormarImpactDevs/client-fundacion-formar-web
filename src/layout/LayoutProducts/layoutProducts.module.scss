@@ -1,0 +1,21 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 3fr; // 25% y 75%
+  gap: 5px; // Espacio entre columnas (ajusta según tus necesidades)
+
+  // Estilos adicionales según tus preferencias
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+.sidebar {
+  // Estilos para la primera columna (25%)
+  background-color: #e0e0e0;
+  padding: 10px;
+}
+
+.mainContent {
+  // Estilos para la segunda columna (75%)
+  background-color: #ffffff;
+  padding: 20px;
+}
