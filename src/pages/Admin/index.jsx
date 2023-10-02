@@ -25,7 +25,7 @@ export const Admin = () => {
       url: img,
       title: 'Categorías',
       width: '45%',
-      rute: '/admin/'
+      rute: '/admin/categories'
     },
     {
       url: img,

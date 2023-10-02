@@ -3,7 +3,10 @@ import Home from "../pages/Home";
 import NotFound from "../pages/NotFound";
 import { HomeEcommerce } from "../pages/HomeEcommerce";
 import { Admin } from "../pages/Admin";
+import { FormCategoryCreate } from "../components/FormsCategory/FormCategoryCreate";
+import { FormCategoryEdit } from "../components/FormsCategory/FormCategoryEdit";
 import { EnterprisesList } from "../views/EnterprisesList";
+import { CategoriesList } from "../views/CategoriesList";
 import { FormCreate } from "../views/Enterprises/FormCreate";
 import { FormUpdate } from "../views/Enterprises/FormUdate";
 
@@ -23,8 +26,12 @@ export default function AppRoutes() {
           path="/admin/enterprises/edit/:id"
           element={<FormUpdate />}
         />
+        <Route path="/admin/categories" element={<CategoriesList />} />
+        <Route path="/admin/category/create" element={<FormCategoryCreate />} />
+        <Route path="/admin/category/edit/:id" element={<FormCategoryEdit />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </Router>
+    </Router> 
   );
 }
+  
