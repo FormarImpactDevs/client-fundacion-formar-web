@@ -9,7 +9,8 @@ import {
   TextField,
   Typography, 
   Grid, 
-  Checkbox
+  Checkbox, 
+  styled
 }from '@mui/material';
 
 const CssTextField = styled(TextField)({
@@ -120,7 +121,7 @@ export default function AddressForm() {
                     >
                       <Grid item xs={12} sm={6}>
                         <FormControlLabel
-                          value="punto de retiro"
+                          value="puntoDeRetiro"
                           control={<Radio size="small" />}
                           label="Punto de retiro"
                         />
@@ -136,7 +137,7 @@ export default function AddressForm() {
                   </RadioGroup>
                 </FormControl>
               </Grid>
-              {radio && radio === "voluntario" ? (
+              {radio && radio === "puntoDeRetiro" ? (
                 <div className="checkboxes">
                   <Box sx={{ display: "flex" }}>
                     <FormControl
