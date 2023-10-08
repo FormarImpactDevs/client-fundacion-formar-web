@@ -14,7 +14,8 @@ import {
 export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [productsFiltered, setProductsFiltered] = useState([]);
-  const [allProducts, setAllProducts] = useState(true);
+/*   const [allProducts, setAllProducts] = useState(true); */
+  const [productsReady, setProductsReady] = useState(false);
   const [searchProducts, setSearchProducts] = useState([]);
   const [valueInputSearch, setValueInputSearch] = useState("");
 
@@ -41,8 +42,11 @@ export const ProductProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    getProducts();
-  }, []);
+    if (!productsReady) {
+      getProducts();
+      setProductsReady(true);
+    }
+  }, [products]);
 
   // Obtener producto por id
   const getProductById = async (id) => {
@@ -102,7 +106,7 @@ export const ProductProvider = ({ children }) => {
         console.log(error);
       }
     } else {
-      console.log("No hay nada");
+      console.error("No hay nada");
     }
   };
 
@@ -110,24 +114,9 @@ export const ProductProvider = ({ children }) => {
     productsByCategories();
   }, [categoryId]);
 
-  const productsAll = () => {
-    if (productsFiltered) {
-      setAllProducts(false);
-    } else {
-      setAllProducts(true);
-    }
-  };
-
-  useEffect(() => {
-    productsAll();
-  }, []);
-
-
   const searchedProducts = (products, searchedWord) => {
     // Convierte la palabra buscada a minúsculas para hacer una búsqueda insensible a mayúsculas/minúsculas
     const searchedWordLower = searchedWord.toLowerCase();
-    /* console.log(searchedWord);
-    console.log(products); */
     // Filtra los productos que coincidan con la palabra buscada en su name o categoría
     const productsFiltered = products.filter((product) => {
       const nameProductLower = product.nombre.toLowerCase();
@@ -140,12 +129,11 @@ export const ProductProvider = ({ children }) => {
     });
 
     return productsFiltered;
-  }
+  };
 
   useEffect(() => {
-    let result = searchedProducts(products, valueInputSearch)
+    let result = searchedProducts(products, valueInputSearch);
     setSearchProducts(result);
-    console.log(searchProducts);
   }, [valueInputSearch]);
 
   return (
@@ -156,7 +144,6 @@ export const ProductProvider = ({ children }) => {
         product,
         setProduct,
         productsFiltered,
-        allProducts,
 
         categories,
         setCategories,
@@ -177,6 +164,7 @@ export const ProductProvider = ({ children }) => {
         valueInputSearch,
         setValueInputSearch,
         searchProducts,
+        productsReady
       }}
     >
       {children}

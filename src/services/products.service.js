@@ -6,7 +6,7 @@ export const getProductsService = async () => {
   try {
     const url = `${apiUrl}product`;
     const { data } = await axios.get(url);
-    return data.data || [];
+    return data || [];
   } catch (error) {
     throw new Error("Hubo un error al obtener los productos.");
   }
