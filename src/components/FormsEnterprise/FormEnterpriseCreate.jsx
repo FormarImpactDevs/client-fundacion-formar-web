@@ -11,6 +11,7 @@ import "../Form/formDates.scss";
 import InputFileUpload from "../InputFileUpload";
 import { createEnterpriseService } from "../../services/enterprises.service";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 /* Formik y Yup */
 import { useFormik } from "formik";
@@ -37,6 +38,7 @@ const CssTextField = styled(TextField)({
 });
 
 export const FormEnterpriseCreate = () => {
+  const navigate = useNavigate();
   /* Formik */
   const getInitialValues = () => ({
     nombre: "",
@@ -63,16 +65,15 @@ export const FormEnterpriseCreate = () => {
 
       const data = await createEnterpriseService(formDataToSend);
 
-      Swal.fire({
+      await Swal.fire({
         icon: "success",
         title: "¡Emprendimiento creado!",
         text: data.message,
       });
-      setTimeout(() => {
-        window.location = "/admin/enterprises";
-      }, 2000);
+      navigate("/admin/enterprises");
     } catch (error) {
       if (error) {
+        console.error(error);
         Swal.fire({
           icon: "error",
           title: "¡Hubo un error al crear el emprendimiento!",
@@ -82,10 +83,10 @@ export const FormEnterpriseCreate = () => {
     }
   };
 
-  const { handleSubmit, values, setFieldValue, errors } = useFormik({
-    validateOnBlur: false,
+  const { handleSubmit, setFieldValue, errors, handleBlur } = useFormik({
+    validateOnBlur: true,
 
-    validateOnChange: false,
+    validateOnChange: true,
 
     initialValues: getInitialValues(),
 
@@ -128,7 +129,7 @@ export const FormEnterpriseCreate = () => {
                   name="foto_card"
                   multiple={false}
                   required={false}
-                  onChanges={setFieldValue}
+                  onChange={setFieldValue}
                 />
               </Grid>
               <Grid item xs={12} sm={12}>
@@ -137,7 +138,7 @@ export const FormEnterpriseCreate = () => {
                   name="foto_emprendimiento"
                   multiple={false}
                   required={false}
-                  onChanges={setFieldValue}
+                  onChange={setFieldValue}
                 />
               </Grid>
               <Grid item xs={12} sm={12}>
@@ -148,12 +149,9 @@ export const FormEnterpriseCreate = () => {
                   label="Nombre del emprendimiento"
                   name="nombre"
                   error={errors?.nombre && true}
-                  helperText={
-                    errors?.nombre
-                      ? errors.nombre
-                      : ""
-                  }
+                  helperText={errors?.nombre ? errors.nombre : ""}
                   onChange={(e) => setFieldValue("nombre", e.target.value)}
+                  onBlur={handleBlur}
                 />
               </Grid>
               <Grid
@@ -171,14 +169,11 @@ export const FormEnterpriseCreate = () => {
                   label="Descripción del emprendimiento"
                   name="descripcion"
                   multiline
+                  onBlur={handleBlur}
                   rows={4}
                   defaultValue=""
                   error={errors?.descripcion && true}
-                  helperText={
-                    errors?.descripcion
-                      ? errors.descripcion
-                      : ""
-                  }
+                  helperText={errors?.descripcion ? errors.descripcion : ""}
                   onChange={(e) => setFieldValue("descripcion", e.target.value)}
                 />
               </Grid>
