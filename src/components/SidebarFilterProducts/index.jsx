@@ -90,7 +90,6 @@ export const SidebarFilterProducts = () => {
 
  const handleInputSearch = ({target}) => {
   setValueInputSearch(target.value)
-  console.log(valueInputSearch);
  }
 
   return (

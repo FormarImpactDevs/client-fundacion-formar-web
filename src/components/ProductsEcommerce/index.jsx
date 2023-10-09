@@ -30,8 +30,8 @@ function ProductsEcommerce() {
         <div className="product-grid">
           {productsReady ? (
             <>
-              {productsFiltered.length > 0 ? (
-                productsFiltered.map((producto) => (
+              {searchProducts.length > 0 ? (
+                searchProducts.map((producto) => (
                   <div className="product-card" key={producto.id}>
                     <img
                       src="https://tn.com.ar/resizer/a8ChJiW4dV2W36MFlDWu31XjerM=/767x0/smart/filters:format(webp)/cloudfront-us-east-1.images.arcpublishing.com/artear/Y4SPWR4KY5F6PFY5PBJOBK46FU.jpg"
@@ -56,8 +56,8 @@ function ProductsEcommerce() {
                 ))
               ) : (
                 <>
-                  {searchProducts.length > 0
-                    ? searchProducts.map((producto) => (
+                  {productsFiltered.length > 0
+                    ? productsFiltered.map((producto) => (
                         <div className="product-card" key={producto.id}>
                           <img
                             src="https://tn.com.ar/resizer/a8ChJiW4dV2W36MFlDWu31XjerM=/767x0/smart/filters:format(webp)/cloudfront-us-east-1.images.arcpublishing.com/artear/Y4SPWR4KY5F6PFY5PBJOBK46FU.jpg"

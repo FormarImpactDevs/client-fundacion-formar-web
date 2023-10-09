@@ -103,9 +103,11 @@ export const ProductProvider = ({ children }) => {
         setProductsFiltered(products.flat());
         console.log(productsFiltered);
       } catch (error) {
+        setProductsFiltered([])
         console.log(error);
       }
     } else {
+      setProductsFiltered([])
       console.error("No hay nada");
     }
   };
@@ -131,9 +133,17 @@ export const ProductProvider = ({ children }) => {
     return productsFiltered;
   };
 
+  const getFilteredProducts = async () => {
+    if (productsFiltered.length > 0 ) {
+      let result = await searchedProducts(productsFiltered, valueInputSearch);
+      setSearchProducts(result);
+    } else {
+      let result = await searchedProducts(products, valueInputSearch);
+      setSearchProducts(result);
+    }
+  }
   useEffect(() => {
-    let result = searchedProducts(products, valueInputSearch);
-    setSearchProducts(result);
+    getFilteredProducts()
   }, [valueInputSearch]);
 
   return (
