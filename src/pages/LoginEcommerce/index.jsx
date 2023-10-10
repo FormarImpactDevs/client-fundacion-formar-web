@@ -35,7 +35,7 @@ function LoginEcommerce() {
     onSubmit: async (values) => {
       try {
         await login(values.email, values.password);
-        navigate("/");
+        navigate("/admin");
       } catch (error) {
         console.log(error)
         formik.setFieldError("password", `${error}`);
