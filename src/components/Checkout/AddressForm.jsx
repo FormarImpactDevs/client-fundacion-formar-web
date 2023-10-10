@@ -10,6 +10,7 @@ import {
   Typography, 
   Grid, 
   Checkbox, 
+  Box,
   styled
 }from '@mui/material';
 
@@ -155,42 +156,29 @@ export default function AddressForm() {
                         <Grid item xs={12} sm={6}>
                           <FormGroup>
                             <FormControlLabel
-                              control={<Checkbox name="tutoriasDeIngles" />}
-                              label="Tutorías de inglés"
+                              control={<Checkbox name="FlorestaCABA" />}
+                              label="Floresta CABA"
                             />
                             <FormControlLabel
                               control={
-                                <Checkbox name="mentoriasEnHabilidadesTecnicas" />
+                                <Checkbox name="Boulogne" />
                               }
-                              label="Mentorías en habilidades técnicas"
+                              label="Boulogne"
                             />
                             <FormControlLabel
+                              control={<Checkbox name="PoloDePalermo" />}
+                              label="Polo de Palermo CABA"
+                            />
+                             <FormControlLabel
                               control={
-                                <Checkbox name="mentoriasEnHabilidadesBlandas" />
+                                <Checkbox name="Benavidez" />
                               }
-                              label="Mentorías en habilidades blandas"
-                            />
-                            <FormControlLabel
-                              control={<Checkbox name="dictarUnaMasterclass" />}
-                              label="Dictar una masterclass"
+                              label="Benavidez"
                             />
                           </FormGroup>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                          {" "}
-                          <FormGroup>
-                            <FormControlLabel
-                              control={<Checkbox name="otro" />}
-                              label="Otro"
-                            />
-
-                            <CssTextField
-                              id="outlined-multiline-static"
-                              multiline
-                              rows={4}
-                              defaultValue=""
-                            />
-                          </FormGroup>
+                       
                         </Grid>
                       </Grid>
                     </FormControl>
