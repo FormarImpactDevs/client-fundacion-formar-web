@@ -7,10 +7,15 @@ import FormControl from "@mui/material/FormControl";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
+import FilterAltRoundedIcon from "@mui/icons-material/FilterAltRounded";
 import { useState, useEffect, useContext } from "react";
 import { getCategoriesService } from "../../services/categories.service";
-
 import { ProductContext } from "../../context/ProductContext";
+import { Link } from "react-router-dom";
+import styles from "./sidebarFilters.module.scss";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -53,8 +58,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export const SidebarFilterProducts = () => {
-  const { categoryState, setCategoryState, categoryId, setCategoryId, valueInputSearch, setValueInputSearch } =
-    useContext(ProductContext);
+  const {
+    categoryState,
+    setCategoryState,
+    categoryId,
+    setCategoryId,
+    setValueInputSearch,
+  } = useContext(ProductContext);
+
+  const [categories, setCategories] = useState([]);
+  const [showFilters, setShowFilters] = useState(false);
 
   const handleChange = ({ target }) => {
     setCategoryState({
@@ -71,9 +84,6 @@ export const SidebarFilterProducts = () => {
     }
   };
 
-
-  const [categories, setCategories] = useState([]);
-
   const getCategories = async () => {
     try {
       const CategoriesData = await getCategoriesService();
@@ -86,46 +96,78 @@ export const SidebarFilterProducts = () => {
   useEffect(() => {
     getCategories();
   }, []);
- 
 
- const handleInputSearch = ({target}) => {
-  setValueInputSearch(target.value)
- }
+  const handleInputSearch = ({ target }) => {
+    setValueInputSearch(target.value);
+  };
+
+  const handleShowFilters = () => {
+    setShowFilters(!showFilters);
+  };
+
+  const isMobile = window.innerWidth <= 479;
+
+  const componentSide = () => {
+    return (
+      <div className={styles.flexCenter}>
+        <Search>
+          <SearchIconWrapper type="button">
+            <SearchIcon />
+          </SearchIconWrapper>
+          <StyledInputBase
+            placeholder="Search…"
+            inputProps={{ "aria-label": "search" }}
+            onChange={handleInputSearch}
+          />
+        </Search>
+
+        <Box sx={{ display: "flex" }}>
+          <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
+            <FormLabel component="legend">Filtrar por</FormLabel>
+            <FormGroup>
+              {categories.map((category) => (
+                <FormControlLabel
+                  key={category.id}
+                  control={
+                    <Checkbox
+                      checked={categoryState.nombre}
+                      onChange={handleChange}
+                      name={category.nombre}
+                      id={category.id}
+                    />
+                  }
+                  label={category.nombre}
+                />
+              ))}
+            </FormGroup>
+          </FormControl>
+        </Box>
+        <Link to="/">
+          <Button variant="outlined">Conoce nuestros Emprendimientos</Button>
+        </Link>
+      </div>
+    );
+  };
 
   return (
-    <div>
-      <Search>
-        <SearchIconWrapper type="button">
-          <SearchIcon />
-        </SearchIconWrapper>
-        <StyledInputBase
-          placeholder="Search…"
-          inputProps={{ "aria-label": "search" }}
-          onChange={handleInputSearch}
-        />
-      </Search>
-
-      <Box sx={{ display: "flex" }}>
-        <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
-          <FormLabel component="legend">Filtrar por</FormLabel>
-          <FormGroup>
-            {categories.map((category) => (
-              <FormControlLabel
-                key={category.id}
-                control={
-                  <Checkbox
-                    checked={categoryState.nombre}
-                    onChange={handleChange}
-                    name={category.nombre}
-                    id={category.id}
-                  />
-                }
-                label={category.nombre}
-              />
-            ))}
-          </FormGroup>
-        </FormControl>
-      </Box>
-    </div>
+    <>
+      {isMobile ? (
+        <>         
+          <Tooltip title="Filtrar por:">
+            <IconButton
+              aria-label="Filtrar por:"
+              color="secondary"
+              className={styles.buttonFilter}
+              onClick={handleShowFilters}
+            >
+              <FilterAltRoundedIcon />
+            </IconButton>
+          </Tooltip>
+          {showFilters ? componentSide() : null}
+        </>
+      ) : (
+        componentSide()
+      )}
+    </>
   );
 };

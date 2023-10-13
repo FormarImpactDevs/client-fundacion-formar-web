@@ -29,7 +29,7 @@ function ProductsEcommerce() {
       <div className="product-container">
         <div className="product-grid">
           {productsReady ? (
-            <>
+            <>        
               {searchProducts.length > 0 ? (
                 searchProducts.map((producto) => (
                   <div className="product-card" key={producto.id}>

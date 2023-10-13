@@ -14,7 +14,7 @@ import {
 export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [productsFiltered, setProductsFiltered] = useState([]);
-/*   const [allProducts, setAllProducts] = useState(true); */
+  /*   const [allProducts, setAllProducts] = useState(true); */
   const [productsReady, setProductsReady] = useState(false);
   const [searchProducts, setSearchProducts] = useState([]);
   const [valueInputSearch, setValueInputSearch] = useState("");
@@ -103,11 +103,11 @@ export const ProductProvider = ({ children }) => {
         setProductsFiltered(products.flat());
         console.log(productsFiltered);
       } catch (error) {
-        setProductsFiltered([])
+        setProductsFiltered([]);
         console.log(error);
       }
     } else {
-      setProductsFiltered([])
+      setProductsFiltered([]);
       console.error("No hay nada");
     }
   };
@@ -117,33 +117,37 @@ export const ProductProvider = ({ children }) => {
   }, [categoryId]);
 
   const searchedProducts = (products, searchedWord) => {
-    // Convierte la palabra buscada a minúsculas para hacer una búsqueda insensible a mayúsculas/minúsculas
-    const searchedWordLower = searchedWord.toLowerCase();
-    // Filtra los productos que coincidan con la palabra buscada en su name o categoría
-    const productsFiltered = products.filter((product) => {
-      const nameProductLower = product.nombre.toLowerCase();
-      const descriptionProductLower = product.descripcion.toLowerCase();
+    if (searchedWord.length == 0) {
+      return [];
+    } else {
+      // Convierte la palabra buscada a minúsculas para hacer una búsqueda insensible a mayúsculas/minúsculas
+      const searchedWordLower = searchedWord.toLowerCase();
+      // Filtra los productos que coincidan con la palabra buscada en su name o categoría
+      const productsFiltered = products.filter((product) => {
+        const nameProductLower = product.nombre.toLowerCase();
+        const descriptionProductLower = product.descripcion.toLowerCase();
 
-      return (
-        nameProductLower.includes(searchedWordLower) ||
-        descriptionProductLower.includes(searchedWordLower)
-      );
-    });
+        return (
+          nameProductLower.includes(searchedWordLower) ||
+          descriptionProductLower.includes(searchedWordLower)
+        );
+      });
 
-    return productsFiltered;
+      return productsFiltered;
+    }
   };
 
   const getFilteredProducts = async () => {
-    if (productsFiltered.length > 0 ) {
+    if (productsFiltered.length > 0) {
       let result = await searchedProducts(productsFiltered, valueInputSearch);
       setSearchProducts(result);
     } else {
       let result = await searchedProducts(products, valueInputSearch);
       setSearchProducts(result);
     }
-  }
+  };
   useEffect(() => {
-    getFilteredProducts()
+    getFilteredProducts();
   }, [valueInputSearch]);
 
   return (
@@ -154,6 +158,7 @@ export const ProductProvider = ({ children }) => {
         product,
         setProduct,
         productsFiltered,
+        setProductsFiltered,
 
         categories,
         setCategories,
@@ -174,7 +179,7 @@ export const ProductProvider = ({ children }) => {
         valueInputSearch,
         setValueInputSearch,
         searchProducts,
-        productsReady
+        productsReady,
       }}
     >
       {children}
