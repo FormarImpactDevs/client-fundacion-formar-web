@@ -1,0 +1,25 @@
+@import "../../styles/colors";
+@import "../../styles/media-queries";
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 3fr; // 25% y 75%
+  gap: 1px; 
+  padding: 2px;
+  @include mobile {
+    grid-template-columns: auto;    
+  }
+}
+
+.sidebar {
+  // Estilos para la primera columna (25%)
+  background-color: $white;
+  border-right: 1px solid #ddd;
+  padding: 10px;
+}
+
+.mainContent {
+  // Estilos para la segunda columna (75%)
+  background-color: #ffffff;
+  padding: 20px;
+}

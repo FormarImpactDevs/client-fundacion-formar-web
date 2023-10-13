@@ -44,3 +44,13 @@ export const deleteCategoryService = async (id) => {
       throw new Error("Hubo un error al eliminar la categoría.");
     }
   };
+
+  export const getCategoryServiceById = async (idCategory) => {
+    try {
+      const url = `${apiUrl}category/${idCategory}`;
+      const { data } = await axios.get(url);
+      return data.data || [];
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
+  };
