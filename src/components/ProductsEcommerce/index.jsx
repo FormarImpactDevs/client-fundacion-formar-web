@@ -34,15 +34,11 @@ function ProductsEcommerce() {
                 searchProducts.map((producto) => (
                   <div className="product-card" key={producto.id}>
                     <img
-                      src="https://tn.com.ar/resizer/a8ChJiW4dV2W36MFlDWu31XjerM=/767x0/smart/filters:format(webp)/cloudfront-us-east-1.images.arcpublishing.com/artear/Y4SPWR4KY5F6PFY5PBJOBK46FU.jpg"
-                      alt={`Imagen de ${producto.nombre}`}
-                      className="product-image"
-                      onClick={() =>
-                        mostrarImagenAmpliada(
-                          "https://tn.com.ar/resizer/a8ChJiW4dV2W36MFlDWu31XjerM=/767x0/smart/filters:format(webp)/cloudfront-us-east-1.images.arcpublishing.com/artear/Y4SPWR4KY5F6PFY5PBJOBK46FU.jpg"
-                        )
-                      }
-                    />
+                    src={producto.foto_card}
+                    alt={`Imagen de ${producto.nombre}`}
+                    className="product-image"
+                    onClick={() => mostrarImagenAmpliada(producto.foto_card)}
+                  />
 
                     <div className="product-info">
                       <h2 className="product-title">{producto.nombre}</h2>
