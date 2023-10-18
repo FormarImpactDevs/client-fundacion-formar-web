@@ -5,10 +5,12 @@
   display: grid;
   grid-template-columns: 1fr 3fr; // 25% y 75%
   gap: 1px; 
-  padding: 2px;
+  padding: 6%;
   @include mobile {
     grid-template-columns: auto;    
+    padding: 2px;
   }
+  
 }
 
 .sidebar {

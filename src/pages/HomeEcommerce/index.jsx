@@ -8,7 +8,7 @@ export const HomeEcommerce = () => {
   return (
     <>
       <MainLayout>
-        <PresentationEcommerce />
+        {/* <PresentationEcommerce /> */}
         <LayoutProducts />
         {/*  <ProductsEcommerce/> */}
         <Checkout />
