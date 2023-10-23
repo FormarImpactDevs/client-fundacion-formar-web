@@ -13,7 +13,7 @@ import {
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import {login} from "../../services/authService";
+import {login} from "../../services/users.service";
 import styles from "../LoginEcommerce/_loginEcommerce.module.scss";
 
 function LoginEcommerce() {
