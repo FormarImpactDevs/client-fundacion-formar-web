@@ -3,6 +3,7 @@ import Home from '../pages/Home'
 import NotFound from '../pages/NotFound'
 import { HomeEcommerce } from '../pages/HomeEcommerce'
 import LoginEcommerce from '../pages/LoginEcommerce'
+import {Admin} from '../pages/Admin'
 
 
 export default function AppRoutes() {
@@ -12,6 +13,7 @@ export default function AppRoutes() {
             <Route path='/' element={<Home />} /> 
             <Route path='/products' element={<HomeEcommerce />} /> 
             <Route path='/admin/login' element={<LoginEcommerce />} /> 
+            <Route path="/admin" element={<Admin />} />
             <Route path='*' element={<NotFound/>} />
         </Routes>
     </Router>

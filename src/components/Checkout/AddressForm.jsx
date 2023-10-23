@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react";
 import { useState } from "react";
 import {
   Radio,
   FormGroup,
-  FormControlLabel, 
-  FormControl, 
+  FormControlLabel,
+  FormControl,
   RadioGroup,
   TextField,
-  Typography, 
-  Grid, 
-  Checkbox,
-  styled
-}from '@mui/material';
+  Typography,
+  Grid,
+  Box,
+  styled,
+} from "@mui/material";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -41,8 +41,8 @@ export default function AddressForm() {
   };
   return (
     <React.Fragment>
-      <Typography variant="h3" gutterBottom className='typography'>
-      Ingresá tus datos
+      <Typography variant="h3" gutterBottom className="typography">
+        Ingresá tus datos
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
@@ -90,116 +90,98 @@ export default function AddressForm() {
             variant="standard"
           />
         </Grid>
-        <Grid  
-                item
-                xs={12}
+        <Grid item xs={12} container justifyContent="space-between" alignItems="center">
+         
+          <Typography variant="h3" sx={{ whiteSpace: 'nowrap' }}>Como lo recibo o retiro</Typography>
+          <Typography variant="h5" gutterBottom>
+            Elegí el punto de retiro gratuito que te convenga y te contactaremos
+            para coordinar la entrega.
+          </Typography>
+        </Grid>
+        <Grid>
+          <FormControl>
+            <RadioGroup
+              row
+              aria-labelledby="demo-row-radio-buttons-group-label"
+              name="row-radio-buttons-group"
+              onChange={handleRadioChange}
+            >
+              <Grid
                 container
-                justifyContent="flex-center"
-                sx={{ m: 0 }}
-              >  <Typography variant="h3">
-              Como lo recibo o retiro
-             </Typography>
-             <Typography variant="h5" gutterBottom>
-             Elegí el punto de retiro gratuito que te convenga y te 
-             contactaremos para coordinar la entrega. 
-             </Typography>
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+                sx={{ ml: 3 }}
+              >
+                <Grid container direction="row" justifyContent="center" alignItems="center">
+                <Grid item xs={12} sm={6}>
+                  <FormControlLabel
+                    value="puntoDeRetiro"
+                    control={<Radio size="small" />}
+                    label="Punto de retiro"
+                  />
+                </Grid>
              </Grid>
-             <Grid>
-                <FormControl>
-                  <RadioGroup
-                    row
-                    aria-labelledby="demo-row-radio-buttons-group-label"
-                    name="row-radio-buttons-group"
-                    onChange={handleRadioChange}
-                  >
-                    <Grid
-                      container
-                      direction="row"
-                      justifyContent="center"
-                      alignItems="center"
-                      sx={{ ml: 3 }}
-                    >
-                      <Grid item xs={12} sm={6}>
-                        <FormControlLabel
-                          value="punto_retiro"
-                          control={<Radio size="small" />}
-                          label="Punto de retiro"
-                        />
-                      </Grid>
-                      <Grid item xs={12} sm={6}>
-                        <FormControlLabel
-                          value="Envio"
-                          control={<Radio size="small" />}
-                          label="Envio"
-                        />
-                      </Grid>
-                    </Grid>
-                  </RadioGroup>
-                </FormControl>
+                <Grid item xs={12} sm={6}>
+                  <FormControlLabel
+                    value="Envio"
+                    control={<Radio size="small" />}
+                    label="Envio"
+                  />
+                </Grid>
               </Grid>
-              {radio && radio === "punto_retiro" ? (
-                <div className="checkboxes">
-                  <Box sx={{ display: "flex" }}>
-                    <FormControl
-                      sx={{ m: 3 }}
-                      row
-                      component="fieldset"
-                      variant="standard"
-                    >
-                      <Grid
-                        container
-                        direction="row"
-                        justifyContent="space-around"
-                        alignItems="center"
-                      >
-                        <Grid item xs={12} sm={6}>
-                          <FormGroup>
-                            <FormControlLabel
-                              control={<Checkbox name="tutoriasDeIngles" />}
-                              label="Tutorías de inglés"
-                            />
-                            <FormControlLabel
-                              control={
-                                <Checkbox name="mentoriasEnHabilidadesTecnicas" />
-                              }
-                              label="Mentorías en habilidades técnicas"
-                            />
-                            <FormControlLabel
-                              control={
-                                <Checkbox name="mentoriasEnHabilidadesBlandas" />
-                              }
-                              label="Mentorías en habilidades blandas"
-                            />
-                            <FormControlLabel
-                              control={<Checkbox name="dictarUnaMasterclass" />}
-                              label="Dictar una masterclass"
-                            />
-                          </FormGroup>
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                          {" "}
-                          <FormGroup>
-                            <FormControlLabel
-                              control={<Checkbox name="otro" />}
-                              label="Otro"
-                            />
-
-                            <CssTextField
-                              id="outlined-multiline-static"
-                              multiline
-                              rows={4}
-                              defaultValue=""
-                            />
-                          </FormGroup>
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Box>
-                </div>
-              ) : (
-                ""
-              )}
- </Grid>
-</React.Fragment>
+            </RadioGroup>
+          </FormControl>
+        </Grid>
+        {radio && radio === "puntoDeRetiro" ? (
+          <Grid item xs={12} sm={6}>
+            <div className="checkboxes">
+              <Box sx={{ display: "flex" }}>
+                <FormControl
+                  sx={{ m: 3 }}
+                  row
+                  component="fieldset"
+                  variant="standard"
+                >
+                  <Grid
+                    container
+                    direction="row"
+                    justifyContent="space-around"
+                    alignItems="center"
+                  >
+                    <Grid item xs={6} sm={6}>
+                      <FormGroup>
+                        <FormControlLabel
+                          control={<Radio size="small" name="FlorestaCABA" />}
+                          label="Floresta (CABA)"
+                        />
+                        <FormControlLabel
+                          control={<Radio size="small" name="Boulogne" />}
+                          label="Boulogne"
+                        />
+                      </FormGroup>
+                    </Grid>
+                    <Grid item xs={6} sm={6}>
+                      <FormGroup>
+                        <FormControlLabel
+                          control={<Radio size="small" name="PoloDePalermo" />}
+                          label="Polo de Palermo CABA"
+                        />
+                        <FormControlLabel
+                          control={<Radio size="small" name="Benavidez" />}
+                          label="Benavidez"
+                        />
+                      </FormGroup>
+                    </Grid>
+                  </Grid>
+                </FormControl>
+              </Box>
+            </div>
+          </Grid>
+        ) : (
+          ""
+        )}
+      </Grid>
+    </React.Fragment>
   );
 }

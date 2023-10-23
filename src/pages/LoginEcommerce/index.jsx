@@ -13,7 +13,7 @@ import {
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { login } from "../Service/authService";
+import {login} from "../../services/authService";
 import styles from "../LoginEcommerce/_loginEcommerce.module.scss";
 
 function LoginEcommerce() {
@@ -35,7 +35,7 @@ function LoginEcommerce() {
     onSubmit: async (values) => {
       try {
         await login(values.email, values.password);
-        navigate("/");
+        navigate("/admin");
       } catch (error) {
         console.log(error)
         formik.setFieldError("password", `${error}`);
