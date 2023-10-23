@@ -115,7 +115,7 @@ export const SidebarFilterProducts = () => {
             <SearchIcon />
           </SearchIconWrapper>
           <StyledInputBase
-            placeholder="Search…"
+            placeholder="Buscar…"
             inputProps={{ "aria-label": "search" }}
             onChange={handleInputSearch}
           />
