@@ -25,7 +25,6 @@ function ProductsEcommerce() {
 
   return (
     <div>
-      <h1 className="title">Productos</h1>
       <div className="product-container">
         <div className="product-grid">
           {productsReady ? (
