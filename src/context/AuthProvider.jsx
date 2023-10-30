@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { loginUser } from "../services/users.service";
+import  {loginUser} from "../services/users.service";
 import { useNavigate } from "react-router-dom";
 import { Loading } from "../components/Loading";
 import { Alert } from "../components/Alert";
@@ -8,12 +8,12 @@ import jwt_decode from "jwt-decode";
 // Crea el contexto de autenticación
 const AuthContext = React.createContext();
 
-// Función para obtener el contexto de autenticación
+// contexto de autenticacion
 export const useAuth = () => {
   return useContext(AuthContext);
 };
 
-// Componente de proveedor de autenticación
+// componente de autenticacion
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -39,8 +39,12 @@ export const AuthProvider = ({ children }) => {
   const login = (data) => {
     setLoading(true);
 
+    console.log("Iniciando sesión...");
+
     loginUser(data)
       .then((res) => {
+        
+      console.log("Respuesta de inicio de sesión:", res);
         if (res.ok) {
           return res.json();
         } else {
@@ -48,8 +52,9 @@ export const AuthProvider = ({ children }) => {
         }
       })
       .then(({ token }) => {
+        console.log("Token de sesión:", token);
 
-        window.localStorage.setItem("_token", token);
+        document.cookie = `_token=${token}; path=/;`; 
 
         const decodedToken = token ? jwt_decode(token) : null;
         const { user } = decodedToken ? decodedToken.payload : null;
@@ -58,6 +63,9 @@ export const AuthProvider = ({ children }) => {
         return navigate("/");
       })
       .catch((error) => {
+        
+      console.log("Error de inicio de sesión:", error);
+    
         console.log(error)
         setAlert({
           message: error,
@@ -68,11 +76,11 @@ export const AuthProvider = ({ children }) => {
       .finally(() => setLoading(false));
   };
 
-  const logout = () => {
+ /*  const logout = () => {
     setCurrentUser(null);
     localStorage.removeItem("_token");
     navigate("/signin");
-  };
+  }; */
 
   const value = {
     currentUser,
@@ -80,16 +88,19 @@ export const AuthProvider = ({ children }) => {
     logout,
   };
 
-  // Muestra un indicador de carga mientras se verifica la autenticación
+  // Indicador de carga
   if (loading) {
     return <Loading />;
   }
+  console.log("Valor de alert.show:", alert.show);
 
-  // Renderiza el proveedor de contexto con los hijos
   return (
     <AuthContext.Provider value={value}>
-      {alert.show && <Alert alert={alert} setAlert={setAlert} />}
+      {alert.show && <Alert alert={alert} setAlert={setAlert} />
+      }
+      
       {children}
+      
     </AuthContext.Provider>
   );
 };
