@@ -21,9 +21,9 @@ export const Footer =() => {
              </div>
              
              <div className="socials">
-                <a href="https://www.instagram.com/fundacionformar/"><img src={instagram} alt="instagram" /></a>
-                <a href="https://www.linkedin.com/company/fundacion-formar/"><img src={linkedin} alt="linkedin" /></a>
-                <a href="mailto:emprendimientosformar@gmail.com"><img src={gmail} alt="gmail"/></a>
+                <a href="https://www.instagram.com/fundacionformar/" target="_blank"><img src={instagram} alt="instagram" /></a>
+                <a href="https://www.linkedin.com/company/fundacion-formar/" target="_blank"><img src={linkedin} alt="linkedin" /></a>
+                <a href="mailto:emprendimientosformar@gmail.com" ><img src={gmail} alt="gmail"/></a>
              </div>
          
            </div>

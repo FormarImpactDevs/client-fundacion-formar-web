@@ -98,7 +98,6 @@ export default function Home() {
             : setUndertakingIsIntersecting(false)}
           <Emprendiendo />
         </div>
-
         {/* Aliados */}
         <Aliados />
         <EquipoEmprendiendo />
