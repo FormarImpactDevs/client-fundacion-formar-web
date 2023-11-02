@@ -76,16 +76,11 @@ export const AuthProvider = ({ children }) => {
       .finally(() => setLoading(false));
   };
 
- /*  const logout = () => {
-    setCurrentUser(null);
-    localStorage.removeItem("_token");
-    navigate("/signin");
-  }; */
+
 
   const value = {
     currentUser,
     login,
-    logout,
   };
 
   // Indicador de carga
