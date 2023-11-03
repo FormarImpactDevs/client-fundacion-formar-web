@@ -31,7 +31,7 @@ export const Contacto = () => {
             </a>{" "}
           </div>
           <div >
-            <a href={"https://wa.me/541136475116"}>
+            <a href={"https://wa.me/541136475116" } target="_blank">
               {" "}
               <Button
                 variant="outlined"

@@ -120,11 +120,12 @@ export default function AddressForm() {
                       alignItems="center"
                       sx={{ ml: 3 }}
                     >
-                      <Grid item xs={12} sm={6}>
+                      <Grid item xs={12} sm={5}>
                         <FormControlLabel
                           value="puntoDeRetiro"
                           control={<Radio size="small" />}
                           label="Punto de retiro"
+                          labelPlacement="end"
                         />
                       </Grid>
                       <Grid item xs={12} sm={6}>
@@ -139,54 +140,49 @@ export default function AddressForm() {
                 </FormControl>
               </Grid>
               {radio && radio === "puntoDeRetiro" ? (
-                <div className="checkboxes">
-                  <Box sx={{ display: "flex" }}>
-                    <FormControl
-                      sx={{ m: 3 }}
-                      row
-                      component="fieldset"
-                      variant="standard"
-                    >
-                      <Grid
-                        container
-                        direction="row"
-                        justifyContent="space-around"
-                        alignItems="center"
-                      >
-                        <Grid item xs={12} sm={6}>
-                          <FormGroup>
-                            <FormControlLabel
-                              control={<Checkbox name="FlorestaCABA" />}
-                              label="Floresta CABA"
-                            />
-                            <FormControlLabel
-                              control={
-                                <Checkbox name="Boulogne" />
-                              }
-                              label="Boulogne"
-                            />
-                            <FormControlLabel
-                              control={<Checkbox name="PoloDePalermo" />}
-                              label="Polo de Palermo CABA"
-                            />
-                             <FormControlLabel
-                              control={
-                                <Checkbox name="Benavidez" />
-                              }
-                              label="Benavidez"
-                            />
-                          </FormGroup>
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                       
-                        </Grid>
-                      </Grid>
-                    </FormControl>
-                  </Box>
-                </div>
-              ) : (
-                ""
-              )}
+  <div className="checkboxes">
+    <Box sx={{ display: "flex" }}>
+      <FormControl
+        sx={{ m:3 }}
+        row
+        component="fieldset"
+        variant="standard"
+      >
+        <Grid
+          container
+          direction="row"
+          justifyContent="space-between" // Espacio entre las dos columnas
+          alignItems="flex-start" // Alineación superior
+        >
+          <Grid item xs={12} sm={6}>
+            <FormGroup>
+              <FormControlLabel
+                control={<Checkbox name="FlorestaCABA" />}
+                label="Floresta CABA"
+              />
+              <FormControlLabel
+                control={<Checkbox name="Boulogne" />}
+                label="Boulogne"
+              />
+            </FormGroup>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <FormGroup>
+              <FormControlLabel
+                control={<Checkbox name="PoloDePalermo" />}
+                label="Polo de Palermo CABA"
+              />
+              <FormControlLabel
+                control={<Checkbox name="Benavidez" />}
+                label="Benavidez"
+              />
+            </FormGroup>
+          </Grid>
+        </Grid>
+      </FormControl>
+    </Box>
+  </div>
+) : null}
  </Grid>
 </React.Fragment>
   );

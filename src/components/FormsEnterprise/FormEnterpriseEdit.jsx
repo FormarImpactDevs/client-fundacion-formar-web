@@ -41,6 +41,7 @@ const CssTextField = styled(TextField)({
   },
 });
 
+const apiImgUrl = import.meta.env.VITE_BASE_IMG_ENTERPRISE_API_URL;
 export const FormEnterpriseEdit = () => {
   const { id } = useParams();
 
@@ -49,7 +50,15 @@ export const FormEnterpriseEdit = () => {
   const getEnterpriseById = async (id) => {
     try {
       const EnterpriseData = await getEnterpriseServiceById(id);
-      setEnterprise(EnterpriseData);
+      const { nombre, descripcion, foto_card, foto_emprendimiento } =
+        EnterpriseData;
+
+      setEnterprise({
+        nombre,
+        descripcion,
+        foto_card: `${apiImgUrl}/${foto_card}`,
+        foto_emprendimiento: `${apiImgUrl}/${foto_emprendimiento}`,
+      });
     } catch (error) {
       console.log(error);
     }
@@ -191,11 +200,7 @@ export const FormEnterpriseEdit = () => {
                       defaultValue={nombre}
                       /* value={nombre} */
                       error={errors?.nombre && true}
-                      helperText={
-                        errors?.nombre
-                          ? errors.nombre
-                          : ""
-                      }
+                      helperText={errors?.nombre ? errors.nombre : ""}
                       onChange={(e) => setFieldValue("nombre", e.target.value)}
                     />
                   </Grid>
@@ -218,11 +223,7 @@ export const FormEnterpriseEdit = () => {
                       defaultValue={descripcion}
                       /* value= */
                       error={errors?.descripcion && true}
-                      helperText={
-                        errors?.descripcion
-                          ? errors.descripcion
-                          : ""
-                      }
+                      helperText={errors?.descripcion ? errors.descripcion : ""}
                       onChange={(e) =>
                         setFieldValue("descripcion", e.target.value)
                       }
@@ -252,6 +253,9 @@ export const FormEnterpriseEdit = () => {
             </Box>
           )}
         </Formik>
+        <div className="imgFormEdit">
+          <img src={foto_card} alt="" />
+        </div>
       </Box>
     </Container>
   );
