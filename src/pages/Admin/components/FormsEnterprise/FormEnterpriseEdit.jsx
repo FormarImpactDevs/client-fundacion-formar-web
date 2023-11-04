@@ -8,18 +8,16 @@ import {
   TextField,
   styled,
 } from "@mui/material";
-import "../Form/formDates.scss";
-import InputFileUpload from "../InputFileUpload";
-import {
-  getEnterpriseServiceById,
-  updateEnterpriseService,
-} from "../../services/enterprises.service";
+import "../../../../components/Form/formDates.scss";
+
 import Swal from "sweetalert2";
 
 /* Formik y Yup */
 import { /* Field, Form, */ Formik, useFormik } from "formik";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
+import InputFileUpload from "../../../../components/InputFileUpload";
+import { getEnterpriseServiceById, updateEnterpriseService } from "../../../../services/enterprises.service";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {

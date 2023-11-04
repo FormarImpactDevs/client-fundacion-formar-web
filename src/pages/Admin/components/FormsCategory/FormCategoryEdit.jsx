@@ -8,9 +8,10 @@ import {
   TextField,
   styled,
 } from "@mui/material";
-import { createCategoryService } from "../../services/categories.service";
-import { useForm } from "../../hooks/useForm";
+import { useForm } from "../../../../hooks/useForm"
 import Swal from "sweetalert2";
+import { useParams } from "react-router-dom";
+import { updateCategoriesService } from "../../../../services/categories.service";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -32,10 +33,11 @@ const CssTextField = styled(TextField)({
   },
 });
 
-export const FormCategoryCreate = () => {
+export const FormCategoryEdit = () => {
+  const { id } = useParams();
   const [sending, setSending] = useState(false);
 
-  const { formValues, handleInputChange } = useForm({
+  const { formValues, handleInputChange, reset } = useForm({
     nombre: ""
   });
 
@@ -47,7 +49,8 @@ export const FormCategoryCreate = () => {
     try {
       setSending(true);
 
-      const { data } = await createCategoryService({
+      const { data } = await updateCategoriesService(id, {
+        id,
         nombre
       });
 
@@ -55,11 +58,15 @@ export const FormCategoryCreate = () => {
 
       Swal.fire({
         icon: "info",
-        title: "Categoría creada!",
+        title: "¡Categoría editada!",
         text: data.msg,
       });
+
+      reset();
+
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
+      reset();
     }
   };
 
@@ -78,7 +85,7 @@ export const FormCategoryCreate = () => {
         }}
         className="containerForm"
       >
-        <h1 className="subtitle">CREAR CATEGORÍA</h1>
+        <h1 className="subtitle">EDITAR CATEGORÍA</h1>
 
         <form
           noValidate
