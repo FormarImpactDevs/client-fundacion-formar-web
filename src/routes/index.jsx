@@ -3,12 +3,12 @@ import Home from "../pages/Home";
 import NotFound from "../pages/NotFound";
 import { HomeEcommerce } from "../pages/HomeEcommerce";
 import { Admin } from "../pages/Admin";
-import { FormCategoryCreate } from "../components/FormsCategory/FormCategoryCreate";
-import { FormCategoryEdit } from "../components/FormsCategory/FormCategoryEdit";
 import { EnterprisesList } from "../views/EnterprisesList";
 import { CategoriesList } from "../views/CategoriesList";
 import { FormCreate } from "../views/Enterprises/FormCreate";
 import { FormUpdate } from "../views/Enterprises/FormUdate";
+import { FormCategoryCreate } from "../pages/Admin/components/FormsCategory/FormCategoryCreate";
+import { FormCategoryEdit } from "../pages/Admin/components/FormsCategory/FormCategoryEdit";
 
 export default function AppRoutes() {
   return (

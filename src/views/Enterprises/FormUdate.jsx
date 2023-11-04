@@ -1,5 +1,5 @@
 import { MainLayout } from "../../layout";
-import { FormEnterpriseEdit } from "../../components/FormsEnterprise/FormEnterpriseEdit";
+import { FormEnterpriseEdit } from "../../pages/Admin/components/FormsEnterprise/FormEnterpriseEdit";
 
 export const FormUpdate = () => {
   return (

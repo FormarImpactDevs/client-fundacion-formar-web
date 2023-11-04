@@ -9,11 +9,11 @@ import {
   styled,
 } from "@mui/material";
 import "../Form/formDates.scss";
-import InputFileUpload from "../InputFileUpload";
+import InputFileUpload from "../../../../components/InputFileUpload";
 import {
   getProductServiceById,
   updateProductService,
-} from "../../services/products.service";
+} from "../../../../services/products.service";
 import Swal from "sweetalert2";
 
 /* Formik y Yup */
