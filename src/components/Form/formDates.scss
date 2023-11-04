@@ -31,7 +31,16 @@
     display: none;
   }
 
-  .w-95{
+  .w-95 {
     width: 95%;
+  }
+
+  .imgFormEdit {
+    width: 300px;
+    height: 250px;
+    object-fit: contain;
+    img {
+      width: 100%;
+    }
   }
 }

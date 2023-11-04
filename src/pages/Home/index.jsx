@@ -20,6 +20,7 @@ import { EquipoProgramando } from "../../components/TeamProgramming";
 import useIntersection from "../../hooks/useIntersection";
 import useObserverComponent from "../../hooks/useObserverComponent";
 
+
 export default function Home() {
   const {
     setAboutIsIntersecting,
@@ -58,6 +59,7 @@ export default function Home() {
             : setAboutIsIntersecting(false)}
           <QuienesSomos />
         </div>
+       
 
         {/* Ejes de trabajo */}
         <Ejes />
