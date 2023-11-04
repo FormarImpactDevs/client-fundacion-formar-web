@@ -14,10 +14,11 @@ function App() {
     <Router>
       <ThemeProvider theme={theme}>
         <ObserverComponentProvider>
-          <ProductProvider>
-            <AppRoutes />
-          </ProductProvider>
-          <AuthProvider> </AuthProvider>
+          <AuthProvider> 
+            <ProductProvider>
+              <AppRoutes />
+            </ProductProvider>
+          </AuthProvider>
         </ObserverComponentProvider>
       </ThemeProvider>
       </Router>
