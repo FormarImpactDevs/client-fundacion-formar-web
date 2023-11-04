@@ -15,6 +15,7 @@ import Swal from "sweetalert2";
 /* Formik y Yup */
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -38,6 +39,8 @@ const CssTextField = styled(TextField)({
 
 export const FormEnterpriseCreate = () => {
   /* Formik */
+  const navigate = useNavigate();
+
   const getInitialValues = () => ({
     nombre: "",
     descripcion: "",
@@ -67,10 +70,9 @@ export const FormEnterpriseCreate = () => {
         icon: "success",
         title: "¡Emprendimiento creado!",
         text: data.message,
-      });
-      setTimeout(() => {
-        window.location = "/admin/enterprises";
-      }, 2000);
+      }).then(() => {
+          navigate("/admin/enterprises");
+      })
     } catch (error) {
       if (error) {
         Swal.fire({
