@@ -9,6 +9,9 @@ import { FormCreate } from "../views/Enterprises/FormCreate";
 import { FormUpdate } from "../views/Enterprises/FormUdate";
 import { FormCategoryCreate } from "../pages/Admin/components/FormsCategory/FormCategoryCreate";
 import { FormCategoryEdit } from "../pages/Admin/components/FormsCategory/FormCategoryEdit";
+import { ProductsList } from "../views/ProductsList";
+import { FormProductEdit } from "../pages/Admin/components/FormProducts/FormProductsEdit";
+import { FormProductCreate } from "../pages/Admin/components/FormProducts/FormProductsCreate";
 
 export default function AppRoutes() {
   return (
@@ -29,6 +32,9 @@ export default function AppRoutes() {
         <Route path="/admin/categories" element={<CategoriesList />} />
         <Route path="/admin/category/create" element={<FormCategoryCreate />} />
         <Route path="/admin/category/edit/:id" element={<FormCategoryEdit />} />
+        <Route path="/admin/products" element={<ProductsList />} />
+            <Route path="/admin/products/create" element={<FormProductCreate />} />
+            <Route path="/admin/products/edit/:id" element={<FormProductEdit />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router> 

@@ -4,10 +4,6 @@ import DataTable from "../../components/List";
 import { GridActionsCellItem } from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
 import { useEffect, useState } from "react";
-import {
-  getProductsService,
-  deleteProductService,
-} from "../../services/products.service";
 
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,6 +16,7 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 
 import "sweetalert2/src/sweetalert2.scss";
 import styles from "./productsList.module.scss";
+import { deleteProductservice, getProductsService } from "../../services/products.service";
 
 export const ProductsList = () => {
   const [products, setProducts] = useState([]);
@@ -40,7 +37,7 @@ export const ProductsList = () => {
   const deleteProduct = async (e, id) => {
     e.preventDefault();
     try {
-      const result = await deleteProductService(id);
+      const result = await deleteProductservice(id);
       return result.message;
     } catch (error) {
       return error.message;

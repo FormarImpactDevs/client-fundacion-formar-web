@@ -7,14 +7,14 @@ import {
     TextField,
     styled,
   } from "@mui/material";
-  import "../Form/formDates.scss";
-  import InputFileUpload from "../InputFileUpload";
-  import { createProductService } from "../../services/products.service";
+  import "../../../../components/Form/formDates.scss";
+  import InputFileUpload from "../../../../components/InputFileUpload";
   import Swal from "sweetalert2";
   
   /* Formik y Yup */
   import { useFormik } from "formik";
   import * as Yup from "yup";
+import { createProductservice } from "../../../../services/products.service";
   
   const CssTextField = styled(TextField)({
     "& label.Mui-focused": {
@@ -39,13 +39,13 @@ import {
   export const FormProductCreate = () => {
     /* Formik */
     const getInitialValues = () => ({
-    nombre: nombre,
-    precio: precio,
-    descripcion: descripcion,
-    descuento: descuento,
-    stock: stock,
-    emprendimientos_id: emprendimientos_id,
-    categoria_id: categoria_id
+    nombre: "",
+    precio: "",
+    descripcion: "",
+    descuento: "",
+    stock: "",
+    emprendimientos_id: "",
+    categoria_id: ""
     });
   
     const getValidationSchema = () =>
@@ -70,7 +70,7 @@ import {
         formDataToSend.append("emprendimientos_id", values.emprendimientos_id);
         formDataToSend.append("categoria_id", values.categoria_id);
   
-        const data = await createProductService(formDataToSend);
+        const data = await createProductservice(formDataToSend);
   
         Swal.fire({
           icon: "success",

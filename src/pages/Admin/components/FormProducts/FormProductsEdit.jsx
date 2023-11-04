@@ -7,19 +7,19 @@ import {
   Grid,
   TextField,
   styled,
+  CircularProgress,
 } from "@mui/material";
-import "../Form/formDates.scss";
-import InputFileUpload from "../../../../components/InputFileUpload";
-import {
-  getProductServiceById,
-  updateProductService,
-} from "../../../../services/products.service";
+import "../../../../components/Form/formDates.scss";
+
+
 import Swal from "sweetalert2";
 
 /* Formik y Yup */
 import { /* Field, Form, */ Formik, useFormik } from "formik";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
+import { getProductServiceById, updateProductservice } from "../../../../services/products.service";
+import useProducts from "../../../../hooks/useProducts";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -43,33 +43,23 @@ const CssTextField = styled(TextField)({
 
 export const FormProductEdit = () => {
   const { id } = useParams();
-
-  const [product, setProduct] = useState([]);
-
-  const getProductById = async (id) => {
-    try {
-      const ProductData = await getProductServiceById(id);
-      setProduct(ProductData);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  
+  const { getProductById, product } = useProducts()
 
   useEffect(() => {
-    getProductById(id);
-  }, [id]);
+    getProductById(id)
+  }, [])
 
-  const { nombre, precio, descripcion, descuento, stock, emprendimientos_id, categoria_id } = product;
-
+  
   const initialValues = {
-    id: id,
-    nombre: nombre,
-    precio: precio,
-    descripcion: descripcion,
-    descuento: descuento,
-    stock: stock,
-    emprendimientos_id: emprendimientos_id,
-    categoria_id: categoria_id,
+    id: product?.id,
+    nombre: product?.nombre,
+    precio: product?.precio,
+    descripcion: product?.descripcion,
+    descuento: product?.descuento,
+    stock: product?.stock,
+    emprendimientos_id: product?.emprendimientos_id,
+    categoria_id: product?.categoria_id,
   };
   const getValidationSchema = () =>
     Yup.lazy(() =>
@@ -91,7 +81,7 @@ export const FormProductEdit = () => {
       formDataToSend.append("emprendimientos_id", values.emprendimientos_id);
       formDataToSend.append("categoria_id", values.categoria_id);
 
-      const data = await updateProductService(id, formDataToSend);
+      const data = await updateProductservice(id, formDataToSend);
       Swal.fire({
         icon: "success",
         title: "¡Producto actualizado!",
@@ -111,6 +101,8 @@ export const FormProductEdit = () => {
     }
   };
 
+
+
   const { handleSubmit, values, setFieldValue, errors } = useFormik({
     validateOnBlur: false,
 
@@ -122,7 +114,8 @@ export const FormProductEdit = () => {
 
     onSubmit,
   });
-
+  
+  if(!product) return <CircularProgress />
   return (
     <Container component="main" maxWidth="sm">
       <CssBaseline />
@@ -145,7 +138,7 @@ export const FormProductEdit = () => {
           validationSchema={getValidationSchema()}
           onSubmit={onSubmit}
         >
-          {(formik) => (
+          {({values, errors}) => (
             <Box
               component="form"
               noValidate
@@ -165,7 +158,7 @@ export const FormProductEdit = () => {
                       id="nombre"
                       label="Nombre del producto"
                       name="nombre"
-                      defaultValue={nombre}
+                      value={values.nombre}
                       /* value={nombre} */
                       error={errors?.nombre && true}
                       helperText={
@@ -192,7 +185,7 @@ export const FormProductEdit = () => {
                     name="precio"
                     multiline
                     rows={4}
-                    defaultValue=""
+                    value={values.precio}
                     error={errors?.precio && true}
                     helperText={
                       errors?.precio
@@ -218,7 +211,7 @@ export const FormProductEdit = () => {
                     name="descripcion"
                     multiline
                     rows={4}
-                    defaultValue=""
+                    value={values.descripcion}
                     error={errors?.descripcion && true}
                     helperText={
                       errors?.descripcion
@@ -244,7 +237,7 @@ export const FormProductEdit = () => {
                     name="descuento"
                     multiline
                     rows={4}
-                    defaultValue=""
+                    value={values.descuento}
                     error={errors?.descuento && true}
                     helperText={
                       errors?.descuento
@@ -270,7 +263,7 @@ export const FormProductEdit = () => {
                     name="stock"
                     multiline
                     rows={4}
-                    defaultValue=""
+                    value={values.stock}
                     error={errors?.stock && true}
                     helperText={
                       errors?.stock
@@ -296,7 +289,7 @@ export const FormProductEdit = () => {
                     name="emprendimiento"
                     multiline
                     rows={4}
-                    defaultValue=""
+                    value={values.emprendimientos_id}
                     error={errors?.emprendimientos_id && true}
                     helperText={
                       errors?.emprendimientos_id
@@ -322,7 +315,7 @@ export const FormProductEdit = () => {
                     name="categoria"
                     multiline
                     rows={4}
-                    defaultValue=""
+                    value={values.categoria_id}
                     error={errors?.categoria_id && true}
                     helperText={
                       errors?.categoria_id

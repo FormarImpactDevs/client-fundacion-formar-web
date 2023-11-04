@@ -7,15 +7,16 @@ import {
   TextField,
   styled,
 } from "@mui/material";
-import "../Form/formDates.scss";
-import InputFileUpload from "../InputFileUpload";
-import { createEnterpriseService } from "../../services/enterprises.service";
+import "../../../../components/Form/formDates.scss";
+
+import InputFileUpload from "../../../../components/InputFileUpload";
 import Swal from "sweetalert2";
 
 /* Formik y Yup */
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { createEnterpriseService } from "../../../../services/enterprises.service";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
