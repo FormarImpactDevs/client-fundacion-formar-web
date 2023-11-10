@@ -123,26 +123,29 @@ export const Header  = () => {
             </a>
           </li>
           <li> 
-            <Button 
-              aria-controls="simple-menu"
-              aria-haspopup="true"
-              onClick={handleClick}
-              
-            >
-              {currentUser.nombre}
-            </Button>
-            <Menu
-              id="simple-menu"
-              anchorEl={anchorEl}
-              keepMounted
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-              <MenuItem  
-              
-              onClick={handleLogout}>Logout</MenuItem>
-            </Menu>
-            </li>
+  <Button
+    aria-controls="simple-menu"
+    aria-haspopup="true"
+    onClick={currentUser ? handleClick : handleClick}
+  >
+    {currentUser ? (currentUser.nombre || 'Iniciar sesión') : (
+      <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
+        Iniciar sesión
+      </Link>
+    )}
+  </Button>
+  {currentUser && (
+    <Menu
+      id="simple-menu"
+      anchorEl={anchorEl}
+      keepMounted
+      open={Boolean(anchorEl)}
+      onClose={handleClose}
+    >
+      <MenuItem onClick={handleLogout}>Logout</MenuItem>
+    </Menu>
+  )}
+</li>
         </ul>
       </nav>
     </header>

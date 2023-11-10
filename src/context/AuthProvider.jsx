@@ -43,9 +43,18 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const logout = () => {
+    try {
+      window.localStorage.removeItem('_token'); // Elimina el token del almacenamiento local
+      setCurrentUser(null); // Resetea el usuario actual a null
+    } catch (error) {
+      console.error("Error al cerrar sesión:", error);
+    }
+  };
   const value = {
     currentUser,
     login,
+    logout
   };
 
   return (
