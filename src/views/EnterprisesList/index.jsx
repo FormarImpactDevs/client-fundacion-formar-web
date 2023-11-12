@@ -20,6 +20,7 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 
 import "sweetalert2/src/sweetalert2.scss";
 import styles from "./enterprisesList.module.scss";
+import { ButtonGoToBack } from "../../components/ButtonGoToBack";
 
 export const EnterprisesList = () => {
   const [enterprises, setEnterprises] = useState([]);
@@ -108,6 +109,7 @@ export const EnterprisesList = () => {
   return (
     <>
       <MainLayout>
+        <ButtonGoToBack />
         <section className={styles.mainContainerList}>
           <Title text="Lista de emprendimientos" />
           <div className={styles.containerList}>

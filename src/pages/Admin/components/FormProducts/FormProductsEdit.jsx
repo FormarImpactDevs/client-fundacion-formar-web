@@ -11,15 +11,18 @@ import {
 } from "@mui/material";
 import "../../../../components/Form/formDates.scss";
 
-
 import Swal from "sweetalert2";
 
 /* Formik y Yup */
 import { /* Field, Form, */ Formik, useFormik } from "formik";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
-import { getProductServiceById, updateProductservice } from "../../../../services/products.service";
+import {
+  getProductServiceById,
+  updateProductservice,
+} from "../../../../services/products.service";
 import useProducts from "../../../../hooks/useProducts";
+import { ButtonGoToBack } from "../../../../components/ButtonGoToBack";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -43,14 +46,13 @@ const CssTextField = styled(TextField)({
 
 export const FormProductEdit = () => {
   const { id } = useParams();
-  
-  const { getProductById, product } = useProducts()
+
+  const { getProductById, product } = useProducts();
 
   useEffect(() => {
-    getProductById(id)
-  }, [])
+    getProductById(id);
+  }, []);
 
-  
   const initialValues = {
     id: product?.id,
     nombre: product?.nombre,
@@ -101,8 +103,6 @@ export const FormProductEdit = () => {
     }
   };
 
-
-
   const { handleSubmit, values, setFieldValue, errors } = useFormik({
     validateOnBlur: false,
 
@@ -114,242 +114,237 @@ export const FormProductEdit = () => {
 
     onSubmit,
   });
-  
-  if(!product) return <CircularProgress />
+
+  if (!product) return <CircularProgress />;
   return (
-    <Container component="main" maxWidth="sm">
-      <CssBaseline />
-      <Box
-        sx={{
-          marginTop: 2,
-          marginBottom: 6,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          color: "secondary.main",
-          fontSize: "14px",
-        }}
-        className="containerForm"
-      >
-        <h1 className="subtitle">EDITAR PRODUCTO</h1>
-
-        <Formik
-          initialValues={initialValues}
-          validationSchema={getValidationSchema()}
-          onSubmit={onSubmit}
+    <>
+      <ButtonGoToBack />
+      <Container component="main" maxWidth="sm">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 2,
+            marginBottom: 6,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            color: "secondary.main",
+            fontSize: "14px",
+          }}
+          className="containerForm"
         >
-          {({values, errors}) => (
-            <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit}
-              sx={{ mt: 3 }}
-              maxWidth="xs"
-              action=""
-              method="PUT"
-              encType="multipart/form-data"
-            >
-              <div className="mb-2">
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm={12}>
-                    <CssTextField
-                      required
-                      fullWidth
-                      id="nombre"
-                      label="Nombre del producto"
-                      name="nombre"
-                      value={values.nombre}
-                      /* value={nombre} */
-                      error={errors?.nombre && true}
-                      helperText={
-                        errors?.nombre
-                          ? errors.nombre
-                          : ""
-                      }
-                      onChange={(e) => setFieldValue("nombre", e.target.value)}
-                    />
-                  </Grid>
-                  <Grid
-                  item
-                  fullWidth
-                  xs={12}
-                  sm={12}
-                  justifyContent="flex-center"
-                  sx={{
-                    "& .MuiTextField-root": { m: 1, width: "96%" },
-                  }}
-                >
-                  <CssTextField
-                    id="outlined-multiline-static"
-                    label="Precio"
-                    name="precio"
-                    multiline
-                    rows={4}
-                    value={values.precio}
-                    error={errors?.precio && true}
-                    helperText={
-                      errors?.precio
-                        ? errors.precio
-                        : ""
-                    }
-                    onChange={(e) => setFieldValue("precio", e.target.value)}
-                  />
-                </Grid>
-                <Grid
-                  item
-                  fullWidth
-                  xs={12}
-                  sm={12}
-                  justifyContent="flex-center"
-                  sx={{
-                    "& .MuiTextField-root": { m: 1, width: "96%" },
-                  }}
-                >
-                  <CssTextField
-                    id="outlined-multiline-static"
-                    label="Descripción del producto"
-                    name="descripcion"
-                    multiline
-                    rows={4}
-                    value={values.descripcion}
-                    error={errors?.descripcion && true}
-                    helperText={
-                      errors?.descripcion
-                        ? errors.descripcion
-                        : ""
-                    }
-                    onChange={(e) => setFieldValue("descripcion", e.target.value)}
-                  />
-                </Grid>
-                <Grid
-                  item
-                  fullWidth
-                  xs={12}
-                  sm={12}
-                  justifyContent="flex-center"
-                  sx={{
-                    "& .MuiTextField-root": { m: 1, width: "96%" },
-                  }}
-                >
-                  <CssTextField
-                    id="outlined-multiline-static"
-                    label="Descuento"
-                    name="descuento"
-                    multiline
-                    rows={4}
-                    value={values.descuento}
-                    error={errors?.descuento && true}
-                    helperText={
-                      errors?.descuento
-                        ? errors.descuento
-                        : ""
-                    }
-                    onChange={(e) => setFieldValue("descuento", e.target.value)}
-                  />
-                </Grid>
-                <Grid
-                  item
-                  fullWidth
-                  xs={12}
-                  sm={12}
-                  justifyContent="flex-center"
-                  sx={{
-                    "& .MuiTextField-root": { m: 1, width: "96%" },
-                  }}
-                >
-                  <CssTextField
-                    id="outlined-multiline-static"
-                    label="Stock"
-                    name="stock"
-                    multiline
-                    rows={4}
-                    value={values.stock}
-                    error={errors?.stock && true}
-                    helperText={
-                      errors?.stock
-                        ? errors.stock
-                        : ""
-                    }
-                    onChange={(e) => setFieldValue("stock", e.target.value)}
-                  />
-                </Grid>
-                <Grid
-                  item
-                  fullWidth
-                  xs={12}
-                  sm={12}
-                  justifyContent="flex-center"
-                  sx={{
-                    "& .MuiTextField-root": { m: 1, width: "96%" },
-                  }}
-                >
-                  <CssTextField
-                    id="outlined-multiline-static"
-                    label="Emprendimiento"
-                    name="emprendimiento"
-                    multiline
-                    rows={4}
-                    value={values.emprendimientos_id}
-                    error={errors?.emprendimientos_id && true}
-                    helperText={
-                      errors?.emprendimientos_id
-                        ? errors.emprendimientos_id
-                        : ""
-                    }
-                    onChange={(e) => setFieldValue("emprendimiento", e.target.value)}
-                  />
-                </Grid>
-                <Grid
-                  item
-                  fullWidth
-                  xs={12}
-                  sm={12}
-                  justifyContent="flex-center"
-                  sx={{
-                    "& .MuiTextField-root": { m: 1, width: "96%" },
-                  }}
-                >
-                  <CssTextField
-                    id="outlined-multiline-static"
-                    label="Categoria"
-                    name="categoria"
-                    multiline
-                    rows={4}
-                    value={values.categoria_id}
-                    error={errors?.categoria_id && true}
-                    helperText={
-                      errors?.categoria_id
-                        ? errors.categoria_id
-                        : ""
-                    }
-                    onChange={(e) => setFieldValue("categoria", e.target.value)}
-                  />
-                </Grid>
-                </Grid>
-              </div>
+          <h1 className="subtitle">EDITAR PRODUCTO</h1>
 
-              <Grid container justifyContent="flex-end" className="w-95">
-                <Grid item>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    size="medium"
-                    justifyContent="flex-end"
-                    className="button"
-                    sx={{
-                      color: "secondary.light",
-                      mt: 3,
-                      mb: 2,
-                    }}
-                  >
-                    Guardar
-                  </Button>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={getValidationSchema()}
+            onSubmit={onSubmit}
+          >
+            {({ values, errors }) => (
+              <Box
+                component="form"
+                noValidate
+                onSubmit={handleSubmit}
+                sx={{ mt: 3 }}
+                maxWidth="xs"
+                action=""
+                method="PUT"
+                encType="multipart/form-data"
+              >
+                <div className="mb-2">
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} sm={12}>
+                      <CssTextField
+                        required
+                        fullWidth
+                        id="nombre"
+                        label="Nombre del producto"
+                        name="nombre"
+                        value={values.nombre}
+                        /* value={nombre} */
+                        error={errors?.nombre && true}
+                        helperText={errors?.nombre ? errors.nombre : ""}
+                        onChange={(e) =>
+                          setFieldValue("nombre", e.target.value)
+                        }
+                      />
+                    </Grid>
+                    <Grid
+                      item
+                      fullWidth
+                      xs={12}
+                      sm={12}
+                      justifyContent="flex-center"
+                      sx={{
+                        "& .MuiTextField-root": { m: 1, width: "96%" },
+                      }}
+                    >
+                      <CssTextField
+                        id="outlined-multiline-static"
+                        label="Precio"
+                        name="precio"
+                        multiline
+                        rows={4}
+                        value={values.precio}
+                        error={errors?.precio && true}
+                        helperText={errors?.precio ? errors.precio : ""}
+                        onChange={(e) =>
+                          setFieldValue("precio", e.target.value)
+                        }
+                      />
+                    </Grid>
+                    <Grid
+                      item
+                      fullWidth
+                      xs={12}
+                      sm={12}
+                      justifyContent="flex-center"
+                      sx={{
+                        "& .MuiTextField-root": { m: 1, width: "96%" },
+                      }}
+                    >
+                      <CssTextField
+                        id="outlined-multiline-static"
+                        label="Descripción del producto"
+                        name="descripcion"
+                        multiline
+                        rows={4}
+                        value={values.descripcion}
+                        error={errors?.descripcion && true}
+                        helperText={
+                          errors?.descripcion ? errors.descripcion : ""
+                        }
+                        onChange={(e) =>
+                          setFieldValue("descripcion", e.target.value)
+                        }
+                      />
+                    </Grid>
+                    <Grid
+                      item
+                      fullWidth
+                      xs={12}
+                      sm={12}
+                      justifyContent="flex-center"
+                      sx={{
+                        "& .MuiTextField-root": { m: 1, width: "96%" },
+                      }}
+                    >
+                      <CssTextField
+                        id="outlined-multiline-static"
+                        label="Descuento"
+                        name="descuento"
+                        multiline
+                        rows={4}
+                        value={values.descuento}
+                        error={errors?.descuento && true}
+                        helperText={errors?.descuento ? errors.descuento : ""}
+                        onChange={(e) =>
+                          setFieldValue("descuento", e.target.value)
+                        }
+                      />
+                    </Grid>
+                    <Grid
+                      item
+                      fullWidth
+                      xs={12}
+                      sm={12}
+                      justifyContent="flex-center"
+                      sx={{
+                        "& .MuiTextField-root": { m: 1, width: "96%" },
+                      }}
+                    >
+                      <CssTextField
+                        id="outlined-multiline-static"
+                        label="Stock"
+                        name="stock"
+                        multiline
+                        rows={4}
+                        value={values.stock}
+                        error={errors?.stock && true}
+                        helperText={errors?.stock ? errors.stock : ""}
+                        onChange={(e) => setFieldValue("stock", e.target.value)}
+                      />
+                    </Grid>
+                    <Grid
+                      item
+                      fullWidth
+                      xs={12}
+                      sm={12}
+                      justifyContent="flex-center"
+                      sx={{
+                        "& .MuiTextField-root": { m: 1, width: "96%" },
+                      }}
+                    >
+                      <CssTextField
+                        id="outlined-multiline-static"
+                        label="Emprendimiento"
+                        name="emprendimiento"
+                        multiline
+                        rows={4}
+                        value={values.emprendimientos_id}
+                        error={errors?.emprendimientos_id && true}
+                        helperText={
+                          errors?.emprendimientos_id
+                            ? errors.emprendimientos_id
+                            : ""
+                        }
+                        onChange={(e) =>
+                          setFieldValue("emprendimiento", e.target.value)
+                        }
+                      />
+                    </Grid>
+                    <Grid
+                      item
+                      fullWidth
+                      xs={12}
+                      sm={12}
+                      justifyContent="flex-center"
+                      sx={{
+                        "& .MuiTextField-root": { m: 1, width: "96%" },
+                      }}
+                    >
+                      <CssTextField
+                        id="outlined-multiline-static"
+                        label="Categoria"
+                        name="categoria"
+                        multiline
+                        rows={4}
+                        value={values.categoria_id}
+                        error={errors?.categoria_id && true}
+                        helperText={
+                          errors?.categoria_id ? errors.categoria_id : ""
+                        }
+                        onChange={(e) =>
+                          setFieldValue("categoria", e.target.value)
+                        }
+                      />
+                    </Grid>
+                  </Grid>
+                </div>
+
+                <Grid container justifyContent="flex-end" className="w-95">
+                  <Grid item>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      size="medium"
+                      justifyContent="flex-end"
+                      className="button"
+                      sx={{
+                        color: "secondary.light",
+                        mt: 3,
+                        mb: 2,
+                      }}
+                    >
+                      Guardar
+                    </Button>
+                  </Grid>
                 </Grid>
-              </Grid>
-            </Box>
-          )}
-        </Formik>
-      </Box>
-    </Container>
+              </Box>
+            )}
+          </Formik>
+        </Box>
+      </Container>
+    </>
   );
 };

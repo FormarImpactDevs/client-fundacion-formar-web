@@ -17,7 +17,10 @@ import { /* Field, Form, */ Formik, useFormik } from "formik";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
 import InputFileUpload from "../../../../components/InputFileUpload";
-import { getEnterpriseServiceById, updateEnterpriseService } from "../../../../services/enterprises.service";
+import {
+  getEnterpriseServiceById,
+  updateEnterpriseService,
+} from "../../../../services/enterprises.service";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -155,101 +158,99 @@ export const FormEnterpriseEdit = () => {
           validationSchema={getValidationSchema()}
           onSubmit={onSubmit}
         >
-          {(formik) => (
-            <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit}
-              sx={{ mt: 3 }}
-              maxWidth="xs"
-              action=""
-              method="PUT"
-              encType="multipart/form-data"
-            >
-              <div className="mb-2">
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm={12}>
-                    <InputFileUpload
-                      text="Foto para la card del emprendimiento"
-                      name="foto_card"
-                      values={foto_card}
-                      multiple={false}
-                      required={false}
-                      onChanges={setFieldValue}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={12}>
-                    <InputFileUpload
-                      text="Foto del emprendimiento"
-                      name="foto_emprendimiento"
-                      values={foto_emprendimiento}
-                      multiple={false}
-                      required={false}
-                      onChanges={setFieldValue}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={12}>
-                    <CssTextField
-                      required
-                      fullWidth
-                      id="nombre"
-                      label="Nombre del emprendimiento"
-                      name="nombre"
-                      defaultValue={nombre}
-                      /* value={nombre} */
-                      error={errors?.nombre && true}
-                      helperText={errors?.nombre ? errors.nombre : ""}
-                      onChange={(e) => setFieldValue("nombre", e.target.value)}
-                    />
-                  </Grid>
-                  <Grid
-                    item
-                    fullWidth
-                    xs={12}
-                    sm={12}
-                    justifyContent="flex-center"
-                    sx={{
-                      "& .MuiTextField-root": { m: 1, width: "96%" },
-                    }}
-                  >
-                    <CssTextField
-                      id="outlined-multiline-static"
-                      label="Descripción del emprendimiento"
-                      name="descripcion"
-                      multiline
-                      rows={4}
-                      defaultValue={descripcion}
-                      /* value= */
-                      error={errors?.descripcion && true}
-                      helperText={errors?.descripcion ? errors.descripcion : ""}
-                      onChange={(e) =>
-                        setFieldValue("descripcion", e.target.value)
-                      }
-                    />
-                  </Grid>
+          <Box
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+            sx={{ mt: 3 }}
+            maxWidth="xs"
+            action=""
+            method="PUT"
+            encType="multipart/form-data"
+          >
+            <div className="mb-2">
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={12}>
+                  <InputFileUpload
+                    text="Foto para la card del emprendimiento"
+                    name="foto_card"
+                    values={foto_card}
+                    multiple={false}
+                    required={false}
+                    onChanges={setFieldValue}
+                  />
                 </Grid>
-              </div>
-
-              <Grid container justifyContent="flex-end" className="w-95">
-                <Grid item>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    size="medium"
-                    justifyContent="flex-end"
-                    className="button"
-                    sx={{
-                      color: "secondary.light",
-                      mt: 3,
-                      mb: 2,
-                    }}
-                  >
-                    Guardar
-                  </Button>
+                <Grid item xs={12} sm={12}>
+                  <InputFileUpload
+                    text="Foto del emprendimiento"
+                    name="foto_emprendimiento"
+                    values={foto_emprendimiento}
+                    multiple={false}
+                    required={false}
+                    onChanges={setFieldValue}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={12}>
+                  <CssTextField
+                    required
+                    fullWidth
+                    id="nombre"
+                    label="Nombre del emprendimiento"
+                    name="nombre"
+                    defaultValue={nombre}
+                    /* value={nombre} */
+                    error={errors?.nombre && true}
+                    helperText={errors?.nombre ? errors.nombre : ""}
+                    onChange={(e) => setFieldValue("nombre", e.target.value)}
+                  />
+                </Grid>
+                <Grid
+                  item
+                  fullWidth
+                  xs={12}
+                  sm={12}
+                  justifyContent="flex-center"
+                  sx={{
+                    "& .MuiTextField-root": { m: 1, width: "96%" },
+                  }}
+                >
+                  <CssTextField
+                    id="outlined-multiline-static"
+                    label="Descripción del emprendimiento"
+                    name="descripcion"
+                    multiline
+                    rows={4}
+                    defaultValue={descripcion}
+                    /* value= */
+                    error={errors?.descripcion && true}
+                    helperText={errors?.descripcion ? errors.descripcion : ""}
+                    onChange={(e) =>
+                      setFieldValue("descripcion", e.target.value)
+                    }
+                  />
                 </Grid>
               </Grid>
-            </Box>
-          )}
+            </div>
+
+            <Grid container justifyContent="flex-end" className="w-95">
+              <Grid item>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  size="medium"
+                  justifyContent="flex-end"
+                  className="button"
+                  sx={{
+                    color: "secondary.light",
+                    mt: 3,
+                    mb: 2,
+                  }}
+                >
+                  Guardar
+                </Button>
+              </Grid>
+            </Grid>
+          </Box>
         </Formik>
         <div className="imgFormEdit">
           <img src={foto_card} alt="" />

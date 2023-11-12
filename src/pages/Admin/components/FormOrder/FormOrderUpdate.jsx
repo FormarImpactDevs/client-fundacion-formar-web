@@ -11,7 +11,6 @@ import {
   InputLabel,
   MenuItem,
 } from "@mui/material";
-/* import InputLabel from '@mui/material/InputLabel'; */
 import InputAdornment from "@mui/material/InputAdornment";
 
 import "../../../../components/Form/formDates.scss";
@@ -19,14 +18,13 @@ import "../../../../components/Form/formDates.scss";
 import Swal from "sweetalert2";
 
 /* Formik y Yup */
-import { Formik, useFormik, Field /* , Form  */ } from "formik";
+import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
 import {
   getOrderServiceByOrderNumber,
   updateOrderService,
 } from "../../../../services/orders.service";
-import MultipleSelectPlaceholder from "./SelectForm";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -48,25 +46,15 @@ const CssTextField = styled(TextField)({
   },
 });
 
-/* numero_orden,
-tipo_de_entrega,
-estado_del_pedido,
-estado_del_pago,
-link,
-client_data,
-punto_retiro_id,
-detalle_pedido,
-monto_total*/
 export const FormOrderUpdate = () => {
   const { orderNumber } = useParams();
-  console.log(useParams());
 
   const [order, setOrder] = useState([]);
 
   const getOrderByOrderNumber = async (orderNumber) => {
     try {
       const OrderData = await getOrderServiceByOrderNumber(orderNumber);
-      console.log(OrderData);
+
       const {
         numero_orden,
         tipo_de_entrega,
@@ -110,7 +98,6 @@ export const FormOrderUpdate = () => {
     detalle_pedido,
     monto_total,
   } = order;
-
 
   const initialValues = {
     numero_orden: numero_orden,
@@ -184,11 +171,11 @@ export const FormOrderUpdate = () => {
   ];
 
   return (
-    <Container component="main" maxWorderNumberth="sm">
+    <Container component="main" maxWidth="sm">
       <CssBaseline />
       <Box
         sx={{
-          marginTop: 2,
+          marginTop: 1,
           marginBottom: 6,
           display: "flex",
           flexDirection: "column",
@@ -205,7 +192,7 @@ export const FormOrderUpdate = () => {
           validationSchema={getValidationSchema()}
           onSubmit={onSubmit}
         >
-          {/*  {(formik) => ( */}
+  
           <Box
             component="form"
             noValidate
@@ -218,7 +205,7 @@ export const FormOrderUpdate = () => {
           >
             <div className="mb-2">
               <Grid container spacing={2}>
-                <Grid item xs={12} sm={12}>
+                <Grid item xs={6} sm={6}>
                   <CssTextField
                     fullWidth
                     id="numero_orden"
@@ -229,12 +216,12 @@ export const FormOrderUpdate = () => {
                     disabled
                     InputProps={{
                       startAdornment: (
-                        <InputAdornment position="start"></InputAdornment>
+                        <InputAdornment position="start">#</InputAdornment>
                       ),
                     }}
                   />
                 </Grid>
-                <Grid item xs={12} sm={12}>
+                <Grid item xs={6} sm={6}>
                   <CssTextField
                     fullWidth
                     id="tipo_de_entrega"
@@ -251,25 +238,33 @@ export const FormOrderUpdate = () => {
                   />
                 </Grid>
                 <Grid item xs={12} sm={12}>
-                  <InputLabel id="estado_del_pedido">Estado del pedido</InputLabel>
+                  <InputLabel id="estado_del_pedido">
+                    Estado del pedido
+                  </InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="estado_del_pedido"
                     name="estado_del_pedido"
                     value={estado_del_pedido}
+                    defaultValue={estado_del_pedido}
                     label="Estado del pedido"
                     fullWidth
                     error={errors?.estado_del_pedido && true}
-                      helperText={errors?.estado_del_pedido ? errors.estado_del_pedido : ""}
-                      onChange={(e) => setFieldValue("estado_del_pedido", e.target.value)}
-                    /* onChange={handleChange} */
+                    helperText={
+                      errors?.estado_del_pedido ? errors.estado_del_pedido : ""
+                    }
+                    onChange={(e) =>
+                      setFieldValue("estado_del_pedido", e.target.value)
+                    }
                   >
-                    { estados.map((estado, index) => (
-                        <MenuItem value={estado} key={index}>{estado}</MenuItem>
+                    {estados.map((estado, index) => (
+                      <MenuItem value={estado} key={index}>
+                        {estado}
+                      </MenuItem>
                     ))}
                   </Select>
                 </Grid>
-                <Grid item xs={12} sm={12}>
+                <Grid item xs={6} sm={6}>
                   <CssTextField
                     fullWidth
                     id="estado_del_pago"
@@ -285,7 +280,7 @@ export const FormOrderUpdate = () => {
                     }}
                   />
                 </Grid>
-                <Grid item xs={12} sm={12}>
+                <Grid item xs={6} sm={6}>
                   <CssTextField
                     fullWidth
                     id="client_data"
@@ -344,7 +339,7 @@ export const FormOrderUpdate = () => {
                     disabled
                     InputProps={{
                       startAdornment: (
-                        <InputAdornment position="start"></InputAdornment>
+                        <InputAdornment position="start">$</InputAdornment>
                       ),
                     }}
                   />
@@ -371,7 +366,6 @@ export const FormOrderUpdate = () => {
               </Grid>
             </Grid>
           </Box>
-          {/* )} */}
         </Formik>
       </Box>
     </Container>

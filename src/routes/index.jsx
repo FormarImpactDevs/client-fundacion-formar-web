@@ -15,7 +15,7 @@ import { FormProductEdit } from "../pages/Admin/components/FormProducts/FormProd
 import { FormProductCreate } from "../pages/Admin/components/FormProducts/FormProductsCreate";
 import LoginEcommerce from "../pages/LoginEcommerce";
 import { OrdersList } from "../views/OrdersList";
-import { FormOrderUpdate } from "../pages/Admin/components/FormOrder/FormOrderUpdate";
+import { FormUpdateOrder } from "../views/Orders/FormUpdateOrder";
 
 export default function AppRoutes() {
   return (
@@ -35,7 +35,7 @@ export default function AppRoutes() {
         <Route path="/admin/products/create" element={<FormProductCreate />} />
         <Route path="/admin/products/edit/:id" element={<FormProductEdit />} />
         <Route path="/admin/orders" element={<OrdersList />} />
-        <Route path="/admin/orders/edit/:orderNumber" element={<FormOrderUpdate />} />
+        <Route path="/admin/orders/edit/:orderNumber" element={<FormUpdateOrder />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>

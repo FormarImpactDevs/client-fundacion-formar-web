@@ -1,109 +1,112 @@
 import {
-    Button,
-    Box,
-    CssBaseline,
-    Container,
-    Grid,
-    TextField,
-    styled,
-  } from "@mui/material";
-  import "../../../../components/Form/formDates.scss";
-  import InputFileUpload from "../../../../components/InputFileUpload";
-  import Swal from "sweetalert2";
-  
-  /* Formik y Yup */
-  import { useFormik } from "formik";
-  import * as Yup from "yup";
+  Button,
+  Box,
+  CssBaseline,
+  Container,
+  Grid,
+  TextField,
+  styled,
+} from "@mui/material";
+import "../../../../components/Form/formDates.scss";
+import InputFileUpload from "../../../../components/InputFileUpload";
+import Swal from "sweetalert2";
+
+/* Formik y Yup */
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import { createProductservice } from "../../../../services/products.service";
-  
-  const CssTextField = styled(TextField)({
-    "& label.Mui-focused": {
-      color: "#75aadb",
+import { ButtonGoToBack } from "../../../../components/ButtonGoToBack";
+
+const CssTextField = styled(TextField)({
+  "& label.Mui-focused": {
+    color: "#75aadb",
+  },
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "#75aadb",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "#E0E3E7",
     },
-    "& .MuiInput-underline:after": {
-      borderBottomColor: "#75aadb",
+    "&:hover fieldset": {
+      borderColor: "#75aadb",
     },
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: "#E0E3E7",
-      },
-      "&:hover fieldset": {
-        borderColor: "#75aadb",
-      },
-      "&.Mui-focused fieldset": {
-        borderColor: "#75aadb",
-      },
+    "&.Mui-focused fieldset": {
+      borderColor: "#75aadb",
     },
-  });
-  
-  export const FormProductCreate = () => {
-    /* Formik */
-    const getInitialValues = () => ({
+  },
+});
+
+export const FormProductCreate = () => {
+  /* Formik */
+  const getInitialValues = () => ({
     nombre: "",
     precio: "",
     descripcion: "",
     descuento: "",
     stock: "",
     emprendimientos_id: "",
-    categoria_id: ""
-    });
-  
-    const getValidationSchema = () =>
-      Yup.lazy(() =>
-        Yup.object({
-          nombre: Yup.string().required("El campo nombre es obligatorio."),
-          precio: Yup.string().required("El campo precio es obligatorio."),
-          descripcion: Yup.string().required("Se requiere de una descripción."),
-          stock: Yup.string().required("El campo stock es obligatorio."),
-        })
-      );
-  
-    const onSubmit = async (values) => {
-      try {
-        const formDataToSend = new FormData();
-        formDataToSend.append("id", values.id);
-        formDataToSend.append("nombre", values.nombre);
-        formDataToSend.append("precio", values.precio);
-        formDataToSend.append("descripcion", values.descripcion);
-        formDataToSend.append("descuento", values.descuento);
-        formDataToSend.append("stock", values.stock);
-        formDataToSend.append("emprendimientos_id", values.emprendimientos_id);
-        formDataToSend.append("categoria_id", values.categoria_id);
-  
-        const data = await createProductservice(formDataToSend);
-  
+    categoria_id: "",
+  });
+
+  const getValidationSchema = () =>
+    Yup.lazy(() =>
+      Yup.object({
+        nombre: Yup.string().required("El campo nombre es obligatorio."),
+        precio: Yup.string().required("El campo precio es obligatorio."),
+        descripcion: Yup.string().required("Se requiere de una descripción."),
+        stock: Yup.string().required("El campo stock es obligatorio."),
+      })
+    );
+
+  const onSubmit = async (values) => {
+    try {
+      const formDataToSend = new FormData();
+      formDataToSend.append("id", values.id);
+      formDataToSend.append("nombre", values.nombre);
+      formDataToSend.append("precio", values.precio);
+      formDataToSend.append("descripcion", values.descripcion);
+      formDataToSend.append("descuento", values.descuento);
+      formDataToSend.append("stock", values.stock);
+      formDataToSend.append("emprendimientos_id", values.emprendimientos_id);
+      formDataToSend.append("categoria_id", values.categoria_id);
+
+      const data = await createProductservice(formDataToSend);
+
+      Swal.fire({
+        icon: "success",
+        title: "Producto creado!",
+        text: data.message,
+      });
+      setTimeout(() => {
+        window.location = "/admin/products";
+      }, 2000);
+    } catch (error) {
+      if (error) {
         Swal.fire({
-          icon: "success",
-          title: "Producto creado!",
-          text: data.message,
+          icon: "error",
+          title: "¡Hubo un error al crear el producto!",
+          text: error.message,
         });
-        setTimeout(() => {
-          window.location = "/admin/products";
-        }, 2000);
-      } catch (error) {
-        if (error) {
-          Swal.fire({
-            icon: "error",
-            title: "¡Hubo un error al crear el producto!",
-            text: error.message,
-          });
-        }
       }
-    };
-  
-    const { handleSubmit, values, setFieldValue, errors } = useFormik({
-      validateOnBlur: false,
-  
-      validateOnChange: false,
-  
-      initialValues: getInitialValues(),
-  
-      validationSchema: getValidationSchema(),
-  
-      onSubmit,
-    });
-  
-    return (
+    }
+  };
+
+  const { handleSubmit, values, setFieldValue, errors } = useFormik({
+    validateOnBlur: false,
+
+    validateOnChange: false,
+
+    initialValues: getInitialValues(),
+
+    validationSchema: getValidationSchema(),
+
+    onSubmit,
+  });
+
+  return (
+    <>
+      <ButtonGoToBack />
       <Container component="main" maxWidth="sm">
         <CssBaseline />
         <Box
@@ -148,11 +151,7 @@ import { createProductservice } from "../../../../services/products.service";
                     label="Nombre del producto"
                     name="nombre"
                     error={errors?.nombre && true}
-                    helperText={
-                      errors?.nombre
-                        ? errors.nombre
-                        : ""
-                    }
+                    helperText={errors?.nombre ? errors.nombre : ""}
                     onChange={(e) => setFieldValue("nombre", e.target.value)}
                   />
                 </Grid>
@@ -174,11 +173,7 @@ import { createProductservice } from "../../../../services/products.service";
                     rows={4}
                     defaultValue=""
                     error={errors?.precio && true}
-                    helperText={
-                      errors?.precio
-                        ? errors.precio
-                        : ""
-                    }
+                    helperText={errors?.precio ? errors.precio : ""}
                     onChange={(e) => setFieldValue("precio", e.target.value)}
                   />
                 </Grid>
@@ -200,12 +195,10 @@ import { createProductservice } from "../../../../services/products.service";
                     rows={4}
                     defaultValue=""
                     error={errors?.descripcion && true}
-                    helperText={
-                      errors?.descripcion
-                        ? errors.descripcion
-                        : ""
+                    helperText={errors?.descripcion ? errors.descripcion : ""}
+                    onChange={(e) =>
+                      setFieldValue("descripcion", e.target.value)
                     }
-                    onChange={(e) => setFieldValue("descripcion", e.target.value)}
                   />
                 </Grid>
                 <Grid
@@ -226,11 +219,7 @@ import { createProductservice } from "../../../../services/products.service";
                     rows={4}
                     defaultValue=""
                     error={errors?.descuento && true}
-                    helperText={
-                      errors?.descuento
-                        ? errors.descuento
-                        : ""
-                    }
+                    helperText={errors?.descuento ? errors.descuento : ""}
                     onChange={(e) => setFieldValue("descuento", e.target.value)}
                   />
                 </Grid>
@@ -252,11 +241,7 @@ import { createProductservice } from "../../../../services/products.service";
                     rows={4}
                     defaultValue=""
                     error={errors?.stock && true}
-                    helperText={
-                      errors?.stock
-                        ? errors.stock
-                        : ""
-                    }
+                    helperText={errors?.stock ? errors.stock : ""}
                     onChange={(e) => setFieldValue("stock", e.target.value)}
                   />
                 </Grid>
@@ -283,7 +268,9 @@ import { createProductservice } from "../../../../services/products.service";
                         ? errors.emprendimientos_id
                         : ""
                     }
-                    onChange={(e) => setFieldValue("emprendimiento", e.target.value)}
+                    onChange={(e) =>
+                      setFieldValue("emprendimiento", e.target.value)
+                    }
                   />
                 </Grid>
                 <Grid
@@ -304,17 +291,13 @@ import { createProductservice } from "../../../../services/products.service";
                     rows={4}
                     defaultValue=""
                     error={errors?.categoria_id && true}
-                    helperText={
-                      errors?.categoria_id
-                        ? errors.categoria_id
-                        : ""
-                    }
+                    helperText={errors?.categoria_id ? errors.categoria_id : ""}
                     onChange={(e) => setFieldValue("categoria", e.target.value)}
                   />
                 </Grid>
               </Grid>
             </div>
-  
+
             <Grid container justifyContent="flex-end" className="w-95">
               <Grid item>
                 <Button
@@ -336,6 +319,6 @@ import { createProductservice } from "../../../../services/products.service";
           </Box>
         </Box>
       </Container>
-    );
-  };
-  
+    </>
+  );
+};

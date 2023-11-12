@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import "sweetalert2/src/sweetalert2.scss";
 import styles from "./ordersList.module.scss";
+import { ButtonGoToBack } from "../../components/ButtonGoToBack";
 
 export const OrdersList = () => {
   const [orders, setOrders] = useState([]);
@@ -44,8 +45,7 @@ export const OrdersList = () => {
       getActions: (params) => [
         <GridActionsCellItem
           icon={
-            <Link to={`/admin/orders/edit/1`}>
-            {/* <Link to={`/admin/orders/edit/${params.numero_orden}`}> */}
+            <Link to={`/admin/orders/edit/${params.id}`}>
               <FontAwesomeIcon icon={faPenToSquare} />
             </Link>
           }
@@ -59,6 +59,7 @@ export const OrdersList = () => {
   return (
     <>
       <MainLayout>
+        <ButtonGoToBack />
         <section className={styles.mainContainerList}>
           <Title text="Lista de pedidos" />
           <div className={styles.containerList}>

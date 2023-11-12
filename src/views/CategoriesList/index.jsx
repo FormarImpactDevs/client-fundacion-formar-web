@@ -16,8 +16,9 @@ import { GridActionsCellItem } from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
 import {
   getCategoriesService,
-  deleteCategoryService
+  deleteCategoryService,
 } from "../../services/categories.service";
+import { ButtonGoToBack } from "../../components/ButtonGoToBack";
 
 export const CategoriesList = () => {
   const [categories, setCategories] = useState([]);
@@ -105,6 +106,7 @@ export const CategoriesList = () => {
 
   return (
     <MainLayout>
+      <ButtonGoToBack />
       <section className={styles.mainContainerList}>
         <Title text="Lista de categorias" />
         <div className={styles.containerList}>

@@ -16,7 +16,11 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 
 import "sweetalert2/src/sweetalert2.scss";
 import styles from "./productsList.module.scss";
-import { deleteProductservice, getProductsService } from "../../services/products.service";
+import {
+  deleteProductservice,
+  getProductsService,
+} from "../../services/products.service";
+import { ButtonGoToBack } from "../../components/ButtonGoToBack";
 
 export const ProductsList = () => {
   const [products, setProducts] = useState([]);
@@ -24,7 +28,7 @@ export const ProductsList = () => {
   const getProducts = async () => {
     try {
       const ProductsData = await getProductsService();
-    setProducts(ProductsData);
+      setProducts(ProductsData);
     } catch (error) {
       console.log(error);
     }
@@ -79,7 +83,11 @@ export const ProductsList = () => {
     { field: "precio", headerName: "Precio", width: 130 },
     { field: "descripcion", headerName: "Descripción", width: 130 },
     { field: "stock", headerName: "Stock", width: 130 },
-    { field: "emprendimientos_id", headerName: "Nombre del emprendimiento", width: 130 },
+    {
+      field: "emprendimientos_id",
+      headerName: "Nombre del emprendimiento",
+      width: 130,
+    },
     { field: "categoria_id", headerName: "Nombre de la categoria", width: 130 },
     {
       headerName: "Acciones",
@@ -109,6 +117,7 @@ export const ProductsList = () => {
   return (
     <>
       <MainLayout>
+        <ButtonGoToBack />
         <section className={styles.mainContainerList}>
           <Title text="Lista de productos" />
           <div className={styles.containerList}>

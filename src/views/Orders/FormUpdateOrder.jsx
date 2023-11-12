@@ -1,13 +1,13 @@
 import { ButtonGoToBack } from "../../components/ButtonGoToBack";
 import { MainLayout } from "../../layout";
-import { FormEnterpriseEdit } from "../../pages/Admin/components/FormsEnterprise/FormEnterpriseEdit";
+import { FormOrderUpdate } from "../../pages/Admin/components/FormOrder/FormOrderUpdate";
 
-export const FormUpdate = () => {
+export const FormUpdateOrder = () => {
   return (
     <>
       <MainLayout>
         <ButtonGoToBack />
-        <FormEnterpriseEdit />
+        <FormOrderUpdate />
       </MainLayout>
     </>
   );
