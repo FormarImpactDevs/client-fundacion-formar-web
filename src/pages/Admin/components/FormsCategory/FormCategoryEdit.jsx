@@ -13,6 +13,7 @@ import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
 import { updateCategoriesService } from "../../../../services/categories.service";
 import { ButtonGoToBack } from "../../../../components/ButtonGoToBack";
+import { useNavigate } from "react-router-dom";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -37,7 +38,7 @@ const CssTextField = styled(TextField)({
 export const FormCategoryEdit = () => {
   const { id } = useParams();
   const [sending, setSending] = useState(false);
-
+  const navigate = useNavigate()
   const { formValues, handleInputChange, reset } = useForm({
     nombre: "",
   });
@@ -61,12 +62,16 @@ export const FormCategoryEdit = () => {
         icon: "info",
         title: "¡Categoría editada!",
         text: data.msg,
+      }).then(() => {
+        navigate("/admin/categories");
       });
-
-      reset();
     } catch (error) {
       console.log(error.message);
-      reset();
+      Swal.fire({
+        icon: "error",
+        title: "¡Hubo un error al actualizar la categoria!",
+        text: error.message,
+      });
     }
   };
 

@@ -23,6 +23,7 @@ import {
 } from "../../../../services/products.service";
 import useProducts from "../../../../hooks/useProducts";
 import { ButtonGoToBack } from "../../../../components/ButtonGoToBack";
+import { useNavigate } from "react-router-dom";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -46,6 +47,8 @@ const CssTextField = styled(TextField)({
 
 export const FormProductEdit = () => {
   const { id } = useParams();
+
+  const navigate = useNavigate();
 
   const { getProductById, product } = useProducts();
 
@@ -88,10 +91,9 @@ export const FormProductEdit = () => {
         icon: "success",
         title: "¡Producto actualizado!",
         text: data.message,
+      }).then(() => {
+        navigate("/admin/products");
       });
-      setTimeout(() => {
-        window.location = "/admin/products";
-      }, 2000);
     } catch (error) {
       if (error) {
         Swal.fire({

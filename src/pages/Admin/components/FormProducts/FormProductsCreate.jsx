@@ -16,6 +16,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { createProductservice } from "../../../../services/products.service";
 import { ButtonGoToBack } from "../../../../components/ButtonGoToBack";
+import { useNavigate } from "react-router-dom";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -39,6 +40,7 @@ const CssTextField = styled(TextField)({
 
 export const FormProductCreate = () => {
   /* Formik */
+  const navigate = useNavigate()
   const getInitialValues = () => ({
     nombre: "",
     precio: "",
@@ -77,10 +79,9 @@ export const FormProductCreate = () => {
         icon: "success",
         title: "Producto creado!",
         text: data.message,
+      }).then(() => {
+        navigate("/admin/categories");
       });
-      setTimeout(() => {
-        window.location = "/admin/products";
-      }, 2000);
     } catch (error) {
       if (error) {
         Swal.fire({

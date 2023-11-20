@@ -64,6 +64,11 @@ export const FormCategoryCreate = () => {
       setSending(false);
     } catch (error) {
       console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "¡Hubo un error al actualizar la categoria!",
+        text: error.message,
+      });
     }
   };
 

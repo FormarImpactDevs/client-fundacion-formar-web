@@ -31,7 +31,6 @@ export const updateOrderService = async (orderNumber, orderData) => {
     const url = `${apiUrl}orders/update/${orderNumber}`;
     /* /update/:orderNumber */
     const { data } = await axios.put(url, orderData);
-    console.log(data);
     return data || [];
   } catch (error) {
     console.error(error.message);

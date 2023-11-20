@@ -25,6 +25,7 @@ import {
   getOrderServiceByOrderNumber,
   updateOrderService,
 } from "../../../../services/orders.service";
+import { useNavigate } from "react-router-dom";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -48,7 +49,7 @@ const CssTextField = styled(TextField)({
 
 export const FormOrderUpdate = () => {
   const { orderNumber } = useParams();
-
+  const navigate = useNavigate();
   const [order, setOrder] = useState([]);
 
   const getOrderByOrderNumber = async (orderNumber) => {
@@ -119,26 +120,15 @@ export const FormOrderUpdate = () => {
 
   const onSubmit = async (values) => {
     try {
-      const formDataToSend = new FormData();
-      formDataToSend.append("numero_orden", numero_orden);
-      formDataToSend.append("tipo_de_entrega", tipo_de_entrega);
-      formDataToSend.append("estado_del_pedido", values.estado_del_pedido);
-      formDataToSend.append("estado_del_pago", estado_del_pago);
-      formDataToSend.append("link", link);
-      formDataToSend.append("client_data", client_data);
-      formDataToSend.append("punto_retiro_id", punto_retiro_id);
-      formDataToSend.append("detalle_pedido", detalle_pedido);
-      formDataToSend.append("monto_total", monto_total);
-
-      const data = await updateOrderService(orderNumber, formDataToSend);
+      const data = {estado_del_pedido: values.estado_del_pedido};
+      const response = await updateOrderService(orderNumber, data);
       Swal.fire({
         icon: "success",
         title: "¡Pedido actualizado!",
-        text: data.message,
+        text: response,
+      }).then(() => {
+        navigate("/admin/orders");
       });
-      setTimeout(() => {
-        window.location = "/admin/orders";
-      }, 2000);
     } catch (error) {
       if (error) {
         Swal.fire({
@@ -192,7 +182,6 @@ export const FormOrderUpdate = () => {
           validationSchema={getValidationSchema()}
           onSubmit={onSubmit}
         >
-  
           <Box
             component="form"
             noValidate

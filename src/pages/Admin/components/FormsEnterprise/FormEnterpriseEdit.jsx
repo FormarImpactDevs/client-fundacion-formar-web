@@ -21,6 +21,7 @@ import {
   getEnterpriseServiceById,
   updateEnterpriseService,
 } from "../../../../services/enterprises.service";
+import { useNavigate } from "react-router-dom";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -45,7 +46,7 @@ const CssTextField = styled(TextField)({
 const apiImgUrl = import.meta.env.VITE_BASE_IMG_ENTERPRISE_API_URL;
 export const FormEnterpriseEdit = () => {
   const { id } = useParams();
-
+  const navigate = useNavigate()
   const [enterprise, setEnterprise] = useState([]);
 
   const getEnterpriseById = async (id) => {
@@ -70,15 +71,6 @@ export const FormEnterpriseEdit = () => {
   }, [id]);
 
   const { nombre, descripcion, foto_card, foto_emprendimiento } = enterprise;
-
-  /* Formik */
-  /* const getInitialValues = () => ({
-    id: id,
-    nombre: "",
-    descripcion: "",
-    foto_card: "",
-    foto_emprendimiento: "",
-  }); */
 
   const initialValues = {
     id: id,
@@ -109,10 +101,9 @@ export const FormEnterpriseEdit = () => {
         icon: "success",
         title: "¡Emprendimiento actualizado!",
         text: data.message,
-      });
-      setTimeout(() => {
-        window.location = "/admin/enterprises";
-      }, 2000);
+      }).then(() => {
+        navigate("/admin/enterprises");
+      })
     } catch (error) {
       if (error) {
         Swal.fire({

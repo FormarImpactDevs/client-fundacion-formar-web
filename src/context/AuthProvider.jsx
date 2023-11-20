@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
       const { user } = decodedToken ? decodedToken.payload : null;
       setCurrentUser(user);
     }
-  }, []);
+  }, [storedToken]);
 
  
 
