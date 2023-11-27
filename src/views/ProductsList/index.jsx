@@ -4,10 +4,6 @@ import DataTable from "../../components/List";
 import { GridActionsCellItem } from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
 import { useEffect, useState } from "react";
-import {
-  getEnterprisesService,
-  deleteEnterpriseService,
-} from "../../services/enterprises.service";
 
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -19,29 +15,33 @@ import {
 import Swal from "sweetalert2/dist/sweetalert2.js";
 
 import "sweetalert2/src/sweetalert2.scss";
-import styles from "./enterprisesList.module.scss";
+import styles from "./productsList.module.scss";
+import {
+  deleteProductservice,
+  getProductsService,
+} from "../../services/products.service";
 import { ButtonGoToBack } from "../../components/ButtonGoToBack";
 
-export const EnterprisesList = () => {
-  const [enterprises, setEnterprises] = useState([]);
+export const ProductsList = () => {
+  const [products, setProducts] = useState([]);
 
-  const getEnterprises = async () => {
+  const getProducts = async () => {
     try {
-      const EnterprisesData = await getEnterprisesService();
-      setEnterprises(EnterprisesData);
+      const ProductsData = await getProductsService();
+      setProducts(ProductsData);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    getEnterprises();
+    getProducts();
   }, []);
 
-  const deleteEnterprise = async (e, id) => {
+  const deleteProduct = async (e, id) => {
     e.preventDefault();
     try {
-      const result = await deleteEnterpriseService(id);
+      const result = await deleteProductservice(id);
       return result.message;
     } catch (error) {
       return error.message;
@@ -50,7 +50,7 @@ export const EnterprisesList = () => {
 
   function confirmDeleted(e, id) {
     Swal.fire({
-      title: "Estás por eliminar un emprendimiento",
+      title: "Estás por eliminar un producto",
       text: "¿Seguro que deseas continuar? Ésta acción es irreversible",
       icon: "warning",
       showCancelButton: true,
@@ -60,18 +60,18 @@ export const EnterprisesList = () => {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        const remove = deleteEnterprise(e, id);
+        const remove = deleteProduct(e, id);
         if (remove) {
           Swal.fire(
             "Eliminado!",
-            "Emprendimiento eliminado satisfactoriamente",
+            "Producto eliminado satisfactoriamente",
             "success"
           );
           setTimeout(() => {
-            window.location = "/admin/enterprises";
+            window.location = "/admin/products";
           }, 1200);
         } else {
-          Swal.fire("Error", "No se pudo eliminar el Emprendimiento.", "error");
+          Swal.fire("Error", "No se pudo eliminar el Producto.", "error");
         }
       }
     });
@@ -79,8 +79,16 @@ export const EnterprisesList = () => {
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
-    { field: "nombre", headerName: "Nombre del emprendimiento", width: 130 },
+    { field: "nombre", headerName: "Nombre del producto", width: 130 },
+    { field: "precio", headerName: "Precio", width: 130 },
     { field: "descripcion", headerName: "Descripción", width: 130 },
+    { field: "stock", headerName: "Stock", width: 130 },
+    {
+      field: "emprendimientos_id",
+      headerName: "Nombre del emprendimiento",
+      width: 130,
+    },
+    { field: "categoria_id", headerName: "Nombre de la categoria", width: 130 },
     {
       headerName: "Acciones",
       field: "actions",
@@ -95,7 +103,7 @@ export const EnterprisesList = () => {
         />,
         <GridActionsCellItem
           icon={
-            <Link to={`/admin/enterprises/edit/${params.id}`}>
+            <Link to={`/admin/products/edit/${params.id}`}>
               <FontAwesomeIcon icon={faPenToSquare} />
             </Link>
           }
@@ -111,18 +119,18 @@ export const EnterprisesList = () => {
       <MainLayout>
         <ButtonGoToBack />
         <section className={styles.mainContainerList}>
-          <Title text="Lista de emprendimientos" />
+          <Title text="Lista de productos" />
           <div className={styles.containerList}>
-            <Link to="/admin/enterprises/create">
+            <Link to="/admin/products/create">
               <Button
                 size="medium"
                 variant="outlined"
                 startIcon={<FontAwesomeIcon icon={faPlus} />}
               >
-                Crear Emprendimiento
+                Crear Producto
               </Button>
             </Link>
-            <DataTable rows={enterprises} columns={columns} />
+            <DataTable rows={products} columns={columns} />
           </div>
         </section>
       </MainLayout>
