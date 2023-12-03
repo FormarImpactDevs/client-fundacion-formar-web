@@ -28,7 +28,7 @@ export const ProductDetail = () => {
           <img src={image3} alt="" />
         </div>
         <div className="productDetail-image-major">
-          <img src={product.images[0]} alt="Imagen principal" />
+          <img src={"product"} alt="Imagen principal" />
         </div>
       </div>
       <div className="productDetail-info">

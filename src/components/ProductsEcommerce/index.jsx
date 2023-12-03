@@ -2,14 +2,11 @@ import { useState, useContext } from "react";
 import "./_productsEcommerce.scss";
 import Button from "@mui/material/Button";
 import { ProductContext } from "../../context/ProductContext";
+import { Link } from "react-router-dom";
 
 function ProductsEcommerce() {
-  const {
-    products,
-    productsFiltered,
-    searchProducts,
-    productsReady,
-  } = useContext(ProductContext);
+  const { products, productsFiltered, searchProducts, productsReady } =
+    useContext(ProductContext);
 
   const [imagenAmpliadaVisible, setImagenAmpliadaVisible] = useState(false);
   const [imagenAmpliadaSrc, setImagenAmpliadaSrc] = useState("");
@@ -29,16 +26,16 @@ function ProductsEcommerce() {
       <div className="product-container">
         <div className="product-grid">
           {productsReady ? (
-            <>        
+            <>
               {searchProducts.length > 0 ? (
                 searchProducts.map((producto) => (
                   <div className="product-card" key={producto.id}>
                     <img
-                    src={producto.foto_card}
-                    alt={`Imagen de ${producto.nombre}`}
-                    className="product-image"
-                    onClick={() => mostrarImagenAmpliada(producto.foto_card)}
-                  />
+                      src={producto.foto_card}
+                      alt={`Imagen de ${producto.nombre}`}
+                      className="product-image"
+                      onClick={() => mostrarImagenAmpliada(producto.foto_card)}
+                    />
 
                     <div className="product-info">
                       <h2 className="product-title">{producto.nombre}</h2>
@@ -47,6 +44,7 @@ function ProductsEcommerce() {
                       </p>
                       <p className="product-price">${producto.precio}</p>
                       <Button size="small">Agregar al carrito</Button>
+                      <Link to={`/producto/${producto.id}`}>Detalle</Link>
                     </div>
                   </div>
                 ))
@@ -73,6 +71,7 @@ function ProductsEcommerce() {
                             </p>
                             <p className="product-price">${producto.precio}</p>
                             <Button size="small">Agregar al carrito</Button>
+                            <Link to={`/producto/${producto.id}`}>Detalle</Link>
                           </div>
                         </div>
                       ))
@@ -96,6 +95,7 @@ function ProductsEcommerce() {
                             </p>
                             <p className="product-price">${producto.precio}</p>
                             <Button size="small">Agregar al carrito</Button>
+                            <Link to={`/producto/${producto.id}`}>Detalle</Link>
                           </div>
                         </div>
                       ))}

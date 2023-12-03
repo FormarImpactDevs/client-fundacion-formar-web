@@ -16,12 +16,14 @@ import { FormProductCreate } from "../pages/Admin/components/FormProducts/FormPr
 import LoginEcommerce from "../pages/LoginEcommerce";
 import { OrdersList } from "../views/OrdersList";
 import { FormUpdateOrder } from "../views/Orders/FormUpdateOrder";
+import { ProductDetail } from "../pages/ProductDetail";
 
 export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/products" element={<HomeEcommerce />} />
+      <Route path="/producto/:id" element={<ProductDetail />} />
       <Route path="/login" element={<LoginEcommerce />} />
       <Route element={<ProtectedRoute />}>
         <Route index path="/admin" element={<Admin />} />
