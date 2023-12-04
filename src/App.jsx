@@ -6,6 +6,7 @@ import { ObserverComponentProvider } from "./context/ObserverComponentProvider";
 import { ProductProvider } from "./context/ProductProvider";
 import { AuthProvider } from "./context/AuthProvider";
 import { BrowserRouter as Router } from "react-router-dom";
+import { CartProvider } from "./context/cartContext";
 
 
 function App() {
@@ -16,7 +17,9 @@ function App() {
         <ObserverComponentProvider>
           <AuthProvider> 
             <ProductProvider>
-              <AppRoutes />
+              <CartProvider>
+                <AppRoutes />
+              </CartProvider>
             </ProductProvider>
           </AuthProvider>
         </ObserverComponentProvider>

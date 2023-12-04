@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import NotFound from "../pages/NotFound";
 import { HomeEcommerce } from "../pages/HomeEcommerce";
@@ -17,6 +17,7 @@ import LoginEcommerce from "../pages/LoginEcommerce";
 import { OrdersList } from "../views/OrdersList";
 import { FormUpdateOrder } from "../views/Orders/FormUpdateOrder";
 import { ProductDetail } from "../pages/ProductDetail";
+import CartPage from "../pages/Cart";
 
 export default function AppRoutes() {
   return (
@@ -24,6 +25,7 @@ export default function AppRoutes() {
       <Route path="/" element={<Home />} />
       <Route path="/products" element={<HomeEcommerce />} />
       <Route path="/producto/:id" element={<ProductDetail />} />
+      <Route path="/mi-compra" element={<CartPage />} />
       <Route path="/login" element={<LoginEcommerce />} />
       <Route element={<ProtectedRoute />}>
         <Route index path="/admin" element={<Admin />} />
