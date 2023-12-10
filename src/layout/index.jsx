@@ -2,12 +2,13 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import "./mainLayout.scss";
 import PropTypes from "prop-types";
+import CartBadge from "../components/CartBadge";
 
 export const MainLayout = ({ children }) => {
   return (
     <div className="main">
       <Header />
-
+      <CartBadge />
       <section className="mainContainer">{children}</section>
 
       <Footer />

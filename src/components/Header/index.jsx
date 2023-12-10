@@ -3,13 +3,14 @@ import logoFormar from "../../assets/logoFormar.png";
 import "./header.scss";
 import { useState } from "react";
 import { BurguerButton } from "../BurguerButton";
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 import useObserverComponent from "../../hooks/useObserverComponent";
 import { useAuth } from "../../context/AuthProvider";
+import CartBadge from "../CartBadge";
 
-export const Header  = () => {
+export const Header = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [isSelected, setIsSelected] = useState("");
 
@@ -32,12 +33,11 @@ export const Header  = () => {
     setIsChecked(false);
   }
   const { currentUser, logout } = useAuth();
-  
+
   const handleLogout = () => {
     logout();
   };
 
-  
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -49,7 +49,6 @@ export const Header  = () => {
   };
 
   return (
-    
     <header className="topHeader">
       <nav className="topNav">
         {/* logo */}
@@ -84,9 +83,7 @@ export const Header  = () => {
             <a
               href="/#undertaking"
               id="UndertakingInclusion"
-              className={
-                undertakingIsIntersecting ? "selected" : ""
-              }
+              className={undertakingIsIntersecting ? "selected" : ""}
             >
               Emprendiendo la inclusión
             </a>
@@ -110,12 +107,22 @@ export const Header  = () => {
             </a>
           </li>
           <li className="paragraph2">
-            <Link to="/products" id="products"
-              className={isSelected === "products" ? "selected" : ""}>Productos</Link>
+            <Link
+              to="/products"
+              id="products"
+              className={isSelected === "products" ? "selected" : ""}
+            >
+              Productos
+            </Link>
           </li>
           <li className="paragraph2">
-            <Link to="/mi-compra" id="compra"
-              className={isSelected === "compra" ? "selected" : ""}>Mi compra</Link>
+            <Link
+              to="/mi-compra"
+              id="compra"
+              className={isSelected === "compra" ? "selected" : ""}
+            >
+              Mi compra
+            </Link>
           </li>
           <li className="paragraph2">
             <a
@@ -126,31 +133,37 @@ export const Header  = () => {
               Contacto
             </a>
           </li>
-          <li> 
-  <Button
-    aria-controls="simple-menu"
-    aria-haspopup="true"
-    onClick={currentUser ? handleClick : handleClick}
-  >
-    {currentUser ? (currentUser.nombre || 'Iniciar sesión') : (
-      <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
-        Iniciar sesión
-      </Link>
-    )}
-  </Button>
-  {currentUser && (
-    <Menu
-      id="simple-menu"
-      anchorEl={anchorEl}
-      keepMounted
-      open={Boolean(anchorEl)}
-      onClose={handleClose}
-    >
-      <MenuItem onClick={handleLogout}>Logout</MenuItem>
-    </Menu>
-  )}
-</li>
+          <li>
+            <Button
+              aria-controls="simple-menu"
+              aria-haspopup="true"
+              onClick={currentUser ? handleClick : handleClick}
+            >
+              {currentUser ? (
+                currentUser.nombre || "Iniciar sesión"
+              ) : (
+                <Link
+                  to="/login"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  Iniciar sesión
+                </Link>
+              )}
+            </Button>
+            {currentUser && (
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+              </Menu>
+            )}
+          </li>
         </ul>
+        <CartBadge/>
       </nav>
     </header>
   );

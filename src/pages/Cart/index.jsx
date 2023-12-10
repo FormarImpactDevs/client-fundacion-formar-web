@@ -1,22 +1,25 @@
-
-import { Grid, Typography } from '@mui/material';
-import { Button } from '../../components/Button';
-import CartItemsList from './CartItemList';
-import CartSummary from './CartSummary';
-import { useCart } from '../../context/cartContext';
+import { Button, Grid, Typography } from "@mui/material";
+import CartItemsList from "./CartItemList";
+import CartSummary from "./CartSummary";
+import { useCart } from "../../context/cartContext";
+import { Link } from "react-router-dom";
 
 const CartPage = () => {
-  const { carritoState } = useCart()
+  const { carritoState, dispatch } = useCart();
   const { productos } = carritoState;
 
   const handleRemove = (itemId) => {
     // Lógica para eliminar un elemento del carrito
-    // dispatch(deleteCartItem(itemId));
+    dispatch({ type: "QUITAR_PRODUCTO", payload: itemId });
   };
 
   const handleQuantityChange = (itemId, newQuantity) => {
     // Lógica para cambiar la cantidad de un elemento del carrito
-    // dispatch(updateCartItemQuantity(itemId, newQuantity));
+    dispatch({ type: "CAMBIAR_CANTIDAD", payload: { itemId, newQuantity } });
+  };
+
+  const clearCart = () => {
+    dispatch({ type: "VACIAR_CARRITO" });
   };
 
   const handleCheckout = () => {
@@ -25,29 +28,49 @@ const CartPage = () => {
     // history.push('/checkout');
   };
 
-  const subtotal = productos.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
+  const subtotal = productos.reduce(
+    (acc, item) => acc + item.precio * item.cantidad,
+    0
+  );
   const total = subtotal; // Puedes aplicar lógica adicional para calcular descuentos u otros costos aquí
 
   return (
-    <Grid container>
-      <Typography variant="h4" gutterBottom>
-        Carrito de Compras
-      </Typography>
+    <Grid container flexDirection={"column"} padding="10rem">
+      <Grid item>
+        <Typography variant="h2" gutterBottom>
+          Carrito de Compras
+        </Typography>
+      </Grid>
       {productos.length > 0 ? (
-        <>
-          <CartItemsList
-            cartItems={productos}
-            handleRemove={handleRemove}
-            handleQuantityChange={handleQuantityChange}
-          />
-          <CartSummary subtotal={subtotal} total={total} handleCheckout={handleCheckout} />
-        </>
+        <Grid container justifyContent="space-between">
+          <Grid item paddingTop={2}>
+            <CartItemsList
+              cartItems={productos}
+              handleRemove={handleRemove}
+              handleQuantityChange={handleQuantityChange}
+            />
+          </Grid>
+          <Grid item>
+            <CartSummary
+              subtotal={subtotal}
+              total={total}
+              handleCheckout={handleCheckout}
+            />
+          </Grid>
+        </Grid>
       ) : (
         <>
-          <Typography variant="subtitle1">No hay productos en el carrito</Typography>
-          <Button variant="contained" color="primary">
-            Ir a Productos
-          </Button>
+          <Grid item padding={10}>
+            <Typography variant="subtitle1" textAlign="center">
+              No hay productos en el carrito
+            </Typography>
+          </Grid>
+
+          <Grid item>
+            <Button variant="contained" color="primary">
+              <Link to="/products">Ir a Productos</Link>
+            </Button>
+          </Grid>
         </>
       )}
     </Grid>

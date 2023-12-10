@@ -22,11 +22,11 @@ const CartItem = ({ item, handleRemove, handleQuantityChange }) => {
       <TableCell>${precio}</TableCell>
       <TableCell>
         <Box display="flex" alignItems="center">
-          <IconButton onClick={() => handleQuantityChange(item.id, cantidad - 1)} disabled={cantidad <= 1}>
+          <IconButton onClick={() => handleQuantityChange(item.id, cantidad - 1)} /*  disabled={cantidad <= 1} */>
             -
           </IconButton>
           <Typography variant="body1">{cantidad}</Typography>
-          <IconButton onClick={() => handleQuantityChange(item.id, cantidad + 1)} disabled={cantidad >= item.stock}>
+          <IconButton onClick={() => handleQuantityChange(item.id, cantidad + 1)} /* disabled={cantidad >= item.stock} */>
             +
           </IconButton>
         </Box>

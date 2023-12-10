@@ -27,23 +27,14 @@ const cartReducer = (state, action) => {
         };
       }
 
-    case 'INCREMENTAR_CANTIDAD':
+    case 'CAMBIAR_CANTIDAD':
       // Lógica para incrementar la cantidad de un producto en el carrito
-      const idIncrementar = action.payload;
+      const idProductoAModificarCantidad = action.payload.itemId;
+      const nuevaCantidad = action.payload.newQuantity;
       return {
         ...state,
         productos: state.productos.map(item =>
-          item.id === idIncrementar ? { ...item, cantidad: item.cantidad + 1 } : item
-        ),
-      };
-
-    case 'DECREMENTAR_CANTIDAD':
-      // Lógica para decrementar la cantidad de un producto en el carrito
-      const idDecrementar = action.payload;
-      return {
-        ...state,
-        productos: state.productos.map(item =>
-          item.id === idDecrementar ? { ...item, cantidad: item.cantidad - 1 } : item
+          item.id === idProductoAModificarCantidad ? { ...item, cantidad: nuevaCantidad } : item
         ),
       };
 
