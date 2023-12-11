@@ -37,4 +37,14 @@ export const updateOrderService = async (orderNumber, orderData) => {
   }
 };
 
+export const confirmOrderService = async (orderData) => {
+  try {
+    const url = `${apiUrl}orders`;
+    const { data } = await axios.post(url, orderData);
+    return data || {};
+  } catch (error) {
+    console.error("Hubo un error al confirmar la orden.", error);
+    throw new Error("Error al confirmar la orden");
+  }
+};
 

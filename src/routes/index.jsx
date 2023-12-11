@@ -39,7 +39,10 @@ export default function AppRoutes() {
         <Route path="/admin/products/create" element={<FormProductCreate />} />
         <Route path="/admin/products/edit/:id" element={<FormProductEdit />} />
         <Route path="/admin/orders" element={<OrdersList />} />
-        <Route path="/admin/orders/edit/:orderNumber" element={<FormUpdateOrder />} />
+        <Route
+          path="/admin/orders/edit/:orderNumber"
+          element={<FormUpdateOrder />}
+        />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>

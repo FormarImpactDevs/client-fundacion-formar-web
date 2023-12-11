@@ -1,5 +1,4 @@
 import { MainLayout } from "../../layout";
-import Checkout from "../../components/Checkout/checkout";
 import { LayoutProducts } from "../../layout/LayoutProducts";
 
 export const HomeEcommerce = () => {
@@ -7,7 +6,6 @@ export const HomeEcommerce = () => {
     <>
       <MainLayout>
         <LayoutProducts />
-        {/* <Checkout /> */}
       </MainLayout>
     </>
   );

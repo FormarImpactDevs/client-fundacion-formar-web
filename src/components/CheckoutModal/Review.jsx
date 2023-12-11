@@ -4,6 +4,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
+import { useOrder } from '../../context/orderContext';
 
 
 const products = [
@@ -38,16 +39,39 @@ const payments = [
 ];
 
 export default function Review() {
+  const { ordenState } = useOrder();
+  const {
+    tipo_de_entrega,
+    client_data /* {
+      firstName: "",
+      mail: "",
+      lastName: "",
+      phone: "",
+      dni: "",
+      domicilio: {
+        calle: "",
+        numero: "",
+        piso: "",
+        depto: "",
+        localidad: "",
+        provincia: "",
+      }, */
+    ,
+    punto_retiro_id,
+    detalle_pedido,
+  } = ordenState;
+
+
   return (
     <>
       <Typography variant="h6" gutterBottom>
        Resumen del pedido
       </Typography>
       <List disablePadding>
-        {products.map((product) => (
-          <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
+        {detalle_pedido.map((product) => (
+          <ListItem key={product.nombre} sx={{ py: 1, px: 0 }}>
+            <ListItemText primary={product.nombre} secondary={product.descripcion} />
+            <Typography variant="body2">{product.precio}</Typography>
           </ListItem>
         ))}
         <ListItem sx={{ py: 1, px: 0 }}>

@@ -116,15 +116,6 @@ export const Header = () => {
             </Link>
           </li>
           <li className="paragraph2">
-            <Link
-              to="/mi-compra"
-              id="compra"
-              className={isSelected === "compra" ? "selected" : ""}
-            >
-              Mi compra
-            </Link>
-          </li>
-          <li className="paragraph2">
             <a
               href="/#contact"
               id="Contact"
