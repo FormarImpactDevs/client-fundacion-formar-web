@@ -30,7 +30,7 @@ const CartPage = () => {
   };
 
   const subtotal = productos.reduce(
-    (acc, item) => acc + item.precio * item.cantidad,
+    (acc, item) => acc + item.precio * item.quantity,
     0
   );
   const total = subtotal; // Puedes aplicar lógica adicional para calcular descuentos u otros costos aquí

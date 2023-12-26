@@ -109,7 +109,7 @@ export const OrderProvider = ({ children }) => {
 
       const confirmedOrder = await confirmOrderService(orderData);
 
-      // Aquí puedes manejar la respuesta o realizar otras acciones después de confirmar la orden
+      if(confirmedOrder.link) window.location.href = confirmedOrder.link
 
     } catch (error) {
       // Manejar errores en la confirmación de la orden

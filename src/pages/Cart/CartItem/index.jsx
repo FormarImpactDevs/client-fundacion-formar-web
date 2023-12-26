@@ -11,8 +11,8 @@ import {
 import PropTypes from "prop-types";
 
 const CartItem = ({ item, handleRemove, handleQuantityChange }) => {
-  const { nombre, precio, cantidad, images } = item;
-  const total = cantidad * precio;
+  const { nombre, precio, quantity, images } = item;
+  const total = quantity * precio;
 
   return (
     <TableRow>
@@ -30,15 +30,15 @@ const CartItem = ({ item, handleRemove, handleQuantityChange }) => {
         <Box display="flex" alignItems="center">
           <IconButton
             onClick={() =>
-              handleQuantityChange(item.id, cantidad - 1)
+              handleQuantityChange(item.id, quantity - 1)
             } /*  disabled={cantidad <= 1} */
           >
             -
           </IconButton>
-          <Typography variant="body1">{cantidad}</Typography>
+          <Typography variant="body1">{quantity}</Typography>
           <IconButton
             onClick={() =>
-              handleQuantityChange(item.id, cantidad + 1)
+              handleQuantityChange(item.id, quantity + 1)
             } /* disabled={cantidad >= item.stock} */
           >
             +
@@ -60,7 +60,7 @@ CartItem.propTypes = {
     id: PropTypes.number.isRequired,
     nombre: PropTypes.string.isRequired,
     precio: PropTypes.number.isRequired,
-    cantidad: PropTypes.number.isRequired,
+    quantity: PropTypes.number.isRequired,
     stock: PropTypes.number.isRequired,
     images: PropTypes.arrayOf(
       PropTypes.shape({

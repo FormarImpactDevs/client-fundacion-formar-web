@@ -9,6 +9,7 @@ const cartReducer = (state, action) => {
     case "AGREGAR_PRODUCTO": {
       // Lógica para agregar productos al carrito
       const productoAAgregar = action.payload;
+      productoAAgregar.unit_price = productoAAgregar.precio
       // Verificar si el producto ya está en el carrito
       const existeProducto = state.productos.find(
         (item) => item.id === productoAAgregar.id
@@ -18,14 +19,14 @@ const cartReducer = (state, action) => {
           ...state,
           productos: state.productos.map((item) =>
             item.id === productoAAgregar.id
-              ? { ...item, cantidad: item.cantidad + 1 }
+              ? { ...item, quantity: item.quantity + 1 }
               : item
           ),
         };
       } else {
         return {
           ...state,
-          productos: [...state.productos, { ...productoAAgregar, cantidad: 1 }],
+          productos: [...state.productos, { ...productoAAgregar, quantity: 1 }],
         };
       }
     }
@@ -36,7 +37,7 @@ const cartReducer = (state, action) => {
       return {
         ...state,
         productos: state.productos.map((item) =>
-          item.id === itemId ? { ...item, cantidad: newQuantity } : item
+          item.id === itemId ? { ...item, quantity: newQuantity } : item
         ),
       };
     }

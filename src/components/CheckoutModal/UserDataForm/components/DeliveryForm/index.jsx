@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid, TextField } from "@mui/material";
+import { Grid, TextField, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import { useOrder } from "../../../../../context/orderContext";
 
@@ -43,7 +43,14 @@ export default function DeliveryForm() {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} sm={6}>
+      <Grid item>
+        <Typography variant="h3" textAlign="center" fontWeight="bold">
+          Te contactaremos a la brevedad para coordinar la entrega del producto.
+          El envío se hace por Correo Argentino y se suma al precio del
+          producto.
+        </Typography>
+      </Grid>
+      {/*  <Grid item xs={12} sm={6}>
         <TextField
           required
           id="calle"
@@ -120,7 +127,7 @@ export default function DeliveryForm() {
           error={!!errors.provincia}
           helperText={errors.provincia}
         />
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 }

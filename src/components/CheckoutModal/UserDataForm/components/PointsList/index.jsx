@@ -13,43 +13,42 @@ import { useEffect } from "react";
 
 export default function PointsList() {
   const [radioValue, setRadioValue] = useState();
-  const { dispatch } = useOrder()
-
+  const { dispatch } = useOrder();
 
   useEffect(() => {
     dispatch({
-        type: "CARGAR_PUNTO_DE_RETIRO",
-        payload: radioValue
-    })
-  }, [radioValue])
-  function handleRadioChange (event) {
+      type: "CARGAR_PUNTO_DE_RETIRO",
+      payload: radioValue,
+    });
+  }, [radioValue]);
+  function handleRadioChange(event) {
     setRadioValue(event.target.value);
   }
   return (
     <div className="checkboxes">
       <Box sx={{ display: "flex" }}>
-        <FormControl sx={{ m: 3 }} row component="fieldset" variant="standard">
-          <Grid
-            container
-            direction="row"
-            justifyContent="space-between" // Espacio entre las dos columnas
-            alignItems="flex-start" // Alineación superior
+        <FormControl row component="fieldset" variant="standard">
+          <RadioGroup
+            name="PuntoDeRetiroSelection"
+            value={radioValue}
+            onChange={handleRadioChange}
           >
-            <RadioGroup
-              name="PuntoDeRetiroSelection"
-              value={radioValue}
-              onChange={handleRadioChange}
+            <Grid
+              container
+              direction="row"
+              justifyContent="space-between" // Espacio entre las dos columnas
+              alignItems="center" // Alineación superior
             >
               <Grid item xs={12} sm={6}>
                 <FormControlLabel
                   row
-                  value="FlorestaCABA"
+                  value="1"
                   control={<Radio size="small" name="FlorestaCABA" />}
                   label="Floresta CABA"
                 />
                 <FormControlLabel
                   row
-                  value="Boulogne"
+                  value="2"
                   control={<Radio size="small" name="Boulogne" />}
                   label="Boulogne"
                 />
@@ -57,19 +56,19 @@ export default function PointsList() {
               <Grid item xs={12} sm={6}>
                 <FormControlLabel
                   row
-                  value="PoloDePalermo"
+                  value="3"
                   control={<Radio size="small" name="PoloDePalermo" />}
                   label="Polo de Palermo CABA"
                 />
                 <FormControlLabel
                   row
-                  value="Benavidez"
+                  value="4"
                   control={<Radio size="small" name="Benavidez" />}
                   label="Benavidez"
                 />
               </Grid>
-            </RadioGroup>
-          </Grid>
+            </Grid>
+          </RadioGroup>
         </FormControl>
       </Box>
     </div>

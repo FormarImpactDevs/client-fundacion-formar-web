@@ -87,7 +87,7 @@ export default function UserDataForm() {
     });
 
     // Validación para puntoDeRetiro
-    if (radioValue === "puntoDeRetiro" && ordenState.punto_retiro_id === null) {
+    if (radioValue === "point" && ordenState.punto_retiro_id === null) {
       newErrors.puntoDeRetiro = "Selecciona un punto de retiro";
     }
 
@@ -100,7 +100,7 @@ export default function UserDataForm() {
       return <Typography variant="h4"> Selecciona </Typography>;
     }
 
-    if (radioValue === "puntoDeRetiro") return <PointsList />;
+    if (radioValue === "point") return <PointsList />;
     if (radioValue === "delivery") return <DeliveryForm />;
   };
 
@@ -178,8 +178,8 @@ export default function UserDataForm() {
             para coordinar la entrega.
           </Typography>
         </Grid>
-        <Grid>
-          <FormControl>
+        <Grid item width={"100%"}>
+          <FormControl fullWidth >
             <RadioGroup
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
@@ -191,11 +191,10 @@ export default function UserDataForm() {
                 direction="row"
                 justifyContent="center"
                 alignItems="center"
-                sx={{ ml: 3 }}
               >
                 <Grid item xs={12} sm={5}>
                   <FormControlLabel
-                    value="puntoDeRetiro"
+                    value="point"
                     control={<Radio size="small" />}
                     label="Punto de retiro"
                     labelPlacement="end"
