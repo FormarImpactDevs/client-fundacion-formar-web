@@ -19,6 +19,7 @@ import { EquipoProgramando } from "../../components/TeamProgramming";
 
 import useIntersection from "../../hooks/useIntersection";
 import useObserverComponent from "../../hooks/useObserverComponent";
+import EnterpisesGallery from "../../views/EnterpisesGallery";
 
 
 export default function Home() {
@@ -98,6 +99,7 @@ export default function Home() {
             : setUndertakingIsIntersecting(false)}
           <Emprendiendo />
         </div>
+        <EnterpisesGallery/>
         {/* Aliados */}
         <Aliados />
         <EquipoEmprendiendo />
