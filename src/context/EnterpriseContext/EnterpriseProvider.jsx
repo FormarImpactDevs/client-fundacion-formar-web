@@ -1,10 +1,11 @@
-import { useEffect, useState, createContext } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { getEnterprisesService } from "../services/enterprises.service";
+import { EnterpriseContext } from "./EnterpriseContext";
 
-const EnterprisesContext = createContext();
+/* const EnterprisesContext = createContext(); */
 
-const EnterprisesProvider = ({ children }) => {
+export const EnterprisesProvider = ({ children }) => {
   const [enterprises, setEnterprises] = useState([]);
 
   const getEnterprises = async () => {
@@ -21,16 +22,12 @@ const EnterprisesProvider = ({ children }) => {
   }, []);
 
   return (
-    <EnterprisesContext.Provider value={enterprises}>
+    <EnterpriseContext.Provider value={enterprises}>
       {children}
-    </EnterprisesContext.Provider>
+    </EnterpriseContext.Provider>
   );
 };
 
 EnterprisesProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
-
-export { EnterprisesContext, EnterprisesProvider };
-
-/* export { EnterprisesContext}; */

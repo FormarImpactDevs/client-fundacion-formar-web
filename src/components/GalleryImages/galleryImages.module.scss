@@ -34,7 +34,7 @@
       .img {
         max-width: 100%;
         display: block;
-        outline: 2px solid #fff;
+        outline: 2px solid $white;
         outline-offset: -10px;
         background-color: $primary-color;
         /* transition: all ease-in-out 2s; */
@@ -51,14 +51,14 @@
         top: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 103, 123, 0.7);
+        background: rgba(117, 170, 219, 0.9);
         transition: all 400ms ease-out;
         opacity: 0;
         visibility: hidden;
         text-align: center;
 
         h3 {
-          color: #fff;
+          color: $white;
           font-weight: 400;
           margin-bottom: 120px;
           transition: all 400ms ease-out;
@@ -66,11 +66,11 @@
         }
 
         p {
-          color: #fff;
-          font-size: 15px;
+          color: $white;
+          font-size: 14px;
           line-height: 1.5;
           width: 100%;
-          max-width: 220px;
+          max-width: 190px;
           margin: auto;
         }
       }
