@@ -3,7 +3,7 @@
 
 .container {
   background-color: $white;
-  margin: 1em;
+   margin: 2em 1em;
 
   .gallery {
     columns: 5 200px;
@@ -18,7 +18,7 @@
       visibility: visible;
 
       h3 {
-        margin-top: 70px;
+        margin-top: 35px;
         margin-bottom: 15px;
       }
 
@@ -60,7 +60,7 @@
         h3 {
           color: $white;
           font-weight: 400;
-          margin-bottom: 120px;
+          margin-bottom: 150px;
           transition: all 400ms ease-out;
           margin-top: 30px;
         }

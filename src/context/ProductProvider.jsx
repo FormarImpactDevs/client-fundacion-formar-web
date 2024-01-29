@@ -64,7 +64,7 @@ export const ProductProvider = ({ children }) => {
   }, []);
 
   // Lista de categorías
-  const getCategories = async () => {
+/*   const getCategories = async () => {
     try {
       const CategoriesData = await getCategoriesService();
       setCategories(CategoriesData);
@@ -83,7 +83,29 @@ export const ProductProvider = ({ children }) => {
 
   useEffect(() => {
     getCategories();
-  }, []);
+  }, []); */
+
+  // Productos de un emprendimiento por id
+  const EmprendimientosProducts = async (enterpriseId) => {
+    if (enterpriseId) {
+      try {
+        setProductsFiltered([]); // Limpia el array antes de agregar nuevos productos
+
+        const ProductsData = await getProductsService();
+        let filterProducts = ProductsData.filter((product) =>
+         /*  enterpriseId.includes(product.emprendimientos_id) */
+         product.emprendimientos_id == enterpriseId
+        );
+        setProductsFiltered(filterProducts.flat());
+      } catch (error) {
+        setProductsFiltered([]);
+        console.log(error);
+      }
+    } else {
+      setProductsFiltered([]);
+    }
+  }
+  
 
   // Lista de los productos filtrados por categoría
   const [categoryState, setCategoryState] = useState({});
@@ -94,21 +116,17 @@ export const ProductProvider = ({ children }) => {
       try {
         setProductsFiltered([]); // Limpia el array antes de agregar nuevos productos
 
-        const promises = categoryId.map(async (category) => {
-          const result = await getCategoryById(category);
-          return result.products;
-        });
-
-        const products = await Promise.all(promises);
-        setProductsFiltered(products.flat());
-        console.log(productsFiltered);
+        const ProductsData = await getProductsService();
+        let filterProducts = ProductsData.filter((product) =>
+          categoryId.includes(product.categoria_id)
+        );
+        setProductsFiltered(filterProducts.flat());
       } catch (error) {
         setProductsFiltered([]);
         console.log(error);
       }
     } else {
       setProductsFiltered([]);
-      console.error("No hay nada");
     }
   };
 
@@ -177,14 +195,12 @@ export const ProductProvider = ({ children }) => {
     setValueInputSearch,
     searchProducts,
     productsReady,
-  }
+
+    EmprendimientosProducts
+  };
 
   return (
-    <ProductContext.Provider
-      value={values}
-    >
-      {children}
-    </ProductContext.Provider>
+    <ProductContext.Provider value={values}>{children}</ProductContext.Provider>
   );
 };
 

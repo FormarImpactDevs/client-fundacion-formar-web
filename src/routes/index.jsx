@@ -24,6 +24,7 @@ export default function AppRoutes() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/products" element={<HomeEcommerce />} />
+      <Route path="/products?emprendimiento=/:emprendimientoId" element={<HomeEcommerce />} />
       <Route path="/producto/:id" element={<ProductDetail />} />
       <Route path="/mi-compra" element={<CartPage />} />
       <Route path="/login" element={<LoginEcommerce />} />
