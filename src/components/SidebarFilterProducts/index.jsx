@@ -142,9 +142,9 @@ export const SidebarFilterProducts = () => {
             </FormGroup>
           </FormControl>
         </Box>
-        <Link to="/">
+        <a href="/#enterprises">
           <Button variant="outlined">Conoce nuestros Emprendimientos</Button>
-        </Link>
+        </a>
       </div>
     );
   };

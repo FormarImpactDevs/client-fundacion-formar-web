@@ -23,7 +23,7 @@ const EnterpisesGallery = () => {
   }, []);
 
   return (
-    <section className="container">
+    <section className="container pt-5">
       <Title text={"Conocé los emprendimientos que acompañamos"}/>
       <GalleryImages array={enterprises} />
     </section>
