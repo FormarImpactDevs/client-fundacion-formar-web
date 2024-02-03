@@ -18,7 +18,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 
-import "sweetalert2/src/sweetalert2.scss";
+/* import "sweetalert2/src/sweetalert2.scss"; */
 import styles from "./enterprisesList.module.scss";
 import { ButtonGoToBack } from "../../components/ButtonGoToBack";
 

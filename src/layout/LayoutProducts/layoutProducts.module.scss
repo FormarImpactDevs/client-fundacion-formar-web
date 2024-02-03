@@ -3,9 +3,9 @@
 
 .container {
   display: grid;
-  grid-template-columns: 1fr 3fr; // 25% y 75%
+  grid-template-columns: 1fr 5fr; 
   gap: 1px; 
-  padding: 6%;
+  padding: 1em;
   @include mobile {
     grid-template-columns: auto;    
     padding: 2px;
@@ -14,14 +14,14 @@
 }
 
 .sidebar {
-  // Estilos para la primera columna (25%)
+  // Estilos para la primera columna 
   background-color: $white;
   border-right: 1px solid #ddd;
   padding: 10px;
 }
 
 .mainContent {
-  // Estilos para la segunda columna (75%)
+  // Estilos para la segunda columna
   background-color: #ffffff;
   padding: 20px;
 }

@@ -21,7 +21,7 @@ const EnterprisesProvider = ({ children }) => {
   }, []);
 
   return (
-    <EnterprisesContext.Provider value={{ enterprises }}>
+    <EnterprisesContext.Provider value={enterprises}>
       {children}
     </EnterprisesContext.Provider>
   );

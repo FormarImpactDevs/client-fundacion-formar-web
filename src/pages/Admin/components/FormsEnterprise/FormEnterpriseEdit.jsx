@@ -1,4 +1,6 @@
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+/* MUI */
 import {
   Button,
   Box,
@@ -8,20 +10,20 @@ import {
   TextField,
   styled,
 } from "@mui/material";
+
+/* styles */
 import "../../../../components/Form/formDates.scss";
-
-import Swal from "sweetalert2";
-
-/* Formik y Yup */
-import { /* Field, Form, */ Formik, useFormik } from "formik";
-import * as Yup from "yup";
-import { useEffect, useState } from "react";
+/* Componentes */
 import InputFileUpload from "../../../../components/InputFileUpload";
+import Swal from "sweetalert2";
+/* Formik y Yup */
+import { Formik, useFormik } from "formik";
+import * as Yup from "yup";
+/* Servicios */
 import {
   getEnterpriseServiceById,
   updateEnterpriseService,
 } from "../../../../services/enterprises.service";
-import { useNavigate } from "react-router-dom";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -43,10 +45,9 @@ const CssTextField = styled(TextField)({
   },
 });
 
-const apiImgUrl = import.meta.env.VITE_BASE_IMG_ENTERPRISE_API_URL;
 export const FormEnterpriseEdit = () => {
   const { id } = useParams();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [enterprise, setEnterprise] = useState([]);
 
   const getEnterpriseById = async (id) => {
@@ -58,8 +59,8 @@ export const FormEnterpriseEdit = () => {
       setEnterprise({
         nombre,
         descripcion,
-        foto_card: `${apiImgUrl}/${foto_card}`,
-        foto_emprendimiento: `${apiImgUrl}/${foto_emprendimiento}`,
+        foto_card,
+        foto_emprendimiento,
       });
     } catch (error) {
       console.log(error);
@@ -74,7 +75,7 @@ export const FormEnterpriseEdit = () => {
 
   const initialValues = {
     id: id,
-    nombre: nombre,
+    nombre: nombre ? nombre : "",
     descripcion: descripcion,
     foto_card: foto_card,
     foto_emprendimiento: foto_emprendimiento,
@@ -103,7 +104,7 @@ export const FormEnterpriseEdit = () => {
         text: data.message,
       }).then(() => {
         navigate("/admin/enterprises");
-      })
+      });
     } catch (error) {
       if (error) {
         Swal.fire({
@@ -118,7 +119,7 @@ export const FormEnterpriseEdit = () => {
   const { handleSubmit, values, setFieldValue, errors } = useFormik({
     validateOnBlur: false,
 
-    validateOnChange: false,
+    validateOnChange: true,
 
     initialValues: initialValues,
 
@@ -188,8 +189,8 @@ export const FormEnterpriseEdit = () => {
                     id="nombre"
                     label="Nombre del emprendimiento"
                     name="nombre"
+                    value={values.nombre}
                     defaultValue={nombre}
-                    /* value={nombre} */
                     error={errors?.nombre && true}
                     helperText={errors?.nombre ? errors.nombre : ""}
                     onChange={(e) => setFieldValue("nombre", e.target.value)}
@@ -243,8 +244,23 @@ export const FormEnterpriseEdit = () => {
             </Grid>
           </Box>
         </Formik>
-        <div className="imgFormEdit">
-          <img src={foto_card} alt="" />
+        <div className="containerImagenToEdit">
+          <h2 className="subtitle">Imagenes actuales</h2>
+          <figure className="imgFormEdit">
+            <img src={foto_card} alt={`Imagen del emprendimiento ${nombre}`} />
+            <figcaption>
+              <p>Foto de tarjeta</p>
+            </figcaption>
+          </figure>
+          <figure className="imgFormEdit">
+            <img
+              src={foto_emprendimiento}
+              alt={`Imagen del emprendimiento ${nombre}`}
+            />
+            <figcaption>
+              <p>Foto del emprendimiento</p>
+            </figcaption>
+          </figure>
         </div>
       </Box>
     </Container>
