@@ -4,12 +4,20 @@ import ProductsEcommerce from "../../components/ProductsEcommerce";
 import { SidebarFilterProducts } from "../../components/SidebarFilterProducts";
 import styles from "./layoutProducts.module.scss";
 
-export const LayoutProducts = ({info}) => {
-/*   const { search } = useLocation();
+export const LayoutProducts = ({ info }) => {
+  /*   const { search } = useLocation();
   console.log(useLocation());
   console.log(search); */
-
-  return (
+  if (info) {
+    return (
+      <div>
+        <div className={styles.mainContent}>
+          <ProductsEcommerce emprendimientoId={info}/>
+        </div>
+      </div>
+    );
+  } else {
+    return (
       <div className={styles.container}>
         <div className={styles.sidebar}>
           <SidebarFilterProducts />
@@ -20,7 +28,8 @@ export const LayoutProducts = ({info}) => {
           <ProductsEcommerce />
         </div>
       </div>
-  );
+    );
+  }
 };
 
 LayoutProducts.propTypes = {
