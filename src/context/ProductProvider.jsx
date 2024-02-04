@@ -108,7 +108,6 @@ export const ProductProvider = ({ children }) => {
       }
     } else {
       setProductsFiltered([]);
-      console.error("No hay nada");
     }
   };
 

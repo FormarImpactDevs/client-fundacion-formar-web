@@ -27,19 +27,19 @@ export const AuthProvider = ({ children }) => {
 
  
 
-  const login = async(data) => {
+  const login = async (data) => {
     try {
-      console.log(data)
+      console.log(data);
       const token = await userLoginService(data);
-      window.localStorage.setItem("_token", token)
-      console.log(token)
-
-        const decodedToken = await token ? jwtDecode(token) : null;
-        const { user } = decodedToken ? decodedToken.payload : null;
-        setCurrentUser(user);
-
+      window.localStorage.setItem("_token", token);
+      console.log(token);
+  
+      const decodedToken = await token ? jwtDecode(token) : null;
+      const { user } = decodedToken ? decodedToken.payload : null;
+      setCurrentUser(user);
     } catch (error) {
       console.error("Error de inicio de sesión:", error);
+      throw error; 
     }
   };
 
