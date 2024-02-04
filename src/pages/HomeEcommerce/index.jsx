@@ -2,7 +2,7 @@ import { MainLayout } from "../../layout";
 import ProductsEcommerce from '../../components/ProductsEcommerce';
 import { ProductDetail } from '../ProductDetail';
 import { ProductCart } from "../../components/ProductCart";
-import Checkout from "../../components/Checkout/checkout";
+//import Checkout from "../../components/Checkout/checkout";
 import { LayoutProducts } from "../../layout/LayoutProducts";
 
 export const HomeEcommerce = () => {
@@ -13,7 +13,6 @@ export const HomeEcommerce = () => {
         <ProductDetail/>
         <ProductCart/>
         <LayoutProducts />
-        <Checkout />
       </MainLayout>
     </>
   );

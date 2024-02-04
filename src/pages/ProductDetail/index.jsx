@@ -1,23 +1,29 @@
 import "./_productDetail.scss";
-import Button from "@mui/material/Button";
 import image1 from "../../assets/about1.jpg";
 import image2 from "../../assets/about2.jpg";
 import image3 from "../../assets/about3.jpg";
 import { useParams } from "react-router-dom";
 import useProducts from "../../hooks/useProducts";
 import { useEffect } from "react";
-import { CircularProgress } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
+import { useCart } from "../../context/cartContext";
 
 export const ProductDetail = () => {
   const { id } = useParams();
 
-  const { getProductById, product } = useProducts()
+  const { dispatch } = useCart();
+
+  const { getProductById, product } = useProducts();
 
   useEffect(() => {
-    getProductById(id)
-  }, [])
+    getProductById(id);
+  }, []);
 
-  if(!product) return <CircularProgress />
+  function agregarAlCarrito(producto) {
+    dispatch({ type: "AGREGAR_PRODUCTO", payload: producto });
+  }
+
+  if (!product) return <CircularProgress />;
 
   return (
     <div className="productDetail-container">
@@ -28,32 +34,25 @@ export const ProductDetail = () => {
           <img src={image3} alt="" />
         </div>
         <div className="productDetail-image-major">
-          <img src={product.images[0]} alt="Imagen principal" />
+          <img src={"product"} alt="Imagen principal" />
         </div>
       </div>
       <div className="productDetail-info">
         <h2 className="subtitle">{product?.nombre}</h2>
-        <p className="paragraph2">
-          {product.descripcion}
-        </p>
+        <p className="paragraph2">{product.descripcion}</p>
         <p className="paragraph1"> Elaborado por EMPRENDIMIENTO</p>
         <h3 className="subtitle">$10000</h3>
-        <form action="">
-          <p className="paragraph2">Cantidad</p>
-          <input type="number" name="quantity" id="Cantidad"></input>
-        </form>
-        <a href="">
-          <Button
-            variant="contained"
-            size="large"
-            className="button"
-            sx={{
-              color: "secondary.light",
-            }}
-          >
-            Agregar al carrito
-          </Button>
-        </a>
+        <Button
+          variant="contained"
+          size="large"
+          className="button"
+          sx={{
+            color: "secondary.light",
+          }}
+          onClick={agregarAlCarrito(product)}
+        >
+          Agregar al carrito
+        </Button>
       </div>
     </div>
   );

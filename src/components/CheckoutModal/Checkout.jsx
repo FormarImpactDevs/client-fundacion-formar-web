@@ -10,26 +10,23 @@ Step,
 StepLabel,
 Button,
 Typography,
-Radio,
-RadioGroup,
-FormControl  }
+  }
 from '@mui/material';
-import AddressForm from './AddressForm';
-import PaymentForm from './PaymentForm';
+import UserDataForm from './UserDataForm/Index';
 import Review from './Review';
+import { useOrder } from '../../context/orderContext';
 
 
 
-const steps = ['Direccion de envio', 'Detalles de pago', 'Orden'];
+const steps = ['Direccion de envio', 'Confirmar'];
 
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <AddressForm />;
+      return <UserDataForm />;
     case 1:
-      return <PaymentForm />;
-    case 2:
       return <Review />;
+
     default:
       throw new Error('Unknown step');
   }
@@ -37,9 +34,14 @@ function getStepContent(step) {
 
 export default function Checkout() {
   const [activeStep, setActiveStep] = useState(0);
-  
+  const { confirmOrder } = useOrder()
 
   const handleNext = () => {
+    if(activeStep === steps.length - 1) {
+      confirmOrder()
+      return;
+    }
+    
     setActiveStep(activeStep + 1);
   };
 
@@ -94,7 +96,7 @@ export default function Checkout() {
                   onClick={handleNext}
                   sx={{ mt: 3, ml: 1 }}
                 >
-                  {activeStep === steps.length - 1 ? 'Place order' : 'Siguiente'}
+                  {activeStep === steps.length - 1 ? 'Confirmar y pagar' : 'Siguiente'}
                 </Button>
               </Box>
             </React.Fragment>

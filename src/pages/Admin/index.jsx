@@ -19,7 +19,7 @@ export const Admin = () => {
       url: img,
       title: 'Productos',
       width: '45%',
-      rute: '/admin/'
+      rute: '/admin/products'
     },
     {
       url: img,
@@ -29,9 +29,9 @@ export const Admin = () => {
     },
     {
       url: img,
-      title: 'Usuarios',
+      title: 'Pedidos',
       width: '45%',
-      rute: '/admin/'
+      rute: '/admin/orders'
     },
   ];
 

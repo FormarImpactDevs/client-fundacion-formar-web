@@ -2,18 +2,17 @@ import { useState, useContext } from "react";
 import "./_productsEcommerce.scss";
 import Button from "@mui/material/Button";
 import { ProductContext } from "../../context/ProductContext";
+import { Link } from "react-router-dom";
+import { useCart } from "../../context/cartContext";
 
 function ProductsEcommerce() {
-  const {
-    products,
-    productsFiltered,
-    searchProducts,
-    productsReady,
-  } = useContext(ProductContext);
+  const { products, productsFiltered, searchProducts, productsReady } =
+    useContext(ProductContext);
 
   const [imagenAmpliadaVisible, setImagenAmpliadaVisible] = useState(false);
   const [imagenAmpliadaSrc, setImagenAmpliadaSrc] = useState("");
 
+  const { dispatch } = useCart();
   const mostrarImagenAmpliada = (imagen) => {
     setImagenAmpliadaSrc(imagen);
     setImagenAmpliadaVisible(true);
@@ -23,22 +22,26 @@ function ProductsEcommerce() {
     setImagenAmpliadaVisible(false);
   };
 
+  function agregarAlCarrito (producto) {
+    dispatch({ type: 'AGREGAR_PRODUCTO', payload: producto });
+  }
+
   return (
     <div>
       <h1 className="title">Productos</h1>
       <div className="product-container">
         <div className="product-grid">
           {productsReady ? (
-            <>        
+            <>
               {searchProducts.length > 0 ? (
                 searchProducts.map((producto) => (
                   <div className="product-card" key={producto.id}>
                     <img
-                    src={producto.foto_card}
-                    alt={`Imagen de ${producto.nombre}`}
-                    className="product-image"
-                    onClick={() => mostrarImagenAmpliada(producto.foto_card)}
-                  />
+                      src={producto.images[0]?.imagen}
+                      alt={`Imagen de ${producto.nombre}`}
+                      className="product-image"
+                      onClick={() => mostrarImagenAmpliada(producto.images[0]?.imagen)}
+                    />
 
                     <div className="product-info">
                       <h2 className="product-title">{producto.nombre}</h2>
@@ -46,7 +49,8 @@ function ProductsEcommerce() {
                         {producto.descripcion}
                       </p>
                       <p className="product-price">${producto.precio}</p>
-                      <Button size="small">Agregar al carrito</Button>
+                      <Button size="small" onClick={() => agregarAlCarrito(producto)}>Agregar al carrito</Button>
+                      <Link to={`/producto/${producto.id}`}>Detalle</Link>
                     </div>
                   </div>
                 ))
@@ -56,12 +60,12 @@ function ProductsEcommerce() {
                     ? productsFiltered.map((producto) => (
                         <div className="product-card" key={producto.id}>
                           <img
-                            src="https://tn.com.ar/resizer/a8ChJiW4dV2W36MFlDWu31XjerM=/767x0/smart/filters:format(webp)/cloudfront-us-east-1.images.arcpublishing.com/artear/Y4SPWR4KY5F6PFY5PBJOBK46FU.jpg"
+                            src={producto.images[0]?.imagen}
                             alt={`Imagen de ${producto.nombre}`}
                             className="product-image"
                             onClick={() =>
                               mostrarImagenAmpliada(
-                                "https://tn.com.ar/resizer/a8ChJiW4dV2W36MFlDWu31XjerM=/767x0/smart/filters:format(webp)/cloudfront-us-east-1.images.arcpublishing.com/artear/Y4SPWR4KY5F6PFY5PBJOBK46FU.jpg"
+                                producto.images[0]?.imagen
                               )
                             }
                           />
@@ -72,19 +76,20 @@ function ProductsEcommerce() {
                               {producto.descripcion}
                             </p>
                             <p className="product-price">${producto.precio}</p>
-                            <Button size="small">Agregar al carrito</Button>
+                            <Button size="small" onClick={() => agregarAlCarrito(producto)}>Agregar al carrito</Button>
+                            <Link to={`/producto/${producto.id}`}>Detalle</Link>
                           </div>
                         </div>
                       ))
                     : products.map((producto) => (
                         <div className="product-card" key={producto.id}>
                           <img
-                            src="https://tn.com.ar/resizer/a8ChJiW4dV2W36MFlDWu31XjerM=/767x0/smart/filters:format(webp)/cloudfront-us-east-1.images.arcpublishing.com/artear/Y4SPWR4KY5F6PFY5PBJOBK46FU.jpg"
+                            src={producto.images[0]?.imagen}
                             alt={`Imagen de ${producto.nombre}`}
                             className="product-image"
                             onClick={() =>
                               mostrarImagenAmpliada(
-                                "https://tn.com.ar/resizer/a8ChJiW4dV2W36MFlDWu31XjerM=/767x0/smart/filters:format(webp)/cloudfront-us-east-1.images.arcpublishing.com/artear/Y4SPWR4KY5F6PFY5PBJOBK46FU.jpg"
+                                producto.images[0]?.imagen
                               )
                             }
                           />
@@ -95,7 +100,8 @@ function ProductsEcommerce() {
                               {producto.descripcion}
                             </p>
                             <p className="product-price">${producto.precio}</p>
-                            <Button size="small">Agregar al carrito</Button>
+                            <Button size="small" onClick={() => agregarAlCarrito(producto)}>Agregar al carrito</Button>
+                            <Link to={`/producto/${producto.id}`}>Detalle</Link>
                           </div>
                         </div>
                       ))}
