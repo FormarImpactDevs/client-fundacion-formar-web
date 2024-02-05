@@ -1,3 +1,4 @@
+import { useEffect,useState } from "react";
 import {
   Button,
   Box,
@@ -39,6 +40,7 @@ const CssTextField = styled(TextField)({
 });
 
 export const FormEnterpriseCreate = () => {
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   /* Formik */
   const navigate = useNavigate();
 
@@ -67,13 +69,16 @@ export const FormEnterpriseCreate = () => {
 
       const data = await createEnterpriseService(formDataToSend);
 
+      // Después de enviar los datos, deshabilitar el botón nuevamente
+      setIsButtonDisabled(true);
+
       Swal.fire({
         icon: "success",
         title: "¡Emprendimiento creado!",
         text: data.message,
       }).then(() => {
-          navigate("/admin/enterprises");
-      })
+        navigate("/admin/enterprises");
+      });
     } catch (error) {
       if (error) {
         Swal.fire({
@@ -85,7 +90,7 @@ export const FormEnterpriseCreate = () => {
     }
   };
 
-  const { handleSubmit, values, setFieldValue, errors } = useFormik({
+  const { handleSubmit, values, setFieldValue, errors, isValid } = useFormik({
     validateOnBlur: false,
 
     validateOnChange: false,
@@ -96,6 +101,13 @@ export const FormEnterpriseCreate = () => {
 
     onSubmit,
   });
+  // Manejar cambios en el formulario y actualizar el estado de isButtonDisabled
+  const handleFormChange = () => {
+    setIsButtonDisabled(!isValid);
+  };
+  useEffect(() => {
+    handleFormChange();
+  }, [isValid]);
 
   return (
     <Container component="main" maxWidth="sm">
@@ -151,11 +163,7 @@ export const FormEnterpriseCreate = () => {
                   label="Nombre del emprendimiento"
                   name="nombre"
                   error={errors?.nombre && true}
-                  helperText={
-                    errors?.nombre
-                      ? errors.nombre
-                      : ""
-                  }
+                  helperText={errors?.nombre ? errors.nombre : ""}
                   onChange={(e) => setFieldValue("nombre", e.target.value)}
                 />
               </Grid>
@@ -177,11 +185,7 @@ export const FormEnterpriseCreate = () => {
                   rows={4}
                   defaultValue=""
                   error={errors?.descripcion && true}
-                  helperText={
-                    errors?.descripcion
-                      ? errors.descripcion
-                      : ""
-                  }
+                  helperText={errors?.descripcion ? errors.descripcion : ""}
                   onChange={(e) => setFieldValue("descripcion", e.target.value)}
                 />
               </Grid>
@@ -201,6 +205,7 @@ export const FormEnterpriseCreate = () => {
                   mt: 3,
                   mb: 2,
                 }}
+                disabled={isButtonDisabled}
               >
                 Guardar
               </Button>

@@ -42,7 +42,6 @@ export const EnterpriseProvider = ({ children }) => {
     try {
       const EnterpriseData = await getEnterpriseServiceById(id);
       setEnterprise(EnterpriseData);
-      console.log(EnterpriseData);
     } catch (error) {
       console.log(error);
     }

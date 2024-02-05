@@ -6,10 +6,6 @@ import {
   getProductsService,
   getProductServiceById,
 } from "../services/products.service";
-import {
-  getCategoriesService,
-  getCategoryServiceById,
-} from "../services/categories.service";
 
 export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
@@ -54,6 +50,7 @@ export const ProductProvider = ({ children }) => {
       const ProductData = await getProductServiceById(id);
       setProduct(ProductData);
       setLoading(false);
+      console.log(ProductData);
     } catch (error) {
       console.log(error);
     }
@@ -62,28 +59,6 @@ export const ProductProvider = ({ children }) => {
   useEffect((id) => {
     getProductById(id);
   }, []);
-
-  // Lista de categorías
-/*   const getCategories = async () => {
-    try {
-      const CategoriesData = await getCategoriesService();
-      setCategories(CategoriesData);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const getCategoryById = async (id) => {
-    try {
-      const CategoriesData = await getCategoryServiceById(id);
-      return CategoriesData;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getCategories();
-  }, []); */
 
   // Productos de un emprendimiento por id
   const EmprendimientosProducts = async (enterpriseId) => {
