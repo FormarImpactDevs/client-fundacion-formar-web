@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import {
   Button,
   Box,
@@ -23,7 +23,7 @@ import * as Yup from "yup";
 // Componentes de contexto
 import InputFileMultiple from "../../../../components/InputFileMultiple";
 /* import useProducts from "../../../../hooks/useProducts"; */
-import {ProductContext} from "../../../../context/ProductContext"
+import { ProductContext } from "../../../../context/ProductContext";
 import { CategoryContext } from "../../../../context/categoryContext/CategoryContext";
 import { EnterpriseContext } from "../../../../context/EnterpriseContext/EnterpriseContext";
 import { updateProductservice } from "../../../../services/products.service";
@@ -76,15 +76,12 @@ export const FormProductEdit = () => {
   const { id } = useParams();
   const { categories } = useContext(CategoryContext);
   const { enterprises } = useContext(EnterpriseContext);
- /*  const [isButtonDisabled, setIsButtonDisabled] = useState(true); */
 
   const navigate = useNavigate();
-  console.log(id);
   const { getProductById, product } = useContext(ProductContext);
 
   useEffect(() => {
     getProductById(id);
-    console.log(product);
   }, [id]);
 
   const initialValues = {
@@ -96,7 +93,7 @@ export const FormProductEdit = () => {
     stock: product?.stock,
     emprendimientos_id: product?.emprendimientos_id,
     categoria_id: product?.categoria_id,
-    images: product?.images,
+    images: product?.images || [],
   };
 
   const getValidationSchema = () =>
@@ -133,9 +130,6 @@ export const FormProductEdit = () => {
 
         const data = await updateProductservice(id, formDataToSend);
 
-        // Después de enviar los datos, deshabilitar el botón nuevamente
-        setIsButtonDisabled(true);
-
         Swal.fire({
           icon: "success",
           title: "¡Producto actualizado!",
@@ -155,31 +149,23 @@ export const FormProductEdit = () => {
     }
   };
 
-  const { handleSubmit, values, setFieldValue, errors, isValid, dirty } = useFormik({
-    validateOnBlur: false,
+  const { handleSubmit, values, setFieldValue, errors, isValid, dirty } =
+    useFormik({
+      validateOnBlur: false,
 
-    validateOnChange: true,
+      validateOnChange: true,
 
-    initialValues,
+      initialValues,
 
-    validationSchema: getValidationSchema(),
+      validationSchema: getValidationSchema(),
 
-    onSubmit,
-  });
-
-  // Manejar cambios en el formulario y actualizar el estado de isButtonDisabled
-/*   const handleFormChange = () => {
-    setIsButtonDisabled(!isValid);
-  };
-  useEffect(() => {
-    handleFormChange();
-  }, [isValid]); */
+      onSubmit,
+    });
 
   const handleImageChange = (name, selectedImages) => {
     setFieldValue(name, selectedImages);
   };
 
-  /*   if (!product) return <CircularProgress />; */
   return (
     <>
       <ButtonGoToBack />
@@ -204,8 +190,6 @@ export const FormProductEdit = () => {
             validationSchema={getValidationSchema()}
             onSubmit={onSubmit}
           >
-            {/*  {({ values, errors }) => ( */}
-           
             <Box
               component="form"
               noValidate
@@ -410,8 +394,19 @@ export const FormProductEdit = () => {
                 </Grid>
               </>
             </Box>
-            {/*  )} */}
           </Formik>
+          <div className="containerImagenToEdit">
+            <h2 className="subtitle">Imagenes actuales</h2>
+            {product.images?.map((image, index) => (
+              
+              <figure className="imgFormEdit" key={index}>                
+                <img src={image.imagen} alt={`Imagen del producto`} />
+                <figcaption>
+                  <p>Fotos actuales</p>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </Box>
       </Container>
     </>

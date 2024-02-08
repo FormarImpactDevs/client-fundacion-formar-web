@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 /* MUI */
 import {
@@ -21,9 +21,11 @@ import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
 /* Servicios */
 import {
-  getEnterpriseServiceById,
   updateEnterpriseService,
 } from "../../../../services/enterprises.service";
+// Componentes de contexto
+/* import useProducts from "../../../../hooks/useProducts"; */
+import { EnterpriseContext } from "../../../../context/EnterpriseContext/EnterpriseContext";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -47,39 +49,21 @@ const CssTextField = styled(TextField)({
 
 export const FormEnterpriseEdit = () => {
   const { id } = useParams();
+  const { enterprise , getEnterpriseById } = useContext(EnterpriseContext);
   const navigate = useNavigate();
-  const [enterprise, setEnterprise] = useState([]);
-
-  const getEnterpriseById = async (id) => {
-    try {
-      const EnterpriseData = await getEnterpriseServiceById(id);
-      const { nombre, descripcion, foto_card, foto_emprendimiento } =
-        EnterpriseData;
-
-      setEnterprise({
-        nombre,
-        descripcion,
-        foto_card,
-        foto_emprendimiento,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   useEffect(() => {
     getEnterpriseById(id);
   }, [id]);
 
-  const { nombre, descripcion, foto_card, foto_emprendimiento } = enterprise;
-
-  const initialValues = {
+   const initialValues = {
     id: id,
-    nombre: nombre ? nombre : "",
-    descripcion: descripcion,
-    foto_card: foto_card,
-    foto_emprendimiento: foto_emprendimiento,
+    nombre: enterprise?.nombre,
+    descripcion: enterprise?.descripcion,
+    foto_card: enterprise?.foto_card,
+    foto_emprendimiento: enterprise?.foto_emprendimiento,
   };
+
   const getValidationSchema = () =>
     Yup.lazy(() =>
       Yup.object({
@@ -116,12 +100,12 @@ export const FormEnterpriseEdit = () => {
     }
   };
 
-  const { handleSubmit, values, setFieldValue, errors } = useFormik({
+  const { handleSubmit, values, setFieldValue, errors, isValid, dirty } = useFormik({
     validateOnBlur: false,
 
     validateOnChange: true,
 
-    initialValues: initialValues,
+    initialValues,
 
     validationSchema: getValidationSchema(),
 
@@ -166,7 +150,7 @@ export const FormEnterpriseEdit = () => {
                   <InputFileUpload
                     text="Foto para la card del emprendimiento"
                     name="foto_card"
-                    values={foto_card}
+                    values={values.foto_card}
                     multiple={false}
                     required={false}
                     onChanges={setFieldValue}
@@ -176,7 +160,7 @@ export const FormEnterpriseEdit = () => {
                   <InputFileUpload
                     text="Foto del emprendimiento"
                     name="foto_emprendimiento"
-                    values={foto_emprendimiento}
+                    values={values.foto_emprendimiento}
                     multiple={false}
                     required={false}
                     onChanges={setFieldValue}
@@ -190,7 +174,6 @@ export const FormEnterpriseEdit = () => {
                     label="Nombre del emprendimiento"
                     name="nombre"
                     value={values.nombre}
-                    defaultValue={nombre}
                     error={errors?.nombre && true}
                     helperText={errors?.nombre ? errors.nombre : ""}
                     onChange={(e) => setFieldValue("nombre", e.target.value)}
@@ -212,8 +195,8 @@ export const FormEnterpriseEdit = () => {
                     name="descripcion"
                     multiline
                     rows={4}
-                    defaultValue={descripcion}
-                    /* value= */
+                    defaultValue={values.descripcion}
+                    value={values.descripcion}
                     error={errors?.descripcion && true}
                     helperText={errors?.descripcion ? errors.descripcion : ""}
                     onChange={(e) =>
@@ -237,6 +220,7 @@ export const FormEnterpriseEdit = () => {
                     mt: 3,
                     mb: 2,
                   }}
+                  disabled={!(isValid && dirty)}
                 >
                   Guardar
                 </Button>
@@ -247,15 +231,15 @@ export const FormEnterpriseEdit = () => {
         <div className="containerImagenToEdit">
           <h2 className="subtitle">Imagenes actuales</h2>
           <figure className="imgFormEdit">
-            <img src={foto_card} alt={`Imagen del emprendimiento ${nombre}`} />
+            <img src={enterprise.foto_card} alt={`Imagen del emprendimiento ${enterprise.nombre}`} />
             <figcaption>
               <p>Foto de tarjeta</p>
             </figcaption>
           </figure>
           <figure className="imgFormEdit">
             <img
-              src={foto_emprendimiento}
-              alt={`Imagen del emprendimiento ${nombre}`}
+              src={enterprise.foto_emprendimiento}
+              alt={`Imagen del emprendimiento ${enterprise.nombre}`}
             />
             <figcaption>
               <p>Foto del emprendimiento</p>

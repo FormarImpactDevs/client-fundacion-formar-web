@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import {
   Button,
   Box,
@@ -72,8 +72,6 @@ const StyledInputLabel = styled(InputLabel)({
 export const FormProductCreate = () => {
   const { categories } = useContext(CategoryContext);
   const { enterprises } = useContext(EnterpriseContext);
-
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   /* Formik */
   const navigate = useNavigate();
   const getInitialValues = () => ({
@@ -121,9 +119,6 @@ export const FormProductCreate = () => {
 
         const data = await createProductservice(formDataToSend);
 
-        // Después de enviar los datos, deshabilitar el botón nuevamente
-        setIsButtonDisabled(true);
-
         Swal.fire({
           icon: "success",
           title: "¡Producto creado!",
@@ -143,25 +138,18 @@ export const FormProductCreate = () => {
     }
   };
 
-  const { handleSubmit, values, setFieldValue, errors, isValid } = useFormik({
-    validateOnBlur: false,
+  const { handleSubmit, values, setFieldValue, errors, isValid, dirty } =
+    useFormik({
+      validateOnBlur: false,
 
-    validateOnChange: true,
+      validateOnChange: true,
 
-    initialValues: getInitialValues(),
+      initialValues: getInitialValues(),
 
-    validationSchema: getValidationSchema(),
+      validationSchema: getValidationSchema(),
 
-    onSubmit,
-  });
-
-  // Manejar cambios en el formulario y actualizar el estado de isButtonDisabled
-  const handleFormChange = () => {
-    setIsButtonDisabled(!isValid);
-  };
-  useEffect(() => {
-    handleFormChange();
-  }, [isValid]);
+      onSubmit,
+    });
 
   const handleImageChange = (name, selectedImages) => {
     setFieldValue(name, selectedImages);
@@ -366,7 +354,7 @@ export const FormProductCreate = () => {
                     mt: 3,
                     mb: 2,
                   }}
-                  disabled={isButtonDisabled}
+                  disabled={!(isValid && dirty)}
                 >
                   Guardar
                 </Button>

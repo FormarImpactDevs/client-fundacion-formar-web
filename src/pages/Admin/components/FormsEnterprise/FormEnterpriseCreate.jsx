@@ -40,7 +40,6 @@ const CssTextField = styled(TextField)({
 });
 
 export const FormEnterpriseCreate = () => {
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   /* Formik */
   const navigate = useNavigate();
 
@@ -69,9 +68,6 @@ export const FormEnterpriseCreate = () => {
 
       const data = await createEnterpriseService(formDataToSend);
 
-      // Después de enviar los datos, deshabilitar el botón nuevamente
-      setIsButtonDisabled(true);
-
       Swal.fire({
         icon: "success",
         title: "¡Emprendimiento creado!",
@@ -90,10 +86,10 @@ export const FormEnterpriseCreate = () => {
     }
   };
 
-  const { handleSubmit, values, setFieldValue, errors, isValid } = useFormik({
+  const { handleSubmit, values, setFieldValue, errors, isValid, dirty } = useFormik({
     validateOnBlur: false,
 
-    validateOnChange: false,
+    validateOnChange: true,
 
     initialValues: getInitialValues(),
 
@@ -101,13 +97,6 @@ export const FormEnterpriseCreate = () => {
 
     onSubmit,
   });
-  // Manejar cambios en el formulario y actualizar el estado de isButtonDisabled
-  const handleFormChange = () => {
-    setIsButtonDisabled(!isValid);
-  };
-  useEffect(() => {
-    handleFormChange();
-  }, [isValid]);
 
   return (
     <Container component="main" maxWidth="sm">
@@ -205,7 +194,7 @@ export const FormEnterpriseCreate = () => {
                   mt: 3,
                   mb: 2,
                 }}
-                disabled={isButtonDisabled}
+                disabled={!(isValid && dirty)}
               >
                 Guardar
               </Button>
