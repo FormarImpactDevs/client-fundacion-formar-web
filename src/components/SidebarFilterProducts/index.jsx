@@ -14,7 +14,6 @@ import FilterAltRoundedIcon from "@mui/icons-material/FilterAltRounded";
 import { useState, useEffect, useContext } from "react";
 import { getCategoriesService } from "../../services/categories.service";
 import { ProductContext } from "../../context/ProductContext";
-import { Link } from "react-router-dom";
 import styles from "./sidebarFilters.module.scss";
 
 const Search = styled("div")(({ theme }) => ({
