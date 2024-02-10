@@ -26,9 +26,6 @@ const { products, setProducts, EmprendimientosProducts } = useContext(ProductCon
     EmprendimientosProducts(info)
   }, []);
 
-  /*   useEffect((enterpriseId) => {
-    EmprendimientosProducts(enterpriseId)
-  }, []) */
   return (
     <>
       {!isLoading ? (
