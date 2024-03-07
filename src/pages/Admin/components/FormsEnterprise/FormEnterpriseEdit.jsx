@@ -1,4 +1,6 @@
-import { useParams } from "react-router-dom";
+import { useEffect, useContext, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+/* MUI */
 import {
   Button,
   Box,
@@ -8,20 +10,20 @@ import {
   TextField,
   styled,
 } from "@mui/material";
+
+/* styles */
 import "../../../../components/Form/formDates.scss";
-
-import Swal from "sweetalert2";
-
-/* Formik y Yup */
-import { /* Field, Form, */ Formik, useFormik } from "formik";
-import * as Yup from "yup";
-import { useEffect, useState } from "react";
+/* Componentes */
 import InputFileUpload from "../../../../components/InputFileUpload";
-import {
-  getEnterpriseServiceById,
-  updateEnterpriseService,
-} from "../../../../services/enterprises.service";
-import { useNavigate } from "react-router-dom";
+import { Loading } from "../../../../components/Loading";
+import Swal from "sweetalert2";
+/* Formik y Yup */
+import { Formik, useFormik } from "formik";
+import * as Yup from "yup";
+/* Servicios */
+import { updateEnterpriseService } from "../../../../services/enterprises.service";
+// Componentes de contexto
+import { EnterpriseContext } from "../../../../context/EnterpriseContext/EnterpriseContext";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -43,42 +45,27 @@ const CssTextField = styled(TextField)({
   },
 });
 
-const apiImgUrl = import.meta.env.VITE_BASE_IMG_ENTERPRISE_API_URL;
 export const FormEnterpriseEdit = () => {
   const { id } = useParams();
-  const navigate = useNavigate()
-  const [enterprise, setEnterprise] = useState([]);
-
-  const getEnterpriseById = async (id) => {
-    try {
-      const EnterpriseData = await getEnterpriseServiceById(id);
-      const { nombre, descripcion, foto_card, foto_emprendimiento } =
-        EnterpriseData;
-
-      setEnterprise({
-        nombre,
-        descripcion,
-        foto_card: `${apiImgUrl}/${foto_card}`,
-        foto_emprendimiento: `${apiImgUrl}/${foto_emprendimiento}`,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { enterprise, getEnterpriseById } = useContext(EnterpriseContext);
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getEnterpriseById(id);
-  }, [id]);
-
-  const { nombre, descripcion, foto_card, foto_emprendimiento } = enterprise;
+    if (enterprise != undefined) {
+      setIsLoading(false);
+    }
+  }, [getEnterpriseById, id, enterprise]);
 
   const initialValues = {
     id: id,
-    nombre: nombre,
-    descripcion: descripcion,
-    foto_card: foto_card,
-    foto_emprendimiento: foto_emprendimiento,
+    nombre: enterprise?.nombre,
+    descripcion: enterprise?.descripcion,
+    foto_card: enterprise?.foto_card,
+    foto_emprendimiento: enterprise?.foto_emprendimiento,
   };
+
   const getValidationSchema = () =>
     Yup.lazy(() =>
       Yup.object({
@@ -103,7 +90,7 @@ export const FormEnterpriseEdit = () => {
         text: data.message,
       }).then(() => {
         navigate("/admin/enterprises");
-      })
+      });
     } catch (error) {
       if (error) {
         Swal.fire({
@@ -115,138 +102,167 @@ export const FormEnterpriseEdit = () => {
     }
   };
 
-  const { handleSubmit, values, setFieldValue, errors } = useFormik({
-    validateOnBlur: false,
+  const { handleSubmit, values, setFieldValue, errors, isValid, dirty } =
+    useFormik({
+      validateOnBlur: false,
 
-    validateOnChange: false,
+      validateOnChange: true,
 
-    initialValues: initialValues,
+      initialValues,
 
-    validationSchema: getValidationSchema(),
+      validationSchema: getValidationSchema(),
 
-    onSubmit,
-  });
+      onSubmit,
+    });
 
   return (
-    <Container component="main" maxWidth="sm">
-      <CssBaseline />
-      <Box
-        sx={{
-          marginTop: 2,
-          marginBottom: 6,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          color: "secondary.main",
-          fontSize: "14px",
-        }}
-        className="containerForm"
-      >
-        <h1 className="subtitle">EDITAR EMPRENDIMIENTO</h1>
-
-        <Formik
-          initialValues={initialValues}
-          validationSchema={getValidationSchema()}
-          onSubmit={onSubmit}
-        >
+    <>
+      {!isLoading ? (
+        <Container component="main" maxWidth="sm">
+          <CssBaseline />
           <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
-            maxWidth="xs"
-            action=""
-            method="PUT"
-            encType="multipart/form-data"
+            sx={{
+              marginTop: 2,
+              marginBottom: 6,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              color: "secondary.main",
+              fontSize: "14px",
+            }}
+            className="containerForm"
           >
-            <div className="mb-2">
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={12}>
-                  <InputFileUpload
-                    text="Foto para la card del emprendimiento"
-                    name="foto_card"
-                    values={foto_card}
-                    multiple={false}
-                    required={false}
-                    onChanges={setFieldValue}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={12}>
-                  <InputFileUpload
-                    text="Foto del emprendimiento"
-                    name="foto_emprendimiento"
-                    values={foto_emprendimiento}
-                    multiple={false}
-                    required={false}
-                    onChanges={setFieldValue}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={12}>
-                  <CssTextField
-                    required
-                    fullWidth
-                    id="nombre"
-                    label="Nombre del emprendimiento"
-                    name="nombre"
-                    defaultValue={nombre}
-                    /* value={nombre} */
-                    error={errors?.nombre && true}
-                    helperText={errors?.nombre ? errors.nombre : ""}
-                    onChange={(e) => setFieldValue("nombre", e.target.value)}
-                  />
-                </Grid>
-                <Grid
-                  item
-                  fullWidth
-                  xs={12}
-                  sm={12}
-                  justifyContent="flex-center"
-                  sx={{
-                    "& .MuiTextField-root": { m: 1, width: "96%" },
-                  }}
-                >
-                  <CssTextField
-                    id="outlined-multiline-static"
-                    label="Descripción del emprendimiento"
-                    name="descripcion"
-                    multiline
-                    rows={4}
-                    defaultValue={descripcion}
-                    /* value= */
-                    error={errors?.descripcion && true}
-                    helperText={errors?.descripcion ? errors.descripcion : ""}
-                    onChange={(e) =>
-                      setFieldValue("descripcion", e.target.value)
-                    }
-                  />
-                </Grid>
-              </Grid>
-            </div>
+            <h1 className="subtitle">EDITAR EMPRENDIMIENTO</h1>
 
-            <Grid container justifyContent="flex-end" className="w-95">
-              <Grid item>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  size="medium"
-                  justifyContent="flex-end"
-                  className="button"
-                  sx={{
-                    color: "secondary.light",
-                    mt: 3,
-                    mb: 2,
-                  }}
-                >
-                  Guardar
-                </Button>
-              </Grid>
-            </Grid>
+            <Formik
+              initialValues={initialValues}
+              validationSchema={getValidationSchema()}
+              onSubmit={onSubmit}
+            >
+              <Box
+                component="form"
+                noValidate
+                onSubmit={handleSubmit}
+                sx={{ mt: 3 }}
+                maxWidth="xs"
+                action=""
+                method="PUT"
+                encType="multipart/form-data"
+              >
+                <div className="mb-2">
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} sm={12}>
+                      <InputFileUpload
+                        text="Foto para la card del emprendimiento"
+                        name="foto_card"
+                        values={values.foto_card}
+                        multiple={false}
+                        required={false}
+                        onChanges={setFieldValue}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={12}>
+                      <InputFileUpload
+                        text="Foto del emprendimiento"
+                        name="foto_emprendimiento"
+                        values={values.foto_emprendimiento}
+                        multiple={false}
+                        required={false}
+                        onChanges={setFieldValue}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={12}>
+                      <CssTextField
+                        required
+                        fullWidth
+                        id="nombre"
+                        label="Nombre del emprendimiento"
+                        name="nombre"
+                        value={values.nombre}
+                        error={errors?.nombre && true}
+                        helperText={errors?.nombre ? errors.nombre : ""}
+                        onChange={(e) =>
+                          setFieldValue("nombre", e.target.value)
+                        }
+                      />
+                    </Grid>
+                    <Grid
+                      item
+                      fullWidth
+                      xs={12}
+                      sm={12}
+                      justifyContent="flex-center"
+                      sx={{
+                        "& .MuiTextField-root": { m: 1, width: "96%" },
+                      }}
+                    >
+                      <CssTextField
+                        id="outlined-multiline-static"
+                        label="Descripción del emprendimiento"
+                        name="descripcion"
+                        multiline
+                        rows={4}
+                        defaultValue={values.descripcion}
+                        value={values.descripcion}
+                        error={errors?.descripcion && true}
+                        helperText={
+                          errors?.descripcion ? errors.descripcion : ""
+                        }
+                        onChange={(e) =>
+                          setFieldValue("descripcion", e.target.value)
+                        }
+                      />
+                    </Grid>
+                  </Grid>
+                </div>
+
+                <Grid container justifyContent="flex-end" className="w-95">
+                  <Grid item>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      size="medium"
+                      justifyContent="flex-end"
+                      className="button"
+                      sx={{
+                        color: "secondary.light",
+                        mt: 3,
+                        mb: 2,
+                      }}
+                      disabled={!(isValid && dirty)}
+                    >
+                      Guardar
+                    </Button>
+                  </Grid>
+                </Grid>
+              </Box>
+            </Formik>
+            <div className="containerImagenToEdit">
+              <h2 className="subtitle">Imagenes actuales</h2>
+              <figure className="imgFormEdit">
+                <img
+                  src={enterprise.foto_card}
+                  alt={`Imagen del emprendimiento ${enterprise.nombre}`}
+                />
+                <figcaption>
+                  <p>Foto de tarjeta</p>
+                </figcaption>
+              </figure>
+              <figure className="imgFormEdit">
+                <img
+                  src={enterprise.foto_emprendimiento}
+                  alt={`Imagen del emprendimiento ${enterprise.nombre}`}
+                />
+                <figcaption>
+                  <p>Foto del emprendimiento</p>
+                </figcaption>
+              </figure>
+            </div>
           </Box>
-        </Formik>
-        <div className="imgFormEdit">
-          <img src={foto_card} alt="" />
-        </div>
-      </Box>
-    </Container>
+        </Container>
+      ) : (
+        <Loading />
+      )}
+    </>
   );
 };

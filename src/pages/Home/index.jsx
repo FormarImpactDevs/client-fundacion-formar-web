@@ -19,7 +19,7 @@ import { EquipoProgramando } from "../../components/TeamProgramming";
 
 import useIntersection from "../../hooks/useIntersection";
 import useObserverComponent from "../../hooks/useObserverComponent";
-
+import EnterpisesGallery from "../../views/EnterpisesGallery";
 
 export default function Home() {
   const {
@@ -59,7 +59,6 @@ export default function Home() {
             : setAboutIsIntersecting(false)}
           <QuienesSomos />
         </div>
-       
 
         {/* Ejes de trabajo */}
         <Ejes />
@@ -97,6 +96,9 @@ export default function Home() {
             ? setUndertakingIsIntersecting(true)
             : setUndertakingIsIntersecting(false)}
           <Emprendiendo />
+          <div id="enterprises">
+            <EnterpisesGallery />
+          </div>
         </div>
         {/* Aliados */}
         <Aliados />

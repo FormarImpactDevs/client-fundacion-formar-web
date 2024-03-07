@@ -8,6 +8,8 @@ import { AuthProvider } from "./context/AuthProvider";
 import { BrowserRouter as Router } from "react-router-dom";
 import { CartProvider } from "./context/cartContext";
 import { OrderProvider } from "./context/orderContext";
+import { EnterpriseProvider } from "./context/EnterpriseContext/EnterpriseProvider";
+import { CategoryProvider } from "./context/categoryContext/CategoryProvider";
 
 function App() {
   return (
@@ -16,13 +18,17 @@ function App() {
         <ThemeProvider theme={theme}>
           <ObserverComponentProvider>
             <AuthProvider>
-              <ProductProvider>
-                <CartProvider>
-                  <OrderProvider>
-                    <AppRoutes />
-                  </OrderProvider>
-                </CartProvider>
-              </ProductProvider>
+              <EnterpriseProvider>
+                <CategoryProvider>
+                  <ProductProvider>
+                    <CartProvider>
+                      <OrderProvider>
+                        <AppRoutes />
+                      </OrderProvider>
+                    </CartProvider>
+                  </ProductProvider>
+                </CategoryProvider>
+              </EnterpriseProvider>
             </AuthProvider>
           </ObserverComponentProvider>
         </ThemeProvider>

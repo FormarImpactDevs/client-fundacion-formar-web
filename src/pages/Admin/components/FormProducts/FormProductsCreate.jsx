@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import {
   Button,
   Box,
@@ -6,10 +7,16 @@ import {
   Grid,
   TextField,
   styled,
+  Select,
+  MenuItem,
+  InputLabel,
+  InputAdornment,
 } from "@mui/material";
 import "../../../../components/Form/formDates.scss";
-import InputFileUpload from "../../../../components/InputFileUpload";
 import Swal from "sweetalert2";
+import InputFileMultiple from "../../../../components/InputFileMultiple";
+import { CategoryContext } from "../../../../context/categoryContext/CategoryContext";
+import { EnterpriseContext } from "../../../../context/EnterpriseContext/EnterpriseContext";
 
 /* Formik y Yup */
 import { useFormik } from "formik";
@@ -38,9 +45,35 @@ const CssTextField = styled(TextField)({
   },
 });
 
+const StyledSelect = styled(Select)({
+  "& label.Mui-focused": {
+    color: "#75aadb",
+  },
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "#75aadb",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "#E0E3E7",
+    },
+    "&:hover fieldset": {
+      borderColor: "#75aadb",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "#75aadb",
+    },
+  },
+});
+
+const StyledInputLabel = styled(InputLabel)({
+  color: "#75aadb",
+});
+
 export const FormProductCreate = () => {
+  const { categories } = useContext(CategoryContext);
+  const { enterprises } = useContext(EnterpriseContext);
   /* Formik */
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const getInitialValues = () => ({
     nombre: "",
     precio: "",
@@ -49,6 +82,7 @@ export const FormProductCreate = () => {
     stock: "",
     emprendimientos_id: "",
     categoria_id: "",
+    images: [],
   });
 
   const getValidationSchema = () =>
@@ -58,30 +92,41 @@ export const FormProductCreate = () => {
         precio: Yup.string().required("El campo precio es obligatorio."),
         descripcion: Yup.string().required("Se requiere de una descripción."),
         stock: Yup.string().required("El campo stock es obligatorio."),
+        emprendimientos_id: Yup.string().required(
+          "Es necesario asignarle un emprendimiento a este producto"
+        ),
+        categoria_id: Yup.string().required(
+          "Es necesario asignarle una categoría a este producto"
+        ),
       })
     );
 
   const onSubmit = async (values) => {
     try {
-      const formDataToSend = new FormData();
-      formDataToSend.append("id", values.id);
-      formDataToSend.append("nombre", values.nombre);
-      formDataToSend.append("precio", values.precio);
-      formDataToSend.append("descripcion", values.descripcion);
-      formDataToSend.append("descuento", values.descuento);
-      formDataToSend.append("stock", values.stock);
-      formDataToSend.append("emprendimientos_id", values.emprendimientos_id);
-      formDataToSend.append("categoria_id", values.categoria_id);
+      if (isValid) {
+        const formDataToSend = new FormData();
+        formDataToSend.append("nombre", values.nombre);
+        formDataToSend.append("precio", values.precio);
+        formDataToSend.append("descripcion", values.descripcion);
+        formDataToSend.append("descuento", values.descuento);
+        formDataToSend.append("stock", values.stock);
+        formDataToSend.append("emprendimientos_id", values.emprendimientos_id);
+        formDataToSend.append("categoria_id", values.categoria_id);
 
-      const data = await createProductservice(formDataToSend);
+        for (let i = 0; i < values.images.length; i++) {
+          formDataToSend.append("images", values.images[i]);
+        }
 
-      Swal.fire({
-        icon: "success",
-        title: "Producto creado!",
-        text: data.message,
-      }).then(() => {
-        navigate("/admin/categories");
-      });
+        const data = await createProductservice(formDataToSend);
+
+        Swal.fire({
+          icon: "success",
+          title: "¡Producto creado!",
+          text: data.message,
+        }).then(() => {
+          navigate("/admin/products");
+        });
+      }
     } catch (error) {
       if (error) {
         Swal.fire({
@@ -93,17 +138,22 @@ export const FormProductCreate = () => {
     }
   };
 
-  const { handleSubmit, values, setFieldValue, errors } = useFormik({
-    validateOnBlur: false,
+  const { handleSubmit, values, setFieldValue, errors, isValid, dirty } =
+    useFormik({
+      validateOnBlur: false,
 
-    validateOnChange: false,
+      validateOnChange: true,
 
-    initialValues: getInitialValues(),
+      initialValues: getInitialValues(),
 
-    validationSchema: getValidationSchema(),
+      validationSchema: getValidationSchema(),
 
-    onSubmit,
-  });
+      onSubmit,
+    });
+
+  const handleImageChange = (name, selectedImages) => {
+    setFieldValue(name, selectedImages);
+  };
 
   return (
     <>
@@ -136,12 +186,12 @@ export const FormProductCreate = () => {
             <div className="mb-2">
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={12}>
-                  <InputFileUpload
+                  <InputFileMultiple
                     text="Foto para la card del producto"
-                    name="foto_card"
-                    multiple={false}
-                    required={false}
-                    onChanges={setFieldValue}
+                    name="images"
+                    multiple={true}
+                    required={true}
+                    onChanges={handleImageChange}
                   />
                 </Grid>
                 <Grid item xs={12} sm={12}>
@@ -156,28 +206,24 @@ export const FormProductCreate = () => {
                     onChange={(e) => setFieldValue("nombre", e.target.value)}
                   />
                 </Grid>
-                <Grid
-                  item
-                  fullWidth
-                  xs={12}
-                  sm={12}
-                  justifyContent="flex-center"
-                  sx={{
-                    "& .MuiTextField-root": { m: 1, width: "96%" },
-                  }}
-                >
+                <Grid item xs={12} sm={12}>
                   <CssTextField
-                    id="outlined-multiline-static"
-                    label="Precio"
+                    required
+                    fullWidth
+                    id="precio"
+                    label="Precio del producto"
                     name="precio"
-                    multiline
-                    rows={4}
-                    defaultValue=""
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">$</InputAdornment>
+                      ),
+                    }}
                     error={errors?.precio && true}
                     helperText={errors?.precio ? errors.precio : ""}
                     onChange={(e) => setFieldValue("precio", e.target.value)}
                   />
                 </Grid>
+
                 <Grid
                   item
                   fullWidth
@@ -202,50 +248,36 @@ export const FormProductCreate = () => {
                     }
                   />
                 </Grid>
-                <Grid
-                  item
-                  fullWidth
-                  xs={12}
-                  sm={12}
-                  justifyContent="flex-center"
-                  sx={{
-                    "& .MuiTextField-root": { m: 1, width: "96%" },
-                  }}
-                >
+                <Grid item xs={6} sm={6}>
                   <CssTextField
-                    id="outlined-multiline-static"
+                    required
+                    fullWidth
+                    id="descuento"
                     label="Descuento"
                     name="descuento"
-                    multiline
-                    rows={4}
-                    defaultValue=""
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">%</InputAdornment>
+                      ),
+                    }}
                     error={errors?.descuento && true}
                     helperText={errors?.descuento ? errors.descuento : ""}
                     onChange={(e) => setFieldValue("descuento", e.target.value)}
                   />
                 </Grid>
-                <Grid
-                  item
-                  fullWidth
-                  xs={12}
-                  sm={12}
-                  justifyContent="flex-center"
-                  sx={{
-                    "& .MuiTextField-root": { m: 1, width: "96%" },
-                  }}
-                >
+                <Grid item xs={6} sm={6}>
                   <CssTextField
-                    id="outlined-multiline-static"
+                    required
+                    fullWidth
+                    id="stock"
                     label="Stock"
                     name="stock"
-                    multiline
-                    rows={4}
-                    defaultValue=""
                     error={errors?.stock && true}
                     helperText={errors?.stock ? errors.stock : ""}
                     onChange={(e) => setFieldValue("stock", e.target.value)}
                   />
                 </Grid>
+
                 <Grid
                   item
                   fullWidth
@@ -256,23 +288,25 @@ export const FormProductCreate = () => {
                     "& .MuiTextField-root": { m: 1, width: "96%" },
                   }}
                 >
-                  <CssTextField
-                    id="outlined-multiline-static"
+                  <StyledInputLabel id="emprendimientos_id">
+                    Seleccione un emprendimiento
+                  </StyledInputLabel>
+                  <StyledSelect
+                    labelId="emprendimientos_id"
+                    id="emprendimientos_id"
+                    value={values.emprendimientos_id}
                     label="Emprendimiento"
-                    name="emprendimiento"
-                    multiline
-                    rows={4}
-                    defaultValue=""
-                    error={errors?.emprendimientos_id && true}
-                    helperText={
-                      errors?.emprendimientos_id
-                        ? errors.emprendimientos_id
-                        : ""
-                    }
+                    sx={{ width: "100%" }}
                     onChange={(e) =>
-                      setFieldValue("emprendimiento", e.target.value)
+                      setFieldValue("emprendimientos_id", e.target.value)
                     }
-                  />
+                  >
+                    {enterprises.map((enterprise) => (
+                      <MenuItem value={enterprise.id} key={enterprise.id}>
+                        {enterprise.nombre}
+                      </MenuItem>
+                    ))}
+                  </StyledSelect>
                 </Grid>
                 <Grid
                   item
@@ -284,17 +318,25 @@ export const FormProductCreate = () => {
                     "& .MuiTextField-root": { m: 1, width: "96%" },
                   }}
                 >
-                  <CssTextField
-                    id="outlined-multiline-static"
-                    label="Categoria"
-                    name="categoria"
-                    multiline
-                    rows={4}
-                    defaultValue=""
-                    error={errors?.categoria_id && true}
-                    helperText={errors?.categoria_id ? errors.categoria_id : ""}
-                    onChange={(e) => setFieldValue("categoria", e.target.value)}
-                  />
+                  <StyledInputLabel id="categoria_id">
+                    Seleccione una categoría
+                  </StyledInputLabel>
+                  <StyledSelect
+                    labelId="categoria_id"
+                    id="categoria_id"
+                    value={values.categoria_id}
+                    label="Categoría"
+                    sx={{ width: "100%" }}
+                    onChange={(e) =>
+                      setFieldValue("categoria_id", e.target.value)
+                    }
+                  >
+                    {categories.map((category) => (
+                      <MenuItem value={category.id} key={category.id}>
+                        {category.nombre}
+                      </MenuItem>
+                    ))}
+                  </StyledSelect>
                 </Grid>
               </Grid>
             </div>
@@ -312,6 +354,7 @@ export const FormProductCreate = () => {
                     mt: 3,
                     mb: 2,
                   }}
+                  disabled={!(isValid && dirty)}
                 >
                   Guardar
                 </Button>
