@@ -16,7 +16,6 @@ export const getProductServiceById = async (idProduct) => {
   try {
     const url = `${apiUrl}product/${idProduct}`;
     const  data = await axios.get(url);
-    console.log(data + "servicio");
     return data.data || [];
   } catch (error) {
     throw new Error(error);

@@ -28,7 +28,7 @@ export default function AppRoutes() {
       <Route path="/producto/:id" element={<ProductDetail />} />
       <Route path="/mi-compra" element={<CartPage />} />
       <Route path="/login" element={<LoginEcommerce />} />
-      <Route element={<ProtectedRoute />}>
+      {/* <Route element={<ProtectedRoute />}> */}
         <Route index path="/admin" element={<Admin />} />
         <Route path="/admin/enterprises" element={<EnterprisesList />} />
         <Route path="/admin/enterprises/create" element={<FormCreate />} />
@@ -44,7 +44,7 @@ export default function AppRoutes() {
           path="/admin/orders/edit/:orderNumber"
           element={<FormUpdateOrder />}
         />
-      </Route>
+     {/*  </Route> */}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
