@@ -20,6 +20,7 @@ function LoginEcommerce() {
   const navigate = useNavigate();
   const { login } = useAuth();
 
+
   const validationSchema = Yup.object({
     email: Yup.string()
       .email("Correo electrónico no válido")
@@ -39,7 +40,6 @@ function LoginEcommerce() {
         await login(values);
         navigate("/admin");
       } catch (error) {
-        console.log(error);
         formik.setFieldError("password", `${error}`);
       }
     },
@@ -107,6 +107,7 @@ function LoginEcommerce() {
                 {formik.errors.password}
               </Typography>
             )}
+            
             <Button
               type="submit"
               fullWidth
@@ -122,4 +123,4 @@ function LoginEcommerce() {
   );
 }
 
-export default LoginEcommerce;
+export default LoginEcommerce;
