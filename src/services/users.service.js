@@ -19,6 +19,7 @@ export async function userLoginService(userData) {
       throw new Error("Error de inicio de sesión");
     }
   } catch (error) {
-    return Promise.reject("Email o contraseña incorrecta");
+    console.error("Error while logging in");
+    return Promise.reject("Error while logging in");
   }
 }
