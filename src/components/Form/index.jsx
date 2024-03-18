@@ -117,7 +117,8 @@ export const Form = () => {
                 <h2 className="paragraph1">¿Cómo querés colaborar?</h2>
               </Grid>
 
-              <Grid>
+              <Grid item xs={12} container
+                justifyContent="center">
                 <FormControl>
                   <RadioGroup
                     row
@@ -129,8 +130,7 @@ export const Form = () => {
                       container
                       direction="row"
                       justifyContent="center"
-                      alignItems="center"
-                      sx={{ ml: 3 }}
+                      alignItems="center"                    
                     >
                       <Grid item xs={12} sm={6}>
                         <FormControlLabel
