@@ -18,6 +18,7 @@ import { OrdersList } from "../views/OrdersList";
 import { FormUpdateOrder } from "../views/Orders/FormUpdateOrder";
 import { ProductDetail } from "../pages/ProductDetail";
 import CartPage from "../pages/Cart";
+import { Feedback } from "../views/Feedback"
 
 export default function AppRoutes() {
   return (
@@ -27,6 +28,7 @@ export default function AppRoutes() {
       <Route path="/products?emprendimiento=/:emprendimientoId" element={<HomeEcommerce />} />
       <Route path="/producto/:id" element={<ProductDetail />} />
       <Route path="/mi-compra" element={<CartPage />} />
+      <Route path="/feedback" element={<Feedback />} />
       <Route path="/login" element={<LoginEcommerce />} />
       {/* <Route element={<ProtectedRoute />}> */}
         <Route index path="/admin" element={<Admin />} />

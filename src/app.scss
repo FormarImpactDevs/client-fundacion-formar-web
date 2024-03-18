@@ -123,14 +123,14 @@ html {
 /* slider3d */
 .swiper-slide {
   width: 37rem;
-  height: 35rem;
+  height: 20rem;
   position: relative;
   display: flex;
   place-items: center;
   padding: 2rem 0 0 0;
 
   @include desktop {
-    height: 42rem;
+    height: 35rem;
     padding: 2rem 0;
   }
 }

@@ -18,6 +18,8 @@
 }
 .productDetail-images-container{
     display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
    
     @include desktop2 {
         flex-direction: row;
@@ -62,6 +64,8 @@
     margin: 10px;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
     h2,h3, p {
         margin: 10px 0px;
     }
