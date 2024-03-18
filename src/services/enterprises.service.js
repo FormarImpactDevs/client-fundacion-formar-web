@@ -5,7 +5,6 @@ const apiUrl = import.meta.env.VITE_BASE_API_URL;
 export const getEnterprisesService = async () => {
   try {
     const url = `${apiUrl}enterprises`;
-    /* const url = 'http://localhost:3000/api/enterprises'; */
     const { data } = await axios.get(url);
     return data.data || [];
   } catch (error) {

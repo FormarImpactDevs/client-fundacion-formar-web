@@ -33,7 +33,7 @@ export const OrdersList = () => {
     { field: "estado_del_pedido", headerName: "Estado del pedido", width: 130 },
     { field: "estado_del_pago", headerName: "Estado del pago", width: 130 },
     { field: "link", headerName: "Link", width: 130 },
-    { field: "client_data", headerName: "Datos del cliente", width: 130 },
+    { field: "client_data.mail", headerName: "Datos del cliente", width: 130 },
     { field: "punto_retiro_id", headerName: "Punto de retiro", width: 130 },
     { field: "detalle_pedido", headerName: "Detalle del pedido", width: 130 },
     { field: "monto_total", headerName: "Monto total", width: 130 },
