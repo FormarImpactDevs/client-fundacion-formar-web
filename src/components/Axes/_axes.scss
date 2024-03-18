@@ -6,8 +6,8 @@
   padding-top: 30px;
   
   @include desktop2 {
-    padding-top: $padding-top;
-    min-height: $min-height;
+    padding: 10rem;
+
 
   }
 }

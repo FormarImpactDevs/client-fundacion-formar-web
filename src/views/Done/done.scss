@@ -2,22 +2,20 @@
 @import "../../styles/media-queries";
 
 .container-done {
-  /* display: flex;
-    justify-content: center;
-    align-items: center; */
   padding: 3rem;
-  
-
   .flex {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
+    @include desktop{
+      padding:10rem ;
+    }
     @include tablet {
       justify-content: space-evenly;
       flex-direction: row;
       align-items: baseline;
+      
     }
 
     .titlesDone {
