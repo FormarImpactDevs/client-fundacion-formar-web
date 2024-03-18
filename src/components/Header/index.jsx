@@ -125,15 +125,22 @@ export const Header = () => {
             </a>
           </li>
           <li>
-          {currentUser ? (
-              <Button
-                aria-controls="simple-menu"
-                aria-haspopup="true"
-                onClick={handleClick}
-              >
-                {currentUser.nombre}
-              </Button>
-            ) : null}
+            <Button
+              aria-controls="simple-menu"
+              aria-haspopup="true"
+              onClick={currentUser ? handleClick : handleClick}
+            >
+              {currentUser ? (
+                currentUser.nombre || "Iniciar sesión"
+              ) : (
+                <Link
+                  to="/login"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  Iniciar sesión
+                </Link>
+              )}
+            </Button>
             {currentUser && (
               <Menu
                 id="simple-menu"
