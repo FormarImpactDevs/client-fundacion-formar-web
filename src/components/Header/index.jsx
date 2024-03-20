@@ -125,22 +125,15 @@ export const Header = () => {
             </a>
           </li>
           <li>
-            <Button
-              aria-controls="simple-menu"
-              aria-haspopup="true"
-              onClick={currentUser ? handleClick : handleClick}
-            >
-              {currentUser ? (
-                currentUser.nombre || "Iniciar sesión"
-              ) : (
-                <Link
-                  to="/login"
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
-                  Iniciar sesión
-                </Link>
-              )}
-            </Button>
+          {currentUser ? (
+              <Button
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+                onClick={handleClick}
+              >
+                {currentUser.nombre}
+              </Button>
+            ) : null}
             {currentUser && (
               <Menu
                 id="simple-menu"
@@ -149,21 +142,13 @@ export const Header = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem>
-                  <Link
-                    to="/admin"
-                    style={{ textDecoration: "none", color: "inherit" }}
-                  >
-                    Dashboard Admin
-                  </Link>
-                </MenuItem>
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>
             )}
           </li>
         </ul>
-        <CartBadge />
+        <CartBadge/>
       </nav>
     </header>
-  );
+  );
 };
