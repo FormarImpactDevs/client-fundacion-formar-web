@@ -17,7 +17,7 @@ export const EnterpriseProvider = ({ children }) => {
       const EnterprisesData = await getEnterprisesService();
       setEnterprises(EnterprisesData);     
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   };
 
@@ -40,7 +40,7 @@ export const EnterpriseProvider = ({ children }) => {
       const EnterpriseData = await getEnterpriseServiceById(id);
       setEnterprise(EnterpriseData);
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   };
 

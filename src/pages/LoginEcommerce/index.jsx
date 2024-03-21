@@ -35,7 +35,6 @@ function LoginEcommerce() {
     },
     validationSchema,
     onSubmit: async (values) => {
-      console.log("onSubmit", values)
       try {
         await login(values);
         navigate("/admin");

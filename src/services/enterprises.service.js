@@ -23,7 +23,6 @@ export const getEnterpriseServiceById = async (idEnterprise) => {
 };
 
 export const createEnterpriseService = async (enterpriseData) => {
-  console.log(enterpriseData);
   try {
     const url = `${apiUrl}enterprises/create`;
     const { data } = await axios.post(url, enterpriseData);

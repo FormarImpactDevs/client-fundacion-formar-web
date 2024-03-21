@@ -33,6 +33,12 @@ export const Admin = () => {
       width: '45%',
       rute: '/admin/orders'
     },
+    {
+      url: img,
+      title: 'Puntos de retiro',
+      width: '45%',
+      rute: '/admin/points'
+    },
   ];
 
   return (

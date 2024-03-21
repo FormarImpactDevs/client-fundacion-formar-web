@@ -33,7 +33,8 @@ export const ProductProvider = ({ children }) => {
       setProducts(ProductsData);
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      throw new Error('Este es un mensaje de error.');
+
     }
   };
 
@@ -50,9 +51,8 @@ export const ProductProvider = ({ children }) => {
       const ProductData = await getProductServiceById(id);
       setProduct(ProductData);
       setLoading(false);
-      console.log(ProductData);
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   };
 
@@ -74,7 +74,7 @@ export const ProductProvider = ({ children }) => {
         setProductsFiltered(filterProducts.flat());
       } catch (error) {
         setProductsFiltered([]);
-        console.log(error);
+        throw new Error(error);
       }
     } else {
       setProductsFiltered([]);
@@ -98,7 +98,7 @@ export const ProductProvider = ({ children }) => {
         setProductsFiltered(filterProducts.flat());
       } catch (error) {
         setProductsFiltered([]);
-        console.log(error);
+        throw new Error(error);
       }
     } else {
       setProductsFiltered([]);
