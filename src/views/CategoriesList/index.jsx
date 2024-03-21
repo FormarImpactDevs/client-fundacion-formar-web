@@ -26,7 +26,6 @@ export const CategoriesList = () => {
   const getCategories = async () => {
     try {
       const CategoriesData = await getCategoriesService();
-      console.log(CategoriesData);
       setCategories(CategoriesData);
     } catch (error) {
       console.log(error);

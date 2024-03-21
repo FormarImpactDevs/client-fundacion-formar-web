@@ -7,8 +7,6 @@ import {
 } from "../../services/enterprises.service";
 import { EnterpriseContext } from "./EnterpriseContext";
 
-/* const EnterprisesContext = createContext(); */
-
 export const EnterpriseProvider = ({ children }) => {
 
   const [enterprises, setEnterprises] = useState([]);
@@ -17,10 +15,9 @@ export const EnterpriseProvider = ({ children }) => {
   const getEnterprises = async () => {
     try {
       const EnterprisesData = await getEnterprisesService();
-      setEnterprises(EnterprisesData);
-      console.log(EnterprisesData);
+      setEnterprises(EnterprisesData);     
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   };
 
@@ -42,9 +39,8 @@ export const EnterpriseProvider = ({ children }) => {
     try {
       const EnterpriseData = await getEnterpriseServiceById(id);
       setEnterprise(EnterpriseData);
-      console.log(EnterpriseData);
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   };
 

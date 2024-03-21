@@ -80,7 +80,7 @@ export const EquipoProgramando = () => {
   return (
     <div className="teamProgramming_container">
       <Title text="Equipo programando la inclusión" />
-      <div className="teamProgramming_slider">        
+      <div>        
         <Slide3d list={cardsInfo} type={"person"} />
       </div>
     </div>

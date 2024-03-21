@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 
 export const Done = () => {
   return (
-    <section className="container container-done">
+    <section className=" container-done">
       <div className="flex">
         
         <div className="a-center">

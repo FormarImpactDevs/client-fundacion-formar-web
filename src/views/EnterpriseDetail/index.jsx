@@ -17,7 +17,6 @@ const { products, setProducts, EmprendimientosProducts } = useContext(ProductCon
     if (data) {
       setEnterprise(data);
       setProducts(data.products);
-      console.log(products);
     }
   };
   useEffect(() => {
@@ -26,9 +25,6 @@ const { products, setProducts, EmprendimientosProducts } = useContext(ProductCon
     EmprendimientosProducts(info)
   }, []);
 
-  /*   useEffect((enterpriseId) => {
-    EmprendimientosProducts(enterpriseId)
-  }, []) */
   return (
     <>
       {!isLoading ? (

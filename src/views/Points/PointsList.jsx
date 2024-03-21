@@ -5,9 +5,9 @@ import { GridActionsCellItem } from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
 import { useEffect, useState } from "react";
 import {
-  getEnterprisesService,
-  deleteEnterpriseService,
-} from "../../services/enterprises.service";
+  getPointsService,
+  deletePointService
+} from "../../services/points.service";
 
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,30 +18,29 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 
-/* import "sweetalert2/src/sweetalert2.scss"; */
-import styles from "./enterprisesList.module.scss";
+import styles from "../EnterprisesList/enterprisesList.module.scss";
 import { ButtonGoToBack } from "../../components/ButtonGoToBack";
 
-export const EnterprisesList = () => {
-  const [enterprises, setEnterprises] = useState([]);
+export const PointsList = () => {
+  const [points, setPoints] = useState([]);
 
-  const getEnterprises = async () => {
+  const getPoints = async () => {
     try {
-      const EnterprisesData = await getEnterprisesService();
-      setEnterprises(EnterprisesData);
+      const pointsData = await getPointsService();
+      setPoints(pointsData);
     } catch (error) {
       throw new Error(error);
     }
   };
 
   useEffect(() => {
-    getEnterprises();
+    getPoints();
   }, []);
 
-  const deleteEnterprise = async (e, id) => {
+  const deletePoint = async (e, id) => {
     e.preventDefault();
     try {
-      const result = await deleteEnterpriseService(id);
+      const result = await deletePointService(id);
       return result.message;
     } catch (error) {
       return error.message;
@@ -50,28 +49,28 @@ export const EnterprisesList = () => {
 
   function confirmDeleted(e, id) {
     Swal.fire({
-      title: "Estás por eliminar un emprendimiento",
+      title: "Estás por eliminar un punto de retiro",
       text: "¿Seguro que deseas continuar? Ésta acción es irreversible",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Sí, eliminar!",
+      confirmButtonText: "¡Sí, eliminar!",
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        const remove = deleteEnterprise(e, id);
+        const remove = deletePoint(e, id);
         if (remove) {
           Swal.fire(
             "Eliminado!",
-            "Emprendimiento eliminado satisfactoriamente",
+            "punto de retiro eliminado satisfactoriamente",
             "success"
           );
           setTimeout(() => {
-            window.location = "/admin/enterprises";
+            window.location = "/admin/points";
           }, 1200);
         } else {
-          Swal.fire("Error", "No se pudo eliminar el Emprendimiento.", "error");
+          Swal.fire("Error", "No se pudo eliminar el punto de retiro.", "error");
         }
       }
     });
@@ -79,8 +78,9 @@ export const EnterprisesList = () => {
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
-    { field: "nombre", headerName: "Nombre del emprendimiento", width: 130 },
+    { field: "nombre", headerName: "Punto de retiro", width: 130 },
     { field: "descripcion", headerName: "Descripción", width: 130 },
+    { field: "telefono", headerName: "Teléfono", width: 130 },
     {
       headerName: "Acciones",
       field: "actions",
@@ -95,7 +95,7 @@ export const EnterprisesList = () => {
         />,
         <GridActionsCellItem
           icon={
-            <Link to={`/admin/enterprises/edit/${params.id}`}>
+            <Link to={`/admin/points/edit/${params.id}`}>
               <FontAwesomeIcon icon={faPenToSquare} />
             </Link>
           }
@@ -111,18 +111,18 @@ export const EnterprisesList = () => {
       <MainLayout>
         <ButtonGoToBack />
         <section className={styles.mainContainerList}>
-          <Title text="Lista de emprendimientos" />
+          <Title text="Lista de punto de retiros" />
           <div className={styles.containerList}>
-            <Link to="/admin/enterprises/create">
+            <Link to="/admin/points/create">
               <Button
                 size="medium"
                 variant="outlined"
                 startIcon={<FontAwesomeIcon icon={faPlus} />}
               >
-                Crear Emprendimiento
+                Crear punto de retiro
               </Button>
             </Link>
-            <DataTable rows={enterprises} columns={columns} />
+            <DataTable rows={points} columns={columns} />
           </div>
         </section>
       </MainLayout>

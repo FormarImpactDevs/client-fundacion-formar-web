@@ -12,7 +12,7 @@ const EnterprisesProvider = ({ children }) => {
       const EnterprisesData = await getEnterprisesService();
       setEnterprises(EnterprisesData);
     } catch (error) {
-      console.log(error);
+      throw Error(error);
     }
   };
 
@@ -33,4 +33,3 @@ EnterprisesProvider.propTypes = {
 
 export { EnterprisesContext, EnterprisesProvider };
 
-/* export { EnterprisesContext}; */

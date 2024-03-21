@@ -1,0 +1,43 @@
+@import "../../../../styles/colors";
+@import "../../../../styles/media-queries";
+
+.fieldContainer {
+  width: 100%;
+  text-align: center;
+  color: $ligth-gray;
+  padding: 0 10px;
+  h5 {
+    font-size: 12px;
+  }
+  p {
+    font-size: 16px;
+    min-width: 50px;
+    height: 25px;
+    border-bottom: $ligth-gray 1px dotted;
+  }
+}
+
+.detalleOrder {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0.5rem 1rem;
+  padding: 1rem;
+  border: 1px #80828566 solid;
+  border-radius: 8px;
+  h5 {
+    font-size: 8px;
+  }
+  p {
+    font-size: 12px;
+    min-width: 50px;
+    height: 18px;
+    border-bottom: $ligth-gray 1px dotted;
+  }
+}
+
+.stateOrderForm {
+  width: 96%;
+  color: "#75aadb";
+  margin: 2rem 1rem;
+}

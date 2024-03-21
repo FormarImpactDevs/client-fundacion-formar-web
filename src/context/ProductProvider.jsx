@@ -6,10 +6,6 @@ import {
   getProductsService,
   getProductServiceById,
 } from "../services/products.service";
-import {
-  getCategoriesService,
-  getCategoryServiceById,
-} from "../services/categories.service";
 
 export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
@@ -37,7 +33,8 @@ export const ProductProvider = ({ children }) => {
       setProducts(ProductsData);
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      throw new Error('Este es un mensaje de error.');
+
     }
   };
 
@@ -55,35 +52,13 @@ export const ProductProvider = ({ children }) => {
       setProduct(ProductData);
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   };
 
   useEffect((id) => {
     getProductById(id);
   }, []);
-
-  // Lista de categorías
-/*   const getCategories = async () => {
-    try {
-      const CategoriesData = await getCategoriesService();
-      setCategories(CategoriesData);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const getCategoryById = async (id) => {
-    try {
-      const CategoriesData = await getCategoryServiceById(id);
-      return CategoriesData;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getCategories();
-  }, []); */
 
   // Productos de un emprendimiento por id
   const EmprendimientosProducts = async (enterpriseId) => {
@@ -99,7 +74,7 @@ export const ProductProvider = ({ children }) => {
         setProductsFiltered(filterProducts.flat());
       } catch (error) {
         setProductsFiltered([]);
-        console.log(error);
+        throw new Error(error);
       }
     } else {
       setProductsFiltered([]);
@@ -123,7 +98,7 @@ export const ProductProvider = ({ children }) => {
         setProductsFiltered(filterProducts.flat());
       } catch (error) {
         setProductsFiltered([]);
-        console.log(error);
+        throw new Error(error);
       }
     } else {
       setProductsFiltered([]);

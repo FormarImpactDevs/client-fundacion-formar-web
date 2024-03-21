@@ -30,7 +30,7 @@ export const ProductsList = () => {
       const ProductsData = await getProductsService();
       setProducts(ProductsData);
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   };
 
