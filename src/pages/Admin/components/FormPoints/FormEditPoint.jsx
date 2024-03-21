@@ -52,13 +52,11 @@ export const FormEditPoint = () => {
 
   //obtener punto de retiro por id
   const getPointById = async (id) => {
-    console.log(id);
     try {
       const pointData = await getPointServiceById(id);
       setPoint(pointData);
-      console.log(pointData);
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   };
 

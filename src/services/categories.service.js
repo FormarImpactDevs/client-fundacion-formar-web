@@ -13,7 +13,6 @@ export const getCategoriesService = async () => {
 };
 
 export const createCategoryService = async (categoryData) => {
-    console.log(categoryData);
     try {
       const url = `${apiUrl}category/create`;
       const { data } = await axios.post(url, categoryData);

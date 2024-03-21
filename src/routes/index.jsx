@@ -33,7 +33,7 @@ export default function AppRoutes() {
       <Route path="/mi-compra" element={<CartPage />} />
       <Route path="/feedback" element={<Feedback />} />
       <Route path="/login" element={<LoginEcommerce />} />
-      {/* <Route element={<ProtectedRoute />}> */}
+      <Route element={<ProtectedRoute />}>
         <Route index path="/admin" element={<Admin />} />
         <Route path="/admin/enterprises" element={<EnterprisesList />} />
         <Route path="/admin/enterprises/create" element={<FormCreate />} />
@@ -52,7 +52,7 @@ export default function AppRoutes() {
          <Route path="/admin/points" element={<PointsList />} />
         <Route path="/admin/points/create" element={<FormCreatePoint />} />
         <Route path="/admin/points/edit/:id" element={<FormUpdatePoint />} />
-     {/*  </Route> */}
+      </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

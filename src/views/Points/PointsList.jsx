@@ -18,7 +18,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 
-/* import "sweetalert2/src/sweetalert2.scss"; */
 import styles from "../EnterprisesList/enterprisesList.module.scss";
 import { ButtonGoToBack } from "../../components/ButtonGoToBack";
 
@@ -30,7 +29,7 @@ export const PointsList = () => {
       const pointsData = await getPointsService();
       setPoints(pointsData);
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   };
 

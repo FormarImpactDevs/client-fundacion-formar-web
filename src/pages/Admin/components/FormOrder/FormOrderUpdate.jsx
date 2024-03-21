@@ -96,7 +96,7 @@ export const FormOrderUpdate = () => {
         monto_total,
       });
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   };
 
@@ -178,7 +178,6 @@ export const FormOrderUpdate = () => {
     "Cancelado",
     "Rechazado",
   ];
-  console.log(detalle);
   return (
     <>
       {!isLoading ? (

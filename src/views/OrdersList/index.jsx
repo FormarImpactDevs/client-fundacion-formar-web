@@ -19,7 +19,7 @@ export const OrdersList = () => {
       const OrdersData = await getOrdersService();
       setOrders(OrdersData);
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   };
 

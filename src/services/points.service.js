@@ -23,7 +23,6 @@ export const getPointServiceById = async (idPoint) => {
 };
 
 export const createPointService = async (pointData) => {
-  console.log(pointData);
   try {
     const url = `${apiUrl}point/create`;
     const { data } = await axios.post(url, pointData);
@@ -40,7 +39,6 @@ export const updatePointService = async (pointData) => {
     const { data } = await axios.put(url, pointData);
     return data.data || [];
   } catch (error) {
-    console.log(error);
     throw new Error(error);
   }
 };

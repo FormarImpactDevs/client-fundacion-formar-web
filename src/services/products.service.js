@@ -23,13 +23,12 @@ export const getProductServiceById = async (idProduct) => {
 };
 
 export const createProductservice = async (productData) => {
-  console.log(productData);
   try {
     const url = `${apiUrl}product/create`;
     const { data } = await axios.post(url, productData);
     return data.data || [];
   } catch (error) {
-    throw new Error(error/* .response.data.message */);
+    throw new Error(error);
     
   }
 };

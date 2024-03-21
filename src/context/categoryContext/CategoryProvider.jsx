@@ -16,7 +16,7 @@ export const CategoryProvider = ({ children }) => {
       const CategoriesData = await getCategoriesService();
       setCategories(CategoriesData);
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   };
   const getCategoryById = async (id) => {
@@ -24,7 +24,7 @@ export const CategoryProvider = ({ children }) => {
       const CategoriesData = await getCategoryServiceById(id);
       return CategoriesData;
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   };
 
