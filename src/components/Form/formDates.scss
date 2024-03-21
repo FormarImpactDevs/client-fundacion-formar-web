@@ -26,4 +26,51 @@
     border-radius: 8px;
     margin: 1rem 0 1rem 1.5rem;
   }
+
+  .d-none {
+    display: none;
+  }
+
+  .w-95 {
+    width: 95%;
+  }
+
+  .containerImagenToEdit {
+    width: 300px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+
+    h2 {
+      width: 100%;
+      text-align: center;
+      /* margin: 5px; */
+    }
+
+    .imgFormEdit {
+      width: 145px;
+      height: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 5px;
+      border: 1px solid $primary-color;
+      border-radius: 8px;
+      object-fit: contain;
+      position: relative;
+      overflow: hidden;
+      img {
+        width: 100%;
+      }
+      figcaption {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        background-color: rgba($color: $white, $alpha: 0.8);
+        text-align: center;
+      }
+    }
+  }
 }

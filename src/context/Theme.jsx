@@ -14,8 +14,9 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'Nunito',
+    fontFamily: "Nunito",
+    fontSize: "14px",
   },
 });
 
-export {theme}
+export { theme };

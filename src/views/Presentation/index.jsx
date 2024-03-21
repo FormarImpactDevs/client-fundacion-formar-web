@@ -1,7 +1,8 @@
 import { Button } from "../../components/Button";
 import "./_presentation.scss";
 import AOS from "aos";
-import students from "../../assets/students.svg"
+//import students from "../../assets/students.svg"
+import presentation from "../../assets/presentation2.jpeg";
 import ondas from "../../assets/ondas.svg"
 AOS.init();
 
@@ -9,9 +10,10 @@ export const Presentation = () => {
   return (
     <section className="presentation_container">
       {/* imagen */}
-      <figure className="students">
+      <div className="presentation">
+          <figure className="students">
         <img
-          src={students}
+          src={presentation}
           alt="Imagen de estudiantes"
           className="presentation_img"
         />
@@ -30,7 +32,9 @@ export const Presentation = () => {
 
         <div className="presentation_center">
           {/* button */}
+          <a href="#about">
           <Button info={"CONOCENOS"} />
+          </a>
         </div>
       </div>
 
@@ -42,6 +46,8 @@ export const Presentation = () => {
           className="presentation_img"
         />
       </figure>
+      </div>
+    
     </section>
   );
 };
