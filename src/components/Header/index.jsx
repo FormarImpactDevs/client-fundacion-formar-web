@@ -142,6 +142,14 @@ export const Header = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
+                <MenuItem>
+                  <Link
+                    to="/admin"
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    Dashboard Admin
+                  </Link>
+                </MenuItem>
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>
             )}

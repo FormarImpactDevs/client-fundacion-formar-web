@@ -58,10 +58,19 @@ function ProductsEcommerce({ emprendimientoId }) {
                     />
                     <div className="product-info">
                       <h2 className="product-title">{producto.nombre}</h2>
-                      <p className="product-description">
-                        {producto.descripcion}
-                      </p>
-                      <p className="product-price">${producto.precio}</p>
+                      <p className="product-description">{producto.descripcion}</p>
+                      {producto.descuento ? console.log(producto.descuento) (
+                        
+                        <div className="product-price">
+                          <p className="discounted-price">
+                            ${producto.precio - producto.descuento}
+                          </p>{" "}
+                          <del>${producto.precio}</del> 
+                        </div>
+                        
+                      ) : (
+                        <p className="product-price">${producto.precio}</p>
+                      )}
                       <Button
                         size="small"
                         onClick={() => agregarAlCarrito(producto)}
