@@ -87,7 +87,7 @@ export const FormProductEdit = () => {
     if (product !== undefined && product !== null) {
       setLoading(false);
     }
-  }, [getProductById, id, product]);
+  }, [id]);
 
   const initialValues = {
     id: product?.id,
@@ -158,7 +158,7 @@ export const FormProductEdit = () => {
     useFormik({
       validateOnBlur: false,
 
-      validateOnChange: true,
+      validateOnChange: false,
 
       initialValues,
 

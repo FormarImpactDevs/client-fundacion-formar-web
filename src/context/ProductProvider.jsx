@@ -51,14 +51,15 @@ export const ProductProvider = ({ children }) => {
       const ProductData = await getProductServiceById(id);
       setProduct(ProductData);
       setLoading(false);
+      console.log(ProductData, "provider");
     } catch (error) {
       throw new Error(error);
     }
   };
 
-  useEffect((id) => {
+/*   useEffect((id) => {
     getProductById(id);
-  }, []);
+  }, []); */
 
   // Productos de un emprendimiento por id
   const EmprendimientosProducts = async (enterpriseId) => {

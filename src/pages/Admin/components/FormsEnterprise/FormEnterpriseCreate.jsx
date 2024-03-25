@@ -88,7 +88,7 @@ export const FormEnterpriseCreate = () => {
   const { handleSubmit, values, setFieldValue, errors, isValid, dirty } = useFormik({
     validateOnBlur: false,
 
-    validateOnChange: true,
+    validateOnChange: false,
 
     initialValues: getInitialValues(),
 
