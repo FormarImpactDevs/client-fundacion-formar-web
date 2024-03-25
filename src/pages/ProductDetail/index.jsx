@@ -17,7 +17,7 @@ export const ProductDetail = () => {
 
   useEffect(() => {
     getProductById(id);
-  }, []);
+  }, [id]);
 
   function agregarAlCarrito(producto) {
     dispatch({ type: "AGREGAR_PRODUCTO", payload: producto });
@@ -49,7 +49,7 @@ export const ProductDetail = () => {
           sx={{
             color: "secondary.light",
           }}
-          onClick={agregarAlCarrito(product)}
+          onClick={() => agregarAlCarrito(product)}
         >
           Agregar al carrito
         </Button>

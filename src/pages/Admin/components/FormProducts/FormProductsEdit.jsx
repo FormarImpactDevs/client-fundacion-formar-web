@@ -72,6 +72,7 @@ const StyledSelect = styled(Select)({
 const StyledInputLabel = styled(InputLabel)({
   color: "#75aadb",
 });
+let initialValues;
 
 export const FormProductEdit = () => {
   const { id } = useParams();
@@ -86,20 +87,27 @@ export const FormProductEdit = () => {
     getProductById(id);
     if (product !== undefined && product !== null) {
       setLoading(false);
+      
     }
-  }, [getProductById, id, product]);
+  }, [id]);
 
-  const initialValues = {
-    id: product?.id,
-    nombre: product?.nombre,
-    precio: product?.precio,
-    descripcion: product?.descripcion,
-    descuento: product?.descuento,
-    stock: product?.stock,
-    emprendimientos_id: product?.emprendimientos_id,
-    categoria_id: product?.categoria_id,
-    images: product?.images || [],
-  };
+  useEffect(() => {
+    if (typeof product !== "undefined" && product !== null)
+    initialValues = {
+      id: product?.id,
+      nombre: product?.nombre,
+      precio: product?.precio,
+      descripcion: product?.descripcion,
+      descuento: product?.descuento,
+      stock: product?.stock,
+      emprendimientos_id: product?.emprendimientos_id,
+      categoria_id: product?.categoria_id,
+      images: product?.images || [],
+    };
+  }, [product])
+
+
+  
 
   const getValidationSchema = () =>
     Yup.lazy(() =>
@@ -171,6 +179,8 @@ export const FormProductEdit = () => {
     setFieldValue(name, selectedImages);
   };
 
+  if (isLoading) return <Loading />
+
   return (
     <>
       <ButtonGoToBack />
@@ -225,14 +235,15 @@ export const FormProductEdit = () => {
                           id="nombre"
                           label="Nombre del producto"
                           name="nombre"
-                          value={values.nombre || ""}
-                          defaultValue={product.nombre}
+                          value={values?.nombre || ""}
+                          defaultValue={values?.nombre}
                           error={errors?.nombre && true}
                           helperText={errors?.nombre ? errors.nombre : ""}
                           onChange={(e) =>
                             setFieldValue("nombre", e.target.value)
                           }
                         />
+                        { values?.nombre }
                       </Grid>
                       <Grid item xs={12} sm={12}>
                         <CssTextField
@@ -241,7 +252,7 @@ export const FormProductEdit = () => {
                           id="precio"
                           label="Precio del producto"
                           name="precio"
-                          value={values.precio}
+                          value={values?.precio}
                           InputProps={{
                             startAdornment: (
                               <InputAdornment position="start">
@@ -273,8 +284,8 @@ export const FormProductEdit = () => {
                           name="descripcion"
                           multiline
                           rows={4}
-                          value={values.descripcion}
-                          defaultValue={values.descripcion}
+                          value={values?.descripcion}
+                          defaultValue={values?.descripcion}
                           error={errors?.descripcion && true}
                           helperText={
                             errors?.descripcion ? errors.descripcion : ""
@@ -291,7 +302,7 @@ export const FormProductEdit = () => {
                           id="descuento"
                           label="Descuento"
                           name="descuento"
-                          value={values.descuento}
+                          value={values?.descuento}
                           InputProps={{
                             startAdornment: (
                               <InputAdornment position="start">
@@ -313,7 +324,7 @@ export const FormProductEdit = () => {
                           id="stock"
                           label="Stock"
                           name="stock"
-                          value={values.stock}
+                          value={values?.stock}
                           error={errors?.stock && true}
                           helperText={errors?.stock ? errors.stock : ""}
                           onChange={(e) =>
@@ -338,7 +349,7 @@ export const FormProductEdit = () => {
                         <StyledSelect
                           labelId="emprendimientos_id"
                           id="emprendimientos_id"
-                          value={values.emprendimientos_id}
+                          value={values?.emprendimientos_id}
                           label="Emprendimiento"
                           sx={{ width: "100%" }}
                           onChange={(e) =>
@@ -368,7 +379,7 @@ export const FormProductEdit = () => {
                         <StyledSelect
                           labelId="categoria_id"
                           id="categoria_id"
-                          value={values.categoria_id}
+                          value={values?.categoria_id}
                           label="Categoría"
                           sx={{ width: "100%" }}
                           onChange={(e) =>

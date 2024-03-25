@@ -4,6 +4,7 @@ import  {useAuth}  from "../context/AuthProvider"
 export const ProtectedRoute = () => {
   const { currentUser } = useAuth();
 
+
   return currentUser ? (
     <Outlet />
   ) : (

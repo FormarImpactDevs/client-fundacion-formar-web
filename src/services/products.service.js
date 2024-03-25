@@ -51,6 +51,6 @@ export const deleteProductservice = async (id) => {
     const { data } = await axios.delete(url);
     return data.message || [];
   } catch (error) {
-    throw new Error("Hubo un error al eliminar el emprendimiento.", error);
+    throw new Error("Hubo un error al eliminar el producto.", error);
   }
 };

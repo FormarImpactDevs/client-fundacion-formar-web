@@ -56,7 +56,7 @@ export const FormEnterpriseEdit = () => {
     if (enterprise != undefined) {
       setIsLoading(false);
     }
-  }, [getEnterpriseById, id, enterprise]);
+  }, [id]);
 
   const initialValues = {
     id: id,
