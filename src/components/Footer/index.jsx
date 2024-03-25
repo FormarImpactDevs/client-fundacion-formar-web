@@ -17,16 +17,15 @@ export const Footer =() => {
              </div>
 
              <div className="column">
-                <p>&#169; FormarCodeando, 2023 | Hecho con amor!</p>
+                <p>&#169; ForIT, 2023 | Hecho con amor!</p>
              </div>
              
              <div className="socials">
-                <a href="https://www.instagram.com/fundacionformar/"><img src={instagram} alt="" /></a>
-                <a href="https://www.linkedin.com/company/fundacion-formar/"><img src={linkedin} alt="" /></a>
-                <a href=""><img src={gmail} /></a>
+                <a href="https://www.instagram.com/fundacionformar/" target="_blank"><img src={instagram} alt="instagram" /></a>
+                <a href="https://www.linkedin.com/company/fundacion-formar/" target="_blank"><img src={linkedin} alt="linkedin" /></a>
+                <a href="mailto:emprendimientosformar@gmail.com" ><img src={gmail} alt="gmail"/></a>
              </div>
          
-
            </div>
 
         </div>

@@ -11,30 +11,30 @@ export const Slider = ({ cards }) => {
   };
 
   const goToPrevCard = () => {
-    setCurrentCard((prevCard) => (prevCard - 1 + cards.length) % cards.length);
+    setCurrentCard((prevCard) => (prevCard - 1 + cards.length) & cards.length);
   };
-
-
-  const numberOfCardsToShow = 2;
-
-  const startIndex = currentCard;
-  const endIndex = (startIndex + numberOfCardsToShow) % cards.length;
-  const displayedCards = cards.slice(startIndex, endIndex + 1);
 
   return (
     <div className="slider">
       <button onClick={goToPrevCard}>&lt;</button>
-      {displayedCards.map((card, index) => (
-        <Card
-          key={index}
-          image={card.image}
-          title={card.title}
-          subtitle={card.subtitle}
-        />
-      ))}
+      <Card
+        image={cards[currentCard].image}
+        title={cards[currentCard].title}
+        subtitle={cards[currentCard].subtitle}
+      />
       <button onClick={goToNextCard}>&gt;</button>
     </div>
   );
+};
+
+Slider.propTypes = {
+  cards: PropTypes.arrayOf(
+    PropTypes.shape({
+      image: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      subtitle: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 Slider.propTypes = {

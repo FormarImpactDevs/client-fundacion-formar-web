@@ -4,8 +4,11 @@
   cursor: default;
   text-align: center;
   padding-top: 30px;
+  
   @include desktop2 {
-    padding-top: 70px;
+    padding: 10rem;
+
+
   }
 }
 .axes_cards {
@@ -14,7 +17,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  @include tablet {
+  align-items: center;
+  @include desktop2 {
     flex-direction: row;
   }
 }
@@ -54,7 +58,7 @@
   @include tablet {
     display: flex;
     height: 300px;
-    width: 300px;
+    width: 450px;
     align-items: center;
     justify-content: flex-start;
     align-content: space-between;

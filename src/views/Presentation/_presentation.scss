@@ -3,14 +3,23 @@
 @import "../../styles/fonts-settings";
 
 .presentation_container {
+  padding-top: 10px;
   max-width: 100vw;
   position: relative;
 
-
   @include desktop-large {
-    max-width: 96.5vw;
     display: flex;
     justify-content: center;
+    width: 100%;
+  }
+
+  .presentation {
+    position: relative;
+    margin: auto;
+    @include desktop-large {     
+       width: 100%;
+     }
+
   }
 
   .firmFormar {
@@ -51,17 +60,25 @@
       left: 2rem;
 
       @media screen and (min-width: 1450px) {
-        left: auto;
+        top: 12%;
+        left: 10%;
       }
     }
   }
   .students {
     position: relative;
+    @include desktop-large {     
+      width: 100%;
+    }
   }
 
   .ondas {
     position: absolute;
-    bottom: 0;
+    bottom: -8px;
+    @include desktop-large {     
+      width: 100%;
+    }
+
   }
 
   figure {
@@ -70,6 +87,9 @@
 
       @media screen and (min-width: 1400px) {
         max-width: 100%;
+      }
+      @include desktop-large {     
+        width: 100%;
       }
     }
   }

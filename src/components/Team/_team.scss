@@ -3,7 +3,8 @@
 .team_container {
     cursor: default;
     @include desktop2 {
-        padding-top: 70px;
+        padding-bottom: 10%;
+
     } 
 }
 .team_cards {

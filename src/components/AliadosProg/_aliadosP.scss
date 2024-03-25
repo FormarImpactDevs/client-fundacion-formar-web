@@ -10,10 +10,19 @@
         height: auto;
     }
     @include desktop {
-        height: 600px;
         background-size: 100%;
-        padding-top: 70px;
+        padding-top: $padding-top;
+        
+        
     }
+}
+
+.title{
+    margin-bottom: 15px;
+}
+
+.subtitle{
+    margin-bottom: 10px;
 }
 
 .lanus .logos{
@@ -32,7 +41,11 @@
     justify-content: space-between;
     @include mobile-tablet {
        flex-wrap: wrap;
+       display: flex;
        justify-content: center;
+       flex-direction: column;
+       align-content: center;
+       text-align: center;
     }
     @include desktop {
         height: 400px;
@@ -47,7 +60,7 @@
         align-items: center;
         margin: 5px;
         img{
-            width: 100%;
+            width: 80%;
         }
     }
 }

@@ -3,8 +3,23 @@
 .main {
   height: auto;
   min-height: 100vh;
+
+  @media screen and (min-width: 951px) and (max-width: 1399px) {
+    height: auto;
+    min-height: 80vh;
+  }
 }
 
+.mainContainer {
+  min-height: 63.3vh;
+  margin-top: 75px;
+  
+  @media screen and (min-width: 1400px) {
+    max-width: 80%;
+    margin: 0 auto;
+    padding-top: 8rem; 
+  }
+}
 .container {
   min-height: 63.3vh;
   margin-top: 75px;
@@ -12,5 +27,6 @@
   @media screen and (min-width: 1400px) {
     max-width: 80%;
     margin: 0 auto;
+    /* padding: 1rem 3rem; */
   }
 }

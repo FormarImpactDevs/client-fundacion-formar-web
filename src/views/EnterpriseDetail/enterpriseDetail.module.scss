@@ -1,0 +1,73 @@
+@import "../../styles/colors";
+@import "../../styles/media-queries";
+
+.container {
+  background-color: $ligth-blue;
+  width: 100%;
+  min-height: 63.3vh;
+  margin-top: 75px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  padding: 4em;
+
+  @include mobile-tablet {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    padding: 20px;
+  }
+  .containerImages {
+    width: 320px;
+    height: 100%;
+    position: relative;
+
+    @include mobile-tablet {
+      height: 350px;
+    }
+
+    figure {
+      background-color: $white;
+      width: 200px;
+      height: 300px;
+      padding: 1em 1em 3em 1em;
+      box-shadow: 0 3px 5px rgb($ligth-gray, 0.5);
+      object-fit: contain;
+      overflow: hidden;
+
+      @include mobile-tablet {
+        width: 150px;
+        height: 250px;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-bottom: solid .3px rgb($ligth-gray, 0.5);
+      }
+    }
+    .imageFoto_card {
+      position: absolute;
+      rotate: -5deg;
+    }
+    .imageFoto_emprendimiento {
+      position: absolute;
+      bottom: -20px;
+      left: 150px;
+      rotate: 8deg;
+
+      @include mobile-tablet {
+        position: absolute;
+        bottom: 10px;
+        left: 125px;
+        rotate: 5deg;
+      }
+    }
+  }
+
+  .infoEnterprise {
+    padding: 1em;
+  }
+}

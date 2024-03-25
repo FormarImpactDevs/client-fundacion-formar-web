@@ -10,7 +10,8 @@
   text-align: center;
 
   @include desktop2 {
-    padding-top: 70px;
+    padding-top: $padding-top;
+        min-height: 100vh;
   }
 }
 
@@ -73,6 +74,7 @@
   }
 
   p {
+    padding: 10px;
     margin: 5px;
     text-align: center;
   }

@@ -1,0 +1,93 @@
+@import "../../../styles/colors";
+@import "../../../styles/media-queries";
+
+.card {
+    width: 320px;
+    border-radius: 25px;
+    background-color: #fff;
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);;
+}
+
+.image_content, .card_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding:  4rem 2rem;
+}
+
+.image_content {
+    position: relative;
+    row-gap: 5px;
+    padding: 25px 0;
+    }
+
+.overlay  {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: $ligth-blue;
+    border-radius: 25px 25px 0 25px;
+}
+
+.overlay::before, .overlay::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -40px;
+    height: 40px;
+    width: 40px;
+    background-color: $ligth-blue;
+}
+
+.overlay::after {
+    border-radius: 0 25px 0 0;
+    background-color: #fff;
+}
+
+/* Card personas */
+.card_image_person {
+  position: relative;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background: #fff;
+  padding: 3px;
+  border: 4px solid $primary-color;
+}
+
+.card_image_person .card_img_person {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;  
+}
+/* card solo imagen */
+.card_image {
+  position: relative;
+  height: 250px;
+  width: 300px;
+  background: #fff;
+  padding: 1rem;
+  border: 1px solid $primary-color;
+  border-radius: 16px ;
+}
+
+.card_image .card_img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.name {
+    font-size: 18px;
+    font-weight: 500;
+    color: $dark-gray;
+}
+
+.description {
+    font-size: 14px;
+    color: $ligth-gray;
+    text-align: center;
+}

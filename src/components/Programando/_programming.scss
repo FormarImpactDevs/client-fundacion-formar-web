@@ -4,7 +4,7 @@
 
 
 .programando_container {
-    padding: 30px;
+    padding-top: 30px;
     background-image: url("../../assets/fondoAboutUs.jpg");
     background-position: right;
     background-repeat: no-repeat;
@@ -13,7 +13,8 @@
         height: auto;
     }
     @include desktop2 {
-        padding-top: 70px;
+        padding-top: $padding-top;
+        min-height: $min-height;
     }
     .span_title {
         color: $white;
