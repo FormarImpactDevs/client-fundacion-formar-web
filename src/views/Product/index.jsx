@@ -1,15 +1,17 @@
 import { useParams } from "react-router-dom";
 import useProducts from "../../hooks/useProducts";
 import { useEffect } from "react";
-import { Button, CircularProgress } from "@mui/material";
+import { Button } from "@mui/material";
 import { useCart } from "../../context/cartContext";
 import { NavLink } from "react-router-dom";
 import { ProductImageDetail } from "../../components/ProductImageDetail";
 import { useState } from "react";
 import "./productDetail.scss"
+import { Loading } from "../../components/Loading";
 
 export const Product = () => {
   const { id } = useParams();
+  const [loading, setLoading] = useState(true)
 
   const { dispatch } = useCart();
   const [quantity, setQuantity] = useState(1); // Estado para la cantidad de productos
@@ -24,12 +26,14 @@ export const Product = () => {
     }
   }
 
-  const { getProductById, product, loading } = useProducts();
+  const { getProductById, product } = useProducts();
 
   useEffect(() => {
     getProductById(id);
-    console.log(product);
-  }, [id]);
+    if (product !== undefined && product !== null) {
+      setLoading(false)
+    }
+  }, [product]);
 
   function agregarAlCarrito(producto) {
     dispatch({ type: "AGREGAR_PRODUCTO", payload: { ...producto, quantity } });
@@ -109,9 +113,9 @@ export const Product = () => {
   };
 
   return (
-    <div className="containerDetail py-4 ">
+    <div className="containerDetail py-4">
       <div className="row py-2">
-        {loading ? <CircularProgress /> : <ShowProduct />}
+        {loading ? <Loading /> : <ShowProduct />}
       </div>
     </div>
   );
