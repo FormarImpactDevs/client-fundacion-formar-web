@@ -142,7 +142,7 @@ export const FormProductCreate = () => {
     useFormik({
       validateOnBlur: false,
 
-      validateOnChange: true,
+      validateOnChange: false,
 
       initialValues: getInitialValues(),
 

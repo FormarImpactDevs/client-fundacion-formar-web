@@ -7,9 +7,7 @@ const CartContext = createContext();
 const cartReducer = (state, action) => {
   switch (action.type) {
     case "AGREGAR_PRODUCTO": {
-      // Lógica para agregar productos al carrito
       const productoAAgregar = action.payload;
-      productoAAgregar.unit_price = productoAAgregar.precio
       // Verificar si el producto ya está en el carrito
       const existeProducto = state.productos.find(
         (item) => item.id === productoAAgregar.id
@@ -19,14 +17,17 @@ const cartReducer = (state, action) => {
           ...state,
           productos: state.productos.map((item) =>
             item.id === productoAAgregar.id
-              ? { ...item, quantity: item.quantity + 1 }
+              ? { ...item, quantity: item.quantity + action.payload.quantity }
               : item
           ),
         };
       } else {
         return {
           ...state,
-          productos: [...state.productos, { ...productoAAgregar, quantity: 1 }],
+          productos: [
+            ...state.productos,
+            { ...productoAAgregar, quantity: action.payload.quantity },
+          ],
         };
       }
     }

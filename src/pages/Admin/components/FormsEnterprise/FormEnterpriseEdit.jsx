@@ -106,7 +106,7 @@ export const FormEnterpriseEdit = () => {
     useFormik({
       validateOnBlur: false,
 
-      validateOnChange: true,
+      validateOnChange: false,
 
       initialValues,
 

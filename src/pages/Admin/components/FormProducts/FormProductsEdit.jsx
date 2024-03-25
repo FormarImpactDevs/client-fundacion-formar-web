@@ -166,7 +166,7 @@ export const FormProductEdit = () => {
     useFormik({
       validateOnBlur: false,
 
-      validateOnChange: true,
+      validateOnChange: false,
 
       initialValues,
 
