@@ -22,6 +22,7 @@ import { Feedback } from "../views/Feedback"
 import { PointsList } from "../views/Points/PointsList";
 import { FormCreatePoint } from "../views/Points/FormCreatePoint";
 import { FormUpdatePoint } from "../views/Points/FormUpdatePoint";
+import { Product } from "../views/Product";
 
 export default function AppRoutes() {
   return (

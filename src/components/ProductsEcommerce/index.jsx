@@ -33,8 +33,11 @@ function ProductsEcommerce({ emprendimientoId }) {
   };
 
   const agregarAlCarrito = (producto) => {
-    dispatch({ type: "AGREGAR_PRODUCTO", payload: producto });
+   /*  dispatch({ type: "AGREGAR_PRODUCTO", payload: producto }); */
+   dispatch({ type: "AGREGAR_PRODUCTO", payload: { ...producto, quantity: 1 } });
   };
+
+  
 
   return (
     <div>

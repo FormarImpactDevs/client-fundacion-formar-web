@@ -111,7 +111,7 @@ export const FormEditPoint = () => {
     useFormik({
       validateOnBlur: false,
 
-      validateOnChange: true,
+      validateOnChange: false,
 
       initialValues: getInitialValues(),
 
