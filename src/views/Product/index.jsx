@@ -33,7 +33,7 @@ export const Product = () => {
     if (product !== undefined && product !== null) {
       setLoading(false)
     }
-  }, []);
+  }, [product]);
 
   function agregarAlCarrito(producto) {
     dispatch({ type: "AGREGAR_PRODUCTO", payload: { ...producto, quantity } });
