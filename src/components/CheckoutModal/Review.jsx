@@ -34,9 +34,17 @@ export default function Review() {
 
 
   useEffect(() => {
-    const sumaTotaldeProductos = detalle_pedido.reduce((acum, item) => Number(acum) + (Number(item.unit_price) * Number(item.quantity)), 0);
-    setTotal(sumaTotaldeProductos)
+    console.log(detalle_pedido)
+    try {
+      const sumaTotaldeProductos = detalle_pedido.reduce((acum, item) => Number(acum) + (Number(item.precio) * Number(item.quantity)), 0);
+      setTotal(sumaTotaldeProductos)
+    } catch (error) {
+      console.error("Error al obtener el total", error)
+    }
+  
   },[detalle_pedido])
+  console.log(total)
+
 
   return (
     <>
@@ -47,7 +55,7 @@ export default function Review() {
         {detalle_pedido.map((product) => (
           <ListItem key={product.nombre} sx={{ py: 0.5, px: 0 }}>
             <ListItemText primary={`${product.nombre} ${product.quantity}`} secondary={product.descripcion} />
-            <Typography variant="body2">{product.unit_price * product.quantity}</Typography>
+            <Typography variant="body2">{product.precio * product.quantity}</Typography>
           </ListItem>
         ))}
         <ListItem sx={{ py: 1, px: 0 }}>

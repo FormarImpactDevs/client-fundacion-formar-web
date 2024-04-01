@@ -106,6 +106,7 @@ export const OrderProvider = ({ children }) => {
     try {
       // Aquí puedes obtener los datos de orden del estado
       const orderData = ordenState; // Ejemplo: reemplaza por los datos de la orden a enviar
+      
 
       const confirmedOrder = await confirmOrderService(orderData);
 
