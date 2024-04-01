@@ -58,12 +58,27 @@ export const FormEnterpriseEdit = () => {
     }
   }, [id]);
 
+  useEffect(() => {
+    setValues(
+      {
+        id: id,
+        nombre: enterprise?.nombre,
+        descripcion: enterprise?.descripcion,
+        foto_card: enterprise?.foto_card,
+        foto_emprendimiento: enterprise?.foto_emprendimiento,
+      }
+    )
+  },
+  [
+    enterprise
+  ])
+
   const initialValues = {
-    id: id,
-    nombre: enterprise?.nombre,
-    descripcion: enterprise?.descripcion,
-    foto_card: enterprise?.foto_card,
-    foto_emprendimiento: enterprise?.foto_emprendimiento,
+    id: "",
+    nombre: "",
+    descripcion: "",
+    foto_card: "",
+    foto_emprendimiento: "",
   };
 
   const getValidationSchema = () =>
@@ -102,7 +117,7 @@ export const FormEnterpriseEdit = () => {
     }
   };
 
-  const { handleSubmit, values, setFieldValue, errors, isValid, dirty } =
+  const { handleSubmit, values, setFieldValue, errors, isValid, dirty, setValues } =
     useFormik({
       validateOnBlur: false,
 
