@@ -8,7 +8,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import useObserverComponent from "../../hooks/useObserverComponent";
 import { useAuth } from "../../context/AuthProvider";
-import CartBadge from "../CartBadge";
+/* import CartBadge from "../CartBadge"; */
 
 export const Header = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -106,7 +106,7 @@ export const Header = () => {
               Voluntariado
             </a>
           </li>
-          <li className="paragraph2">
+        {/*   <li className="paragraph2">
             <Link
               to="/products"
               id="products"
@@ -114,7 +114,7 @@ export const Header = () => {
             >
               Productos
             </Link>
-          </li>
+          </li> */}
           <li className="paragraph2">
             <a
               href="/#contact"
@@ -124,7 +124,7 @@ export const Header = () => {
               Contacto
             </a>
           </li>
-          <li>
+         {/*  <li>
           {currentUser ? (
               <Button
                 aria-controls="simple-menu"
@@ -153,9 +153,9 @@ export const Header = () => {
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>
             )}
-          </li>
+          </li> */}
         </ul>
-        <CartBadge/>
+        {/* <CartBadge/> */}
       </nav>
     </header>
   );

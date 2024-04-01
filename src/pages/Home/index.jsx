@@ -91,7 +91,7 @@ export default function Home() {
         {/* Doná */}
         <Done />
         {/* Emprendiendo la inclusión */}
-        <div id="undertaking" ref={undertakingRef}>
+       {/*  <div id="undertaking" ref={undertakingRef}>
           {undertakingRefIsIntersecting
             ? setUndertakingIsIntersecting(true)
             : setUndertakingIsIntersecting(false)}
@@ -99,7 +99,7 @@ export default function Home() {
           <div id="enterprises">
             <EnterpisesGallery />
           </div>
-        </div>
+        </div> */}
         {/* Aliados */}
         <Aliados />
         <EquipoEmprendiendo />

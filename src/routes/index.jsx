@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import NotFound from "../pages/NotFound";
-import { HomeEcommerce } from "../pages/HomeEcommerce";
+/* import { HomeEcommerce } from "../pages/HomeEcommerce";
 import { Admin } from "../pages/Admin";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { EnterprisesList } from "../views/EnterprisesList";
@@ -23,12 +23,12 @@ import { PointsList } from "../views/Points/PointsList";
 import { FormCreatePoint } from "../views/Points/FormCreatePoint";
 import { FormUpdatePoint } from "../views/Points/FormUpdatePoint";
 import { Product } from "../views/Product";
-
+ */
 export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/products" element={<HomeEcommerce />} />
+     {/*  <Route path="/products" element={<HomeEcommerce />} />
       <Route path="/products?emprendimiento=/:emprendimientoId" element={<HomeEcommerce />} />
       <Route path="/producto/:id" element={<ProductDetail />} />
       <Route path="/mi-compra" element={<CartPage />} />
@@ -53,7 +53,7 @@ export default function AppRoutes() {
          <Route path="/admin/points" element={<PointsList />} />
         <Route path="/admin/points/create" element={<FormCreatePoint />} />
         <Route path="/admin/points/edit/:id" element={<FormUpdatePoint />} />
-      </Route>
+      </Route> */}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
