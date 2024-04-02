@@ -33,8 +33,7 @@ export const ProductProvider = ({ children }) => {
       setProducts(ProductsData);
       setLoading(false);
     } catch (error) {
-      throw new Error('Este es un mensaje de error.');
-
+      throw new Error("Este es un mensaje de error.");
     }
   };
 
@@ -51,15 +50,14 @@ export const ProductProvider = ({ children }) => {
       const ProductData = await getProductServiceById(id);
       setProduct(ProductData);
       setLoading(false);
-      console.log(ProductData, "provider");
     } catch (error) {
       throw new Error(error);
     }
   };
 
-/*   useEffect((id) => {
+    useEffect((id) => {
     getProductById(id);
-  }, []); */
+  }, []);
 
   // Productos de un emprendimiento por id
   const EmprendimientosProducts = async (enterpriseId) => {
@@ -68,9 +66,10 @@ export const ProductProvider = ({ children }) => {
         setProductsFiltered([]); // Limpia el array antes de agregar nuevos productos
 
         const ProductsData = await getProductsService();
-        let filterProducts = ProductsData.filter((product) =>
-         /*  enterpriseId.includes(product.emprendimientos_id) */
-         product.emprendimientos_id == enterpriseId
+        let filterProducts = ProductsData.filter(
+          (product) =>
+            /*  enterpriseId.includes(product.emprendimientos_id) */
+            product.emprendimientos_id == enterpriseId
         );
         setProductsFiltered(filterProducts.flat());
       } catch (error) {
@@ -80,8 +79,7 @@ export const ProductProvider = ({ children }) => {
     } else {
       setProductsFiltered([]);
     }
-  }
-  
+  };
 
   // Lista de los productos filtrados por categoría
   const [categoryState, setCategoryState] = useState({});
@@ -172,7 +170,7 @@ export const ProductProvider = ({ children }) => {
     searchProducts,
     productsReady,
 
-    EmprendimientosProducts
+    EmprendimientosProducts,
   };
 
   return (

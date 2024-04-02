@@ -38,8 +38,8 @@ const CssTextField = styled(TextField)({
 export const FormCategoryEdit = () => {
   const { id } = useParams();
   const [sending, setSending] = useState(false);
-  const navigate = useNavigate()
-  const { formValues, handleInputChange, reset } = useForm({
+  const navigate = useNavigate();
+  const { formValues, handleInputChange } = useForm({
     nombre: "",
   });
 
@@ -97,8 +97,6 @@ export const FormCategoryEdit = () => {
           <form
             noValidate
             onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
-            maxWidth="xs"
             action=""
             method="POST"
             encType="multipart/form-data"

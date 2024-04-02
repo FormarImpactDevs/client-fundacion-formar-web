@@ -66,8 +66,8 @@ export const FormEditPoint = () => {
       setIsLoading(false);
     }
   }, [id]);
-  
-  const { nombre, descripcion, telefono } = point
+
+  const { nombre, descripcion, telefono } = point;
 
   const getInitialValues = () => ({
     id: id,

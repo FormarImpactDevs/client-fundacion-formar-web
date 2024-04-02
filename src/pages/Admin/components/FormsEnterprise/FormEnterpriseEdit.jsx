@@ -1,4 +1,3 @@
-import { useEffect, useContext, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 /* MUI */
 import {
@@ -20,10 +19,9 @@ import Swal from "sweetalert2";
 /* Formik y Yup */
 import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
-/* Servicios */
+/* Servicios y hooks*/
 import { updateEnterpriseService } from "../../../../services/enterprises.service";
-// Componentes de contexto
-import { EnterpriseContext } from "../../../../context/EnterpriseContext/EnterpriseContext";
+import { useEnterpriseById } from "../../../../hooks/enterprise/useEnterprise";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -47,16 +45,8 @@ const CssTextField = styled(TextField)({
 
 export const FormEnterpriseEdit = () => {
   const { id } = useParams();
-  const { enterprise, getEnterpriseById } = useContext(EnterpriseContext);
+  const { enterprise, loading } = useEnterpriseById(id);
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    getEnterpriseById(id);
-    if (enterprise != undefined) {
-      setIsLoading(false);
-    }
-  }, [id]);
 
   const initialValues = {
     id: id,
@@ -117,7 +107,7 @@ export const FormEnterpriseEdit = () => {
 
   return (
     <>
-      {!isLoading ? (
+      {!loading ? (
         <Container component="main" maxWidth="sm">
           <CssBaseline />
           <Box

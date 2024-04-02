@@ -1,13 +1,9 @@
 import Title from "../../components/Title";
 import { MainLayout } from "../../layout";
 import DataTable from "../../components/List";
+import { Loading } from "../../components/Loading";
 import { GridActionsCellItem } from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
-import { useEffect, useState } from "react";
-import {
-  getPointsService,
-  deletePointService
-} from "../../services/points.service";
 
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,32 +16,11 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 
 import styles from "../EnterprisesList/enterprisesList.module.scss";
 import { ButtonGoToBack } from "../../components/ButtonGoToBack";
+import { usePoints, useDeletePoint } from "../../hooks/points/usePoint";
 
 export const PointsList = () => {
-  const [points, setPoints] = useState([]);
-
-  const getPoints = async () => {
-    try {
-      const pointsData = await getPointsService();
-      setPoints(pointsData);
-    } catch (error) {
-      throw new Error(error);
-    }
-  };
-
-  useEffect(() => {
-    getPoints();
-  }, []);
-
-  const deletePoint = async (e, id) => {
-    e.preventDefault();
-    try {
-      const result = await deletePointService(id);
-      return result.message;
-    } catch (error) {
-      return error.message;
-    }
-  };
+  const { points, loading } = usePoints();
+  const { deletePoint } = useDeletePoint();
 
   function confirmDeleted(e, id) {
     Swal.fire({
@@ -57,20 +32,34 @@ export const PointsList = () => {
       cancelButtonColor: "#d33",
       confirmButtonText: "¡Sí, eliminar!",
       cancelButtonText: "Cancelar",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        const remove = deletePoint(e, id);
-        if (remove) {
+        try {
+          const response = await deletePoint(id);
+          console.log(response);
+          if (response.status == 201) {
+            Swal.fire(
+              "Eliminado!",
+              "punto de retiro eliminado satisfactoriamente",
+              "success"
+            );
+            setTimeout(() => {
+              window.location.reload();
+            }, 1200);
+          } else {
+            Swal.fire(
+              "Error",
+              "No se pudo eliminar el punto de retiro.",
+              "error"
+            );
+          }
+        } catch (error) {
+          console.error("Error al eliminar el punto de retiro:", error);
           Swal.fire(
-            "Eliminado!",
-            "punto de retiro eliminado satisfactoriamente",
-            "success"
+            "Error",
+            "No se pudo eliminar el punto de retiro.",
+            "error"
           );
-          setTimeout(() => {
-            window.location = "/admin/points";
-          }, 1200);
-        } else {
-          Swal.fire("Error", "No se pudo eliminar el punto de retiro.", "error");
         }
       }
     });
@@ -110,21 +99,25 @@ export const PointsList = () => {
     <>
       <MainLayout>
         <ButtonGoToBack />
-        <section className={styles.mainContainerList}>
-          <Title text="Lista de punto de retiros" />
-          <div className={styles.containerList}>
-            <Link to="/admin/points/create">
-              <Button
-                size="medium"
-                variant="outlined"
-                startIcon={<FontAwesomeIcon icon={faPlus} />}
-              >
-                Crear punto de retiro
-              </Button>
-            </Link>
-            <DataTable rows={points} columns={columns} />
-          </div>
-        </section>
+        {loading ? (
+          <Loading />
+        ) : (
+          <section className={styles.mainContainerList}>
+            <Title text="Lista de punto de retiros" />
+            <div className={styles.containerList}>
+              <Link to="/admin/points/create">
+                <Button
+                  size="medium"
+                  variant="outlined"
+                  startIcon={<FontAwesomeIcon icon={faPlus} />}
+                >
+                  Crear punto de retiro
+                </Button>
+              </Link>
+              <DataTable rows={points} columns={columns} />
+            </div>
+          </section>
+        )}
       </MainLayout>
     </>
   );

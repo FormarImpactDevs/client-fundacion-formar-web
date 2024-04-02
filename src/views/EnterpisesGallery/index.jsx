@@ -1,30 +1,13 @@
-/* import { useContext } from "react"; */
-/* import { useState, useEffect, useContext } from "react"; */
+import { useEnterprises } from "../../hooks/enterprise/useEnterprise";
 import GalleryImages from "../../components/GalleryImages";
-/* import { EnterpriseContext } from "../../context/EnterpriseContext/EnterpriseContext"; */
-import { useEffect, useState } from "react";
-import { getEnterprisesService } from "../../services/enterprises.service";
 import Title from "../../components/Title";
 
 const EnterpisesGallery = () => {
-  const [enterprises, setEnterprises] = useState([]);
-
-  const getEnterprises = async () => {
-    try {
-      const EnterprisesData = await getEnterprisesService();
-      setEnterprises(EnterprisesData);
-    } catch (error) {
-      throw new Error(error);
-    }
-  };
-
-  useEffect(() => {
-    getEnterprises();
-  }, []);
+  const { enterprises } = useEnterprises();
 
   return (
     <section className="container pt-5">
-      <Title text={"Conocé los emprendimientos que acompañamos"}/>
+      <Title text={"Conocé los emprendimientos que acompañamos"} />
       <GalleryImages array={enterprises} />
     </section>
   );

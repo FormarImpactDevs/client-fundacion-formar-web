@@ -1,50 +1,51 @@
-import { useContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styles from "./enterpriseDetail.module.scss";
 import Title from "../../components/Title";
 import { Loading } from "../../components/Loading";
-import { EnterpriseContext } from "../../context/EnterpriseContext/EnterpriseContext";
-import { ProductContext } from "../../context/ProductContext";
+
+import { useEnterpriseById } from "../../hooks/enterprise/useEnterprise";
+import ProductsOfEnterprise from "../../components/ProductsEcommerce/ProductsOfEnterprise";
 
 export const EnterpriseDetail = ({ info }) => {
-  const { enterprise, setEnterprise, getEnterpriseById,  } =
-    useContext(EnterpriseContext);
-const { products, setProducts, EmprendimientosProducts } = useContext(ProductContext);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const getEnterprise = async (info) => {
-    let data = await getEnterpriseById(info);
-    if (data) {
-      setEnterprise(data);
-      setProducts(data.products);
-    }
-  };
-  useEffect(() => {
-    getEnterprise(info);
-    setIsLoading(false);
-    EmprendimientosProducts(info)
-  }, []);
-
+  // Utilizar el hook personalizado para obtener la información de la empresa
+  const { enterprise, loading } = useEnterpriseById(info);
+  let imgDefault =
+    "http://localhost:3000//images/imagesEnterprises/default-image.png";
   return (
     <>
-      {!isLoading ? (
-        <section className={styles.container}>
-        <section className={styles.containerImages}>
-          <figure className={styles.imageFoto_card}>
-            <img src={enterprise.foto_card} alt={enterprise.nombre} />
-          </figure>
-          <figure className={styles.imageFoto_emprendimiento}>
-            <img
-              src={enterprise.foto_emprendimiento}
-              alt={enterprise.nombre}
-            />
-          </figure>
-        </section>
-        <section className={styles.infoEnterprise}>
-          <Title text={enterprise.nombre} />
-          <p>{enterprise.descripcion}</p>
-        </section>
-      </section>
+      {!loading ? (
+        <>
+          <section className={styles.container}>
+            <section className={styles.containerImages}>
+              <figure className={styles.imageFoto_card}>
+                <img
+                  src={enterprise.foto_card ? enterprise.foto_card : imgDefault}
+                  alt={enterprise.nombre}
+                />
+              </figure>
+              <figure className={styles.imageFoto_emprendimiento}>
+                <img
+                  src={
+                    enterprise.foto_emprendimiento
+                      ? enterprise.foto_emprendimiento
+                      : imgDefault
+                  }
+                  alt={enterprise.nombre}
+                />
+              </figure>
+            </section>
+            <section className={styles.infoEnterprise}>
+              <Title text={enterprise.nombre} />
+              <p>{enterprise.descripcion}</p>
+            </section>
+          </section>
+
+          <div>
+            <div className={styles.mainContent}>
+              <ProductsOfEnterprise emprendimiento={enterprise.products} />
+            </div>
+          </div>
+        </>
       ) : (
         <Loading />
       )}

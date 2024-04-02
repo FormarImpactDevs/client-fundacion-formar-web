@@ -10,6 +10,7 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import "sweetalert2/src/sweetalert2.scss";
 import styles from "./ordersList.module.scss";
 import { ButtonGoToBack } from "../../components/ButtonGoToBack";
+import Tooltip from "@mui/material/Tooltip";
 
 export const OrdersList = () => {
   const [orders, setOrders] = useState([]);
@@ -35,7 +36,40 @@ export const OrdersList = () => {
     { field: "link", headerName: "Link", width: 130 },
     { field: "client_data.mail", headerName: "Datos del cliente", width: 130 },
     { field: "punto_retiro_id", headerName: "Punto de retiro", width: 130 },
-    { field: "detalle_pedido", headerName: "Detalle del pedido", width: 130 },
+    {
+      field: "detalle_pedido",
+      headerName: "Detalle del pedido",
+      width: 150,
+      renderCell: (params) => {
+        // Aquí puedes acceder a la propiedad detalle_pedido de cada fila
+        const detallePedido = params.row.detalle_pedido;
+
+        const detallePedidoArray = JSON.parse(detallePedido);
+
+        // Verifica si detallePedido es un array de objetos
+        if (Array.isArray(detallePedidoArray)) {
+          // Recorremos cada objeto dentro del array
+          return detallePedidoArray.map((product, index) => (
+            <div key={index}>
+              <h4>{`Detalle del Pedido ${index + 1}`}</h4>
+              <ul>
+                {/* Mostramos la información de cada producto */}
+                <li key={product.id}>
+                  <Tooltip
+                    title={`Nombre: ${product.nombre}, Precio: $${product.precio}`}
+                  >
+                    <span>{product.nombre}</span>
+                  </Tooltip>
+                </li>
+              </ul>
+            </div>
+          ));
+        } else {
+          // Si detallePedido no es un array, muestra un mensaje de error o un valor predeterminado
+          return <div>Error: Detalle del pedido no se puede vizualizar</div>;
+        }
+      },
+    },
     { field: "monto_total", headerName: "Monto total", width: 130 },
     {
       headerName: "Editar",

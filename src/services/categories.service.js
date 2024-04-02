@@ -37,7 +37,7 @@ export const deleteCategoryService = async (id) => {
     try {
       const url = `${apiUrl}category/${id}`;
       const { data } = await axios.delete(url);
-      return data.message || [];
+      return data || [];
     } catch (error) {
       console.log(error);
       throw new Error("Hubo un error al eliminar la categoría.");

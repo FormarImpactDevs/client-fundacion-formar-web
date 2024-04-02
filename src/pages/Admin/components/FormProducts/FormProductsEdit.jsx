@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
 import {
   Button,
   Box,
@@ -8,9 +7,6 @@ import {
   Grid,
   TextField,
   styled,
-  Select,
-  MenuItem,
-  InputLabel,
   InputAdornment,
 } from "@mui/material";
 import "../../../../components/Form/formDates.scss";
@@ -20,14 +16,15 @@ import { ButtonGoToBack } from "../../../../components/ButtonGoToBack";
 /* Formik y Yup */
 import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
-// Componentes de contexto
+// Componentes
 import InputFileMultiple from "../../../../components/InputFileMultiple";
+import SelectInput from "../../../../components/SelectInput";
 import { Loading } from "../../../../components/Loading";
-/* import useProducts from "../../../../hooks/useProducts"; */
-import { ProductContext } from "../../../../context/ProductContext";
-import { CategoryContext } from "../../../../context/categoryContext/CategoryContext";
-import { EnterpriseContext } from "../../../../context/EnterpriseContext/EnterpriseContext";
 import { updateProductservice } from "../../../../services/products.service";
+
+import { useProductById } from "../../../../hooks/product/useProduct";
+import { useCategories } from "../../../../hooks/category/useCategory";
+import { useEnterprises } from "../../../../hooks/enterprise/useEnterprise";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -49,45 +46,13 @@ const CssTextField = styled(TextField)({
   },
 });
 
-const StyledSelect = styled(Select)({
-  "& label.Mui-focused": {
-    color: "#75aadb",
-  },
-  "& .MuiInput-underline:after": {
-    borderBottomColor: "#75aadb",
-  },
-  "& .MuiOutlinedInput-root": {
-    "& fieldset": {
-      borderColor: "#E0E3E7",
-    },
-    "&:hover fieldset": {
-      borderColor: "#75aadb",
-    },
-    "&.Mui-focused fieldset": {
-      borderColor: "#75aadb",
-    },
-  },
-});
-
-const StyledInputLabel = styled(InputLabel)({
-  color: "#75aadb",
-});
-
 export const FormProductEdit = () => {
   const { id } = useParams();
-  const { categories } = useContext(CategoryContext);
-  const { enterprises } = useContext(EnterpriseContext);
+  const { categories } = useCategories();
+  const { enterprises } = useEnterprises();
+  const { product, loading } = useProductById(id);
 
   const navigate = useNavigate();
-  const { getProductById, product } = useContext(ProductContext);
-  const [isLoading, setLoading] = useState(true);
-
-  useEffect(() => {
-    getProductById(id);
-    if (product !== undefined && product !== null) {
-      setLoading(false);
-    }
-  }, [id]);
 
   const initialValues = {
     id: product?.id,
@@ -107,7 +72,6 @@ export const FormProductEdit = () => {
         nombre: Yup.string().required("El campo nombre es obligatorio."),
         precio: Yup.string().required("El campo precio es obligatorio."),
         descripcion: Yup.string().required("Se requiere de una descripción."),
-        stock: Yup.string().required("El campo stock es obligatorio."),
         emprendimientos_id: Yup.string().required(
           "Es necesario asignarle un emprendimiento a este producto"
         ),
@@ -174,7 +138,7 @@ export const FormProductEdit = () => {
   return (
     <>
       <ButtonGoToBack />
-      {!isLoading ? (
+      {!loading ? (
         <Container component="main" maxWidth="sm">
           <CssBaseline />
           <Box
@@ -284,43 +248,6 @@ export const FormProductEdit = () => {
                           }
                         />
                       </Grid>
-                      <Grid item xs={6} sm={6}>
-                        <CssTextField
-                          required
-                          fullWidth
-                          id="descuento"
-                          label="Descuento"
-                          name="descuento"
-                          value={values.descuento}
-                          InputProps={{
-                            startAdornment: (
-                              <InputAdornment position="start">
-                                %
-                              </InputAdornment>
-                            ),
-                          }}
-                          error={errors?.descuento && true}
-                          helperText={errors?.descuento ? errors.descuento : ""}
-                          onChange={(e) =>
-                            setFieldValue("descuento", e.target.value)
-                          }
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={6}>
-                        <CssTextField
-                          required
-                          fullWidth
-                          id="stock"
-                          label="Stock"
-                          name="stock"
-                          value={values.stock}
-                          error={errors?.stock && true}
-                          helperText={errors?.stock ? errors.stock : ""}
-                          onChange={(e) =>
-                            setFieldValue("stock", e.target.value)
-                          }
-                        />
-                      </Grid>
 
                       <Grid
                         item
@@ -332,25 +259,14 @@ export const FormProductEdit = () => {
                           "& .MuiTextField-root": { m: 1, width: "96%" },
                         }}
                       >
-                        <StyledInputLabel id="emprendimientos_id">
-                          Seleccione un emprendimiento
-                        </StyledInputLabel>
-                        <StyledSelect
-                          labelId="emprendimientos_id"
-                          id="emprendimientos_id"
+                        <SelectInput
+                          label="Seleccione un emprendimiento"
+                          options={enterprises}
                           value={values.emprendimientos_id}
-                          label="Emprendimiento"
-                          sx={{ width: "100%" }}
                           onChange={(e) =>
                             setFieldValue("emprendimientos_id", e.target.value)
                           }
-                        >
-                          {enterprises.map((enterprise) => (
-                            <MenuItem value={enterprise.id} key={enterprise.id}>
-                              {enterprise.nombre}
-                            </MenuItem>
-                          ))}
-                        </StyledSelect>
+                        />
                       </Grid>
                       <Grid
                         item
@@ -362,25 +278,14 @@ export const FormProductEdit = () => {
                           "& .MuiTextField-root": { m: 1, width: "96%" },
                         }}
                       >
-                        <StyledInputLabel id="categoria_id">
-                          Seleccione una categoría
-                        </StyledInputLabel>
-                        <StyledSelect
-                          labelId="categoria_id"
-                          id="categoria_id"
+                        <SelectInput
+                          label="Seleccione una categoría"
+                          options={categories}
                           value={values.categoria_id}
-                          label="Categoría"
-                          sx={{ width: "100%" }}
                           onChange={(e) =>
                             setFieldValue("categoria_id", e.target.value)
                           }
-                        >
-                          {categories.map((category) => (
-                            <MenuItem value={category.id} key={category.id}>
-                              {category.nombre}
-                            </MenuItem>
-                          ))}
-                        </StyledSelect>
+                        />
                       </Grid>
                     </Grid>
                   </div>
