@@ -1,4 +1,4 @@
-import { useEffect, useContext, useState } from "react";
+import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 /* MUI */
 import {
@@ -20,10 +20,9 @@ import Swal from "sweetalert2";
 /* Formik y Yup */
 import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
-/* Servicios */
+/* Servicios y hooks*/
 import { updateEnterpriseService } from "../../../../services/enterprises.service";
-// Componentes de contexto
-import { EnterpriseContext } from "../../../../context/EnterpriseContext/EnterpriseContext";
+import { useEnterpriseById } from "../../../../hooks/enterprise/useEnterprise";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -47,31 +46,18 @@ const CssTextField = styled(TextField)({
 
 export const FormEnterpriseEdit = () => {
   const { id } = useParams();
-  const { enterprise, getEnterpriseById } = useContext(EnterpriseContext);
+  const { enterprise, loading } = useEnterpriseById(id);
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getEnterpriseById(id);
-    if (enterprise != undefined) {
-      setIsLoading(false);
-    }
-  }, [id]);
-
-  useEffect(() => {
-    setValues(
-      {
-        id: id,
-        nombre: enterprise?.nombre,
-        descripcion: enterprise?.descripcion,
-        foto_card: enterprise?.foto_card,
-        foto_emprendimiento: enterprise?.foto_emprendimiento,
-      }
-    )
-  },
-  [
-    enterprise
-  ])
+    setValues({
+      id: id,
+      nombre: enterprise?.nombre,
+      descripcion: enterprise?.descripcion,
+      foto_card: enterprise?.foto_card,
+      foto_emprendimiento: enterprise?.foto_emprendimiento,
+    });
+  }, [enterprise]);
 
   const initialValues = {
     id: "",
@@ -117,22 +103,29 @@ export const FormEnterpriseEdit = () => {
     }
   };
 
-  const { handleSubmit, values, setFieldValue, errors, isValid, dirty, setValues } =
-    useFormik({
-      validateOnBlur: false,
+  const {
+    handleSubmit,
+    values,
+    setFieldValue,
+    errors,
+    isValid,
+    dirty,
+    setValues,
+  } = useFormik({
+    validateOnBlur: false,
 
-      validateOnChange: false,
+    validateOnChange: false,
 
-      initialValues,
+    initialValues,
 
-      validationSchema: getValidationSchema(),
+    validationSchema: getValidationSchema(),
 
-      onSubmit,
-    });
+    onSubmit,
+  });
 
   return (
     <>
-      {!isLoading ? (
+      {!loading ? (
         <Container component="main" maxWidth="sm">
           <CssBaseline />
           <Box

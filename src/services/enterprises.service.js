@@ -49,7 +49,7 @@ export const deleteEnterpriseService = async (id) => {
   try {
     const url = `${apiUrl}enterprises/delete/${id}`;
     const { data } = await axios.delete(url);
-    return data.message || [];
+    return data || [];
   } catch (error) {
     throw new Error("Hubo un error al eliminar el emprendimiento.", error.response.data.message);
   }

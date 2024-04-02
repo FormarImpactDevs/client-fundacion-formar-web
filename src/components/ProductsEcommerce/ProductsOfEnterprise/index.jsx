@@ -1,14 +1,11 @@
-import { useState, useContext } from "react";
-import "./_productsEcommerce.scss";
-import Button from "@mui/material/Button";
-import { ProductContext } from "../../context/ProductContext";
-import { Link } from "react-router-dom";
-import { useCart } from "../../context/cartContext";
+import "../_productsEcommerce.scss";
 import PropTypes from "prop-types";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
+import { useCart } from "../../../context/cartContext";
 
-function ProductsEcommerce() {
-  const { products, productsFiltered, searchProducts, productsReady } =
-    useContext(ProductContext);
+function ProductsOfEnterprise({ emprendimiento }) {
   const { dispatch } = useCart();
   const [imagenAmpliadaVisible, setImagenAmpliadaVisible] = useState(false);
   const [imagenAmpliadaSrc, setImagenAmpliadaSrc] = useState("");
@@ -29,18 +26,13 @@ function ProductsEcommerce() {
     });
   };
 
-  return (
-    <div>
-      <h1 className="title">Productos</h1>
-      <div className="product-container">
-        <div className="product-grid">
-          {productsReady &&
-            (searchProducts.length > 0
-              ? searchProducts
-              : productsFiltered.length > 0
-              ? productsFiltered
-              : products
-            ).map((producto) => (
+  if (emprendimiento.length !== 0) {
+    return (
+      <div>
+        <h1 className="title">Conocé sus productos</h1>
+        <div className="product-container">
+          <div className="product-grid">
+            {emprendimiento.map((producto) => (
               <div className="product-card" key={producto.id}>
                 <img
                   src={producto.images[0]?.imagen}
@@ -53,7 +45,9 @@ function ProductsEcommerce() {
                 <div className="product-info">
                   <h2 className="product-title">{producto.nombre}</h2>
                   <p className="product-description">{producto.descripcion}</p>
+
                   <p className="product-price">${producto.precio}</p>
+
                   <Button
                     size="small"
                     onClick={() => agregarAlCarrito(producto)}
@@ -64,29 +58,36 @@ function ProductsEcommerce() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+        <div
+          id="imagenAmpliada"
+          className="imagen-ampliada"
+          style={{ display: imagenAmpliadaVisible ? "block" : "none" }}
+        >
+          <img
+            src={imagenAmpliadaSrc}
+            alt="Imagen ampliada del producto"
+            id="imagenAmpliadaSrc"
+            className="ampliada-image"
+          />
+          <span className="cerrar-x" onClick={() => cerrarImagenAmpliada()}>
+            X
+          </span>
         </div>
       </div>
-      <div
-        id="imagenAmpliada"
-        className="imagen-ampliada"
-        style={{ display: imagenAmpliadaVisible ? "block" : "none" }}
-      >
-        <img
-          src={imagenAmpliadaSrc}
-          alt="Imagen ampliada del producto"
-          id="imagenAmpliadaSrc"
-          className="ampliada-image"
-        />
-        <span className="cerrar-x" onClick={() => cerrarImagenAmpliada()}>
-          X
-        </span>
-      </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <h1 className="subtitle">
+        Lo sentimos, no se encontraron productos de este emprendimiento
+      </h1>
+    );
+  }
 }
 
-export default ProductsEcommerce;
+export default ProductsOfEnterprise;
 
-ProductsEcommerce.propTypes = {
-  emprendimientoId: PropTypes.number,
+ProductsOfEnterprise.propTypes = {
+  emprendimiento: PropTypes.array,
 };

@@ -1,14 +1,3 @@
-import Title from "../../components/Title";
-import { MainLayout } from "../../layout";
-import DataTable from "../../components/List";
-import { GridActionsCellItem } from "@mui/x-data-grid";
-import Button from "@mui/material/Button";
-import { useEffect, useState } from "react";
-import {
-  getEnterprisesService,
-  deleteEnterpriseService,
-} from "../../services/enterprises.service";
-
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -16,37 +5,22 @@ import {
   faPenToSquare,
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
+import { GridActionsCellItem } from "@mui/x-data-grid";
+import Button from "@mui/material/Button";
 import Swal from "sweetalert2/dist/sweetalert2.js";
-
-/* import "sweetalert2/src/sweetalert2.scss"; */
 import styles from "./enterprisesList.module.scss";
+import { MainLayout } from "../../layout";
+import Title from "../../components/Title";
+import DataTable from "../../components/List";
 import { ButtonGoToBack } from "../../components/ButtonGoToBack";
+import {
+  useEnterprises,
+  useDeleteEnterprise,
+} from "../../hooks/enterprise/useEnterprise";
 
 export const EnterprisesList = () => {
-  const [enterprises, setEnterprises] = useState([]);
-
-  const getEnterprises = async () => {
-    try {
-      const EnterprisesData = await getEnterprisesService();
-      setEnterprises(EnterprisesData);
-    } catch (error) {
-      throw new Error(error);
-    }
-  };
-
-  useEffect(() => {
-    getEnterprises();
-  }, []);
-
-  const deleteEnterprise = async (e, id) => {
-    e.preventDefault();
-    try {
-      const result = await deleteEnterpriseService(id);
-      return result.message;
-    } catch (error) {
-      return error.message;
-    }
-  };
+  const { enterprises } = useEnterprises();
+  const { deleteEnterprise } = useDeleteEnterprise();
 
   function confirmDeleted(e, id) {
     Swal.fire({
@@ -58,19 +32,28 @@ export const EnterprisesList = () => {
       cancelButtonColor: "#d33",
       confirmButtonText: "Sí, eliminar!",
       cancelButtonText: "Cancelar",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        const remove = deleteEnterprise(e, id);
-        if (remove) {
-          Swal.fire(
-            "Eliminado!",
-            "Emprendimiento eliminado satisfactoriamente",
-            "success"
-          );
-          setTimeout(() => {
-            window.location = "/admin/enterprises";
-          }, 1200);
-        } else {
+        try {
+          const response = await deleteEnterprise(id);
+          if (response.status == 201) {
+            Swal.fire(
+              "¡Eliminado!",
+              "Emprendimiento eliminado satisfactoriamente",
+              "success"
+            );
+            setTimeout(() => {
+              window.location.reload();
+            }, 1200);
+          } else {
+            Swal.fire(
+              "Error",
+              "No se pudo eliminar el Emprendimiento.",
+              "error"
+            );
+          }
+        } catch (error) {
+          console.error("Error al eliminar el emprendimiento:", error);
           Swal.fire("Error", "No se pudo eliminar el Emprendimiento.", "error");
         }
       }

@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -14,39 +13,18 @@ import { MainLayout } from "../../layout";
 import DataTable from "../../components/List";
 import { GridActionsCellItem } from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
-import {
-  getCategoriesService,
-  deleteCategoryService,
-} from "../../services/categories.service";
 import { ButtonGoToBack } from "../../components/ButtonGoToBack";
+import {
+  useCategories,
+  useDeleteCategory,
+} from "../../hooks/category/useCategory";
+import { Loading } from "../../components/Loading";
 
 export const CategoriesList = () => {
-  const [categories, setCategories] = useState([]);
+  const { categories, loading } = useCategories();
+  const { deleteCategory } = useDeleteCategory();
 
-  const getCategories = async () => {
-    try {
-      const CategoriesData = await getCategoriesService();
-      setCategories(CategoriesData);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getCategories();
-  }, []);
-
-  const deleteCategories = async (e, id) => {
-    e.preventDefault();
-    try {
-      const result = await deleteCategoryService(id);
-      return result.message;
-    } catch (error) {
-      return error.message;
-    }
-  };
-
-  function confirmDeleted(e, id) {
+  async function confirmDeleted(e, id) {
     Swal.fire({
       title: "Estás por eliminar una categoria",
       text: "¿Seguro que deseas continuar? Ésta acción es irreversible",
@@ -56,19 +34,24 @@ export const CategoriesList = () => {
       cancelButtonColor: "#d33",
       confirmButtonText: "Sí, eliminar!",
       cancelButtonText: "Cancelar",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        const remove = deleteCategories(e, id);
-        if (remove) {
-          Swal.fire(
-            "Eliminado!",
-            "Categoria eliminada satisfactoriamente",
-            "success"
-          );
-          setTimeout(() => {
-            window.location = "/admin/categories";
-          }, 1200);
-        } else {
+        try {
+          const response = await deleteCategory(id);
+          if (response.status == 201) {
+            Swal.fire(
+              "Eliminado!",
+              "Categoria eliminada satisfactoriamente",
+              "success"
+            );
+            setTimeout(() => {
+              window.location = "/admin/categories";
+            }, 1200);
+          } else {
+            Swal.fire("Error", "No se pudo eliminar la categoria.", "error");
+          }
+        } catch (error) {
+          console.error("Error al eliminar la categoría:", error);
           Swal.fire("Error", "No se pudo eliminar la categoria.", "error");
         }
       }
@@ -106,21 +89,25 @@ export const CategoriesList = () => {
   return (
     <MainLayout>
       <ButtonGoToBack />
-      <section className={styles.mainContainerList}>
-        <Title text="Lista de categorias" />
-        <div className={styles.containerList}>
-          <Link to="/admin/category/create">
-            <Button
-              size="medium"
-              variant="outlined"
-              startIcon={<FontAwesomeIcon icon={faPlus} />}
-            >
-              Crear Categoria
-            </Button>
-          </Link>
-          <DataTable rows={categories} columns={columns} />
-        </div>
-      </section>
+      {loading ? (
+        <Loading />
+      ) : (
+        <section className={styles.mainContainerList}>
+          <Title text="Lista de categorias" />
+          <div className={styles.containerList}>
+            <Link to="/admin/category/create">
+              <Button
+                size="medium"
+                variant="outlined"
+                startIcon={<FontAwesomeIcon icon={faPlus} />}
+              >
+                Crear Categoria
+              </Button>
+            </Link>
+            <DataTable rows={categories} columns={columns} />
+          </div>
+        </section>
+      )}
     </MainLayout>
   );
 };

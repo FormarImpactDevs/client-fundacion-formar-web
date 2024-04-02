@@ -11,6 +11,7 @@ export const EnterpriseProvider = ({ children }) => {
 
   const [enterprises, setEnterprises] = useState([]);
   const [enterprise, setEnterprise] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const getEnterprises = async () => {
     try {

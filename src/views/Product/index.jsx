@@ -1,17 +1,17 @@
-import { useParams } from "react-router-dom";
-import useProducts from "../../hooks/useProducts";
-import { useEffect } from "react";
-import { Button } from "@mui/material";
+import { useState, useEffect } from "react";
+import { useParams, NavLink } from "react-router-dom";
+import { getProductServiceById } from "../../services/products.service";
 import { useCart } from "../../context/cartContext";
-import { NavLink } from "react-router-dom";
+// Componentes
+import { Button } from "@mui/material";
 import { ProductImageDetail } from "../../components/ProductImageDetail";
-import { useState } from "react";
-import "./productDetail.scss"
 import { Loading } from "../../components/Loading";
+import "./productDetail.scss";
 
 export const Product = () => {
   const { id } = useParams();
-  const [loading, setLoading] = useState(true)
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const { dispatch } = useCart();
   const [quantity, setQuantity] = useState(1); // Estado para la cantidad de productos
@@ -26,14 +26,23 @@ export const Product = () => {
     }
   }
 
-  const { getProductById, product } = useProducts();
+  // Obtener producto por id
+  const getProductById = async (id) => {
+    try {
+      const ProductData = await getProductServiceById(id);
+      setProduct(ProductData);
+      setLoading(false);
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
 
   useEffect(() => {
     getProductById(id);
     if (product !== undefined && product !== null) {
-      setLoading(false)
+      setLoading(false);
     }
-  }, [product]);
+  }, [id]);
 
   function agregarAlCarrito(producto) {
     dispatch({ type: "AGREGAR_PRODUCTO", payload: { ...producto, quantity } });
@@ -114,9 +123,7 @@ export const Product = () => {
 
   return (
     <div className="containerDetail py-4">
-      <div className="row py-2">
-        {loading ? <Loading /> : <ShowProduct />}
-      </div>
+      <div className="row py-2">{loading ? <Loading /> : <ShowProduct />}</div>
     </div>
   );
 };

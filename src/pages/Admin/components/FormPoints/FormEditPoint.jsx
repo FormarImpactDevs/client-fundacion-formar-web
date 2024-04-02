@@ -66,7 +66,7 @@ export const FormEditPoint = () => {
       setIsLoading(false);
     }
   }, [id]);
-  
+
   const { nombre, descripcion, telefono } = point;
 
   useEffect(() => {
@@ -75,10 +75,8 @@ export const FormEditPoint = () => {
       nombre: nombre,
       descripcion: descripcion,
       telefono: telefono,
-    })
-  }, [
-    point
-  ])
+    });
+  }, [point]);
 
   const getInitialValues = () => ({
     id: "",
@@ -118,18 +116,25 @@ export const FormEditPoint = () => {
     }
   };
 
-  const { handleSubmit, values, setFieldValue, errors, isValid, dirty, setValues } =
-    useFormik({
-      validateOnBlur: false,
+  const {
+    handleSubmit,
+    values,
+    setFieldValue,
+    errors,
+    isValid,
+    dirty,
+    setValues,
+  } = useFormik({
+    validateOnBlur: false,
 
-      validateOnChange: false,
+    validateOnChange: false,
 
-      initialValues: getInitialValues(),
+    initialValues: getInitialValues(),
 
-      validationSchema: getValidationSchema(),
+    validationSchema: getValidationSchema(),
 
-      onSubmit,
-    });
+    onSubmit,
+  });
 
   return (
     <>

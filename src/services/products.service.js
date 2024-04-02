@@ -49,7 +49,7 @@ export const deleteProductservice = async (id) => {
   try {
     const url = `${apiUrl}product/delete/${id}`;
     const { data } = await axios.delete(url);
-    return data.message || [];
+    return data || [];
   } catch (error) {
     throw new Error("Hubo un error al eliminar el producto.", error);
   }

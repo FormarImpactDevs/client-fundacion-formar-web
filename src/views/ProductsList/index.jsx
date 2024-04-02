@@ -1,10 +1,9 @@
 import Title from "../../components/Title";
 import { MainLayout } from "../../layout";
 import DataTable from "../../components/List";
+import { Loading } from "../../components/Loading";
 import { GridActionsCellItem } from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
-import { useEffect, useState } from "react";
-
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -16,39 +15,24 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 
 import "sweetalert2/src/sweetalert2.scss";
 import styles from "./productsList.module.scss";
-import {
-  deleteProductservice,
-  getProductsService,
-} from "../../services/products.service";
 import { ButtonGoToBack } from "../../components/ButtonGoToBack";
+import { useProducts, useDeleteProduct } from "../../hooks/product/useProduct";
 
 export const ProductsList = () => {
-  const [products, setProducts] = useState([]);
+  const { products, loading } = useProducts();
+  const { deleteProduct } = useDeleteProduct();
 
-  const getProducts = async () => {
-    try {
-      const ProductsData = await getProductsService();
-      setProducts(ProductsData);
-    } catch (error) {
-      throw new Error(error);
-    }
-  };
-
-  useEffect(() => {
-    getProducts();
-  }, []);
-
-  const deleteProduct = async (e, id) => {
+  /*   const deleteProduct = async (e, id) => {
     e.preventDefault();
     try {
       const result = await deleteProductservice(id);
-      return result.message;
+      return result;
     } catch (error) {
       return error.message;
     }
-  };
+  }; */
 
-  function confirmDeleted(e, id) {
+  function confirmDeleted(id) {
     Swal.fire({
       title: "Estás por eliminar un producto",
       text: "¿Seguro que deseas continuar? Ésta acción es irreversible",
@@ -58,19 +42,25 @@ export const ProductsList = () => {
       cancelButtonColor: "#d33",
       confirmButtonText: "Sí, eliminar!",
       cancelButtonText: "Cancelar",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        const remove = deleteProduct(e, id);
-        if (remove) {
-          Swal.fire(
-            "Eliminado!",
-            "Producto eliminado satisfactoriamente",
-            "success"
-          );
-          setTimeout(() => {
-            window.location = "/admin/products";
-          }, 1200);
-        } else {
+        try {
+          const response = await deleteProduct(id);
+          console.log(response);
+          if (response.status == 201) {
+            Swal.fire(
+              "¡Eliminado!",
+              "Producto eliminado satisfactoriamente",
+              "success"
+            );
+            setTimeout(() => {
+              window.location.reload();
+            }, 1200);
+          } else {
+            Swal.fire("Error", "No se pudo eliminar el Producto.", "error");
+          }
+        } catch (error) {
+          console.error("Error al eliminar el producto:", error);
           Swal.fire("Error", "No se pudo eliminar el Producto.", "error");
         }
       }
@@ -118,21 +108,25 @@ export const ProductsList = () => {
     <>
       <MainLayout>
         <ButtonGoToBack />
-        <section className={styles.mainContainerList}>
-          <Title text="Lista de productos" />
-          <div className={styles.containerList}>
-            <Link to="/admin/products/create">
-              <Button
-                size="medium"
-                variant="outlined"
-                startIcon={<FontAwesomeIcon icon={faPlus} />}
-              >
-                Crear Producto
-              </Button>
-            </Link>
-            <DataTable rows={products} columns={columns} />
-          </div>
-        </section>
+        {loading ? (
+          <Loading />
+        ) : (
+          <section className={styles.mainContainerList}>
+            <Title text="Lista de productos" />
+            <div className={styles.containerList}>
+              <Link to="/admin/products/create">
+                <Button
+                  size="medium"
+                  variant="outlined"
+                  startIcon={<FontAwesomeIcon icon={faPlus} />}
+                >
+                  Crear Producto
+                </Button>
+              </Link>
+              <DataTable rows={products} columns={columns} />
+            </div>
+          </section>
+        )}
       </MainLayout>
     </>
   );
