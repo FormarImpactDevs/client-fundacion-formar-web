@@ -25,7 +25,7 @@ export const ProductProvider = ({ children }) => {
   });
 
   // Estados generales para la aplicación
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const getProducts = async () => {
     try {
@@ -46,6 +46,8 @@ export const ProductProvider = ({ children }) => {
 
   // Obtener producto por id
   const getProductById = async (id) => {
+    setLoading(true);
+
     try {
       const ProductData = await getProductServiceById(id);
       setProduct(ProductData);

@@ -3,63 +3,63 @@ import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { userLoginService } from "../services/users.service";
 
-// Crea el contexto de autenticación
 const AuthContext = React.createContext();
 
-// contexto de autenticacion
 export const useAuth = () => {
   return useContext(AuthContext);
 };
 
-// componente de autenticacion
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
-  const navigate = useNavigate();
-  const storedToken = localStorage.getItem("_token");
+  const [inProgress, setInProgress] = useState(true); // Cambiamos el estado inicial a true
+  const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
+    const storedToken = localStorage.getItem("_token");
     if (storedToken) {
-      const decodedToken = storedToken ? jwtDecode(storedToken) : null;
-      const { user } = decodedToken ? decodedToken.payload : null;
+      const decodedToken = jwtDecode(storedToken);
+      const { user } = decodedToken.payload;
       setCurrentUser(user);
+      setIsAuth(true);
     }
-  }, [storedToken]);
-
- 
+    setInProgress(false); // Establecemos inProgress en false después de la verificación
+  }, []);
 
   const login = async (data) => {
+    setInProgress(true);
     try {
-      console.log(data);
       const token = await userLoginService(data);
       window.localStorage.setItem("_token", token);
-      console.log(token);
-  
-      const decodedToken = await token ? jwtDecode(token) : null;
-      const { user } = decodedToken ? decodedToken.payload : null;
+      const decodedToken = jwtDecode(token);
+      const { user } = decodedToken.payload;
       setCurrentUser(user);
+      setIsAuth(true);
     } catch (error) {
       console.error("Error de inicio de sesión:", error);
-      throw error; 
+      setIsAuth(false);
     }
+    setInProgress(false);
   };
 
   const logout = () => {
+    setInProgress(true);
     try {
-      window.localStorage.removeItem('_token'); // Elimina el token del almacenamiento local
-      setCurrentUser(null); // Resetea el usuario actual a null
+      window.localStorage.removeItem("_token");
+      setCurrentUser(null);
+      setIsAuth(false);
     } catch (error) {
       console.error("Error al cerrar sesión:", error);
     }
+    setInProgress(false);
   };
+
   const value = {
     currentUser,
     login,
-    logout
+    logout,
+    inProgress,
+    isAuth,
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-);
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

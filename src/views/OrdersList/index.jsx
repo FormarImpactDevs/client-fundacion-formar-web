@@ -34,7 +34,34 @@ export const OrdersList = () => {
     { field: "estado_del_pedido", headerName: "Estado del pedido", width: 130 },
     { field: "estado_del_pago", headerName: "Estado del pago", width: 130 },
     { field: "link", headerName: "Link", width: 130 },
-    { field: "client_data.mail", headerName: "Datos del cliente", width: 130 },
+    {
+      field: "client_data",
+      headerName: "Datos del cliente",
+      width: 130,
+      renderCell: (params) => {
+        const clientData = params.row.client_data;
+        const client = JSON.parse(clientData);
+
+        return (
+          <Tooltip
+            title={
+              "Nombre y Apellido: " +
+              client.firstName +
+              " " +
+              client.lastName +
+              ", mail: " +
+              client.mail +
+              ", Teléfono: " +
+              client.phone
+            }
+          >
+            <div>
+              <p>{client.firstName + " " + client.lastName}</p>
+            </div>
+          </Tooltip>
+        );
+      },
+    },
     { field: "punto_retiro_id", headerName: "Punto de retiro", width: 130 },
     {
       field: "detalle_pedido",

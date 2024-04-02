@@ -8,11 +8,12 @@ import {
   TextField,
   styled,
 } from "@mui/material";
-import { useForm } from "../../../../hooks/useForm";
+import { useFormik } from "formik";
 import Swal from "sweetalert2";
 import { createCategoryService } from "../../../../services/categories.service";
 import { useNavigate } from "react-router-dom";
 import { ButtonGoToBack } from "../../../../components/ButtonGoToBack";
+import { MainLayout } from "../../../../layout/index";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -35,29 +36,26 @@ const CssTextField = styled(TextField)({
 });
 
 export const FormCategoryCreate = () => {
+  const [category, setCategory] = useState({ nombre: "" });
   const [sending, setSending] = useState(false);
   const navigate = useNavigate();
 
-  const { formValues, handleInputChange } = useForm({
-    nombre: "",
-  });
+  const initialValues = {
+    nombre: category.nombre || "",
+  };
 
-  const { nombre } = formValues;
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
+  const onSubmit = async (values) => {
     try {
       setSending(true);
 
-      const { msg } = await createCategoryService({
-        nombre,
+      const response = await createCategoryService({
+        nombre: values.nombre,
       });
-
+      setSending(false);
       Swal.fire({
-        icon: "info",
-        title: "Categoría creada!",
-        text: msg,
+        icon: "success",
+        title: "¡Categoría creada!",
+        text: response.msg,
       }).then(() => {
         navigate("/admin/categories");
       });
@@ -66,78 +64,93 @@ export const FormCategoryCreate = () => {
       console.log(error);
       Swal.fire({
         icon: "error",
-        title: "¡Hubo un error al actualizar la categoria!",
-        text: error.message,
+        title: "¡Hubo un error al crear la categoria!",
+        text: error.msg,
       });
     }
   };
 
+  const formik = useFormik({
+    initialValues,
+    onSubmit,
+    validate: (values) => {
+      const errors = {};
+      if (!values.nombre.trim()) {
+        errors.nombre = "El nombre de la categoría es requerido";
+      }
+      return errors;
+    },
+  });
   return (
     <>
-      <ButtonGoToBack />
-      <Container component="main" maxWidth="sm">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 2,
-            marginBottom: 6,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            color: "secondary.main",
-            fontSize: "14px",
-          }}
-          className="containerForm"
-        >
-          <h1 className="subtitle">CREAR CATEGORÍA</h1>
-
-          <form
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
-            maxWidth="xs"
-            action=""
-            method="POST"
-            encType="multipart/form-data"
+      <MainLayout>
+        <ButtonGoToBack />
+        <Container component="main" maxWidth="sm">
+          <CssBaseline />
+          <Box
+            sx={{
+              marginTop: 4,
+              marginBottom: 6,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              color: "secondary.main",
+              fontSize: "14px",
+            }}
+            className="containerForm"
           >
-            <div className="mb-2">
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={12}>
-                  <CssTextField
-                    required
-                    fullWidth
-                    id="nombre"
-                    label="Nombre de la categoría"
-                    name="nombre"
-                    value={nombre}
-                    onChange={handleInputChange}
-                  />
+            <h1 className="subtitle">CREAR CATEGORÍA</h1>
+
+            <form
+              noValidate
+              onSubmit={formik.handleSubmit}
+              action=""
+              method="POST"
+              encType="multipart/form-data"
+            >
+              <div className="mb-2">
+                <Grid container spacing={2}>
+                  <Grid item xs={12} sm={12}>
+                    <CssTextField
+                      required
+                      fullWidth
+                      id="nombre"
+                      label="Nombre de la categoría"
+                      name="nombre"
+                      value={formik.values.nombre}
+                      onChange={formik.handleChange}
+                      error={
+                        formik.touched.nombre && Boolean(formik.errors.nombre)
+                      }
+                      helperText={formik.touched.nombre && formik.errors.nombre}
+                    />
+                  </Grid>
+                </Grid>
+              </div>
+
+              <Grid container justifyContent="flex-end" className="w-95">
+                <Grid item>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    size="medium"
+                    justifyContent="flex-end"
+                    className="button"
+                    disabled={sending}
+                    sx={{
+                      color: "secondary.light",
+                      mt: 3,
+                      mb: 2,
+                    }}
+                  >
+                    Guardar
+                  </Button>
                 </Grid>
               </Grid>
-            </div>
-
-            <Grid container justifyContent="flex-end" className="w-95">
-              <Grid item>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  size="medium"
-                  justifyContent="flex-end"
-                  className="button"
-                  disabled={sending}
-                  sx={{
-                    color: "secondary.light",
-                    mt: 3,
-                    mb: 2,
-                  }}
-                >
-                  Guardar
-                </Button>
-              </Grid>
-            </Grid>
-          </form>
-        </Box>
-      </Container>
+            </form>
+          </Box>
+        </Container>
+      </MainLayout>
     </>
   );
 };

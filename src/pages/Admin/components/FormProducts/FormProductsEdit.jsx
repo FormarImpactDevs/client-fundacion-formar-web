@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {
   Button,
@@ -20,6 +21,7 @@ import * as Yup from "yup";
 import InputFileMultiple from "../../../../components/InputFileMultiple";
 import SelectInput from "../../../../components/SelectInput";
 import { Loading } from "../../../../components/Loading";
+import { MainLayout } from "../../../../layout/index";
 import { updateProductservice } from "../../../../services/products.service";
 
 import { useProductById } from "../../../../hooks/product/useProduct";
@@ -54,17 +56,19 @@ export const FormProductEdit = () => {
 
   const navigate = useNavigate();
 
-  const initialValues = {
-    id: product?.id,
-    nombre: product?.nombre,
-    precio: product?.precio,
-    descripcion: product?.descripcion,
-    descuento: product?.descuento,
-    stock: product?.stock,
-    emprendimientos_id: product?.emprendimientos_id,
-    categoria_id: product?.categoria_id,
-    images: product?.images || [],
-  };
+  useEffect(() => {
+    formik.setValues({
+      id: product?.id || "",
+      nombre: product?.nombre || "",
+      precio: product?.precio || "",
+      descripcion: product?.descripcion || "",
+      descuento: product?.descuento || "",
+      stock: product?.stock || "",
+      emprendimientos_id: product?.emprendimientos_id || "",
+      categoria_id: product?.categoria_id || "",
+      images: product?.images || [],
+    });
+  }, [product]);
 
   const getValidationSchema = () =>
     Yup.lazy(() =>
@@ -83,7 +87,7 @@ export const FormProductEdit = () => {
 
   const onSubmit = async (values) => {
     try {
-      if (isValid) {
+      if (formik.isValid) {
         const formDataToSend = new FormData();
         formDataToSend.append("nombre", values.nombre);
         formDataToSend.append("precio", values.precio);
@@ -118,25 +122,32 @@ export const FormProductEdit = () => {
     }
   };
 
-  const { handleSubmit, values, setFieldValue, errors, isValid, dirty } =
-    useFormik({
-      validateOnBlur: false,
 
-      validateOnChange: false,
-
-      initialValues,
-
-      validationSchema: getValidationSchema(),
-
-      onSubmit,
-    });
+  const formik = useFormik({
+    validateOnBlur: false,
+    validateOnChange: false,
+    initialValues: {
+      id: "",
+      nombre: "",
+      precio: "",
+      descripcion: "",
+      descuento: "",
+      stock: "",
+      emprendimientos_id: "",
+      categoria_id: "",
+      images: [],
+    },
+    validationSchema: getValidationSchema(),
+    onSubmit,
+  });
 
   const handleImageChange = (name, selectedImages) => {
-    setFieldValue(name, selectedImages);
+    formik.setFieldValue(name, selectedImages);
   };
 
   return (
     <>
+    <MainLayout>
       <ButtonGoToBack />
       {!loading ? (
         <Container component="main" maxWidth="sm">
@@ -156,14 +167,13 @@ export const FormProductEdit = () => {
             <h1 className="subtitle">EDITAR PRODUCTO</h1>
 
             <Formik
-              initialValues={initialValues}
               validationSchema={getValidationSchema()}
               onSubmit={onSubmit}
             >
               <Box
                 component="form"
                 noValidate
-                onSubmit={handleSubmit}
+                onSubmit={formik.handleSubmit}
                 sx={{ mt: 3 }}
                 maxWidth="xs"
                 action=""
@@ -189,12 +199,12 @@ export const FormProductEdit = () => {
                           id="nombre"
                           label="Nombre del producto"
                           name="nombre"
-                          value={values.nombre || ""}
-                          defaultValue={product.nombre}
-                          error={errors?.nombre && true}
-                          helperText={errors?.nombre ? errors.nombre : ""}
+                          value={formik.values?.nombre || ""}
+                          defaultValue={formik.values?.nombre}
+                          error={formik.errors?.nombre && true}
+                          helperText={formik.errors?.nombre ? formik.errors.nombre : ""}
                           onChange={(e) =>
-                            setFieldValue("nombre", e.target.value)
+                            formik.setFieldValue("nombre", e.target.value)
                           }
                         />
                       </Grid>
@@ -205,7 +215,7 @@ export const FormProductEdit = () => {
                           id="precio"
                           label="Precio del producto"
                           name="precio"
-                          value={values.precio}
+                          value={formik.values?.precio}
                           InputProps={{
                             startAdornment: (
                               <InputAdornment position="start">
@@ -213,10 +223,10 @@ export const FormProductEdit = () => {
                               </InputAdornment>
                             ),
                           }}
-                          error={errors?.precio && true}
-                          helperText={errors?.precio ? errors.precio : ""}
+                          error={formik.errors?.precio && true}
+                          helperText={formik.errors?.precio ? formik.errors.precio : ""}
                           onChange={(e) =>
-                            setFieldValue("precio", e.target.value)
+                            formik.setFieldValue("precio", e.target.value)
                           }
                         />
                       </Grid>
@@ -237,14 +247,14 @@ export const FormProductEdit = () => {
                           name="descripcion"
                           multiline
                           rows={4}
-                          value={values.descripcion}
-                          defaultValue={values.descripcion}
-                          error={errors?.descripcion && true}
+                          value={formik.values?.descripcion}
+                          defaultValue={formik.values?.descripcion}
+                          error={formik.errors?.descripcion && true}
                           helperText={
-                            errors?.descripcion ? errors.descripcion : ""
+                            formik.errors?.descripcion ? formik.errors.descripcion : ""
                           }
                           onChange={(e) =>
-                            setFieldValue("descripcion", e.target.value)
+                            formik.setFieldValue("descripcion", e.target.value)
                           }
                         />
                       </Grid>
@@ -262,9 +272,9 @@ export const FormProductEdit = () => {
                         <SelectInput
                           label="Seleccione un emprendimiento"
                           options={enterprises}
-                          value={values.emprendimientos_id}
+                          value={formik.values?.emprendimientos_id}
                           onChange={(e) =>
-                            setFieldValue("emprendimientos_id", e.target.value)
+                            formik.setFieldValue("emprendimientos_id", e.target.value)
                           }
                         />
                       </Grid>
@@ -281,9 +291,9 @@ export const FormProductEdit = () => {
                         <SelectInput
                           label="Seleccione una categoría"
                           options={categories}
-                          value={values.categoria_id}
+                          value={formik.values?.categoria_id}
                           onChange={(e) =>
-                            setFieldValue("categoria_id", e.target.value)
+                            formik.setFieldValue("categoria_id", e.target.value)
                           }
                         />
                       </Grid>
@@ -303,7 +313,7 @@ export const FormProductEdit = () => {
                           mt: 3,
                           mb: 2,
                         }}
-                        disabled={!(isValid && dirty)}
+                        disabled={!(formik.isValid && formik.dirty)}
                       >
                         Guardar
                       </Button>
@@ -314,7 +324,7 @@ export const FormProductEdit = () => {
             </Formik>
             <div className="containerImagenToEdit">
               <h2 className="subtitle">Imagenes actuales</h2>
-              {product.images?.map((image, index) => (
+              {product?.images?.map((image, index) => (
                 <figure className="imgFormEdit" key={index}>
                   <img src={image.imagen} alt={`Imagen del producto`} />
                   <figcaption>
@@ -328,6 +338,7 @@ export const FormProductEdit = () => {
       ) : (
         <Loading />
       )}
+      </MainLayout>
     </>
   );
 };

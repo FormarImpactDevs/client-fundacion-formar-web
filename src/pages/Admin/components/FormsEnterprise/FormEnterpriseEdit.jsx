@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 /* MUI */
 import {
@@ -48,12 +49,22 @@ export const FormEnterpriseEdit = () => {
   const { enterprise, loading } = useEnterpriseById(id);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    setValues({
+      id: id,
+      nombre: enterprise?.nombre,
+      descripcion: enterprise?.descripcion,
+      foto_card: enterprise?.foto_card,
+      foto_emprendimiento: enterprise?.foto_emprendimiento,
+    });
+  }, [enterprise]);
+
   const initialValues = {
-    id: id,
-    nombre: enterprise?.nombre,
-    descripcion: enterprise?.descripcion,
-    foto_card: enterprise?.foto_card,
-    foto_emprendimiento: enterprise?.foto_emprendimiento,
+    id: "",
+    nombre: "",
+    descripcion: "",
+    foto_card: "",
+    foto_emprendimiento: "",
   };
 
   const getValidationSchema = () =>
@@ -92,18 +103,25 @@ export const FormEnterpriseEdit = () => {
     }
   };
 
-  const { handleSubmit, values, setFieldValue, errors, isValid, dirty } =
-    useFormik({
-      validateOnBlur: false,
+  const {
+    handleSubmit,
+    values,
+    setFieldValue,
+    errors,
+    isValid,
+    dirty,
+    setValues,
+  } = useFormik({
+    validateOnBlur: false,
 
-      validateOnChange: false,
+    validateOnChange: false,
 
-      initialValues,
+    initialValues,
 
-      validationSchema: getValidationSchema(),
+    validationSchema: getValidationSchema(),
 
-      onSubmit,
-    });
+    onSubmit,
+  });
 
   return (
     <>

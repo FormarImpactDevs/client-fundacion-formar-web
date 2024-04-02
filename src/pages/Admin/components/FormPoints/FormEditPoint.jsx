@@ -69,11 +69,20 @@ export const FormEditPoint = () => {
 
   const { nombre, descripcion, telefono } = point;
 
+  useEffect(() => {
+    setValues({
+      id: id,
+      nombre: nombre,
+      descripcion: descripcion,
+      telefono: telefono,
+    });
+  }, [point]);
+
   const getInitialValues = () => ({
-    id: id,
-    nombre: nombre,
-    descripcion: descripcion,
-    telefono: telefono,
+    id: "",
+    nombre: "",
+    descripcion: "",
+    telefono: "",
   });
 
   const getValidationSchema = () =>
@@ -107,18 +116,25 @@ export const FormEditPoint = () => {
     }
   };
 
-  const { handleSubmit, values, setFieldValue, errors, isValid, dirty } =
-    useFormik({
-      validateOnBlur: false,
+  const {
+    handleSubmit,
+    values,
+    setFieldValue,
+    errors,
+    isValid,
+    dirty,
+    setValues,
+  } = useFormik({
+    validateOnBlur: false,
 
-      validateOnChange: false,
+    validateOnChange: false,
 
-      initialValues: getInitialValues(),
+    initialValues: getInitialValues(),
 
-      validationSchema: getValidationSchema(),
+    validationSchema: getValidationSchema(),
 
-      onSubmit,
-    });
+    onSubmit,
+  });
 
   return (
     <>
@@ -158,6 +174,7 @@ export const FormEditPoint = () => {
                       label="Punto de retiro"
                       name="nombre"
                       value={values.nombre}
+                      defaultValue={values.nombre}
                       error={errors?.nombre && true}
                       helperText={errors?.nombre ? errors.nombre : ""}
                       onChange={(e) => setFieldValue("nombre", e.target.value)}
@@ -192,6 +209,7 @@ export const FormEditPoint = () => {
                       name="descripcion"
                       multiline
                       rows={4}
+                      value={values.descripcion || ""}
                       defaultValue={values.descripcion || ""}
                       onChange={(e) =>
                         setFieldValue("descripcion", e.target.value)

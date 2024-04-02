@@ -18,18 +18,20 @@ import { OrdersList } from "../views/OrdersList";
 import { FormUpdateOrder } from "../views/Orders/FormUpdateOrder";
 import { ProductDetail } from "../pages/ProductDetail";
 import CartPage from "../pages/Cart";
-import { Feedback } from "../views/Feedback"
+import { Feedback } from "../views/Feedback";
 import { PointsList } from "../views/Points/PointsList";
 import { FormCreatePoint } from "../views/Points/FormCreatePoint";
 import { FormUpdatePoint } from "../views/Points/FormUpdatePoint";
-import { Product } from "../views/Product";
 
 export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/products" element={<HomeEcommerce />} />
-      <Route path="/products?emprendimiento=/:emprendimientoId" element={<HomeEcommerce />} />
+      <Route
+        path="/products?emprendimiento=/:emprendimientoId"
+        element={<HomeEcommerce />}
+      />
       <Route path="/producto/:id" element={<ProductDetail />} />
       <Route path="/mi-compra" element={<CartPage />} />
       <Route path="/feedback" element={<Feedback />} />
@@ -50,7 +52,7 @@ export default function AppRoutes() {
           path="/admin/orders/edit/:orderNumber"
           element={<FormUpdateOrder />}
         />
-         <Route path="/admin/points" element={<PointsList />} />
+        <Route path="/admin/points" element={<PointsList />} />
         <Route path="/admin/points/create" element={<FormCreatePoint />} />
         <Route path="/admin/points/edit/:id" element={<FormUpdatePoint />} />
       </Route>

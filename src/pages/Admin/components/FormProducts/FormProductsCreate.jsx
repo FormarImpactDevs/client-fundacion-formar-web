@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   Button,
   Box,
@@ -19,7 +20,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { createProductservice } from "../../../../services/products.service";
 import { ButtonGoToBack } from "../../../../components/ButtonGoToBack";
-import { useNavigate } from "react-router-dom";
+import { MainLayout } from "../../../../layout/index";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -128,161 +129,163 @@ export const FormProductCreate = () => {
 
   return (
     <>
-      <ButtonGoToBack />
-      <Container component="main" maxWidth="sm">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 2,
-            marginBottom: 6,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            color: "secondary.main",
-            fontSize: "14px",
-          }}
-          className="containerForm"
-        >
-          <h1 className="subtitle">CREAR PRODUCTO</h1>
+      <MainLayout>
+        <ButtonGoToBack />
+        <Container component="main" maxWidth="sm">
+          <CssBaseline />
           <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
-            maxWidth="xs"
-            action=""
-            method="POST"
-            encType="multipart/form-data"
+            sx={{
+              marginTop: 2,
+              marginBottom: 6,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              color: "secondary.main",
+              fontSize: "14px",
+            }}
+            className="containerForm"
           >
-            <div className="mb-2">
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={12}>
-                  <InputFileMultiple
-                    text="Foto para la card del producto"
-                    name="images"
-                    multiple={true}
-                    required={true}
-                    onChanges={handleImageChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={12}>
-                  <CssTextField
-                    required
+            <h1 className="subtitle">CREAR PRODUCTO</h1>
+            <Box
+              component="form"
+              noValidate
+              onSubmit={handleSubmit}
+              sx={{ mt: 3 }}
+              maxWidth="xs"
+              action=""
+              method="POST"
+              encType="multipart/form-data"
+            >
+              <div className="mb-2">
+                <Grid container spacing={2}>
+                  <Grid item xs={12} sm={12}>
+                    <InputFileMultiple
+                      text="Foto para la card del producto"
+                      name="images"
+                      multiple={true}
+                      required={true}
+                      onChanges={handleImageChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={12}>
+                    <CssTextField
+                      required
+                      fullWidth
+                      id="nombre"
+                      label="Nombre del producto"
+                      name="nombre"
+                      error={errors?.nombre && true}
+                      helperText={errors?.nombre ? errors.nombre : ""}
+                      onChange={(e) => setFieldValue("nombre", e.target.value)}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={12}>
+                    <CssTextField
+                      required
+                      fullWidth
+                      id="precio"
+                      label="Precio del producto"
+                      name="precio"
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">$</InputAdornment>
+                        ),
+                      }}
+                      error={errors?.precio && true}
+                      helperText={errors?.precio ? errors.precio : ""}
+                      onChange={(e) => setFieldValue("precio", e.target.value)}
+                    />
+                  </Grid>
+
+                  <Grid
+                    item
                     fullWidth
-                    id="nombre"
-                    label="Nombre del producto"
-                    name="nombre"
-                    error={errors?.nombre && true}
-                    helperText={errors?.nombre ? errors.nombre : ""}
-                    onChange={(e) => setFieldValue("nombre", e.target.value)}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={12}>
-                  <CssTextField
-                    required
-                    fullWidth
-                    id="precio"
-                    label="Precio del producto"
-                    name="precio"
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">$</InputAdornment>
-                      ),
+                    xs={12}
+                    sm={12}
+                    justifyContent="flex-center"
+                    sx={{
+                      "& .MuiTextField-root": { m: 1, width: "96%" },
                     }}
-                    error={errors?.precio && true}
-                    helperText={errors?.precio ? errors.precio : ""}
-                    onChange={(e) => setFieldValue("precio", e.target.value)}
-                  />
-                </Grid>
+                  >
+                    <CssTextField
+                      id="outlined-multiline-static"
+                      label="Descripción del producto"
+                      name="descripcion"
+                      multiline
+                      rows={4}
+                      defaultValue=""
+                      error={errors?.descripcion && true}
+                      helperText={errors?.descripcion ? errors.descripcion : ""}
+                      onChange={(e) =>
+                        setFieldValue("descripcion", e.target.value)
+                      }
+                    />
+                  </Grid>
 
-                <Grid
-                  item
-                  fullWidth
-                  xs={12}
-                  sm={12}
-                  justifyContent="flex-center"
-                  sx={{
-                    "& .MuiTextField-root": { m: 1, width: "96%" },
-                  }}
-                >
-                  <CssTextField
-                    id="outlined-multiline-static"
-                    label="Descripción del producto"
-                    name="descripcion"
-                    multiline
-                    rows={4}
-                    defaultValue=""
-                    error={errors?.descripcion && true}
-                    helperText={errors?.descripcion ? errors.descripcion : ""}
-                    onChange={(e) =>
-                      setFieldValue("descripcion", e.target.value)
-                    }
-                  />
+                  <Grid
+                    item
+                    fullWidth
+                    xs={12}
+                    sm={12}
+                    justifyContent="flex-center"
+                    sx={{
+                      "& .MuiTextField-root": { m: 1, width: "96%" },
+                    }}
+                  >
+                    <SelectInput
+                      label="Seleccione un emprendimiento"
+                      options={enterprises}
+                      value={values.emprendimientos_id}
+                      onChange={(e) =>
+                        setFieldValue("emprendimientos_id", e.target.value)
+                      }
+                    />
+                  </Grid>
+                  <Grid
+                    item
+                    fullWidth
+                    xs={12}
+                    sm={12}
+                    justifyContent="flex-center"
+                    sx={{
+                      "& .MuiTextField-root": { m: 1, width: "96%" },
+                    }}
+                  >
+                    <SelectInput
+                      label="Seleccione una categoría"
+                      options={categories}
+                      value={values.categoria_id}
+                      onChange={(e) =>
+                        setFieldValue("categoria_id", e.target.value)
+                      }
+                    />
+                  </Grid>
                 </Grid>
+              </div>
 
-                <Grid
-                  item
-                  fullWidth
-                  xs={12}
-                  sm={12}
-                  justifyContent="flex-center"
-                  sx={{
-                    "& .MuiTextField-root": { m: 1, width: "96%" },
-                  }}
-                >
-                  <SelectInput
-                    label="Seleccione un emprendimiento"
-                    options={enterprises}
-                    value={values.emprendimientos_id}
-                    onChange={(e) =>
-                      setFieldValue("emprendimientos_id", e.target.value)
-                    }
-                  />
-                </Grid>
-                <Grid
-                  item
-                  fullWidth
-                  xs={12}
-                  sm={12}
-                  justifyContent="flex-center"
-                  sx={{
-                    "& .MuiTextField-root": { m: 1, width: "96%" },
-                  }}
-                >
-                  <SelectInput
-                    label="Seleccione una categoría"
-                    options={categories}
-                    value={values.categoria_id}
-                    onChange={(e) =>
-                      setFieldValue("categoria_id", e.target.value)
-                    }
-                  />
+              <Grid container justifyContent="flex-end" className="w-95">
+                <Grid item>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    size="medium"
+                    justifyContent="flex-end"
+                    className="button"
+                    sx={{
+                      color: "secondary.light",
+                      mt: 3,
+                      mb: 2,
+                    }}
+                    disabled={!(isValid && dirty)}
+                  >
+                    Guardar
+                  </Button>
                 </Grid>
               </Grid>
-            </div>
-
-            <Grid container justifyContent="flex-end" className="w-95">
-              <Grid item>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  size="medium"
-                  justifyContent="flex-end"
-                  className="button"
-                  sx={{
-                    color: "secondary.light",
-                    mt: 3,
-                    mb: 2,
-                  }}
-                  disabled={!(isValid && dirty)}
-                >
-                  Guardar
-                </Button>
-              </Grid>
-            </Grid>
+            </Box>
           </Box>
-        </Box>
-      </Container>
+        </Container>
+      </MainLayout>
     </>
   );
 };
