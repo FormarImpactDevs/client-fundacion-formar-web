@@ -21,7 +21,7 @@ import {
 import { Loading } from "../../components/Loading";
 
 export const CategoriesList = () => {
-  const { categories, loading } = useCategories();
+  const { categories, loading, setCategories} = useCategories();
   const { deleteCategory } = useDeleteCategory();
 
   async function confirmDeleted(e, id) {
@@ -44,9 +44,7 @@ export const CategoriesList = () => {
               "Categoria eliminada satisfactoriamente",
               "success"
             );
-            setTimeout(() => {
-              window.location = "/admin/categories";
-            }, 1200);
+            setCategories(prevCategories => prevCategories.filter(category => category.id !== id))
           } else {
             Swal.fire("Error", "No se pudo eliminar la categoria.", "error");
           }

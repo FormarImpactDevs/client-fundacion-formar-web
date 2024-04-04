@@ -26,12 +26,12 @@ export const useEnterprises = () => {
     // Cleanup: No es necesario en este caso, pero podría ser útil en otros escenarios
   }, []);
 
-  return { enterprises, loading };
+  return { enterprises, loading , setEnterprises};
 };
 
 // Hook personalizado para obtener un emprendimiento por su ID
 export const useEnterpriseById = (id) => {
-  const [enterprise, setEnterprise] = useState(null);
+  const [enterprise, setEnterprise] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

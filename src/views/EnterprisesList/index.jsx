@@ -19,7 +19,7 @@ import {
 } from "../../hooks/enterprise/useEnterprise";
 
 export const EnterprisesList = () => {
-  const { enterprises } = useEnterprises();
+  const { enterprises,setEnterprises  } = useEnterprises();
   const { deleteEnterprise } = useDeleteEnterprise();
 
   function confirmDeleted(e, id) {
@@ -42,9 +42,7 @@ export const EnterprisesList = () => {
               "Emprendimiento eliminado satisfactoriamente",
               "success"
             );
-            setTimeout(() => {
-              window.location.reload();
-            }, 1200);
+            setEnterprises(prevEnterprises => prevEnterprises.filter(enterprise => enterprise.id !== id))
           } else {
             Swal.fire(
               "Error",

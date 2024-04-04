@@ -24,7 +24,7 @@ export const usePoints = () => {
     fetchPoints();
   }, []);
 
-  return { points, loading };
+  return { points, loading, setPoints };
 };
 
 // Hook personalizado para obtener un punto de retiro por su ID

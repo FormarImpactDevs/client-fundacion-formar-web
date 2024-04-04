@@ -19,7 +19,7 @@ import { ButtonGoToBack } from "../../components/ButtonGoToBack";
 import { useProducts, useDeleteProduct } from "../../hooks/product/useProduct";
 
 export const ProductsList = () => {
-  const { products, loading } = useProducts();
+  const { products, loading, setProducts} = useProducts();
   const { deleteProduct } = useDeleteProduct();
 
   /*   const deleteProduct = async (e, id) => {
@@ -53,9 +53,7 @@ export const ProductsList = () => {
               "Producto eliminado satisfactoriamente",
               "success"
             );
-            setTimeout(() => {
-              window.location.reload();
-            }, 1200);
+            setProducts(prevProducts => prevProducts.filter(product => product.id !== id))
           } else {
             Swal.fire("Error", "No se pudo eliminar el Producto.", "error");
           }

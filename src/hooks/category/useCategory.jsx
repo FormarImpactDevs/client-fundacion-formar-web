@@ -25,7 +25,7 @@ export const useCategories = () => {
     fetchCategories();
   }, []);
 
-  return { categories, loading, error };
+  return { categories, loading, setCategories,error };
 };
 
 export const useCategoryById = (id) => {

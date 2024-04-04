@@ -19,7 +19,7 @@ import { ButtonGoToBack } from "../../components/ButtonGoToBack";
 import { usePoints, useDeletePoint } from "../../hooks/points/usePoint";
 
 export const PointsList = () => {
-  const { points, loading } = usePoints();
+  const { points, loading, setPoints } = usePoints();
   const { deletePoint } = useDeletePoint();
 
   function confirmDeleted(e, id) {
@@ -43,9 +43,7 @@ export const PointsList = () => {
               "punto de retiro eliminado satisfactoriamente",
               "success"
             );
-            setTimeout(() => {
-              window.location.reload();
-            }, 1200);
+            setPoints(prevPoints => prevPoints.filter(point => point.id !== id))
           } else {
             Swal.fire(
               "Error",

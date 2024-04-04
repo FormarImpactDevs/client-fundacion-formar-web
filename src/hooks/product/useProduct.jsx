@@ -25,7 +25,7 @@ export const useProducts = () => {
     fetchProducts();
   }, []);
 
-  return { products, loading, error };
+  return { products, loading, setProducts, error };
 };
 
 export const useProductById = (id) => {
