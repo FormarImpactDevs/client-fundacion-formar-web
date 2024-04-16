@@ -57,7 +57,7 @@ export const ProductProvider = ({ children }) => {
     }
   };
 
-    useEffect((id) => {
+  useEffect((id) => {
     getProductById(id);
   }, []);
 
@@ -155,13 +155,11 @@ export const ProductProvider = ({ children }) => {
     setCategories,
     category,
     setCategory,
-
     formValues,
     handleInputChange,
     reset,
     loading,
     setLoading,
-
     categoryState,
     setCategoryState,
     categoryId,
@@ -171,7 +169,6 @@ export const ProductProvider = ({ children }) => {
     setValueInputSearch,
     searchProducts,
     productsReady,
-
     EmprendimientosProducts,
   };
 

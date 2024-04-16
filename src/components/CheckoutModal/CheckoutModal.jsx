@@ -1,10 +1,10 @@
 import { Box, Modal } from "@mui/material";
 import PropTypes from "prop-types";
-import Checkout from "./checkout";
+import Checkout from "./Checkout";
 import { useOrder } from "../../context/orderContext";
 
 export default function CheckoutModal({ open }) {
-    const { hideModal } = useOrder()
+  const { hideModal } = useOrder();
   return (
     <Modal
       open={open}

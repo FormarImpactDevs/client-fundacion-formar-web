@@ -8,15 +8,13 @@ import {
 import { EnterpriseContext } from "./EnterpriseContext";
 
 export const EnterpriseProvider = ({ children }) => {
-
   const [enterprises, setEnterprises] = useState([]);
   const [enterprise, setEnterprise] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   const getEnterprises = async () => {
     try {
       const EnterprisesData = await getEnterprisesService();
-      setEnterprises(EnterprisesData);     
+      setEnterprises(EnterprisesData);
     } catch (error) {
       throw new Error(error);
     }
@@ -54,9 +52,9 @@ export const EnterpriseProvider = ({ children }) => {
     enterprises,
     setEnterprises,
     deleteEnterprise,
-    enterprise, 
+    enterprise,
     setEnterprise,
-    getEnterpriseById
+    getEnterpriseById,
   };
 
   return (
