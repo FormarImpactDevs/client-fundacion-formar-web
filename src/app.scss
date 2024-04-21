@@ -134,3 +134,12 @@ html {
     padding: 2rem 0;
   }
 }
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+  color: inherit; // Heredar el color del texto
+}
