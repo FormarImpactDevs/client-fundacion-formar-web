@@ -1,11 +1,12 @@
 import { useState, useContext } from "react";
 import "./_productsEcommerce.scss";
-import Button from "@mui/material/Button";
+import { Button, Tooltip } from "@mui/material";
 import { ProductContext } from "../../context/ProductContext";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/cartContext";
 import PropTypes from "prop-types";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faCartPlus } from "@fortawesome/free-solid-svg-icons";
 function ProductsEcommerce() {
   const { products, productsFiltered, searchProducts, productsReady } =
     useContext(ProductContext);
@@ -42,25 +43,59 @@ function ProductsEcommerce() {
               : products
             ).map((producto) => (
               <div className="product-card" key={producto.id}>
-                <img
-                  src={producto.images[0]?.imagen}
-                  alt={`Imagen de ${producto.nombre}`}
-                  className="product-image"
-                  onClick={() =>
-                    mostrarImagenAmpliada(producto.images[0]?.imagen)
-                  }
-                />
+                <figure className="imageCardProduct">
+                  <img
+                    src={producto.images[0]?.imagen}
+                    alt={`Imagen de ${producto.nombre}`}
+                    className="product-image"
+                    onClick={() =>
+                      mostrarImagenAmpliada(producto.images[0]?.imagen)
+                    }
+                  />
+                </figure>
+
                 <div className="product-info">
-                  <h2 className="product-title">{producto.nombre}</h2>
-                  <p className="product-description">{producto.descripcion}</p>
+                  <h2 className="product-title">
+                    {producto.nombre.slice(0, 30)}
+                  </h2>
+                  <p className="product-description">
+                    {producto.descripcion.slice(0, 50)}
+                  </p>
                   <p className="product-price">${producto.precio}</p>
-                  <Button
+                  {/*  <Button
                     size="small"
                     onClick={() => agregarAlCarrito(producto)}
                   >
                     Agregar al carrito
-                  </Button>
-                  <Link to={`/producto/${producto.id}`}>Detalle</Link>
+                    <FontAwesomeIcon icon={faCartPlus} />
+                  </Button> */}
+                  <div>
+                    <Tooltip title="Agregar al carrito" arrow>
+                      <Button
+                        variant="outlined"
+                        className="mx-4"
+                        size="medium"
+                        color="secondary"
+                        onClick={() => agregarAlCarrito(producto)}
+                        sx={{ height: "40px" }}
+                      >
+                        <FontAwesomeIcon icon={faCartPlus} fontSize={"22px"} />
+                      </Button>
+                    </Tooltip>
+                    <Tooltip title="Ver detalle" arrow>
+                    <Button
+                      variant="outlined"
+                      size="medium"
+                      className="mx-4"
+                      color="secondary"
+                      sx={{ height: "40px" }}
+                    >
+                      <Link to={`/producto/${producto.id}`}>
+                        <FontAwesomeIcon icon={faEye} fontSize={"22px"} />
+                      </Link>
+                    </Button>
+                    </Tooltip>
+                  </div>
                 </div>
               </div>
             ))}
