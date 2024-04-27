@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
-import styles from "./CategoriesList.module.scss";
+import styles from "./categoriesList.module.scss";
 import Title from "../../components/Title";
 import { MainLayout } from "../../layout";
 import DataTable from "../../components/List";
@@ -21,7 +21,7 @@ import {
 import { Loading } from "../../components/Loading";
 
 export const CategoriesList = () => {
-  const { categories, loading, setCategories} = useCategories();
+  const { categories, loading, setCategories } = useCategories();
   const { deleteCategory } = useDeleteCategory();
 
   async function confirmDeleted(e, id) {
@@ -44,7 +44,9 @@ export const CategoriesList = () => {
               "Categoria eliminada satisfactoriamente",
               "success"
             );
-            setCategories(prevCategories => prevCategories.filter(category => category.id !== id))
+            setCategories((prevCategories) =>
+              prevCategories.filter((category) => category.id !== id)
+            );
           } else {
             Swal.fire("Error", "No se pudo eliminar la categoria.", "error");
           }
