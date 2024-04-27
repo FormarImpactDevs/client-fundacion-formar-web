@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   Button,
   Box,
@@ -15,6 +15,8 @@ import {
   styled,
 } from "@mui/material";
 import "./formDates.scss";
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -36,7 +38,7 @@ const CssTextField = styled(TextField)({
   },
 });
 
-export const Form = () => {
+export const ContactForm = () => {
   const [radio, setRadio] = useState("");
 
   const handleRadioChange = (event) => {
@@ -59,32 +61,59 @@ export const Form = () => {
         className="containerForm"
       >
         {/* title */}
-        <h1 className="subtitle">TUS DATOS DE CONTACTO</h1>
-        <Box
-          component="form"
-          action="https://formsubmit.co/21609fc7321079558debce8e5d3027fe"
+        <h1 className="subtitle">TUS DATOS DE CONTACTO Prueba</h1>
+        <Formik
+          initialValues={{
+            firstName: '',
+            lastName: '',
+            email: '',
+            phone: '',
+            message: ''
+          }}
+          validationSchema={Yup.object({
+            firstName: Yup.string().required('El nombre es requerido'),
+            lastName: Yup.string().required('El apellido es requerido'),
+            email: Yup.string().email('Formato de email inválido').required('El email es requerido'),
+            phone: Yup.string().required('El teléfono es requerido'),
+          })}
+          onSubmit={(values, { setSubmitting }) => {
+            console.log(values)
+            setTimeout(() => {
+              alert(JSON.stringify(values, null, 2));
+              setSubmitting(false);
+            }, 400);
+          }}
+        >
+        <Form 
+          action="https://formsubmit.co/formar@fundacionformar.ar"
           method="POST"
           sx={{ mt: 2 }}
         >
           <div className="mb-2">
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
-                <CssTextField
+                <Field
+                  as={CssTextField}
                   required
                   fullWidth
                   id="firstName"
                   label="Nombre"
                   name="firstName"
+                  type="text"
                 />
+                <ErrorMessage name="firstName" component="div" className="error" />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <CssTextField
+                <Field
+                  as={CssTextField}
                   required
                   fullWidth
                   id="lastName"
                   label="Apellido"
                   name="lastName"
+                  type="text"
                 />
+                <ErrorMessage name="lastName" component="div" className="error" />
               </Grid>
 
               <Grid item xs={12} sm={6}>
@@ -95,15 +124,17 @@ export const Form = () => {
                   label="Email"
                   name="email"
                   autoComplete="email"
+                  type="email"
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <CssTextField
                   required
                   fullWidth
-                  id="telephone"
+                  id="phone"
                   label="Teléfono"
-                  name="telephone"
+                  name="phone"
+                  type="tel"
                 />
               </Grid>
 
@@ -202,6 +233,7 @@ export const Form = () => {
                               id="outlined-multiline-static"
                               multiline
                               rows={4}
+                              name="message"
                               defaultValue=""
                             />
                           </FormGroup>
@@ -215,14 +247,10 @@ export const Form = () => {
               )}
             </Grid>
             <Grid item xs={12} sm={6} className="d-none">
-              <CssTextField
-                type="hidden"
-                name="_next"
-                value="http://127.0.0.1:5173/"
-              />
+              <Field type="hidden" name="_next" value="http://127.0.0.1:5173/" />
             </Grid>
             <Grid item xs={12} sm={6} className="d-none">
-              <CssTextField type="hidden" name="_captcha" value="false" />
+              <Field type="hidden" name="_captcha" value="false" />
             </Grid>
           </div>
           <Grid container justifyContent="flex-end" className="w-95">
@@ -241,8 +269,10 @@ export const Form = () => {
               </Button>
             </Grid>
           </Grid>
-        </Box>
+        </Form>
+        </Formik>
       </Box>
     </Container>
   );
 };
+
