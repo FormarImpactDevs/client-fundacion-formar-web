@@ -1,6 +1,9 @@
-import { Table, TableBody } from '@mui/material';
-import PropTypes from 'prop-types';
-import CartItem from '../CartItem';
+import {
+  Table,
+  TableBody,
+} from "@mui/material";
+import PropTypes from "prop-types";
+import CartItem from "../CartItem";
 
 const CartItemsList = ({ cartItems, handleRemove, handleQuantityChange }) => {
   return (
@@ -20,10 +23,9 @@ const CartItemsList = ({ cartItems, handleRemove, handleQuantityChange }) => {
 };
 
 CartItemsList.propTypes = {
-    cartItems: PropTypes.array,
-    handleRemove: PropTypes.func.isRequired,
-    handleQuantityChange: PropTypes.func.isRequired,
-  };
-  
+  cartItems: PropTypes.array,
+  handleRemove: PropTypes.func.isRequired,
+  handleQuantityChange: PropTypes.func.isRequired,
+};
 
 export default CartItemsList;

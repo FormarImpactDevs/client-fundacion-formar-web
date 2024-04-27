@@ -1,0 +1,45 @@
+@import "../../styles/colors";
+@import "../../styles/media-queries";
+
+.emptyCart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .iconEmptycart {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*  cursor: pointer; */
+    img {
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+}
+div.lineHeigth {
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 1px;
+  min-height: 300px;
+  height: 100%;
+  @include mobile-tablet {
+    display: none;
+  }
+}
+
+.containerItemsList {
+    width: 65%;
+    @include mobile-tablet {
+        width: 100%;
+      }
+}
+.containerSummary {
+    width: 25%;
+  @include mobile-tablet {
+    width: 100%;
+    padding: 3rem;
+  }
+}

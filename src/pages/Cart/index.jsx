@@ -1,15 +1,17 @@
-import { Button, Grid, Typography } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import CartItemsList from "./CartItemList";
 import CartSummary from "./CartSummary";
 import { useCart } from "../../context/cartContext";
 import { Link } from "react-router-dom";
 import { MainLayout } from "../../layout";
 import { useOrder } from "../../context/orderContext";
-
+import Title from "../../components/Title";
+import vamosDeCompras from "../../assets/ShoppingCart/vamosDeCompras.png";
+import styles from "./cart.module.scss";
 const CartPage = () => {
   const { carritoState, dispatch } = useCart();
   const { productos } = carritoState;
-  const { displayModal } = useOrder()
+  const { displayModal } = useOrder();
 
   const handleRemove = (itemId) => {
     // Lógica para eliminar un elemento del carrito
@@ -29,6 +31,10 @@ const CartPage = () => {
     dispatch({ type: "VACIAR_CARRITO" });
   };
 
+  const calcularCantidadTotal = () => {
+    return productos.reduce((acc, item) => acc + item.quantity, 0);
+  };
+
   const subtotal = productos.reduce(
     (acc, item) => acc + item.precio * item.quantity,
     0
@@ -37,23 +43,24 @@ const CartPage = () => {
 
   return (
     <MainLayout>
-      <Grid container flexDirection={"column"} padding="10rem">
-        <Grid item>
-          <Typography variant="h2" gutterBottom>
-            Carrito de Compras
-          </Typography>
-        </Grid>
+      <Grid item mt={12}>
+        <Title text="Mi carrito" />
+      </Grid>
+
+      <Grid container flexDirection={"column"} padding="3rem">
         {productos.length > 0 ? (
-          <Grid container justifyContent="space-between">
-            <Grid item paddingTop={2}>
+          <Grid container justifyContent="space-evenly">
+            <Grid item paddingTop={2} className={styles.containerItemsList}>
               <CartItemsList
                 cartItems={productos}
                 handleRemove={handleRemove}
                 handleQuantityChange={handleQuantityChange}
               />
             </Grid>
-            <Grid item>
+            <div className={styles.lineHeigth}></div>
+            <Grid item className={styles.containerSummary}>
               <CartSummary
+                quatityProducts={calcularCantidadTotal()} /* Aquí iría el recuento de los productos */
                 subtotal={subtotal}
                 total={total}
                 handleCheckout={displayModal}
@@ -62,17 +69,32 @@ const CartPage = () => {
           </Grid>
         ) : (
           <>
-            <Grid item padding={10}>
-              <Typography variant="subtitle1" textAlign="center">
-                No hay productos en el carrito
-              </Typography>
-            </Grid>
+            <section className={styles.emptyCart}>
+              <h3 className="subtitle">
+                Aún no hay productos en tu carrito ¡Vayamos de compras!
+              </h3>
 
-            <Grid item>
-              <Button variant="contained" color="primary">
-                <Link to="/products">Ir a Productos</Link>
+              <figure className={styles.iconEmptycart}>
+                <img
+                  src={vamosDeCompras}
+                  alt="Ir a comprar"
+                  className={styles.iconEmptycart}
+                />
+              </figure>
+
+              <Button
+                type="submit"
+                variant="contained"
+                size="medium"
+                justifyContent="flex-end"
+                className="button"
+                sx={{
+                  color: "secondary.light",
+                }}
+              >
+                <Link to="/products">Ir a comprar</Link>
               </Button>
-            </Grid>
+            </section>
           </>
         )}
       </Grid>
