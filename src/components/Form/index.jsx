@@ -61,7 +61,7 @@ export const ContactForm = () => {
         className="containerForm"
       >
         {/* title */}
-        <h1 className="subtitle">TUS DATOS DE CONTACTO Prueba</h1>
+        <h1 className="subtitle">TUS DATOS DE CONTACTO</h1>
         <Formik
           initialValues={{
             firstName: '',
@@ -84,10 +84,9 @@ export const ContactForm = () => {
             }, 400);
           }}
         >
-        <Form 
-          action="https://formsubmit.co/formar@fundacionformar.ar"
+        <form 
+          action="https://formsubmit.co/coordinacion@fundacionformar.ar"
           method="POST"
-          sx={{ mt: 2 }}
         >
           <div className="mb-2">
             <Grid container spacing={2}>
@@ -269,7 +268,7 @@ export const ContactForm = () => {
               </Button>
             </Grid>
           </Grid>
-        </Form>
+        </form>
         </Formik>
       </Box>
     </Container>
