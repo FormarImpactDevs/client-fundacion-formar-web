@@ -8,34 +8,12 @@ import {
   TextField,
   Typography,
   Grid,
-  Box,
-  styled,
 } from "@mui/material";
 import { useEffect } from "react";
 import { useOrder } from "../../../context/orderContext";
 import PointsList from "./components/PointsList";
 import DeliveryForm from "./components/DeliveryForm";
-
-const CssTextField = styled(TextField)({
-  "& label.Mui-focused": {
-    color: "#75aadb",
-  },
-  "& .MuiInput-underline:after": {
-    borderBottomColor: "#75aadb",
-  },
-  "& .MuiOutlinedInput-root": {
-    "& fieldset": {
-      borderColor: "#E0E3E7",
-    },
-    "&:hover fieldset": {
-      borderColor: "#75aadb",
-    },
-    "&.Mui-focused fieldset": {
-      borderColor: "#75aadb",
-    },
-  },
-});
-
+export let value = false;
 export default function UserDataForm() {
   const { ordenState, dispatch } = useOrder();
   const [formData, setFormData] = useState({
@@ -67,6 +45,9 @@ export default function UserDataForm() {
       [name]: value,
     });
   };
+  useEffect(() => {
+    value = false;
+  }, []);
 
   const handleRadioChange = (event) => {
     setRadio(event.target.value);
@@ -75,14 +56,25 @@ export default function UserDataForm() {
       payload: event.target.value,
     });
   };
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const validateForm = () => {
     const newErrors = {};
-
     // Validación de campos obligatorios
     Object.entries(formData).forEach(([key, value]) => {
       if (value.trim() === "") {
-        newErrors[key] = `${key} es requerido`;
+        if (key === "firstName") {
+          newErrors[key] = "Nombre obligatorio";
+        }
+
+        if (key === "lastName") {
+          newErrors[key] = "Apellido obligatorio";
+        }
+        if (key === "dni") {
+          newErrors[key] = "Dni obligatorio";
+        }
+        if (key === "mail") {
+          newErrors[key] = "Mail obligatorio";
+        }
       }
     });
 
@@ -94,6 +86,24 @@ export default function UserDataForm() {
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
+  useEffect(() => {
+    if (
+      formData.firstName == "" &&
+      formData.lastName == "" &&
+      formData.dni == "" &&
+      formData.mail == ""
+    ) {
+      return;
+    }
+    {
+      validateForm();
+      if (validateForm() === true) {
+        value = true;
+      } else {
+        value = false;
+      }
+    }
+  }, [formData, validateForm]);
 
   const selectedMethod = (radioValue) => {
     if (!radioValue) {
@@ -179,7 +189,7 @@ export default function UserDataForm() {
           </Typography>
         </Grid>
         <Grid item width={"100%"}>
-          <FormControl fullWidth >
+          <FormControl fullWidth>
             <RadioGroup
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
@@ -211,7 +221,9 @@ export default function UserDataForm() {
             </RadioGroup>
           </FormControl>
         </Grid>
-        <Grid container padding={5}>{selectedMethod(radioValue)}</Grid>
+        <Grid container padding={5}>
+          {selectedMethod(radioValue)}
+        </Grid>
       </Grid>
     </React.Fragment>
   );

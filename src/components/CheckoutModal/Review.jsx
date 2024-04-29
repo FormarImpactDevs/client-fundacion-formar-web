@@ -1,11 +1,11 @@
-import Typography from '@mui/material/Typography';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import Grid from '@mui/material/Grid';
-import { useOrder } from '../../context/orderContext';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import Typography from "@mui/material/Typography";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import Grid from "@mui/material/Grid";
+import { useOrder } from "../../context/orderContext";
+import { useState } from "react";
+import { useEffect } from "react";
 
 export default function Review() {
   const { ordenState } = useOrder();
@@ -24,38 +24,43 @@ export default function Review() {
         depto: "",
         localidad: "",
         provincia: "",
-      }, */
-    ,
+      }, */,
     punto_retiro_id,
     detalle_pedido,
   } = ordenState;
 
   const [total, setTotal] = useState();
 
-
   useEffect(() => {
-    console.log(detalle_pedido)
+    console.log(detalle_pedido);
     try {
-      const sumaTotaldeProductos = detalle_pedido.reduce((acum, item) => Number(acum) + (Number(item.precio) * Number(item.quantity)), 0);
-      setTotal(sumaTotaldeProductos)
+      const sumaTotaldeProductos = detalle_pedido.reduce(
+        (acum, item) =>
+          Number(acum) + Number(item.precio) * Number(item.quantity),
+        0
+      );
+      setTotal(sumaTotaldeProductos);
     } catch (error) {
-      console.error("Error al obtener el total", error)
+      console.error("Error al obtener el total", error);
     }
-  
-  },[detalle_pedido])
-  console.log(total)
-
+  }, [detalle_pedido]);
+  console.log(total);
 
   return (
     <>
       <Typography variant="h2" gutterBottom>
-       Resumen del pedido
+        Resumen del pedido
       </Typography>
       <List disablePadding>
         {detalle_pedido.map((product) => (
           <ListItem key={product.nombre} sx={{ py: 0.5, px: 0 }}>
-            <ListItemText primary={`${product.nombre} ${product.quantity}`} secondary={product.descripcion} />
-            <Typography variant="body2">{product.precio * product.quantity}</Typography>
+            <ListItemText
+              primary={`${product.nombre} ${product.quantity}`}
+              secondary={product.descripcion}
+            />
+            <Typography variant="body2">
+              {product.precio * product.quantity}
+            </Typography>
           </ListItem>
         ))}
         <ListItem sx={{ py: 1, px: 0 }}>
@@ -68,9 +73,12 @@ export default function Review() {
       <Grid container width="100%">
         <Grid item>
           <Typography variant="h3" gutterBottom>
-            Forma de entrega - {tipo_de_entrega === "point" ? "Punto de retiro" : "Envio"}
+            Forma de entrega -{" "}
+            {tipo_de_entrega === "point" ? "Punto de retiro" : "Envio"}
           </Typography>
-          <Typography gutterBottom>{`${client_data.firstName} ${client_data.lastName}`}</Typography>
+          <Typography
+            gutterBottom
+          >{`${client_data.firstName} ${client_data.lastName}`}</Typography>
           <Typography gutterBottom>{`${client_data.dni}`}</Typography>
           <Typography gutterBottom>{`${client_data.mail}`}</Typography>
         </Grid>
