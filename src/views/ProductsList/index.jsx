@@ -19,19 +19,8 @@ import { ButtonGoToBack } from "../../components/ButtonGoToBack";
 import { useProducts, useDeleteProduct } from "../../hooks/product/useProduct";
 
 export const ProductsList = () => {
-  const { products, loading, setProducts} = useProducts();
+  const { products, loading, setProducts } = useProducts();
   const { deleteProduct } = useDeleteProduct();
-
-  /*   const deleteProduct = async (e, id) => {
-    e.preventDefault();
-    try {
-      const result = await deleteProductservice(id);
-      return result;
-    } catch (error) {
-      return error.message;
-    }
-  }; */
-
   function confirmDeleted(id) {
     Swal.fire({
       title: "Estás por eliminar un producto",
@@ -46,14 +35,15 @@ export const ProductsList = () => {
       if (result.isConfirmed) {
         try {
           const response = await deleteProduct(id);
-          console.log(response);
           if (response.status == 201) {
             Swal.fire(
               "¡Eliminado!",
               "Producto eliminado satisfactoriamente",
               "success"
             );
-            setProducts(prevProducts => prevProducts.filter(product => product.id !== id))
+            setProducts((prevProducts) =>
+              prevProducts.filter((product) => product.id !== id)
+            );
           } else {
             Swal.fire("Error", "No se pudo eliminar el Producto.", "error");
           }

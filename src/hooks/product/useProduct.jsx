@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import {
   getProductsService,
   getProductServiceById,
-  deleteProductservice
+  deleteProductservice,
 } from "../../services/products.service";
 
 export const useProducts = () => {
@@ -106,7 +106,11 @@ export const useSearchedProducts = (products, searchedWord) => {
   return searchedProducts;
 };
 
-export const useFilteredProducts = (products, productsFiltered, valueInputSearch) => {
+export const useFilteredProducts = (
+  products,
+  productsFiltered,
+  valueInputSearch
+) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
@@ -144,22 +148,21 @@ async function searchProducts(products, searchedWord) {
 }
 
 export const useDeleteProduct = () => {
-  const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const deleteProduct = async (id) => {
     setLoading(true);
     try {
       const result = await deleteProductservice(id);
-      setMessage(result.message);
+      setLoading(false);
       return result;
     } catch (error) {
-      console.error('Error al eliminar el producto:', error);
-      setMessage(error.message);
-    } finally {
+      setError("Error al eliminar el producto");
       setLoading(false);
+      return error.message;
     }
   };
 
-  return { deleteProduct, message, loading };
+  return { deleteProduct, loading, error };
 };
