@@ -60,7 +60,7 @@ export default function Checkout() {
           variant="outlined"
           sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
         >
-          <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
+          <Stepper activeStep={activeStep} sx={{ pt: 1, pb: 5 }}>
             {steps.map((label) => (
               <Step key={label}>
                 <StepLabel>{label}</StepLabel>
@@ -83,7 +83,7 @@ export default function Checkout() {
               {getStepContent(activeStep)}
               <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                 {activeStep !== 0 && (
-                  <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
+                  <Button onClick={handleBack} sx={{ mt: 1, ml: 1 }}>
                     Atras
                   </Button>
                 )}
@@ -91,7 +91,7 @@ export default function Checkout() {
                   <Button
                     variant="contained"
                     onClick={handleNext}
-                    sx={{ mt: 3, ml: 1 }}
+                    sx={{ mt: 1, ml: 1 }}
                   >
                     {activeStep === steps.length - 1
                       ? "Confirmar y pagar"
