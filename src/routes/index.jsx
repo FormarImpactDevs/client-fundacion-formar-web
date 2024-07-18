@@ -34,7 +34,7 @@ export default function AppRoutes() {
       />
       <Route path="/producto/:id" element={<ProductDetail />} />
       <Route path="/mi-compra" element={<CartPage />} />
-      <Route path="/feedback" element={<Feedback />} />
+      <Route path="/feedback/:status" element={<Feedback />} />
       <Route path="/login" element={<LoginEcommerce />} />
       <Route element={<ProtectedRoute />}>
         <Route index path="/admin" element={<Admin />} />

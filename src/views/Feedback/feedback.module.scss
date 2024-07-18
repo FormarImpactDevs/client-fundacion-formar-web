@@ -1,16 +1,60 @@
-.centered-container {
+/* .centered-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.buttongtb {
+  margin-bottom: 20px;
+}
+
+.alert {
+  width: 50%;
+  margin: 0 auto;
+}
+ */
+.feedbackContainer {
+  /* display: "flex";
+  align-items: "center";
+  justify-content: "center";
+  height: "50vh";
+  width: 100%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  margin: 2rem 0;
+
+  .containTextStatus {
+    /* position: relative;
+    top: 10rem;
+    left: 9rem; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .iconStatus {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+    /*  cursor: pointer; */
+    img {
+      width: 100%;
+      object-fit: contain;
+    }
+  .sectionIcon {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    height: 100vh;
+    align-items: center;
+    
+    }
   }
-  
-  .buttongtb {
-    margin-bottom: 20px;
-  }
-  
-  .alert {
-    width: 50%;
-    margin: 0 auto;
-  }
+}

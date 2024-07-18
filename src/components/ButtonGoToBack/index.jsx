@@ -12,7 +12,7 @@ export const ButtonGoToBack = () => {
       onClick={handleGoBack}
       variant="outlined"
       startIcon={<KeyboardArrowLeftRoundedIcon />}
-      style={{"position": "absolute"}}
+      /* style={{"position": "absolute"}} */
     >
       Volver
     </Button>
