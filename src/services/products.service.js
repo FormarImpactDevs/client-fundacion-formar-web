@@ -43,6 +43,7 @@ export const updateProductservice = async (id, productData) => {
 };
 
 export const deleteProductservice = async (id) => {
+  
   try {
     const url = `${apiUrl}products/delete/${id}`;
     const { data } = await axios.delete(url);

@@ -88,7 +88,7 @@ export const SidebarFilterProducts = () => {
       const CategoriesData = await getCategoriesService();
       setCategories(CategoriesData);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

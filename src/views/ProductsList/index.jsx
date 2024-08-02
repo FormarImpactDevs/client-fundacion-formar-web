@@ -77,7 +77,7 @@ export const ProductsList = () => {
           icon={<FontAwesomeIcon icon={faTrash} />}
           label="Delete"
           key={params.id}
-          onClick={(e) => confirmDeleted(e, params.id)}
+          onClick={() => confirmDeleted(params.id)}
         />,
         <GridActionsCellItem
           icon={

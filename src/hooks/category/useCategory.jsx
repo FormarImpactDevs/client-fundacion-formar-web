@@ -55,10 +55,10 @@ export const useDeleteCategory = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const deleteCategory = async (id) => {
+  const deleteCategory = async (categoryId, categoryProducts) => {
     setLoading(true);
     try {
-      const result = await deleteCategoryService(id);
+      const result = await deleteCategoryService(categoryId, categoryProducts);
       setLoading(false);
       return result;
     } catch (error) {

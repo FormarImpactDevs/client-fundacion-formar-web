@@ -32,7 +32,6 @@ export default function Review() {
   const [total, setTotal] = useState();
 
   useEffect(() => {
-    console.log(detalle_pedido);
     try {
       const sumaTotaldeProductos = detalle_pedido.reduce(
         (acum, item) =>
@@ -44,7 +43,6 @@ export default function Review() {
       console.error("Error al obtener el total", error);
     }
   }, [detalle_pedido]);
-  console.log(total);
 
   return (
     <>

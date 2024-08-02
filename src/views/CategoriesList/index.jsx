@@ -24,38 +24,87 @@ export const CategoriesList = () => {
   const { categories, loading, setCategories } = useCategories();
   const { deleteCategory } = useDeleteCategory();
 
-  async function confirmDeleted(e, id) {
-    Swal.fire({
-      title: "Estás por eliminar una categoria",
-      text: "¿Seguro que deseas continuar? Ésta acción es irreversible",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Sí, eliminar!",
-      cancelButtonText: "Cancelar",
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        try {
-          const response = await deleteCategory(id);
-          if (response.status == 201) {
-            Swal.fire(
-              "Eliminado!",
-              "Categoria eliminada satisfactoriamente",
-              "success"
-            );
-            setCategories((prevCategories) =>
-              prevCategories.filter((category) => category.id !== id)
-            );
-          } else {
-            Swal.fire("Error", "No se pudo eliminar la categoria.", "error");
-          }
-        } catch (error) {
-          console.error("Error al eliminar la categoría:", error);
-          Swal.fire("Error", "No se pudo eliminar la categoria.", "error");
+  async function confirmDeleted(id) {
+    const categoriesFilter = categories.filter(
+      (category) => category.id !== id
+    );
+    try {
+      // Crear un modal con opciones de selección y botones adicionales
+      const { value: action } = await Swal.fire({
+        title: "Reasignar o Eliminar Productos",
+        html:
+          `<select id="category-select" class="swal2-input">` +
+          categoriesFilter
+            .map(
+              (category) =>
+                `<option value="${category.id}">${category.nombre}</option>`
+            )
+            .join("") +
+          "</select>",
+        showCancelButton: true,
+        showDenyButton: true,
+        confirmButtonColor: "#75aadb",
+        denyButtonColor: "#d33",
+        cancelButtonColor: "#58595b",
+        confirmButtonText: "Reasignar",
+        denyButtonText: "Eliminar Productos",
+        cancelButtonText: "Cancelar",
+        preConfirm: () => {
+          const newCategoryId =
+            document.getElementById("category-select").value;
+          return {
+            action: "reassign",
+            newCategoryId,
+          };
+        },
+        preDeny: () => {
+          return {
+            action: "delete",
+          };
+        },
+      });
+
+      if (!action) {
+        // Si el usuario cancela la acción, salir de la función sin hacer nada
+        return;
+      }
+
+      // Confirmación final antes de eliminar la categoría
+      const confirmResult = await Swal.fire({
+        title: "Estás por eliminar una categoría",
+        text: "¿Seguro que deseas continuar? Esta acción es irreversible",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#75aadb",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, eliminar!",
+        cancelButtonText: "Cancelar",
+      });
+
+      if (confirmResult.isConfirmed) {
+        let response;
+        if (action.action === "reassign") {
+          response = await deleteCategory(id, action.newCategoryId);
+        } else if (action.action === "delete") {
+          response = await deleteCategory(id, null);
+        }
+        if (response.status == 201) {
+          Swal.fire("Eliminado!", `${response.msg}`, "success");
+          setCategories((prevCategories) =>
+            prevCategories.filter((category) => category.id !== id)
+          );
+        } else {
+          Swal.fire(
+            "Error",
+            "No se pudo eliminar la categoría.",
+            `${response.msg}`
+          );
         }
       }
-    });
+    } catch (error) {
+      console.error("Error al intentar eliminar una categoría:", error);
+      Swal.fire("Error", "No se pudo completar la acción.", "error");
+    }
   }
 
   const columns = [
@@ -71,7 +120,7 @@ export const CategoriesList = () => {
           icon={<FontAwesomeIcon icon={faTrash} />}
           label="Delete"
           key={params.id}
-          onClick={(e) => confirmDeleted(e, params.id)}
+          onClick={() => confirmDeleted(params.id)}
         />,
         <GridActionsCellItem
           icon={

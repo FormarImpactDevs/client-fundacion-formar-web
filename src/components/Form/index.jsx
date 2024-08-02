@@ -76,8 +76,7 @@ export const ContactForm = () => {
             email: Yup.string().email('Formato de email inválido').required('El email es requerido'),
             phone: Yup.string().required('El teléfono es requerido'),
           })}
-          onSubmit={(values, { setSubmitting }) => {
-            console.log(values)
+          onSubmit={(values, { setSubmitting }) => {           
             setTimeout(() => {
               alert(JSON.stringify(values, null, 2));
               setSubmitting(false);

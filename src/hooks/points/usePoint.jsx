@@ -37,7 +37,6 @@ export const usePointById = (id) => {
       setLoading(true);
       try {
         const pointData = await getPointServiceById(id);
-        console.log(pointData);
         setPoint(pointData);
         setLoading(false);
       } catch (error) {
@@ -59,8 +58,7 @@ export const useDeletePoint = () => {
     setLoading(true);
     try {
       const result = await deletePointService(id);
-      setMessage(result.message);
-      console.log(result, "hook");
+      setMessage(result.message); 
       return result
     } catch (error) {
       console.error("Error al eliminar el punto de retiro:", error);

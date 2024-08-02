@@ -36,7 +36,6 @@ export const PointsList = () => {
       if (result.isConfirmed) {
         try {
           const response = await deletePoint(id);
-          console.log(response);
           if (response.status == 201) {
             Swal.fire(
               "Eliminado!",

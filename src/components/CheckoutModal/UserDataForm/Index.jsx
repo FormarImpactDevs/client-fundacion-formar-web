@@ -128,7 +128,7 @@ export default function UserDataForm() {
             label="Nombre"
             fullWidth
             autoComplete="given-name"
-            variant="standard"
+            variant="outlined"
             value={formData.firstName}
             onChange={handleInputChange}
             error={!!errors.firstName}
@@ -143,7 +143,7 @@ export default function UserDataForm() {
             label="Apellido"
             fullWidth
             autoComplete="family-name"
-            variant="standard"
+            variant="outlined"
             value={formData.lastName}
             onChange={handleInputChange}
             error={!!errors.lastName}
@@ -158,7 +158,7 @@ export default function UserDataForm() {
             label="DNI"
             fullWidth
             autoComplete="numero de dni"
-            variant="standard"
+            variant="outlined"
             value={formData.dni}
             onChange={handleInputChange}
             error={!!errors.dni}
@@ -173,7 +173,7 @@ export default function UserDataForm() {
             label="Mail"
             fullWidth
             autoComplete="correo electronico"
-            variant="standard"
+            variant="outlined"
             value={formData.mail}
             onChange={handleInputChange}
             error={!!errors.mail}

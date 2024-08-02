@@ -22,16 +22,6 @@ export const Header = () => {
     contactIsIntersecting,
   } = useObserverComponent();
 
-  function toggleMenu(e) {
-    setIsChecked(e.target.checked);
-    return isSelected;
-  }
-
-  function handleMenu(e) {
-    setIsSelected(e.target.id);
-
-    setIsChecked(false);
-  }
   const { currentUser, logout } = useAuth();
 
   const handleLogout = () => {
@@ -55,13 +45,13 @@ export const Header = () => {
         <Link to="/" className="logoHeader">
           <img src={logoFormar} alt="Logo de Fundación Formar" />
         </Link>
-        <BurguerButton callback={toggleMenu} state={isChecked} />
+        <BurguerButton callback={(e) => setIsChecked(e.target.checked)} state={isChecked} />
 
         <ul
           className={isChecked ? "menu menu_opened" : "menu"}
-          onClick={handleMenu}
+          onClick={(e) => setIsSelected(e.target.id)}
         >
-          <li className="paragraph2">
+          <li className="paragraph2" key="about">
             <a
               href="/#about"
               id="AboutUs"
@@ -70,7 +60,7 @@ export const Header = () => {
               Quienes somos
             </a>
           </li>
-          <li className="paragraph2">
+          <li className="paragraph2" key="programing">
             <a
               href="/#programing"
               id="SchedulingInclusion"
@@ -79,7 +69,7 @@ export const Header = () => {
               Programando la inclusión
             </a>
           </li>
-          <li className="paragraph2">
+          <li className="paragraph2" key="undertaking">
             <a
               href="/#undertaking"
               id="UndertakingInclusion"
@@ -88,7 +78,7 @@ export const Header = () => {
               Emprendiendo la inclusión
             </a>
           </li>
-          <li className="paragraph2">
+          <li className="paragraph2" key="forIt">
             <a
               href="#"
               id="forIt"
@@ -97,7 +87,7 @@ export const Header = () => {
               FORIT
             </a>
           </li>
-          <li className="paragraph2">
+          <li className="paragraph2" key="volunteer">
             <a
               href="/#volunteer"
               id="Volunteering"
@@ -106,7 +96,7 @@ export const Header = () => {
               Voluntariado
             </a>
           </li>
-          <li className="paragraph2">
+          <li className="paragraph2" key="products">
             <Link
               to="/products"
               id="products"
@@ -115,7 +105,7 @@ export const Header = () => {
               Productos
             </Link>
           </li>
-          <li className="paragraph2">
+          <li className="paragraph2" key="contact">
             <a
               href="/#contact"
               id="Contact"
@@ -124,39 +114,39 @@ export const Header = () => {
               Contacto
             </a>
           </li>
-          <li>
-          {currentUser ? (
-              <Button
-                aria-controls="simple-menu"
-                aria-haspopup="true"
-                onClick={handleClick}
-              >
-                {currentUser.nombre}
-              </Button>
+          <li key="userMenu">
+            {currentUser ? (
+              <>
+                <Button
+                  aria-controls="simple-menu"
+                  aria-haspopup="true"
+                  onClick={handleClick}
+                >
+                  {currentUser.nombre}
+                </Button>
+                <Menu
+                  id="simple-menu"
+                  anchorEl={anchorEl}
+                  keepMounted
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                >
+                  <MenuItem>
+                    <Link
+                      to="/admin"
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      Dashboard Admin
+                    </Link>
+                  </MenuItem>
+                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                </Menu>
+              </>
             ) : null}
-            {currentUser && (
-              <Menu
-                id="simple-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                <MenuItem>
-                  <Link
-                    to="/admin"
-                    style={{ textDecoration: "none", color: "inherit" }}
-                  >
-                    Dashboard Admin
-                  </Link>
-                </MenuItem>
-                <MenuItem onClick={handleLogout}>Logout</MenuItem>
-              </Menu>
-            )}
           </li>
         </ul>
-        <CartBadge/>
+        <CartBadge />
       </nav>
     </header>
-  );
+  );
 };

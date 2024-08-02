@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+/* import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { MainLayout } from "../../layout";
 //import ProductsEcommerce from '../../components/ProductsEcommerce';
@@ -6,10 +6,8 @@ import { MainLayout } from "../../layout";
 //import { ProductCart } from "../../components/ProductCart";
 //import Checkout from "../../components/Checkout/checkout";
 import { LayoutProducts } from "../../layout/LayoutProducts";
-/* import { getEnterpriseById } from "../../services/enterprises.service"; */
 import { EnterpriseDetail } from "../../views/EnterpriseDetail";
 
-/* import { useEnterpriseById  } from "../../hooks/enterprise/useEnterprise"; */
 
 export const HomeEcommerce = () => {
   const { search } = useLocation();
@@ -36,4 +34,32 @@ export const HomeEcommerce = () => {
       </>
     );
   }
+};
+ */
+
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { MainLayout } from "../../layout";
+import { LayoutProducts } from "../../layout/LayoutProducts";
+import { EnterpriseDetail } from "../../views/EnterpriseDetail";
+
+export const HomeEcommerce = () => {
+  const [enterpriseId, setEnterpriseId] = useState(null);
+  const { search } = useLocation();
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(search);
+    const id = urlParams.get("emprendimiento");
+    setEnterpriseId(id);
+  }, [search]);
+
+  return (
+    <MainLayout>
+      {enterpriseId ? (
+        <EnterpriseDetail info={enterpriseId} />
+      ) : (
+        <LayoutProducts />
+      )}
+    </MainLayout>
+  );
 };

@@ -18,7 +18,6 @@ export const createCategoryService = async (categoryData) => {
     const { data } = await axios.post(url, categoryData);
     return data || [];
   } catch (error) {
-    console.log(error);
     throw new Error("Hubo un error al crear la categoría.");
   }
 };
@@ -33,13 +32,12 @@ export const updateCategoriesService = async (id, categoryData) => {
   }
 };
 
-export const deleteCategoryService = async (id) => {
+export const deleteCategoryService = async (categoryId, categoryProducts) => {
   try {
-    const url = `${apiUrl}category/delete/${id}`;
+    const url = `${apiUrl}category/delete/${categoryId}/${categoryProducts}`;
     const { data } = await axios.delete(url);
     return data || [];
   } catch (error) {
-    console.log(error);
     throw new Error("Hubo un error al eliminar la categoría.");
   }
 };

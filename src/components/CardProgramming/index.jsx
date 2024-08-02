@@ -1,4 +1,3 @@
-import { useId } from "react";
 import PropTypes from "prop-types";
 import "./CardProgramming.scss";
 
@@ -11,14 +10,12 @@ export const CardProgramming = ({ icon, nameIcon, text, list }) => {
       <div>
         <p className="paragraph2">{text}</p>
 
-        {list ? (
+        {list && list.length > 0 && (
           <ul className="description">
-            {list.map((item) => (
-              <li key={useId}>{item}</li>
+            {list.map((item, index) => (
+              <li key={index}>{item}</li> // Usa el índice como última opción si no hay identificador único
             ))}
           </ul>
-        ) : (
-          ""
         )}
       </div>
     </div>

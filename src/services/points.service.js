@@ -49,7 +49,6 @@ export const deletePointService = async (id) => {
   try {
     const url = `${apiUrl}point/delete/${id}`;
     const { data } = await axios.delete(url);
-    console.log(data);
     return data || [];
   } catch (error) {
     throw new Error("Hubo un error al eliminar el punto de retiro.", error.response.data.message);

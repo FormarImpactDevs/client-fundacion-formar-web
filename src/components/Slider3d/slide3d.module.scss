@@ -10,27 +10,28 @@
   list-style-type: none;
 }
 
-
 html {
   font-size: 62.5%;
   scroll-behavior: smooth;
 }
-
 @media (min-width: 1440px) {
   html {
-    zoom: 1.5;
+    transform: scale(1.5);
+    transform-origin: 0 0; /* Escala desde la esquina superior izquierda */
   }
 }
 
 @media (min-width: 2560px) {
   html {
-    zoom: 1.7;
+    transform: scale(1.7);
+    transform-origin: 0 0; /* Escala desde la esquina superior izquierda */
   }
 }
 
 @media (min-width: 3860px) {
   html {
-    zoom: 2.5;
+    transform: scale(2.5);
+    transform-origin: 0 0; /* Escala desde la esquina superior izquierda */
   }
 }
 
