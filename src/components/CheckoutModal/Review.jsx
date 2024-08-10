@@ -49,7 +49,7 @@ export default function Review() {
       <Typography variant="h2" gutterBottom>
         Resumen del pedido
       </Typography>
-      <List disablePadding>
+      <List disablePadding style={{height: 350, overflowX: "scroll"}}>
         {detalle_pedido.map((product) => (
           <ListItem key={product.nombre} sx={{ py: 0.5, px: 0 }}>
             <ListItemText

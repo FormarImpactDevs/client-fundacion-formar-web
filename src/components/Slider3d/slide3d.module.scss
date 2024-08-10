@@ -16,14 +16,14 @@ html {
 }
 @media (min-width: 1440px) {
   html {
-    transform: scale(1.5);
+    //transform: scale(1.5);
     transform-origin: 0 0; /* Escala desde la esquina superior izquierda */
   }
 }
 
 @media (min-width: 2560px) {
   html {
-    transform: scale(1.7);
+    //transform: scale(1.7);
     transform-origin: 0 0; /* Escala desde la esquina superior izquierda */
   }
 }

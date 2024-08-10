@@ -51,5 +51,6 @@
     "gh-pages": "^5.0.0",
     "sass": "^1.64.1",
     "vite": "^4.4.7"
-  }
+  },
+  "packageManager": "pnpm@8.6.9+sha1.5c56677cdd07fc5262e35a00b04f97220dde7e8d"
 }

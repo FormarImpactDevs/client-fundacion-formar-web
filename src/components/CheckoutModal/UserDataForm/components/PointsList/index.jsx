@@ -10,10 +10,12 @@ import PropTypes from "prop-types";
 import { useOrder } from "../../../../../context/orderContext";
 import { useState } from "react";
 import { useEffect } from "react";
+import { usePoints } from "../../../../../hooks/points/usePoint";
 
 export default function PointsList() {
   const [radioValue, setRadioValue] = useState();
   const { dispatch } = useOrder();
+  const { points } = usePoints();
 
   useEffect(() => {
     dispatch({
@@ -21,9 +23,11 @@ export default function PointsList() {
       payload: radioValue,
     });
   }, [radioValue]);
+
   function handleRadioChange(event) {
     setRadioValue(event.target.value);
   }
+
   return (
     <div className="checkboxes">
       <Box sx={{ display: "flex" }}>
@@ -39,34 +43,17 @@ export default function PointsList() {
               justifyContent="space-between" // Espacio entre las dos columnas
               alignItems="center" // Alineación superior
             >
-              <Grid item xs={12} sm={6}>
-                <FormControlLabel
-                  row
-                  value="1"
-                  control={<Radio size="small" name="FlorestaCABA" />}
-                  label="Floresta CABA"
-                />
-                <FormControlLabel
-                  row
-                  value="2"
-                  control={<Radio size="small" name="Boulogne" />}
-                  label="Boulogne"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <FormControlLabel
-                  row
-                  value="3"
-                  control={<Radio size="small" name="PoloDePalermo" />}
-                  label="Polo de Palermo CABA"
-                />
-                <FormControlLabel
-                  row
-                  value="4"
-                  control={<Radio size="small" name="Benavidez" />}
-                  label="Benavidez"
-                />
-              </Grid>
+              {points?.map((point, index) => {
+                return (
+                  <Grid key={index} item xs={12} sm={6}>
+                    <FormControlLabel
+                      value={point.id}
+                      control={<Radio size="small" name={point.nombre} />}
+                      label={`${point.nombre} - ${point.descripcion}`}
+                    />
+                  </Grid>
+                );
+              })}
             </Grid>
           </RadioGroup>
         </FormControl>
