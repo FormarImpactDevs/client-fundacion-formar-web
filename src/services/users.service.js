@@ -1,8 +1,8 @@
-const BASE_USERS_URL_API = "http://localhost:3000/api/users";
+const BASE_USERS_URL_API = import.meta.env.VITE_BASE_API_URL;
 
 export async function userLoginService(userData) {
   try {
-    const result = await fetch(`${BASE_USERS_URL_API}/login`, {
+    const result = await fetch(`${BASE_USERS_URL_API}/users/login`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
