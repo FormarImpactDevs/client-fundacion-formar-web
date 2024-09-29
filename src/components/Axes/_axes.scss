@@ -1,74 +1,89 @@
 @import "../../styles/colors";
 @import "../../styles/media-queries";
-.axes_container {
-  cursor: default;
-  text-align: center;
-  padding-top: 30px;
-  
-  @include desktop2 {
-    padding: 10rem;
 
-
-  }
-}
-.axes_cards {
-  padding: 10px;
-  margin: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  @include desktop2 {
-    flex-direction: row;
-  }
-}
-.axes_card {
-  background-color: $ligth-blue;
-  height: 18vh;
-  margin: 15px;
-  overflow: hidden;
-  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
-  transition: all 400ms ease;
-  a {
-    text-decoration: none;
-  }
-  h3 {
-    margin-top: 10px;
-    color: $primary-color;
-    height: 50px;
-    @include tablet {
-      margin-top: 20px;
-      height: 100px;
-    }
-  }
-  p {
-    padding: 5px 5px;
-    height: 50%;
+.axes {
+  &_container {
+    cursor: default;
     text-align: center;
-    @include tablet {
-        padding: 25px 5px;
-    }
-    @include desktop2{
-        padding: 5px;
+    padding-top: 30px;
+
+    @include desktop2 {
+      padding: 10rem;
     }
   }
-  span {
-    color: $primary-color;
-  }
-  @include tablet {
+
+  &_cards {
     display: flex;
-    height: 300px;
-    width: 450px;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: flex-start;
-    align-content: space-between;
-    flex-wrap: wrap;
+    padding: 10px;
+    margin: 15px;
+
+    @include desktop2 {
+      flex-direction: row;
+    }
   }
-  @include desktop2 {
-    height: 250px;
+
+  &_card {
+    background-color: $ligth-blue;    
+    border-radius: 8px;
+    margin: 15px;
+    padding: 30px 20px;
+    overflow: hidden;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+    transition: all 400ms ease;
+
+    &:hover {
+      box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+      transform: translateY(-3%);
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    h3 {
+      /* margin-top: 10px; */
+      margin-bottom: 7px;
+      color: $primary-color;
+      /* height: 50px; */
+
+      @include tablet {
+        margin-top: 20px;
+      /*   height: 100px; */
+      }
+    }
+
+    p {
+      padding: 5px;
+      /* height: 50%; */
+      text-align: center;
+
+      @include tablet {
+        padding: 25px 5px;
+      }
+
+      @include desktop2 {
+        padding: 5px;
+      }
+    }
+
+    span {
+      color: $primary-color;
+    }
+
+    @include tablet {
+      display: flex;
+      height: 230px;
+      width: 450px;
+      align-items: center;
+      align-content: start;
+      flex-wrap: wrap;
+    }
+
+    @include desktop2 {
+      height: 300px;
+    }
   }
-}
-.axes_card:hover {
-  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
-  transform: translateY(-3%);
 }

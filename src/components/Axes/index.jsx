@@ -19,7 +19,7 @@ export const Ejes = () => {
             className={undertakingIsIntersecting ? "selected" : ""}
           >
             <h3 className="paragraph1">
-              Fortalecimiento de emprendimientos locales:
+              Fortalecimiento de emprendimientos locales
             </h3>
             <p className="paragraph2">
               {" "}
@@ -34,7 +34,7 @@ export const Ejes = () => {
             id="SchedulingInclusion"
             className={programingIsIntersecting ? "selected" : ""}
           >
-            <h3 className="paragraph1">Capacitaciones con salida laboral:</h3>
+            <h3 className="paragraph1">Capacitaciones con salida laboral</h3>
             <p className="paragraph2">
               - <span>Programando la inclusión</span> es un programa de
               formación e inserción laboral en el sector IT. <br /> -{" "}
@@ -44,7 +44,7 @@ export const Ejes = () => {
         </div>
         <div className="axes_card">
           <a href="">
-            <h3 className="paragraph1">Trabajando la inclusión:</h3>
+            <h3 className="paragraph1">Trabajando la inclusión</h3>
             <p className="paragraph2">
               Puentes de <span>oportunidades</span> y{" "}
               <span>acompañamientos</span> para oportunidades de trabajo en
