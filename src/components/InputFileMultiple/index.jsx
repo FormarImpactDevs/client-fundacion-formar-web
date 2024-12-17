@@ -140,7 +140,7 @@ export default function InputFileMultiple({
               <VisuallyHiddenInput
                 type="file"
                 name={name}
-                accept=".jpg, .jpeg, .png"
+                accept="image/*"
                 multiple={multiple}
                 required={required}
                 onChange={(e) => handleChange(e)}
