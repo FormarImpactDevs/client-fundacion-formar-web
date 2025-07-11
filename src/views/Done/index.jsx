@@ -1,12 +1,21 @@
 import "./done.scss";
 import Button from "@mui/material/Button";
+import done from "../../assets/Fotos web-13.png"
 
 export const Done = () => {
   return (
     <section className=" container-done">
-      <div className="flex">
-        
-        <div className="a-center">
+      
+      <div>
+        <figure className="volunteer-image">
+              <img
+                src={done}
+                alt="Imagen de estudiantes"
+                className="presentation_img"
+              />
+        </figure>
+        <section className="flex">
+          <div className="a-center">
  
           <div className="titlesDone">
             <h1 className="titleBlue">
@@ -27,10 +36,14 @@ export const Done = () => {
                 color: "primary.main",
               }}
             >
-              Sumate
+              Sumate como voluntario!
             </Button>
           </a>
         </div>
+
+        </section>
+        
+        
       </div>
     </section>
   );
