@@ -80,7 +80,7 @@ export const Header = () => {
           </li>
           <li className="paragraph2" key="forIt">
             <a
-              href="#"
+              href="https://forit.ar/"
               id="forIt"
               className={isSelected === "forIt" ? "selected" : ""}
             >
