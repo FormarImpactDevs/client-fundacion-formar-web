@@ -84,7 +84,7 @@ export const Header = () => {
               id="forIt"
               className={isSelected === "forIt" ? "selected" : ""}
             >
-              FORIT
+              Software Factory FOR IT
             </a>
           </li>
           <li className="paragraph2" key="volunteer">
