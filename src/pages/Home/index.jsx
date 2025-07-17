@@ -34,7 +34,6 @@ import { AliadosProg } from "../../components/AliadosProg";
 import { Emprendiendo } from "../../components/Emprendiendo";
 import { Equipo } from "../../components/Team";
 import { Ejes } from "../../components/Axes";
-import { EquipoEmprendiendo } from "../../components/TeamUndertaking";
 import { Contacto } from "../../components/Contacto";
 import { Aliados } from "../../components/Aliados";
 import { ProgrammingTheInclusion } from "../../views/ProgrammingTheInclusion.jsx";
@@ -52,11 +51,21 @@ export default function Home() {
     setContactIsIntersecting,
   } = useObserverComponent();
 
-  const [aboutRefIsIntersecting, aboutRef] = useIntersection({ threshold: 0.3 });
-  const [programingRefIsIntersecting, programingRef] = useIntersection({ threshold: 0.3 });
-  const [volunteerRefIsIntersecting, volunteerRef] = useIntersection({ threshold: 0.3 });
-  const [undertakingRefIsIntersecting, undertakingRef] = useIntersection({ threshold: 0.3 });
-  const [contactRefIsIntersecting, contactRef] = useIntersection({ threshold: 0.3 });
+  const [aboutRefIsIntersecting, aboutRef] = useIntersection({
+    threshold: 0.3,
+  });
+  const [programingRefIsIntersecting, programingRef] = useIntersection({
+    threshold: 0.3,
+  });
+  const [volunteerRefIsIntersecting, volunteerRef] = useIntersection({
+    threshold: 0.3,
+  });
+  const [undertakingRefIsIntersecting, undertakingRef] = useIntersection({
+    threshold: 0.3,
+  });
+  const [contactRefIsIntersecting, contactRef] = useIntersection({
+    threshold: 0.3,
+  });
 
   useEffect(() => {
     setAboutIsIntersecting(aboutRefIsIntersecting);
@@ -90,7 +99,7 @@ export default function Home() {
 
       {/* Ejes de trabajo */}
       <Ejes />
-      
+
       {/* Equipo */}
       <Equipo />
 
@@ -129,10 +138,9 @@ export default function Home() {
 
       {/* Aliados */}
       <Aliados />
-      <EquipoEmprendiendo />
 
       {/* Novedades  en reparación*/}
-    {/*   <Novedades /> */}
+      {/*   <Novedades /> */}
 
       {/* Formulario voluntariado y dona */}
       <FormColaborator />
