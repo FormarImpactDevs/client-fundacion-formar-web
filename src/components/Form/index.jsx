@@ -80,7 +80,7 @@ export const ContactForm = () => {
         }}
         className="containerForm"
       >
-        <h1 className="subtitle">TUS DATOS DE CONTACTO</h1>
+        <h1 className="subtitle">Tus datos de contacto</h1>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
