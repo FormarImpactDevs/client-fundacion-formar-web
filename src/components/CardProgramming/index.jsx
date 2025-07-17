@@ -25,6 +25,6 @@ export const CardProgramming = ({ icon, nameIcon, text, list }) => {
 CardProgramming.propTypes = {
   icon: PropTypes.string,
   nameIcon: PropTypes.string,
-  text: PropTypes.string,
+  text: PropTypes.node,
   list: PropTypes.array,
 };

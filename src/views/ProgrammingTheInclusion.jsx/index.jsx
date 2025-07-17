@@ -12,13 +12,25 @@ export const ProgrammingTheInclusion = () => {
       id: 1, // Asegúrate de tener un identificador único para cada elemento
       icon: programmer,
       nameIcon: "programmer",
-      text: "Capacitación en Programación Web Full Stack. El rubro laboral it ofrece empleos de calidad, con altos salarios y posibilidad de construir una carrera y un futuro laboral sostenido",
+      text: "Capacitación en Programación Web Full Stack. El rubro laboral IT ofrece empleos de calidad, con altos salarios y posibilidad de construir una carrera y un futuro laboral sostenido",
     },
     {
       id: 2, // Identificador único
       icon: Rocket,
       nameIcon: "Rocket",
-      text: "Curso intensivo de 8 meses enfocado en las necesidades del mercado.",
+      text: (
+        <> {/* Usamos un fragmento para agrupar el texto y el link */}
+          Capacitaciones intensivas enfocadas en las necesidades del mercado y entrenamiento laboral en proyectos reales dentro de nuestra software factory{" "}
+          <a
+            href="https://forit.ar/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            FOR IT
+          </a>
+          .
+        </>
+      ),
       list: [
         "Capacitación técnica en Full Stack: Clases teóricas y prácticas.",
         "Capacitación en habilidades para el mundo del trabajo (Soft skills).",
@@ -29,7 +41,7 @@ export const ProgrammingTheInclusion = () => {
       id: 3, // Identificador único
       icon: Briefcase,
       nameIcon: "Briefcase",
-      text: "Somos puente entre las empresas en búsqueda de talentos y los egresados. Tenemos una amplia base de datos con perfiles de alumnos en búsqueda de su primera experiencia laboral it.",
+      text: "Somos puente entre las empresas en búsqueda de talentos y los egresados. Tenemos una amplia base de datos con perfiles de alumnos en búsqueda de su primera experiencia laboral IT.",
     },
     {
       id: 4, // Identificador único
@@ -51,7 +63,7 @@ export const ProgrammingTheInclusion = () => {
       <div className="container-grid">
         {infoCards.map((info) => (
           <CardProgramming
-            key={info.id} // Usa el identificador único aquí
+            key={info.id}
             icon={info.icon}
             nameIcon={info.nameIcon}
             text={info.text}
