@@ -2,23 +2,24 @@
 @import "../../styles/media-queries";
 
 .container-done {
-  
   padding-top: 10px;
   max-width: 100vw;
-  padding: 3rem;
+  position: relative;
+  margin-bottom: 4rem;
 
+  @include desktop-large {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
 
-  figure {
-    .presentation_img {
-      max-width: 100vw;
-
-      @media screen and (min-width: 1400px) {
-        max-width: 100%;
-      }
-      @include desktop-large {     
-        width: 100%;
-      }
+  .donacion {
+    position: relative;
+    margin: auto;
+    @include desktop-large {     
+      width: 100%;
     }
+
   }
 
   .flex {
@@ -27,6 +28,14 @@
     position: relative;
     align-items: center;
     flex-direction: column;
+
+    min-width: 20vw;
+    border-radius: 7%;
+    position: absolute;
+    top: 0.5rem;
+    left: 1rem;
+    z-index: 1;
+
     @include desktop{
       padding:10rem ;
     }
@@ -84,4 +93,37 @@
       }
     }
   }
+  
+
+  .volunteer-image {
+    position: relative;
+    @include desktop-large {     
+      width: 100%;
+    }
+  }
+
+  figure {
+    .presentation_img {
+      max-width: 100vw;
+
+      @media screen and (min-width: 1400px) {
+        max-width: 100%;
+      }
+      @include desktop-large {     
+        width: 100%;
+      }
+    }
+  }
+
+  .button  {
+    background-color: #74A9DA;
+    color: white
+    
+  }
+
+  .button:hover  {
+    background-color: #74A9DA;
+    
+  }
+
 }

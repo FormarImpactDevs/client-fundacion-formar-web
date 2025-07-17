@@ -4,9 +4,9 @@ import done from "../../assets/Fotos web-13.png"
 
 export const Done = () => {
   return (
-    <section className=" container-done">
+    <section className="container-done">
       
-      <div>
+      <div className="donacion">
         <figure className="volunteer-image">
               <img
                 src={done}
@@ -19,8 +19,8 @@ export const Done = () => {
  
           <div className="titlesDone">
             <h1 className="titleBlue">
-              <span className="titleDark">Vos podes</span> ser puente {" "}
-              <span className="titleDark">
+              <span className="titleWhite">Vos podes</span> ser puente {" "}
+              <span className="titleWhite">
                 hacia el mundo del <br />
                 trabajo, Sumate!
               </span>
