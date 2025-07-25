@@ -98,9 +98,7 @@ export const Header = () => {
           </li>
           <li className="paragraph2" key="products">
             <Link
-              to="/products"
-              id="products"
-              className={isSelected === "products" ? "selected" : ""}
+              to="https://linktr.ee/fundacionformarcatalogo"
             >
               Productos
             </Link>
