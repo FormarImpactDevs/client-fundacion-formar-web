@@ -6,7 +6,6 @@
 .egresados_container {
     padding-top: 30px;
     height: 400px;
-    background-image: url("../../assets/fondoAboutUs.jpg");
     background-position: right;
     text-align: center;
     @include tablet {
@@ -61,18 +60,18 @@ width: 90%;
   }}
 
     iframe{
-   /*   padding: 1em;*/
-   /*   display:grid;
-      align-content: center;
-      justify-content: center;*/
+
       @include mobile{
         margin-top: -4rem;
         margin-bottom: 1.5rem;
-        padding: 4em;
+        margin-left: 2rem;
+        padding-bottom: 4em;
+        padding-top: 4em;
         display:grid;
         align-content: center;
         justify-content: center;
-        width: 100%;
+        width: 90%;
+        height: 400px;
       }
       @include tablet{
         margin-top: 1rem;
@@ -81,7 +80,8 @@ width: 90%;
       @include desktop{
         margin-top: 1rem;
         padding: 1em;
-        width: 50%;
+        width: 75%;
+        height: 500px;
       }
       }
       

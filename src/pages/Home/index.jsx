@@ -23,7 +23,6 @@ import EnterpisesGallery from "../../views/EnterpisesGallery";*/
 import { useEffect } from "react";
 import { MainLayout } from "../../layout";
 import { Presentation } from "../../views/Presentation";
-import { Novedades } from "../../views/Novedades";
 import { Volunteer } from "../../views/Volunteer";
 import { FormColaborator } from "../../views/Form";
 import { Done } from "../../views/Done";
