@@ -23,8 +23,6 @@ import EnterpisesGallery from "../../views/EnterpisesGallery";*/
 import { useEffect } from "react";
 import { MainLayout } from "../../layout";
 import { Presentation } from "../../views/Presentation";
-import { Novedades } from "../../views/Novedades";
-import { Volunteer } from "../../views/Volunteer";
 import { FormColaborator } from "../../views/Form";
 import { Done } from "../../views/Done";
 import { QuienesSomos } from "../../components/QuienesSomos";
@@ -121,9 +119,9 @@ export default function Home() {
       <EquipoProgramando />
 
       {/* Voluntariado */}
-      <div id="volunteer" ref={volunteerRef}>
+      {/*       <div id="volunteer" ref={volunteerRef}>
         <Volunteer />
-      </div>
+      </div> */}
 
       {/* Doná */}
       <Done />
