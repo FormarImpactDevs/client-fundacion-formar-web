@@ -8,8 +8,8 @@ export const FormColaborator = () => {
   return (
     <section className="container" id="formVolunteer">
         <div className="titlesFormsContainer">
-            <Title text="Colabora con Fundacion formar"/>
-            <Subtitle text="Completa el formulario y te contactaremos para efectuar la donación"></Subtitle>
+            <Title text="Colaborá con Fundación Formar"/>
+            <Subtitle text="Completá el formulario y te contactaremos para efectuar la donación"></Subtitle>
         </div>
       <ContactForm />
     </section>

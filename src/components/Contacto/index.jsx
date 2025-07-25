@@ -7,11 +7,11 @@ export const Contacto = () => {
     <section className="contacto_container">
       <div className="flex">
         <div className="titles_contact">
-          <Subtitle text="SI NO ENCONTRASTE LO QUE BUSCABAS EN" />
+          <Subtitle text="Si no encontraste lo que buscabas en" />
           <br />
-          <Subtitle text="NUESTRA WEB, CONTANOS EN QUE PODEMOS" />
+          <Subtitle text="nuestra web, contanos en qué podemos" />
           <br />
-          <Subtitle text="AYUDARTE Y NOS CONTACTAREMOS A LA BREVEDAD." />
+          <Subtitle text="ayudarte y nos contactaremos en la brevedad." />
           <br />
         </div>
         <div className="botones">

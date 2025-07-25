@@ -80,11 +80,11 @@ export const Header = () => {
           </li>
           <li className="paragraph2" key="forIt">
             <a
-              href="#"
+              href="https://forit.ar/"
               id="forIt"
               className={isSelected === "forIt" ? "selected" : ""}
             >
-              FORIT
+              Software Factory FOR IT
             </a>
           </li>
           <li className="paragraph2" key="volunteer">
@@ -98,9 +98,7 @@ export const Header = () => {
           </li>
           <li className="paragraph2" key="products">
             <Link
-              to="/products"
-              id="products"
-              className={isSelected === "products" ? "selected" : ""}
+              to="https://linktr.ee/fundacionformarcatalogo"
             >
               Productos
             </Link>
