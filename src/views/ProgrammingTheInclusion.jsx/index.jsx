@@ -1,64 +1,88 @@
 import "./ProgrammingTheInclusion.scss";
-import { CardProgramming } from "../../components/CardProgramming";
-import programmer from "../../assets/programmer.svg";
-import Rocket from "../../assets/rocket.svg";
-import Briefcase from "../../assets/Briefcase.svg";
-import Users from "../../assets/group.svg";
-import Title from "../../components/Title";
+import Subtitle from "../../components/Subtitle";
+import Image2 from "../../assets/TemsFormar/victoriaLacroze.jpg";
+
+
+// import programmer from "../../assets/programmer.svg";
+// import Rocket from "../../assets/rocket.svg";
+// import Briefcase from "../../assets/Briefcase.svg";
+// import Users from "../../assets/group.svg";
 
 export const ProgrammingTheInclusion = () => {
-  const infoCards = [
-    {
-      id: 1, // Asegúrate de tener un identificador único para cada elemento
-      icon: programmer,
-      nameIcon: "programmer",
-      text: "Capacitación en Programación Web Full Stack. El rubro laboral it ofrece empleos de calidad, con altos salarios y posibilidad de construir una carrera y un futuro laboral sostenido",
-    },
-    {
-      id: 2, // Identificador único
-      icon: Rocket,
-      nameIcon: "Rocket",
-      text: "Curso intensivo de 8 meses enfocado en las necesidades del mercado.",
-      list: [
-        "Capacitación técnica en Full Stack: Clases teóricas y prácticas.",
-        "Capacitación en habilidades para el mundo del trabajo (Soft skills).",
-        "Master Classes en tecnología brindadas por expertos del rubro tecnológico.",
-      ],
-    },
-    {
-      id: 3, // Identificador único
-      icon: Briefcase,
-      nameIcon: "Briefcase",
-      text: "Somos puente entre las empresas en búsqueda de talentos y los egresados. Tenemos una amplia base de datos con perfiles de alumnos en búsqueda de su primera experiencia laboral it.",
-    },
-    {
-      id: 4, // Identificador único
-      icon: Users,
-      nameIcon: "Users",
-      text: "Acompañamiento a Egresados: Programa de tutorías para egresados en tres áreas: soft, skills & inserción laboral. Especialización en lenguajes y conversatorio en inglés.",
-    },
-  ];
+
 
   return (
-    <section className="ProgrammingTheInclusion-container container">
-      <div className="titleContainer">
-        <Title text="Ecosistema favorable para"/>
-        <h1 className="title">
-          la <span>inserción en la tecnología</span>
+    <div className="programming_container">
+      <h1 className="presentation_title">
+          Ecosistema favorable para 
+          <span className="presentation_span">
+            {" "}
+            la inserción laboral
+            
+          </span>
         </h1>
-      </div>
+      <Subtitle text="Tenemos tres áreas de trabajo" />
+      <section className="programming_cards">
+        <section className="programming_section">
+          <img src={Image2} />
+          <div className="programming_card">
+          <a
+            href="#undertaking"
+            id="UndertakingInclusion"
+          >
+            <h3 className="paragraph1">
+              PROGRAMANDO LA INCLUSIÓN
+            </h3>
+            <p className="paragraph2">
+              {" "}
+              Formacion intensiva en programacion web full stack de 8 meses <br/>
+              -formacion tecnica y humana <br/>
+              -habilidades para el trabajo<br/>
+              -masterclass <br/>
+            </p>
+          </a>
+        </div>
 
-      <div className="container-grid">
-        {infoCards.map((info) => (
-          <CardProgramming
-            key={info.id} // Usa el identificador único aquí
-            icon={info.icon}
-            nameIcon={info.nameIcon}
-            text={info.text}
-            list={info.list ? info.list : []}
-          />
-        ))}
-      </div>
-    </section>
+        </section>
+        
+        <section className="programming_section">
+          <img src={Image2} />
+          <div className="programming_card">
+          <a
+            href="#undertaking"
+            id="UndertakingInclusion"
+          >
+            <h3 className="paragraph1">
+              ACADEMIA FORIT
+            </h3>
+            <p className="paragraph2">
+              {" "}
+              Formacion en programacion nivel 2, forlateciendo las bases 
+              y sumando herramientas claves para el mercado IT .
+            </p>
+          </a>
+        </div>
+
+        </section>
+        <section className="programming_section">
+          <img src={Image2} />
+          <div className="programming_card">
+          <a
+            href="#undertaking"
+            id="UndertakingInclusion"
+          >
+            <h3 className="paragraph1">
+              FOR IT SOFTWARE FACTORY
+            </h3>
+            <p className="paragraph2">
+              {" "}
+              Programa de entrenamiento laboral de 6 meses dentro de un entorno real laboral. Incubadora de talento en software factory.
+            </p>
+          </a>
+        </div>
+
+        </section>
+      </section>
+    </div>
   );
 };

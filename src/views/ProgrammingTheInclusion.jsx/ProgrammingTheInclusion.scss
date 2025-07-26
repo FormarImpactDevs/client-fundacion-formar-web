@@ -1,37 +1,137 @@
 @import "../../styles/colors";
 @import "../../styles/media-queries";
 
-.ProgrammingTheInclusion-container {
-    padding: 0.5rem;
-  @include tablet {
-    padding: 0.5rem;
-  }
+.programming {
+  &_container {
+    cursor: default;
+    text-align: center;
+    padding-top: 30px;
 
-  @include desktop {
-    padding-top: $padding-top;
-    min-height: $min-height;
-    padding-bottom: 2rem;
-  }
-  
-  .titleContainer {
-    margin-bottom: 3rem;
-    span {
-        color: $primary-color;
-      }
-  }
- 
-
-  .container-grid {
-    display: grid;
-    
-    grid: 1fr / 2fr;
-    grid-auto-flow: row;
-    place-content: center;
-    background-color: $ligth-blue;
-    gap: 3px;
-
-    @include tablet {
-      grid: 1fr 1fr / 2fr 2fr;
+    @include desktop2 {
+      padding: 10rem;
     }
   }
+
+  &_cards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 15px;
+
+    @include desktop2 {
+      flex-direction: row;
+    }
+  }
+
+  &_card {
+    background-color: #74A9DA;    
+    margin: 15px;
+    margin-top: -2.5rem;
+    padding: 2rem;
+    padding-top: 4.5rem;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+    transition: all 400ms ease;
+
+    @include tablet {
+        margin-top: -3.5rem;
+      
+      /*   height: 100px; */
+    }
+
+    @include desktop {
+        min-height: 36rem;
+      
+      /*   height: 100px; */
+    }
+
+    
+    &:hover {
+      box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+      transform: translateY(-3%);
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    h3 {
+      /* margin-top: 10px; */
+      margin-bottom: 7px;
+      color: $white;
+      font-weight: bolder;
+      /* height: 50px; */
+
+      @include tablet {
+        margin-top: 20px;
+      
+      /*   height: 100px; */
+      }
+    }
+
+    p {
+      padding: 5px;
+      /* height: 50%; */
+      text-align: center;
+      color: $white;
+
+      @include tablet {
+        padding: 25px 5px;
+      }
+
+      @include desktop2 {
+        padding: 5px;
+      }
+    }
+
+    span {
+      color: $primary-color;
+    }
+
+    // @include tablet {
+    //   display: flex;
+    //   //height: 230px;
+    //   width: auto;
+    //   align-items: center;
+    //   align-content: start;
+    //   flex-wrap: wrap;
+    // }
+
+    // @include desktop2 {
+    //   height: 300px;
+    // }
+  }
+}
+
+.programming_section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  @include tablet {
+    width: 66%;
+  }
+
+
+  img {
+    border-radius: 100%;
+    width: 6rem; 
+    height: 6rem;
+    object-fit: cover;
+    z-index: 1;
+
+      @include tablet {
+        width: 9rem; 
+        height: 9rem;
+        z-index: 1;
+        
+      }
+
+      @include desktop2 {
+        width: 50% auto;
+      }
+    }
 }
