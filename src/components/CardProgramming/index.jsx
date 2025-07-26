@@ -8,12 +8,12 @@ export const CardProgramming = ({ icon, nameIcon, text, list }) => {
         <img src={icon} alt={nameIcon} />
       </figure>
       <div>
-        <p className="paragraph2">{text}</p>
+        <p className="paragraph2" dangerouslySetInnerHTML={{ __html: text }}></p>
 
         {list && list.length > 0 && (
           <ul className="description">
             {list.map((item, index) => (
-              <li key={index}>{item}</li> // Usa el índice como última opción si no hay identificador único
+              <li key={index}>{item}</li> 
             ))}
           </ul>
         )}
