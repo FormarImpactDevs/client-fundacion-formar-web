@@ -1,6 +1,6 @@
 import "./ProgrammingTheInclusion.scss";
-import Subtitle from "../../components/Subtitle";
-import Image2 from "../../assets/TemsFormar/victoriaLacroze.jpg";
+import Image2 from "../../assets/computer.jpg";
+import Image3 from "../../assets/forit.jpg";
 
 
 // import programmer from "../../assets/programmer.svg";
@@ -13,15 +13,14 @@ export const ProgrammingTheInclusion = () => {
 
   return (
     <div className="programming_container">
-      <h1 className="presentation_title">
-          Ecosistema favorable para 
-          <span className="presentation_span">
-            {" "}
-            la inserción laboral
+      <h1 className="title">
+          Ecosistema favorable para <br />
+          <span style={{ color: "#74A9DA" }}>
+            
+            la inserción en tecnología
             
           </span>
         </h1>
-      <Subtitle text="Tenemos tres áreas de trabajo" />
       <section className="programming_cards">
         <section className="programming_section">
           <img src={Image2} />
@@ -65,7 +64,7 @@ export const ProgrammingTheInclusion = () => {
 
         </section>
         <section className="programming_section">
-          <img src={Image2} />
+          <img src={Image3} />
           <div className="programming_card">
           <a
             href="#undertaking"

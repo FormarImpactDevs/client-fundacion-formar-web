@@ -56,6 +56,10 @@
       text-decoration: none;
     }
 
+    .programming_span {
+      color: #74A9DA;
+    }
+
     h3 {
       /* margin-top: 10px; */
       margin-bottom: 7px;
@@ -118,8 +122,10 @@
 
   img {
     border-radius: 100%;
-    width: 6rem; 
+    width: 6rem;
     height: 6rem;
+    border-color: #74A9DA;
+    border-style: solid;
     object-fit: cover;
     z-index: 1;
 
