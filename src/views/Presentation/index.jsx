@@ -1,9 +1,7 @@
 import { Button } from "../../components/Button";
 import "./_presentation.scss";
 import AOS from "aos";
-//import students from "../../assets/students.svg"
-import presentation from "../../assets/presentation2.jpeg";
-import ondas from "../../assets/ondas.svg"
+import presentation from "../../assets/formar_principal_banner.png";
 AOS.init();
 
 export const Presentation = () => {
@@ -20,13 +18,10 @@ export const Presentation = () => {
       </figure>
       <div className="firmFormar" data-aos="zoom-in-right">
         <h1 className="presentation_title">
-          Formar para <br />
-          incluir,
+          Formar para incluir, <br/>
           <span className="presentation_span">
             {" "}
-            trabajar
-            <br />
-            para crecer
+            trabajar para crecer
           </span>
         </h1>
 
@@ -37,15 +32,6 @@ export const Presentation = () => {
           </a>
         </div>
       </div>
-
-      {/* ondas */}
-      <figure className="ondas">
-        <img
-          src={ondas}
-          alt="Divisor ondulado"
-          className="presentation_img"
-        />
-      </figure>
       </div>
     
     </section>
