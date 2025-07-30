@@ -2,8 +2,11 @@ import "./_team.scss";
 import {Card} from "../Card";
 import Image1 from "../../assets/TemsFormar/MercedesLacroze.png";
 import Image2 from "../../assets/TemsFormar/victoriaLacroze.jpg";
-import Image3 from "../../assets/TemsFormar/AGnesKardashian.jpeg";
-import Image4 from "../../assets/TemsFormar/Cosstte.jpeg";
+import Image3 from "../../assets/TemsFormar/LuciaVarelaRoberts.jpg";
+import Image4 from "../../assets/TemsFormar/FranciscoDeclich.jpg";
+import Image5 from "../../assets/TemsFormar/LucasDeclich.jpeg";
+import Image6 from "../../assets/TemsFormar/EloisaDupont.jpg";
+import Image7 from "../../assets/TemsFormar/victoriaFornieles.jpg";
 import Title from '../Title';
 export const Equipo = () => {
     return (
@@ -22,13 +25,28 @@ export const Equipo = () => {
                 />
                 <Card
                 image={Image3}
-                title="Agnes Kardashian"
-                subtitle="Responsable administrativa"
+                title="Lucia Varela Roberts"
+                subtitle="Responsable de Comunicación"
                 />
                 <Card
                 image={Image4}
-                title="Cosette Kardashian"
-                subtitle="Responsable de redes"
+                title="Francisco Declich"
+                subtitle="Responsable administrativo"
+                />
+                <Card
+                image={Image5}
+                title="Lucas Declich"
+                subtitle="Responsable administrativo"
+                />
+                <Card
+                image={Image6}
+                title="Eloisa Dupont"
+                subtitle="Gerente de Emprendiendo la Inclusión"
+                />
+                <Card
+                image={Image7}
+                title="Victoria Fornieles"
+                subtitle="Gerente de Programando la Inclusión"
                 />
             </div>
         </div>
