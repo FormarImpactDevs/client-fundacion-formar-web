@@ -1,5 +1,5 @@
-import accenture from "../../assets/accenture.png"
 import dh from "../../assets/dh.png";
+import globant from "../../assets/Globant-logo.webp";
 import santander from "../../assets/santander.png";
 import sanMiguel from "../../assets/sanmiguel.png";
 import empower from "../../assets/empower.png";
@@ -31,11 +31,11 @@ export const AliadosProg =() => {
      
     },
     {
-      img: accenture,
+      img: empower,
       
     },
     {
-      img: empower,
+      img: globant,
       
     },
   
