@@ -16,6 +16,9 @@
   .donacion {
     position: relative;
     margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     @include desktop-large {     
       width: 100%;
     }
@@ -32,17 +35,21 @@
     min-width: 20vw;
     border-radius: 7%;
     position: absolute;
-    top: 0.5rem;
     left: 1rem;
     z-index: 1;
 
     @include desktop{
       padding:10rem ;
+      top: 0.5rem;
+
     }
+
+
     @include tablet {
       justify-content: space-evenly;
       flex-direction: row;
       align-items: baseline;
+      top: auto;
       
     }
 
@@ -96,11 +103,60 @@
   
 
   .volunteer-image {
-    position: relative;
+    display: none;
     @include desktop-large {     
       width: 100%;
+     position: relative;
+
     }
+
+    
   }
+
+  .volunteer-image {
+     position: relative;
+    display: none;
+
+
+    
+    
+    @include tablet {     
+      width: 100%;
+      display: none;
+
+
+    }
+
+    @include desktop {     
+      width: 100%;
+      display: block;
+
+
+    }
+
+    
+  }
+
+  .volunteer-image-mobile {
+     position: relative;
+
+
+    @include tablet {     
+      width: 100%;
+      display: block;
+
+
+    }
+
+    @include desktop {     
+      width: 100%;
+      display: none;
+
+
+    }
+
+  }
+
 
   figure {
     .presentation_img {
