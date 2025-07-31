@@ -2,7 +2,7 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import "./mainLayout.scss";
 import PropTypes from "prop-types";
-import CartBadge from "../components/CartBadge";
+//import CartBadge from "../components/CartBadge";
 import CheckoutModal from "../components/CheckoutModal/CheckoutModal";
 import { useOrder } from "../context/orderContext";
 
@@ -11,7 +11,8 @@ export const MainLayout = ({ children }) => {
   return (
     <div className="main">
       <Header />
-      <CartBadge />
+      {/* Se oculta el badge del carrito por el momento */}
+      {/* <CartBadge /> */}
       <section className="mainContainer">{children}</section>
       <CheckoutModal open={modalIsOpen} hideModal={hideModal}/>
 

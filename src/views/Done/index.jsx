@@ -1,6 +1,8 @@
 import "./done.scss";
 import Button from "@mui/material/Button";
 import done from "../../assets/Fotos web-13.png"
+import doneMobile from "../../assets/voluntario-mobile.jpg"
+
 
 export const Done = () => {
   return (
@@ -10,6 +12,13 @@ export const Done = () => {
         <figure className="volunteer-image">
               <img
                 src={done}
+                alt="Imagen de estudiantes"
+                className="presentation_img"
+              />
+        </figure>
+        <figure className="volunteer-image-mobile">
+              <img
+                src={doneMobile}
                 alt="Imagen de estudiantes"
                 className="presentation_img"
               />
