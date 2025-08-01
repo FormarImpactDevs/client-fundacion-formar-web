@@ -68,6 +68,22 @@ html {
   }
 }
 
+.titleWhite {
+  color: $white;
+  text-align: center;
+  font-size: $title-mobile-size;
+  font-style: normal;
+  font-weight: 600;
+
+  @include tablet {
+    font-size: $title-tablet-size;
+  }
+
+  @include desktop {
+    font-size: $title-desktop-size;
+  }
+}
+
 .subtitle {
   color: $dark-gray;
   font-size: $subtitle-mobile-size;
