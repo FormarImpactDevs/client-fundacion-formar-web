@@ -42,6 +42,7 @@ import { EquipoProgramando } from "../../components/TeamProgramming";
 import useIntersection from "../../hooks/useIntersection";
 import useObserverComponent from "../../hooks/useObserverComponent";
 import EnterpisesGallery from "../../views/EnterpisesGallery";
+import { VenturesFormar } from "../../components/VenturesFormar/index.jsx";
 
 export default function Home() {
   const {
@@ -52,11 +53,21 @@ export default function Home() {
     setContactIsIntersecting,
   } = useObserverComponent();
 
-  const [aboutRefIsIntersecting, aboutRef] = useIntersection({ threshold: 0.3 });
-  const [programingRefIsIntersecting, programingRef] = useIntersection({ threshold: 0.3 });
-  const [volunteerRefIsIntersecting, volunteerRef] = useIntersection({ threshold: 0.3 });
-  const [undertakingRefIsIntersecting, undertakingRef] = useIntersection({ threshold: 0.3 });
-  const [contactRefIsIntersecting, contactRef] = useIntersection({ threshold: 0.3 });
+  const [aboutRefIsIntersecting, aboutRef] = useIntersection({
+    threshold: 0.3,
+  });
+  const [programingRefIsIntersecting, programingRef] = useIntersection({
+    threshold: 0.3,
+  });
+  const [volunteerRefIsIntersecting, volunteerRef] = useIntersection({
+    threshold: 0.3,
+  });
+  const [undertakingRefIsIntersecting, undertakingRef] = useIntersection({
+    threshold: 0.3,
+  });
+  const [contactRefIsIntersecting, contactRef] = useIntersection({
+    threshold: 0.3,
+  });
 
   useEffect(() => {
     setAboutIsIntersecting(aboutRefIsIntersecting);
@@ -90,7 +101,7 @@ export default function Home() {
 
       {/* Ejes de trabajo */}
       <Ejes />
-      
+
       {/* Equipo */}
       <Equipo />
 
@@ -104,6 +115,9 @@ export default function Home() {
 
       {/* Conoce a los egresados */}
       <Egresados />
+
+      {/* Ventures Formar */}
+      <VenturesFormar />
 
       {/* Hacen posible este programa "Aliados" */}
       <AliadosProg />
@@ -132,7 +146,7 @@ export default function Home() {
       <EquipoEmprendiendo />
 
       {/* Novedades  en reparación*/}
-    {/*   <Novedades /> */}
+      {/*   <Novedades /> */}
 
       {/* Formulario voluntariado y dona */}
       <FormColaborator />

@@ -1,0 +1,12 @@
+@import "../../styles/colors";
+@import "../../styles/media-queries";
+
+.teamProgramming_container {
+  padding-top: 30px;
+  margin-bottom: 5rem;
+
+  @include desktop2 {
+    padding-top: 70px;
+    min-height: 100vh;
+  }
+}
