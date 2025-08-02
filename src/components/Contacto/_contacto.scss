@@ -1,72 +1,86 @@
 @import "../../styles/colors";
 @import "../../styles/media-queries";
 
-.contacto_container{
-    background-image: url("../../assets/contact.png");
-    background-repeat: no-repeat;
-    padding: 5rem 1rem 3rem 1rem;
-    @include mobile-tablet {
-        height: auto;
-        background-size: cover;
+.contacto_container {
+  background-image: url("../../assets/contact_background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  min-height: 50vh;
+  height: auto;
+  padding: 3rem 1rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include mobile-tablet {
+  }
+  @include desktop {
+  }
+
+  .flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 30px 20px;
+    border-radius: 10px;
+    max-width: 700px;
+    width: 90%;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+
+    @include tablet {
     }
     @include desktop {
-        height: 450px;
-        background-size: cover;
-       
     }
-    .flex {
-       display: flex;
-        justify-content: space-evenly;
-         align-items: center;
-        flex-direction: column;
-    
-        @include tablet {
-         /* justify-content: space-evenly;
-          align-items: center;*/
-        }
-        @include desktop {
-            justify-content: space-evenly;
-            flex-direction: row;
-            align-items: center;
-          }
-    }
-    .titles_contact{
-        display: flex;
-        flex-direction: column;
-        align-items: initial;
-        text-align: initial;
-        margin: 1.5em;
-        @include desktop {
-            text-align:left;
-            
-        }
-    }
+  }
 
-    .botones{
-        display: flex;
-        flex-direction: row;
-        justify-content: right;
-        align-items: center;
-        margin: 5px;
-    }
+  .titles_contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 25px;
+  }
 
-    .boton_prensa{
-      margin-right: 20px;
-      a{
-        text-decoration: none;
-      }
-    }
+  .contact_text {
+    text-transform: lowercase;
+    color: #333;
+    font-size: 1.2em;
+    line-height: 1.4;
+    margin: 5px 0;
+  }
 
-    .boton_wsp {
-     background-color: $white;
-     &:focus{
+  .botones {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+
+    @include desktop {
+      flex-direction: row;
+    }
+  }
+
+  .boton_prensa {
+    margin-right: 0;
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .boton_wsp {
+    background-color: $white;
+    &:focus {
       outline: none;
-     }
-       a{
-         text-decoration: none;
-       }
     }
-
+    a {
+      text-decoration: none;
+    }
+  }
 }
-
-
