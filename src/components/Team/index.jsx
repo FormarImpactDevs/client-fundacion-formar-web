@@ -1,5 +1,5 @@
 import "./_team.scss";
-import {Card} from "../Card";
+import Slide3d from "../Slider3d";
 import Image1 from "../../assets/TemsFormar/MercedesLacroze.png";
 import Image2 from "../../assets/TemsFormar/victoriaLacroze.jpg";
 import Image3 from "../../assets/TemsFormar/LuciaVarelaRoberts.jpg";
@@ -7,49 +7,58 @@ import Image4 from "../../assets/TemsFormar/FranciscoDeclich.jpg";
 import Image5 from "../../assets/TemsFormar/LucasDeclich.jpeg";
 import Image6 from "../../assets/TemsFormar/EloisaDupont.jpg";
 import Image7 from "../../assets/TemsFormar/victoriaFornieles.jpg";
-import Title from '../Title';
+import Title from "../Title";
 export const Equipo = () => {
-    return (
-        <div className="team_container">
-            <Title text="Equipo coordinación General" />
-            <div className="team_cards">
-                <Card
-                image={Image1}
-                title="Mercedes Lacroze"
-                subtitle="Presidente"
-                />
-                <Card
-                image={Image2}
-                title="Victoria Lacroze"
-                subtitle="Gerente General"
-                />
-                <Card
-                image={Image3}
-                title="Lucia Varela Roberts"
-                subtitle="Responsable de Comunicación"
-                />
-                <Card
-                image={Image4}
-                title="Francisco Declich"
-                subtitle="Responsable administrativo"
-                />
-                <Card
-                image={Image5}
-                title="Lucas Declich"
-                subtitle="Responsable administrativo"
-                />
-                <Card
-                image={Image6}
-                title="Eloisa Dupont"
-                subtitle="Gerente de Emprendiendo la Inclusión"
-                />
-                <Card
-                image={Image7}
-                title="Victoria Fornieles"
-                subtitle="Gerente de Programando la Inclusión"
-                />
-            </div>
-        </div>
-        
-    )
-}
+  const cardsInfo = [
+    {
+      img: Image1,
+      name: "Mercedes Lacroze",
+      description: "Presidente",
+      type: "person",
+    },
+    {
+      img: Image2,
+      name: "Victoria Lacroze",
+      description: "Gerente General",
+      type: "person",
+    },
+    {
+      img: Image3,
+      name: "Lucia Varela Roberts",
+      description: "Responsable de Comunicación",
+      type: "person",
+    },
+    {
+      img: Image4,
+      name: "Francisco Declich",
+      description: "Responsable administrativo",
+      type: "person",
+    },
+    {
+      img: Image5,
+      name: "Lucas Declich",
+      description: "Responsable administrativo",
+      type: "person",
+    },
+    {
+      img: Image6,
+      name: "Eloisa Dupont",
+      description: "Gerente de Emprendiendo la Inclusión",
+      type: "person",
+    },
+    {
+      img: Image7,
+      name: "Victoria Fornieles",
+      description: "Gerente de Programando la Inclusión",
+      type: "person",
+    },
+  ];
+  return (
+    <div className="team_container">
+      <Title text="Equipo coordinación General" />
+      <div>
+        <Slide3d list={cardsInfo} type={"person"} />
+      </div>
+    </div>
+  );
+};
