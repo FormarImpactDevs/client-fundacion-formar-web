@@ -37,7 +37,6 @@
     }
 }
 .programando_text {
-    margin: 2%;
     p {
         font-family: $font-family;
         color: $dark-gray;
@@ -62,8 +61,10 @@
     }
     @include desktop2 {
         width: 40%;
-        height: 40%;
-        margin: 10% 5%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 }
 .programando_img {
