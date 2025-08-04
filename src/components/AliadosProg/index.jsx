@@ -1,5 +1,5 @@
 import dh from "../../assets/dh.png";
-import globant from "../../assets/Globant-logo.webp";
+import globant from "../../assets/Globant-Logo.webp";
 import santander from "../../assets/santander.png";
 import sanMiguel from "../../assets/sanmiguel.png";
 import empower from "../../assets/empower.png";
