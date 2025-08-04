@@ -1,5 +1,5 @@
 
-import aboutUs from '../../assets/foto banner principal.jpeg';
+import aboutUs from '../../assets/Foto-Banner-Principal.jpeg';
 import "./_aboutUs.scss";
 import Title from '../Title';
 
