@@ -1,9 +1,5 @@
 
-<<<<<<< HEAD
-import aboutUs from '../../assets/Foto-Banner-Principal.jpeg';
-=======
 import aboutUs from '../../assets/fotobannerprincipal.jpeg';
->>>>>>> 4dcd3dd06ad7407e986500e33b72d8ff7dd6d456
 import "./_aboutUs.scss";
 import Title from '../Title';
 
