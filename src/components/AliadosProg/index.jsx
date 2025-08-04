@@ -1,27 +1,53 @@
 import dh from "../../assets/dh.png";
+import globant from "../../assets/Globant-Logo.webp";
 import santander from "../../assets/santander.png";
 import sanMiguel from "../../assets/sanmiguel.png";
-import lanus from "../../assets/municipio_lanus.png";
+import empower from "../../assets/empower.png";
 import pampaEnergia from "../../assets/pampaenergia.png"
+import Slide3d from "../Slider3d";
 import "./_aliadosP.scss";
 import Title from "../Title"
 import Subtitle from "../Subtitle";
 
+  
 
 export const AliadosProg =() => {
+    const cardsInfo = [
+    {
+      img: dh,
+     
+    },
+    {
+      img: santander,
+     
+    },
+    {
+      img: sanMiguel,
+    
+    },
+    
+    {
+      img: pampaEnergia,
+     
+    },
+    {
+      img: empower,
+      
+    },
+    {
+      img: globant,
+      
+    },
+  
+   
+  ];
     return (
         <section className="aliadosp_container">
             <Title text="Hacen posible este programa  "/>
             <Subtitle text="Empresas y organizaciones comprometidas con la inclusión laboral en el sector IT" />
-           <div className="row">
-            <div className="img_aliados"><img src={santander} alt="Logo santander"/></div>
-            <div className="img_aliados"><img src={dh} alt="Logo Digital House"/></div>
-            <div className="img_aliados"><img src={sanMiguel} alt="Logo Municipalidad San Miguel"/></div>
-            <div className="img_aliados"><img src={ pampaEnergia } alt="Logo Pampa energia " /></div>
-            <div className="img_aliados"><img className="lanus" src={lanus} alt="Logo Municipalidad de Lanus" />
-            </div>
-           </div>
-           
+            <div className="row">        
+                    <Slide3d list={cardsInfo}  />
+                  </div>
        </section>
     )
 } 
