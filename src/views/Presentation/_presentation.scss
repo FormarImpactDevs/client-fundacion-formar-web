@@ -27,7 +27,7 @@
     border-radius: 7%;
     background: rgba(255, 255, 255, 0.74);
     position: absolute;
-    padding: 0.5rem 1rem;
+    padding: 1rem;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -57,11 +57,11 @@
 
     @include tablet {
       min-width: 350px;
-      padding: 1rem 2rem;
+      padding: 2rem;
     }
 
     @include desktop {
-      padding: 1.5rem;
+      padding: 3rem;
       min-width: 400px;
     }
 
@@ -103,5 +103,14 @@
     justify-content: center;
     align-items: center;
     margin: 0.2rem 0;
+
+    
+    @include tablet {
+     margin-top: 2rem;
+    }
+
+    @include desktop {
+      margin-top: 2rem;
+    }
   }
 }
