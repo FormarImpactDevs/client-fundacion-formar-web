@@ -4,50 +4,63 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Button from "@mui/material/Button";
 import Slide3d from "../../components/Slider3d_2.0";
-import JardinDeLosSueños from "../../assets/jardin_de_los_sueños.png";
+import KitNewJoiners from "../../assets/enterprisesGallery/Accenture_canasta.jpg";
+import Fratersivo from "../../assets/enterprisesGallery/emp_sublimacion.jpeg";
+import JardinDeLosSueños from "../../assets/enterprisesGallery/jardin_de_los_sueños.jpg";
+import HimaEmp from "../../assets/enterprisesGallery/hima.jpg";
+import CosturerasDeIAPI from "../../assets/enterprisesGallery/iapi.jpg";
+import ViapisEmp from "../../assets/enterprisesGallery/viapis.jpg";
+import PedroEmp from "../../assets/enterprisesGallery/pedro.jpg";
 import Title from "../../components/Title";
 
 const cardsInfo = [
   {
-    img: JardinDeLosSueños,
-    name: "Primer Emprendimiento 1",
-    description: "Descripción 1",
-    video: "https://youtube.com/embed/tIkyquwbUno",
+    img: KitNewJoiners,
+    name: "Kit New Joiners Accenture",
+    description: "Un regalo que hace bien",
+    video: "https://www.youtube.com/embed/D7NqKYn_-nM",
     type: "person",
   },
   {
-    img: "https://via.placeholder.com/150",
-    name: "Emprendimiento 2",
-    description: "Descripción 2",
-    video: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    type: "person",
-  },
-  {
-    img: JardinDeLosSueños,
-    name: "Emprendimiento 1",
-    description: "Descripción 1",
-    video: "https://youtube.com/embed/tIkyquwbUno",
+    img: Fratersivo,
+    name: "Fratersivo",
+    description: "Emprendimiento de sublimación",
+    video: "https://youtube.com/embed/ae3s7c5i17E",
     type: "person",
   },
   {
     img: JardinDeLosSueños,
-    name: "Emprendimiento 1",
-    description: "Descripción 1",
+    name: "Jardín de los sueños",
+    description: "Emprendimiento de suculentas",
     video: "https://youtube.com/embed/tIkyquwbUno",
     type: "person",
   },
   {
-    img: JardinDeLosSueños,
-    name: "Emprendimiento 1",
-    description: "Descripción 1",
-    video: "https://youtube.com/embed/tIkyquwbUno",
+    img: HimaEmp,
+    name: "HIMA",
+    description: "Emprendimiento de carpintería",
+    video: "https://youtube.com/embed/uXjNcmzZT7E",
     type: "person",
   },
   {
-    img: JardinDeLosSueños,
-    name: "Emprendimiento 1",
-    description: "Descripción 1",
-    video: "https://youtube.com/embed/tIkyquwbUno",
+    img: CosturerasDeIAPI,
+    name: "Costureras de IAPI",
+    description: "Emprendimiento de costura",
+    video: "https://youtube.com/embed/rKgtPBC8aX0",
+    type: "person",
+  },
+  {
+    img: ViapisEmp,
+    name: "VIAPIS",
+    description: "Emprendimiento de gastronomía",
+    video: "https://youtube.com/embed/ggA6uRw2AbA",
+    type: "person",
+  },
+  {
+    img: PedroEmp,
+    name: "Pedro, talento argentino",
+    description: "Talento Argentino",
+    video: "https://www.youtube.com/embed/BQ47fVwxzCk",
     type: "person",
   },
 ];
@@ -92,7 +105,7 @@ export default function EnterprisesGallery() {
           <CloseIcon />
         </IconButton>
         <iframe
-          width="80%"
+        
           height="315"
           src={videoUrl}
           title="YouTube video"
@@ -100,13 +113,13 @@ export default function EnterprisesGallery() {
           allow="autoplay; encrypted-media"
           allowFullScreen
           style={{
-            marginTop: "5rem",
-            padding: "1em;",
-            marginLeft: "auto",
-            marginRight: "auto",
+            width: "100%",
+            height: "100%",
+            margin:" 5rem 0",
+            padding: "0 3rem",
           }}
         />
-        <div style={{ textAlign: "center", margin: "1rem 0" }}>
+       
           <IconButton
             aria-label="close"
             onClick={handleClose}
@@ -114,7 +127,7 @@ export default function EnterprisesGallery() {
           >
             <CloseIcon />
           </IconButton>
-        </div>
+     
       </Dialog>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Button

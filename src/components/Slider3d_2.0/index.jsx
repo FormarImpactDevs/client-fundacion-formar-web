@@ -16,9 +16,6 @@ import {
   Navigation,
 } from "swiper/modules";
 
-/* Importación de la Card de Abril */
-/* import { Card } from "../Card"; */
-
 import { Card } from "./Card";
 
 function Slide3d({ list, type, onCardClick, autoplay = true }) {
@@ -27,7 +24,6 @@ function Slide3d({ list, type, onCardClick, autoplay = true }) {
       <div className={styles.container}>
         <Swiper
           effect={"slide"}
-          grabCursor={true}
           centeredSlides={true}
           loop={true}
           slidesPerView={"auto"}
@@ -65,7 +61,7 @@ function Slide3d({ list, type, onCardClick, autoplay = true }) {
                     type={info.type}
                     name={info.name}
                     description={info.description ? info.description : ""}
-                    onClick={() => onCardClick(info.video)} // <-- Aquí se pasa la función
+                    onClick={() => onCardClick(info.video)}
                   />
                 </SwiperSlide>
               ))
