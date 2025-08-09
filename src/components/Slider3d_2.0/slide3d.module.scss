@@ -1,0 +1,71 @@
+@import "../../styles/colors";
+@import "../../styles/media-queries";
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+@media (min-width: 1440px) {
+  html {
+    //transform: scale(1.5);
+    transform-origin: 0 0; /* Escala desde la esquina superior izquierda */
+  }
+}
+
+@media (min-width: 2560px) {
+  html {
+    //transform: scale(1.7);
+    transform-origin: 0 0; /* Escala desde la esquina superior izquierda */
+  }
+}
+
+@media (min-width: 3860px) {
+  html {
+    transform: scale(2.5);
+    transform-origin: 0 0; /* Escala desde la esquina superior izquierda */
+  }
+}
+
+::-webkit-scrollbar {
+  width: 1.3rem;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background: $ligth-gray;
+  transition: all 0.5s ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $ligth-gray;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body {
+  font-size: 1.6rem;
+  background: $white;
+}
+
+.container {
+  max-width: 124rem;
+  padding: 1rem;
+  margin: 0 auto;
+}
+
+.heading {
+  padding: 1rem 0;
+  font-size: 3.5rem;
+  text-align: center;
+}
