@@ -23,7 +23,7 @@ import EnterpisesGallery from "../../views/EnterpisesGallery";*/
 import { useEffect } from "react";
 import { MainLayout } from "../../layout";
 import { Presentation } from "../../views/Presentation";
-import { Novedades } from "../../views/Novedades";
+//import { Novedades } from "../../views/Novedades";
 import { Volunteer } from "../../views/Volunteer";
 import { FormColaborator } from "../../views/Form";
 import { Done } from "../../views/Done";
@@ -41,7 +41,7 @@ import { ProgrammingTheInclusion } from "../../views/ProgrammingTheInclusion.jsx
 import { EquipoProgramando } from "../../components/TeamProgramming";
 import useIntersection from "../../hooks/useIntersection";
 import useObserverComponent from "../../hooks/useObserverComponent";
-import EnterpisesGallery from "../../views/EnterpisesGallery";
+import EnterpisesGallery from "../../views/EnterprisesGallery/index.jsx";
 
 export default function Home() {
   const {
@@ -122,11 +122,10 @@ export default function Home() {
       {/* Emprendiendo la inclusión */}
       <div id="undertaking" ref={undertakingRef}>
         <Emprendiendo />
-        <div id="enterprises">
+      </div>
+      <div id="enterprises">
           <EnterpisesGallery />
         </div>
-      </div>
-
       {/* Aliados */}
       <Aliados />
       <EquipoEmprendiendo />
