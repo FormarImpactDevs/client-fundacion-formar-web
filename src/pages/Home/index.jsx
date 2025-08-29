@@ -33,7 +33,6 @@ import { AliadosProg } from "../../components/AliadosProg";
 import { Emprendiendo } from "../../components/Emprendiendo";
 import { Equipo } from "../../components/Team";
 import { Ejes } from "../../components/Axes";
-import { EquipoEmprendiendo } from "../../components/TeamUndertaking";
 import { Contacto } from "../../components/Contacto";
 import { Aliados } from "../../components/Aliados";
 import { ProgrammingTheInclusion } from "../../views/ProgrammingTheInclusion.jsx";
@@ -138,7 +137,7 @@ export default function Home() {
 
       {/* Aliados */}
       <Aliados />
-      <EquipoEmprendiendo />
+      {/* <EquipoEmprendiendo /> */}
 
       {/* Novedades  en reparación*/}
       {/*   <Novedades /> */}
