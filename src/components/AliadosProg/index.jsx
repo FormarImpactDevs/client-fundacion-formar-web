@@ -2,7 +2,7 @@ import dh from "../../assets/dh.png";
 import globant from "../../assets/Globant-Logo.webp";
 import santander from "../../assets/santander.png";
 import sanMiguel from "../../assets/sanmiguel.png";
-import empower from "../../assets/empower.png";
+import empower from "../../assets/Empower.jpg";
 import pampaEnergia from "../../assets/pampaenergia.png"
 import Slide3d from "../Slider3d";
 import "./_aliadosP.scss";
