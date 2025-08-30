@@ -1,4 +1,4 @@
-import programming from "../../assets/programming1.jpg";
+import programming from "../../assets/IMG_6471.jpg";
 import "./_programming.scss";
 import Title from '../Title';
 
@@ -9,10 +9,10 @@ export const Programando = () => {
             <section className="programando_text_img">
                 <div className="programando_text">
                     <span>
-                       <p className="paragraph"> <span>&bull;</span> Es un programa que tiene como objetivo crear un puente entre las empresas que están liderando la revolución digital y un nuevo talento.</p> 
+                       <p className="paragraph"> <span>&bull;</span> Es un programa que tiene como objetivo <b>crear un puente entre las empresas que están liderando la revolución digital y un nuevo talento.</b></p> 
                     </span>
                     
-                    <p className="paragraph"> <span>&bull;</span> Formamos y acompañamos a las nuevas generaciones de programadores en su inserción al mercado IT </p>
+                    <p className="paragraph"> <span>&bull;</span> Formamos y acompañamos a las nuevas generaciones de programadores en su <b>inserción al mercado IT</b></p>
                 </div>
                 <div className="programando_img">
                     <img src={programming} alt="programando la inclusión" />
