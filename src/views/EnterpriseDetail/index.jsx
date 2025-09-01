@@ -6,11 +6,12 @@ import { Loading } from "../../components/Loading";
 import { useEnterpriseById } from "../../hooks/enterprise/useEnterprise";
 import ProductsOfEnterprise from "../../components/ProductsEcommerce/ProductsOfEnterprise";
 
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 export const EnterpriseDetail = ({ info }) => {
   // Utilizar el hook personalizado para obtener la información de la empresa
   const { enterprise, loading } = useEnterpriseById(info);
-  let imgDefault =
-    "http://localhost:3000//images/imagesEnterprises/default-image.png";
+  let imgDefault =`${BASE_URL}/images/imagesEnterprises/default-image.png`;
   return (
     <>
       {!loading ? (

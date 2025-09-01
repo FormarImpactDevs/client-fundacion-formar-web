@@ -19,7 +19,7 @@ export default function UserDataForm() {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
-    dni: "",
+    phone: "",
     mail: "",
   });
   const [radioValue, setRadio] = useState("");
@@ -63,17 +63,17 @@ export default function UserDataForm() {
     Object.entries(formData).forEach(([key, value]) => {
       if (value.trim() === "") {
         if (key === "firstName") {
-          newErrors[key] = "Nombre obligatorio";
+          newErrors[key] = "Nombre requerido";
         }
 
         if (key === "lastName") {
-          newErrors[key] = "Apellido obligatorio";
+          newErrors[key] = "Apellido requerido";
         }
-        if (key === "dni") {
-          newErrors[key] = "Dni obligatorio";
+        if (key === "phone") {
+          newErrors[key] = "Teléfono requerido";
         }
         if (key === "mail") {
-          newErrors[key] = "Mail obligatorio";
+          newErrors[key] = "Mail requerido";
         }
       }
     });
@@ -90,7 +90,7 @@ export default function UserDataForm() {
     if (
       formData.firstName == "" &&
       formData.lastName == "" &&
-      formData.dni == "" &&
+      formData.phone == "" &&
       formData.mail == ""
     ) {
       return;
@@ -153,16 +153,16 @@ export default function UserDataForm() {
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="dni"
-            name="dni"
-            label="DNI"
+            id="phone"
+            name="phone"
+            label="Teléfono de contacto"
             fullWidth
-            autoComplete="numero de dni"
+            autoComplete="numero de teléfono"
             variant="outlined"
-            value={formData.dni}
+            value={formData.phone}
             onChange={handleInputChange}
-            error={!!errors.dni}
-            helperText={errors.dni}
+            error={!!errors.phone}
+            helperText={errors.phone}
           />
         </Grid>
         <Grid item xs={12} sm={6}>

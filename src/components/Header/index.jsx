@@ -8,7 +8,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import useObserverComponent from "../../hooks/useObserverComponent";
 import { useAuth } from "../../context/AuthProvider";
-import CartBadge from "../CartBadge";
+//import CartBadge from "../CartBadge";
 
 export const Header = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -80,11 +80,11 @@ export const Header = () => {
           </li>
           <li className="paragraph2" key="forIt">
             <a
-              href="#"
+              href="https://forit.ar/"
               id="forIt"
               className={isSelected === "forIt" ? "selected" : ""}
             >
-              FORIT
+              Software Factory FOR IT
             </a>
           </li>
           <li className="paragraph2" key="volunteer">
@@ -98,9 +98,7 @@ export const Header = () => {
           </li>
           <li className="paragraph2" key="products">
             <Link
-              to="/products"
-              id="products"
-              className={isSelected === "products" ? "selected" : ""}
+              to="https://linktr.ee/fundacionformarcatalogo"
             >
               Productos
             </Link>
@@ -145,7 +143,8 @@ export const Header = () => {
             ) : null}
           </li>
         </ul>
-        <CartBadge />
+        {/* Se oculta el badge del carrito por el momento */}
+        {/* <CartBadge /> */}
       </nav>
     </header>
   );
