@@ -15,8 +15,9 @@ import {
   styled,
 } from "@mui/material";
 import "./formDates.scss";
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import Swal from "sweetalert2";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -45,6 +46,25 @@ export const ContactForm = () => {
     setRadio(event.target.value);
   };
 
+  const initialValues = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    message: "",
+    volunteerOptions: [],
+    _next: "http://127.0.0.1:5173/",
+    _captcha: "false",
+  };
+
+  const validationSchema = Yup.object({
+    firstName: Yup.string().required("El nombre es requerido"),
+    lastName: Yup.string().required("El apellido es requerido"),
+    email: Yup.string()
+      .email("Formato de email inválido")
+      .required("El email es requerido"),
+    phone: Yup.string().required("El teléfono es requerido"),
+  });
   return (
     <Container component="main" maxWidth="sm">
       <CssBaseline />
@@ -60,217 +80,262 @@ export const ContactForm = () => {
         }}
         className="containerForm"
       >
-        {/* title */}
-        <h1 className="subtitle">TUS DATOS DE CONTACTO</h1>
+        <h1 className="subtitle">Tus datos de contacto</h1>
         <Formik
-          initialValues={{
-            firstName: '',
-            lastName: '',
-            email: '',
-            phone: '',
-            message: ''
-          }}
-          validationSchema={Yup.object({
-            firstName: Yup.string().required('El nombre es requerido'),
-            lastName: Yup.string().required('El apellido es requerido'),
-            email: Yup.string().email('Formato de email inválido').required('El email es requerido'),
-            phone: Yup.string().required('El teléfono es requerido'),
-          })}
-          onSubmit={(values, { setSubmitting }) => {           
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={(values, { setSubmitting, resetForm }) => {
+            // Esta función se ejecutará después de que el formulario pase la validación
+            // y justo antes de que se envíe a FormSubmit
             setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
+              Swal.fire({
+                icon: "success",
+                title: "¡Enviado!",
+                text: "Gracias por tu colaboración, nos estaremos contactando.",
+              });
+              resetForm();
+              setRadio("");
               setSubmitting(false);
             }, 400);
           }}
         >
-        <form 
-          action="https://formsubmit.co/coordinacion@fundacionformar.ar"
-          method="POST"
-        >
-          <div className="mb-2">
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <Field
-                  as={CssTextField}
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="Nombre"
-                  name="firstName"
-                  type="text"
-                />
-                <ErrorMessage name="firstName" component="div" className="error" />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Field
-                  as={CssTextField}
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Apellido"
-                  name="lastName"
-                  type="text"
-                />
-                <ErrorMessage name="lastName" component="div" className="error" />
-              </Grid>
+          {({ isSubmitting, setFieldValue }) => (
+            <Form
+              action="https://formsubmit.co/coordinacion@fundacionformar.ar"
+              method="POST"
+            >
+              <div className="mb-2">
+                <Grid container spacing={2}>
+                  <Grid item xs={12} sm={6}>
+                    <Field
+                      as={CssTextField}
+                      required
+                      fullWidth
+                      id="firstName"
+                      label="Nombre"
+                      name="firstName"
+                      type="text"
+                    />
+                    <ErrorMessage
+                      name="firstName"
+                      component="div"
+                      className="error"
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <Field
+                      as={CssTextField}
+                      required
+                      fullWidth
+                      id="lastName"
+                      label="Apellido"
+                      name="lastName"
+                      type="text"
+                    />
+                    <ErrorMessage
+                      name="lastName"
+                      component="div"
+                      className="error"
+                    />
+                  </Grid>
 
-              <Grid item xs={12} sm={6}>
-                <CssTextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email"
-                  name="email"
-                  autoComplete="email"
-                  type="email"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <CssTextField
-                  required
-                  fullWidth
-                  id="phone"
-                  label="Teléfono"
-                  name="phone"
-                  type="tel"
-                />
-              </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <Field
+                      as={CssTextField}
+                      required
+                      fullWidth
+                      id="email"
+                      label="Email"
+                      name="email"
+                      type="email"
+                    />
+                    <ErrorMessage
+                      name="email"
+                      component="div"
+                      className="error"
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <Field
+                      as={CssTextField}
+                      required
+                      fullWidth
+                      id="phone"
+                      label="Teléfono"
+                      name="phone"
+                      type="number"
+                    />
+                    <ErrorMessage
+                      name="phone"
+                      component="div"
+                      className="error"
+                    />
+                  </Grid>
 
-              <Grid
-                item
-                xs={12}
-                container
-                justifyContent="flex-center"
-                sx={{ m: 3 }}
-              >
-                <h2 className="paragraph1">¿Cómo querés colaborar?</h2>
-              </Grid>
-
-              <Grid item xs={12} container
-                justifyContent="center">
-                <FormControl>
-                  <RadioGroup
-                    row
-                    aria-labelledby="demo-row-radio-buttons-group-label"
-                    name="row-radio-buttons-group"
-                    onChange={handleRadioChange}
+                  <Grid
+                    item
+                    xs={12}
+                    container
+                    justifyContent="flex-center"
+                    sx={{ m: 3 }}
                   >
-                    <Grid
-                      container
-                      direction="row"
-                      justifyContent="center"
-                      alignItems="center"                    
-                    >
-                      <Grid item xs={12} sm={6}>
-                        <FormControlLabel
-                          value="voluntario"
-                          control={<Radio size="small" />}
-                          label="Quiero ser voluntario"
-                        />
-                      </Grid>
-                      <Grid item xs={12} sm={6}>
-                        <FormControlLabel
-                          value="donante"
-                          control={<Radio size="small" />}
-                          label="Quiero realizar una donación"
-                        />
-                      </Grid>
-                    </Grid>
-                  </RadioGroup>
-                </FormControl>
-              </Grid>
+                    <h2 className="paragraph1">¿Cómo querés colaborar?</h2>
+                  </Grid>
 
-              {radio && radio === "voluntario" ? (
-                <div className="checkboxes">
-                  <Box sx={{ display: "flex" }}>
-                    <FormControl
-                      sx={{ m: 3 }}
-                      row
-                      component="fieldset"
-                      variant="standard"
-                    >
-                      <Grid
-                        container
-                        direction="row"
-                        justifyContent="space-around"
-                        alignItems="center"
+                  <Grid item xs={12} container justifyContent="center">
+                    <FormControl>
+                      <RadioGroup
+                        row
+                        aria-labelledby="demo-row-radio-buttons-group-label"
+                        name="row-radio-buttons-group"
+                        value={radio}
+                        onChange={(e) => {
+                          handleRadioChange(e);
+                          setFieldValue("collaborationType", e.target.value);
+                        }}
                       >
-                        <Grid item xs={12} sm={6}>
-                          <FormGroup>
+                        <Grid
+                          container
+                          direction="row"
+                          justifyContent="center"
+                          alignItems="center"
+                        >
+                          <Grid item xs={12} sm={6}>
                             <FormControlLabel
-                              control={<Checkbox name="tutoriasDeIngles" />}
-                              label="Tutorías de inglés"
+                              value="voluntario"
+                              control={<Radio size="small" />}
+                              label="Quiero ser voluntario"
                             />
+                          </Grid>
+                          <Grid item xs={12} sm={6}>
                             <FormControlLabel
-                              control={
-                                <Checkbox name="mentoriasEnHabilidadesTecnicas" />
-                              }
-                              label="Mentorías en habilidades técnicas"
+                              value="donante"
+                              control={<Radio size="small" />}
+                              label="Quiero realizar una donación"
                             />
-                            <FormControlLabel
-                              control={
-                                <Checkbox name="mentoriasEnHabilidadesBlandas" />
-                              }
-                              label="Mentorías en habilidades blandas"
-                            />
-                            <FormControlLabel
-                              control={<Checkbox name="dictarUnaMasterclass" />}
-                              label="Dictar una masterclass"
-                            />
-                          </FormGroup>
+                          </Grid>
                         </Grid>
-                        <Grid item xs={12} sm={6}>
-                          {" "}
-                          <FormGroup>
-                            <FormControlLabel
-                              control={<Checkbox name="otro" />}
-                              label="Otro"
-                            />
-
-                            <CssTextField
-                              id="outlined-multiline-static"
-                              multiline
-                              rows={4}
-                              name="message"
-                              defaultValue=""
-                            />
-                          </FormGroup>
-                        </Grid>
-                      </Grid>
+                      </RadioGroup>
                     </FormControl>
-                  </Box>
-                </div>
-              ) : (
-                ""
-              )}
-            </Grid>
-            <Grid item xs={12} sm={6} className="d-none">
-              <Field type="hidden" name="_next" value="http://127.0.0.1:5173/" />
-            </Grid>
-            <Grid item xs={12} sm={6} className="d-none">
-              <Field type="hidden" name="_captcha" value="false" />
-            </Grid>
-          </div>
-          <Grid container justifyContent="flex-end" className="w-95">
-            <Grid item>
-              <Button
-                type="submit"
-                variant="contained"
-                size="medium"
-                justifyContent="flex-end"
-                className="button"
-                sx={{
-                  color: "secondary.light",
-                }}
-              >
-                Enviar
-              </Button>
-            </Grid>
-          </Grid>
-        </form>
+                  </Grid>
+
+                  {radio === "voluntario" && (
+                    <div className="checkboxes">
+                      <Box sx={{ display: "flex" }}>
+                        <FormControl
+                          sx={{ m: 3 }}
+                          row
+                          component="fieldset"
+                          variant="standard"
+                        >
+                          <Grid
+                            container
+                            direction="row"
+                            justifyContent="space-around"
+                            alignItems="center"
+                          >
+                            <Grid item xs={12} sm={6}>
+                              <FormGroup>
+                                <FormControlLabel
+                                  control={
+                                    <Field
+                                      as={Checkbox}
+                                      type="checkbox"
+                                      name="volunteerOptions"
+                                      value="tutoriasDeIngles"
+                                    />
+                                  }
+                                  label="Tutorías de inglés"
+                                />
+                                <FormControlLabel
+                                  control={
+                                    <Field
+                                      as={Checkbox}
+                                      type="checkbox"
+                                      name="volunteerOptions"
+                                      value="mentoriasEnHabilidadesTecnicas"
+                                    />
+                                  }
+                                  label="Mentorías en habilidades técnicas"
+                                />
+                                <FormControlLabel
+                                  control={
+                                    <Field
+                                      as={Checkbox}
+                                      type="checkbox"
+                                      name="volunteerOptions"
+                                      value="mentoriasEnHabilidadesBlandas"
+                                    />
+                                  }
+                                  label="Mentorías en habilidades blandas"
+                                />
+                                <FormControlLabel
+                                  control={
+                                    <Field
+                                      as={Checkbox}
+                                      type="checkbox"
+                                      name="volunteerOptions"
+                                      value="dictarUnaMasterclass"
+                                    />
+                                  }
+                                  label="Dictar una masterclass"
+                                />
+                              </FormGroup>
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                              <FormGroup>
+                                <FormControlLabel
+                                  control={
+                                    <Field
+                                      as={Checkbox}
+                                      type="checkbox"
+                                      name="volunteerOptions"
+                                      value="otro"
+                                    />
+                                  }
+                                  label="Otro"
+                                />
+                                <Field
+                                  as={CssTextField}
+                                  id="message"
+                                  name="message"
+                                  multiline
+                                  rows={4}
+                                />
+                              </FormGroup>
+                            </Grid>
+                          </Grid>
+                        </FormControl>
+                      </Box>
+                    </div>
+                  )}
+                  {/* Campos ocultos para FormSubmit */}
+                  <Field
+                    type="hidden"
+                    name="_next"
+                    value="http://127.0.0.1:5173/"
+                  />
+                  <Field type="hidden" name="_captcha" value="false" />
+                </Grid>
+              </div>
+              <Grid container justifyContent="flex-end" className="w-95">
+                <Grid item>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    size="medium"
+                    className="button"
+                    sx={{ color: "secondary.light" }}
+                    disabled={isSubmitting}
+                  >
+                    Enviar
+                  </Button>
+                </Grid>
+              </Grid>
+            </Form>
+          )}
         </Formik>
       </Box>
     </Container>
   );
 };
-

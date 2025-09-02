@@ -23,7 +23,6 @@ import EnterpisesGallery from "../../views/EnterpisesGallery";*/
 import { useEffect } from "react";
 import { MainLayout } from "../../layout";
 import { Presentation } from "../../views/Presentation";
-import { Volunteer } from "../../views/Volunteer";
 import { FormColaborator } from "../../views/Form";
 import { Done } from "../../views/Done";
 import { QuienesSomos } from "../../components/QuienesSomos";
@@ -33,7 +32,6 @@ import { AliadosProg } from "../../components/AliadosProg";
 import { Emprendiendo } from "../../components/Emprendiendo";
 import { Equipo } from "../../components/TeamFormar/index.jsx";
 import { Ejes } from "../../components/Axes";
-import { EquipoEmprendiendo } from "../../components/TeamUndertaking";
 import { Contacto } from "../../components/Contacto";
 import { Aliados } from "../../components/Aliados";
 import { ProgrammingTheInclusion } from "../../views/ProgrammingTheInclusion.jsx";
@@ -46,16 +44,23 @@ export default function Home() {
   const {
     setAboutIsIntersecting,
     setProgramingIsIntersecting,
-    setVolunteerIsIntersecting,
     setUndertakingIsIntersecting,
     setContactIsIntersecting,
   } = useObserverComponent();
 
-  const [aboutRefIsIntersecting, aboutRef] = useIntersection({ threshold: 0.3 });
-  const [programingRefIsIntersecting, programingRef] = useIntersection({ threshold: 0.3 });
-  const [volunteerRefIsIntersecting, volunteerRef] = useIntersection({ threshold: 0.3 });
-  const [undertakingRefIsIntersecting, undertakingRef] = useIntersection({ threshold: 0.3 });
-  const [contactRefIsIntersecting, contactRef] = useIntersection({ threshold: 0.3 });
+  const [aboutRefIsIntersecting, aboutRef] = useIntersection({
+    threshold: 0.3,
+  });
+  const [programingRefIsIntersecting, programingRef] = useIntersection({
+    threshold: 0.3,
+  });
+  
+  const [undertakingRefIsIntersecting, undertakingRef] = useIntersection({
+    threshold: 0.3,
+  });
+  const [contactRefIsIntersecting, contactRef] = useIntersection({
+    threshold: 0.3,
+  });
 
   useEffect(() => {
     setAboutIsIntersecting(aboutRefIsIntersecting);
@@ -65,9 +70,6 @@ export default function Home() {
     setProgramingIsIntersecting(programingRefIsIntersecting);
   }, [programingRefIsIntersecting, setProgramingIsIntersecting]);
 
-  useEffect(() => {
-    setVolunteerIsIntersecting(volunteerRefIsIntersecting);
-  }, [volunteerRefIsIntersecting, setVolunteerIsIntersecting]);
 
   useEffect(() => {
     setUndertakingIsIntersecting(undertakingRefIsIntersecting);
@@ -111,9 +113,9 @@ export default function Home() {
       <EquipoProgramando />
 
       {/* Voluntariado */}
-      <div id="volunteer" ref={volunteerRef}>
+      {/* <div id="volunteer" ref={volunteerRef}>
         <Volunteer />
-      </div>
+      </div> */}
 
       {/* Doná */}
       <Done />
@@ -128,10 +130,10 @@ export default function Home() {
 
       {/* Aliados */}
       <Aliados />
-      <EquipoEmprendiendo />
+      {/* <EquipoEmprendiendo /> */}
 
       {/* Novedades  en reparación*/}
-    {/*   <Novedades /> */}
+      {/*   <Novedades /> */}
 
       {/* Formulario voluntariado y dona */}
       <FormColaborator />

@@ -3,7 +3,6 @@
 @import "../../styles/fonts-settings.scss";
 
 .emprendiendo_container {
-  background-color: $ligth-blue;
   width: 100%;
   cursor: default;
   padding-top: 30px;
@@ -28,8 +27,9 @@
 }
 
 .subtitle2 {
-  color: $primary-color;
+  color:#58595b;
   font-size: $title-mobile-size;
+  font-weight: 800;
   padding: 10px;
 
   @include tablet {
@@ -58,6 +58,8 @@
 .emprendiendo_card {
   background-color: $white;
   border-radius: 5%;
+  border-color: #74A9DA;
+  border-style: solid;
   margin: 10px;
   transition: all 400ms ease;
   figure {

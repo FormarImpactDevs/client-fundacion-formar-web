@@ -2,19 +2,53 @@
 @import "../../styles/media-queries";
 
 .container-done {
-  padding: 3rem;
-  .flex {
+  padding-top: 10px;
+  max-width: 100vw;
+  position: relative;
+  margin-bottom: 4rem;
+
+  @include desktop-large {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .donacion {
+    position: relative;
+    margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
+    @include desktop-large {     
+      width: 100%;
+    }
+
+  }
+
+  .flex {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    align-items: center;
     flex-direction: column;
+
+    min-width: 20vw;
+    border-radius: 7%;
+    position: absolute;
+    z-index: 1;
+
     @include desktop{
       padding:10rem ;
+      top: 0.5rem;
+
     }
+
+
     @include tablet {
       justify-content: space-evenly;
       flex-direction: row;
       align-items: baseline;
+      top: auto;
       
     }
 
@@ -65,4 +99,86 @@
       }
     }
   }
+  
+
+  .volunteer-image {
+    display: none;
+    @include desktop-large {     
+      width: 100%;
+     position: relative;
+
+    }
+
+    
+  }
+
+  .volunteer-image {
+     position: relative;
+    display: none;
+
+
+    
+    
+    @include tablet {     
+      width: 100%;
+      display: none;
+
+
+    }
+
+    @include desktop {     
+      width: 100%;
+      display: block;
+
+
+    }
+
+    
+  }
+
+  .volunteer-image-mobile {
+     position: relative;
+
+
+    @include tablet {     
+      width: 100%;
+      display: block;
+
+
+    }
+
+    @include desktop {     
+      width: 100%;
+      display: none;
+
+
+    }
+
+  }
+
+
+  figure {
+    .presentation_img {
+      max-width: 100vw;
+
+      @media screen and (min-width: 1400px) {
+        max-width: 100%;
+      }
+      @include desktop-large {     
+        width: 100%;
+      }
+    }
+  }
+
+  .button  {
+    background-color: #74A9DA;
+    color: white
+    
+  }
+
+  .button:hover  {
+    background-color: #74A9DA;
+    
+  }
+
 }

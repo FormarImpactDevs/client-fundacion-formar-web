@@ -1,6 +1,5 @@
 import "./_axes.scss";
 import Title from "../Title";
-import Subtitle from "../Subtitle";
 import useObserverComponent from "../../hooks/useObserverComponent";
 
 export const Ejes = () => {
@@ -9,8 +8,7 @@ export const Ejes = () => {
 
   return (
     <div className="axes_container">
-      <Title text="¿Cómo lo hacemos?" />
-      <Subtitle text="Tenemos tres áreas de trabajo" />
+      <Title text="Tenemos 3 áreas de trabajo" />
       <section className="axes_cards">
         <div className="axes_card">
           <a
@@ -19,12 +17,12 @@ export const Ejes = () => {
             className={undertakingIsIntersecting ? "selected" : ""}
           >
             <h3 className="paragraph1">
-              Fortalecimiento de emprendimientos locales:
+              Emprendiendo la inclusión
             </h3>
             <p className="paragraph2">
               {" "}
-              <span>Emprendiendo la inclusión</span> es un programa de
-              acompañamiento a emprendedores a la economía formal.
+              Es un programa de acompañamiento a 
+              emprendedores sociales en su camino hacia la economía formal, a través de la curaduría de productos y oportunidades de ventas.
             </p>
           </a>
         </div>
@@ -34,17 +32,15 @@ export const Ejes = () => {
             id="SchedulingInclusion"
             className={programingIsIntersecting ? "selected" : ""}
           >
-            <h3 className="paragraph1">Capacitaciones con salida laboral:</h3>
+            <h3 className="paragraph1">Programando la inclusión</h3>
             <p className="paragraph2">
-              - <span>Programando la inclusión</span> es un programa de
-              formación e inserción laboral en el sector IT. <br /> -{" "}
-              <span>FOR IT</span> Software Factory con impacto social.
+              Programas de formación y entrenamiento laboral para insertarse al mercado IT a través de la programación web full stack
             </p>
           </a>
         </div>
         <div className="axes_card">
           <a href="">
-            <h3 className="paragraph1">Trabajando la inclusión:</h3>
+            <h3 className="paragraph1">Trabajando la inclusión</h3>
             <p className="paragraph2">
               Puentes de <span>oportunidades</span> y{" "}
               <span>acompañamientos</span> para oportunidades de trabajo en

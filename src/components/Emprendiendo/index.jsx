@@ -10,7 +10,7 @@ export const Emprendiendo = () => {
     <div className="emprendiendo_container">
       <Title text="Emprendiendo la inclusión" />
       <div className="emprendiendo_text">
-        <Subtitle text="Trabajamos fortaleciendo de emprendimientos sociales para que se inserten en la economía formal." />
+        <Subtitle text="Fortalecemos emprendimientos sociales para su inserción en la economía formal." />
         <h4 className="subtitle2">¿Cómo?</h4>
       </div>
       <section className="emprendiendo_section_cards">
