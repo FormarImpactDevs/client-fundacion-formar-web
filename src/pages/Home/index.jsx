@@ -38,7 +38,7 @@ import { ProgrammingTheInclusion } from "../../views/ProgrammingTheInclusion.jsx
 import { EquipoProgramando } from "../../components/TeamProgramming";
 import useIntersection from "../../hooks/useIntersection";
 import useObserverComponent from "../../hooks/useObserverComponent";
-import EnterpisesGallery from "../../views/EnterpisesGallery";
+import EnterpisesGallery from "../../views/EnterprisesGallery/index.jsx";
 
 export default function Home() {
   const {
@@ -123,11 +123,10 @@ export default function Home() {
       {/* Emprendiendo la inclusión */}
       <div id="undertaking" ref={undertakingRef}>
         <Emprendiendo />
-        <div id="enterprises">
+      </div>
+      <div id="enterprises">
           <EnterpisesGallery />
         </div>
-      </div>
-
       {/* Aliados */}
       <Aliados />
       {/* <EquipoEmprendiendo /> */}
