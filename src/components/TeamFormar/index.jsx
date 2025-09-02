@@ -5,7 +5,7 @@ import Image2 from "../../assets/TemsFormar/victoriaLacroze.jpg";
 import Image3 from "../../assets/TemsFormar/LuciaVarelaRoberts.jpg";
 import Image4 from "../../assets/TemsFormar/FranciscoDeclich.jpg";
 import Image5 from "../../assets/TemsFormar/LucasDeclich.jpeg";
-import Image6 from "../../assets/TemsFormar/EloisaDupont.jpg";
+import Image6 from "../../assets/TemsFormar/eloisaDupont.jpg";
 import Image7 from "../../assets/TemsFormar/victoriaFornieles.jpg";
 import Title from "../Title";
 export const Equipo = () => {
