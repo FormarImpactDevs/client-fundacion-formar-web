@@ -2,14 +2,14 @@ import "./_teamProgramming.scss";
 import Title from "../Title";
 import Slide3d from "../Slider3d";
 import EricMena from "../../assets/TemsFormar/EricMena.jpg";
-import JonathanCespedes from "../../assets/TemsFormar/JonathanCespedes.jpg";
-import EmanuelArroyo from "../../assets/TemsFormar/EmanuelArroyo.jpg";
+import DavidCusi from "../../assets/TemsFormar/DavidCusi.jpg";
+import PabloBaleztena from "../../assets/TemsFormar/PabloBaleztena.jpg";
 import FabianCoseglia from "../../assets/TemsFormar/FabianCoseglia.jpg";
-import JuanLicciardi from "../../assets/TemsFormar/JuanLicciardi.jpeg";
+import AngelGimenez from "../../assets/TemsFormar/AngelGimenez.jpg";
 import JulianAquino from "../../assets/TemsFormar/JulianAquino.jpeg";
-import MartinWior from "../../assets/TemsFormar/MartinWior.jpg";
-import nataliaGaitan from "../../assets/TemsFormar/nataliaGaitan.jpg";
-import victoriaFornieles from "../../assets/TemsFormar/victoriaFornieles.jpg";
+import TamaraBenitez from "../../assets/TemsFormar/TamaraBenitez.jpg";
+import SantiagoUria from "../../assets/TemsFormar/SantiagoUria.jpg";
+import SebastianChoque from "../../assets/TemsFormar/SebastianChoque.jpg";
 /* import Image10 from "../../assets/TemsFormar/team10.jpg"; */
 
 
@@ -22,26 +22,8 @@ export const EquipoProgramando = () => {
       type: "person",
     },
     {
-      img: JonathanCespedes,
-      name: "Jonathan Cespedes",
-      description: "Docente",
-      type: "person",
-    },
-    {
-      img: EmanuelArroyo,
-      name: "Emanuel Arroyo",
-      description: "Docente",
-      type: "person",
-    },
-    {
       img: FabianCoseglia,
       name: "Fabian Coseglia",
-      description: "Ayudante",
-      type: "person",
-    },
-    {
-      img: JuanLicciardi,
-      name: "Juan Licciardi",
       description: "Ayudante",
       type: "person",
     },
@@ -52,29 +34,41 @@ export const EquipoProgramando = () => {
       type: "person",
     },
     {
-      img: MartinWior,
-      name: "Martin Wior Gdud",
-      description: "Coordinador",
+      img: PabloBaleztena,
+      name: "Pablo Baleztena",
+      description: "Senior líder",
       type: "person",
     },
     {
-      img: nataliaGaitan,
-      name: "Nathalia Gaitan",
-      description: "Ayudante",
+      img: TamaraBenitez,
+      name: "Tamara Benítez",
+      description: "Semi senior",
       type: "person",
     },
     {
-      img: victoriaFornieles,
-      name: "Victoria Fornieles",
-      description: "Coordinadora",
+      img: SebastianChoque,
+      name: "Sebastian Choque",
+      description: "Semi senior",
       type: "person",
     },
-    /* {
-      img: Image10,
-      name: "Nombre Apellido",
-      description: "Rol10",
+    {
+      img: DavidCusi,
+      name: "David Cusi",
+      description: "Semi senior",
       type: "person",
-    }, */
+    },
+    {
+      img: SantiagoUria,
+      name: "Santiago Uría",
+      description: "Docente",
+      type: "person",
+    },
+    {
+      img: AngelGimenez,
+      name: "Ángel Giménez",
+      description: "Semi senior",
+      type: "person",
+    },
   ];
 
   return (

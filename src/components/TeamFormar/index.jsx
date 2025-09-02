@@ -55,7 +55,7 @@ export const Equipo = () => {
   ];
   return (
     <div className="team_container">
-      <Title text="Equipo coordinación General" />
+      <Title text="Equipo Formar" />
       <div>
         <Slide3d list={cardsInfo} type={"person"} />
       </div>

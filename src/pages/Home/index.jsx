@@ -23,7 +23,6 @@ import EnterpisesGallery from "../../views/EnterpisesGallery";*/
 import { useEffect } from "react";
 import { MainLayout } from "../../layout";
 import { Presentation } from "../../views/Presentation";
-import { Novedades } from "../../views/Novedades";
 import { Volunteer } from "../../views/Volunteer";
 import { FormColaborator } from "../../views/Form";
 import { Done } from "../../views/Done";
@@ -32,7 +31,7 @@ import { Programando } from "../../components/Programando";
 import { Egresados } from "../../components/Egresados";
 import { AliadosProg } from "../../components/AliadosProg";
 import { Emprendiendo } from "../../components/Emprendiendo";
-import { Equipo } from "../../components/Team";
+import { Equipo } from "../../components/TeamFormar/index.jsx";
 import { Ejes } from "../../components/Axes";
 import { EquipoEmprendiendo } from "../../components/TeamUndertaking";
 import { Contacto } from "../../components/Contacto";
@@ -91,7 +90,7 @@ export default function Home() {
       {/* Ejes de trabajo */}
       <Ejes />
       
-      {/* Equipo */}
+      {/* Equipo Formar */}
       <Equipo />
 
       {/* Programando */}
