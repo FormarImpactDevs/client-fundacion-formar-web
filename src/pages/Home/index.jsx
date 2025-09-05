@@ -30,7 +30,7 @@ import { Programando } from "../../components/Programando";
 import { Egresados } from "../../components/Egresados";
 import { AliadosProg } from "../../components/AliadosProg";
 import { Emprendiendo } from "../../components/Emprendiendo";
-import { Equipo } from "../../components/Team";
+import { Equipo } from "../../components/TeamFormar/index.jsx";
 import { Ejes } from "../../components/Axes";
 import { Contacto } from "../../components/Contacto";
 import { Aliados } from "../../components/Aliados";
@@ -91,8 +91,8 @@ export default function Home() {
 
       {/* Ejes de trabajo */}
       <Ejes />
-
-      {/* Equipo */}
+      
+      {/* Equipo Formar */}
       <Equipo />
 
       {/* Programando */}
