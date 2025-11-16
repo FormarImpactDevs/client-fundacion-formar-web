@@ -66,7 +66,7 @@ export const Header = () => {
               id="SchedulingInclusion"
               className={programingIsIntersecting ? "selected" : ""}
             >
-              Programando la inclusión
+              Ecosistema FORIT
             </a>
           </li>
           <li className="paragraph2" key="undertaking">
@@ -84,7 +84,7 @@ export const Header = () => {
               id="forIt"
               className={isSelected === "forIt" ? "selected" : ""}
             >
-              Software Factory FOR IT
+              Software Factory FORIT
             </a>
           </li>
           <li className="paragraph2" key="volunteer">

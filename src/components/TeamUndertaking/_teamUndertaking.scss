@@ -2,9 +2,9 @@
 @import "../../styles/media-queries";
 
 .teamUndertaking_container {
-  padding-top: 30px;
+  padding-top: 16px;
   @include desktop2 {
-    padding-top: 70px;
+    padding-top: 40px;
   }
 }
 .teamUndertaking {

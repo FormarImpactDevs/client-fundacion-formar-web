@@ -242,17 +242,6 @@ export const ContactForm = () => {
                                       as={Checkbox}
                                       type="checkbox"
                                       name="volunteerOptions"
-                                      value="tutoriasDeIngles"
-                                    />
-                                  }
-                                  label="Tutorías de inglés"
-                                />
-                                <FormControlLabel
-                                  control={
-                                    <Field
-                                      as={Checkbox}
-                                      type="checkbox"
-                                      name="volunteerOptions"
                                       value="mentoriasEnHabilidadesTecnicas"
                                     />
                                   }
@@ -310,11 +299,9 @@ export const ContactForm = () => {
                     </div>
                   )}
                   {/* Campos ocultos para FormSubmit */}
-                  <Field
-                    type="hidden"
-                    name="_next"
-                    value="http://127.0.0.1:5173/"
-                  />
+                  <Field type="hidden" name="_next" value="/" />
+                  <Field type="hidden" name="_subject" value="Nuevo contacto desde la web" />
+                  <Field type="hidden" name="_template" value="table" />
                   <Field type="hidden" name="_captcha" value="false" />
                 </Grid>
               </div>

@@ -15,11 +15,7 @@ export const ProgrammingTheInclusion = () => {
     <div className="programming_container">
       <h1 className="title">
           Ecosistema favorable para <br />
-          <span style={{ color: "#74A9DA" }}>
-            
-            la inserción en tecnología
-            
-          </span>
+          <span style={{ color: "#74A9DA" }}>la inserción en tecnología</span>
         </h1>
       <section className="programming_cards">
         <section className="programming_section">
@@ -32,20 +28,27 @@ export const ProgrammingTheInclusion = () => {
             <h3 className="paragraph1">
               PROGRAMANDO LA INCLUSIÓN
             </h3>
-            <p className="paragraph2">
-              {" "}
-              Formacion intensiva en programacion web full stack de 8 meses <br/>
-              -formacion tecnica y humana <br/>
-              -habilidades para el trabajo<br/>
-              -masterclass <br/>
-            </p>
+            <div className="paragraph2">
+              <p>2019-2024</p>
+              <p>Formación introductoria en programación web full stack.</p>
+              <ul>
+                <li>Duración: 8 meses</li>
+                <li>Formación técnica</li>
+                <li>Formación en Soft Skills</li>
+                <li>Masterclasses</li>
+              </ul>
+            </div>
+            <div className="badge">
+              <strong>32%</strong>
+              <span>inserción laboral</span>
+            </div>
           </a>
         </div>
 
         </section>
         
         <section className="programming_section">
-          <img src={Image2} />
+          <img src={Image3} />
           <div className="programming_card">
           <a
             href="#undertaking"
@@ -54,11 +57,16 @@ export const ProgrammingTheInclusion = () => {
             <h3 className="paragraph1">
               ACADEMIA FORIT
             </h3>
-            <p className="paragraph2">
-              {" "}
-              Formacion en programacion nivel 2, forlateciendo las bases 
-              y sumando herramientas claves para el mercado IT .
-            </p>
+            <div className="paragraph2">
+              <p>Formación avanzada en programación web full stack</p>
+              <p>Herramientas de trabajo claves para el mercado IT</p>
+              <ul>
+                <li>Duración: 5 meses</li>
+                <li>Formación técnica</li>
+                <li>Formación en Soft Skills</li>
+                <li>Masterclasses</li>
+              </ul>
+            </div>
           </a>
         </div>
 
@@ -73,10 +81,22 @@ export const ProgrammingTheInclusion = () => {
             <h3 className="paragraph1">
               FOR IT SOFTWARE FACTORY
             </h3>
-            <p className="paragraph2">
-              {" "}
-              Programa de entrenamiento laboral de 6 meses dentro de un entorno real laboral. Incubadora de talento en software factory.
-            </p>
+            <div className="paragraph2">
+              <p>
+                Programa de entrenamiento laboral dentro de un entorno laboral real. Nuestros pilares de trabajo:
+              </p>
+              <ul>
+                <li>Experiencia laboral real. Primer empleo.</li>
+                <li>Mentoría técnica por parte de programadores Sr.</li>
+                <li>Metodología de trabajo rigurosa y con herramientas de gestión de proyectos</li>
+                <li>Capacitación en soft skills</li>
+                <li>Ingresos económicos</li>
+              </ul>
+            </div>
+            <div className="badge badge--black">
+              <strong>60%</strong>
+              <span>inserción laboral</span>
+            </div>
           </a>
         </div>
 

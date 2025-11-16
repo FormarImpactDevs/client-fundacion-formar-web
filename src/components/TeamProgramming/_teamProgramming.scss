@@ -2,11 +2,11 @@
 @import "../../styles/media-queries";
 
 .teamProgramming_container {
-  padding-top: 30px;
+  padding-top: 16px;
   margin-bottom: 5rem;
 
   @include desktop2 {
-    padding-top: 70px;
+    padding-top: 40px;
     min-height: 100vh;
   }
 }

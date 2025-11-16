@@ -32,7 +32,7 @@ export const Ejes = () => {
             id="SchedulingInclusion"
             className={programingIsIntersecting ? "selected" : ""}
           >
-            <h3 className="paragraph1">Programando la inclusión</h3>
+            <h3 className="paragraph1">Ecosistema FORIT</h3>
             <p className="paragraph2">
               Programas de formación y entrenamiento laboral para insertarse al mercado IT a través de la programación web full stack
             </p>

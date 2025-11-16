@@ -5,10 +5,10 @@
   &_container {
     cursor: default;
     text-align: center;
-    padding-top: 30px;
+    padding-top: 16px;
 
     @include desktop2 {
-      padding: 10rem;
+      padding: 4rem;
     }
   }
 
