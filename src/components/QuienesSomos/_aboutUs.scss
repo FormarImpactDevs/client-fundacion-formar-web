@@ -6,7 +6,7 @@
   background-repeat: no-repeat;
   cursor: default;
   background-size: 100% 100%;
-  padding-top: 16px;
+  padding-top: 8px;
   @include desktop2 {
     padding-top: $padding-top;
     min-height: $min-height;
@@ -14,7 +14,7 @@
 }
 
 .quienes_somos_text_img {
-  margin-top: 10px;
+  margin-top: 4px;
   @include tablet {
   }
 

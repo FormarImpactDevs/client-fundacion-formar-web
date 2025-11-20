@@ -8,7 +8,7 @@
     } 
 }
 .team_cards {
-    margin: 20px 0px;
+    margin: 8px 0px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -18,5 +18,6 @@
     @include tablet {
         flex-direction: row;
         justify-content: space-evenly;
+        margin: 20px 0px;
     }
 }

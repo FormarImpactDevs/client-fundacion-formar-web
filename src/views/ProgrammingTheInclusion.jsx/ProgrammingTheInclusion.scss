@@ -5,7 +5,7 @@
   &_container {
     cursor: default;
     text-align: center;
-    padding-top: 16px;
+    padding-top: 8px;
 
     @include desktop2 {
       padding: 4rem;
@@ -17,8 +17,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 10px;
-    margin: 15px;
+    padding: 4px;
+    margin: 8px;
 
     @include desktop2 {
       flex-direction: row;
@@ -27,7 +27,7 @@
 
   &_card {
     background-color: #74A9DA;    
-    margin: 15px;
+    margin: 8px;
     margin-top: -2.5rem;
     padding: 2rem;
     padding-top: 4.5rem;

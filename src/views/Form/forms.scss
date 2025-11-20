@@ -1,15 +1,22 @@
 @import "../../styles/colors";
 @import "../../styles/media-queries";
 
+#formVolunteer {
+  margin-top: 0!important;
+}
 .titlesFormsContainer {
   text-align: center;
-  padding: 7rem 1rem;
+  padding: 2rem 1rem;
   
   
   @include tablet {
-    padding:50px;
-    margin: 1rem;
+    padding: 3rem 2rem;
     
+  }
+
+  @include desktop {
+    padding: 50px;
+    margin: 1rem;
   }
   
   & .subtitle {
